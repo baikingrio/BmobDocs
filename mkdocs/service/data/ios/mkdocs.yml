@@ -1,0 +1,11 @@
+site_name: Bmob iOS Docs
+pages:
+- [index.md, 快速入门]
+- [module/developdoc/README.md, 开发文档]
+- [module/example/README.md, 示例和功能]
+- [module/errorcode/README.md, 错误码]
+- [module/common_problem/README.md, 常见问题]
+- [module/update_log/README.md, 更新日志]
+use_directory_urls: false
+copyright: Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.
+site_dir: "../../../../service/data/ios"

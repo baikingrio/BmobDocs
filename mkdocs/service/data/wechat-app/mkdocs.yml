@@ -1,0 +1,8 @@
+site_name: WeChatApp Docs
+pages:
+- [index.md, 快速入门]
+- [module/develop_doc/README.md, 开发文档]
+- [module/example/README.md, 示例和功能]
+use_directory_urls: false
+copyright: Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.
+site_dir: "../../../../service/data/wechat-app"

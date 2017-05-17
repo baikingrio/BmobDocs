@@ -1,0 +1,74 @@
+{
+    "docs": [
+        {
+            "location": "/index.html", 
+            "text": "准备工作\n\n\nSDK下载\n\n\ngo get github.com/bmob/bmob-go-sdk\n\n\n运行效果\n\n\n打开项目中的\nexamples/main.go\n文件，可以看到如何使用Go SDK相关的方法。\n\n\npackage main\n\nimport (\n    \nlog\n\n\n    \ngithub.com/bmob/bmob-go-sdk\n\n)\n\nvar (\n    appConfig = bmob.RestConfig{\n,\n        \n}\n)\n\ntype TestData struct {\n    Score string\n    //data  DataType\n}\n\ntype MyRes struct {\n    bmob.RestResponse\n    bmob.ImageResponse\n}\n\ntype TestDataRes struct {\n    TestData\n    MyRes\n}\n\nfunc main() {\n    a := bmob.RestResponse{}\n    log.Println(a)\n    log.Println(\n****************************************\n)\n    var respDst = TestDataRes{}\n\n    header, err := bmob.DoRestReq(appConfig,\n        bmob.RestRequest{\n            bmob.BaseReq{\n                \nGET\n,\n                bmob.ApiRestURL(\nGameScore\n) + \n/\n,\n                \n},\n            \napplication/json\n,\n            nil},\n        \nrespDst)\n    if err == nil {\n        log.Println(header)\n        log.Println(respDst)\n    } else {\n        log.Panic(err)\n    }\n\n    log.Println(\n****************************************\n)\n}\n\n\n\n\n类库说明\n\n\n\n\n\n\nRestConfig - Bmob配置类，使用的时候需要修改里面的配置信息\n\n\n\n\n\n\n数据类型 - 封装了Bmob预定义的数据类型，用户可在此基础上进行定制，在users.go等文件里定义\n\n\n\n\n\n\nDoRestRequest - Bmob基础方法，用于完成REST API请求\n\n\n\n\n\n\nBmob官方信息\n\n\n官方网址：\nhttp://www.bmob.cn\n\n\n问答社区：\nhttp://wenda.bmob.cn\n\n\n技术邮箱：support@bmob.cn", 
+            "title": "快速入门"
+        }, 
+        {
+            "location": "/index.html#_1", 
+            "text": "", 
+            "title": "准备工作"
+        }, 
+        {
+            "location": "/index.html#sdk", 
+            "text": "go get github.com/bmob/bmob-go-sdk", 
+            "title": "SDK下载"
+        }, 
+        {
+            "location": "/index.html#_2", 
+            "text": "打开项目中的 examples/main.go 文件，可以看到如何使用Go SDK相关的方法。  package main\n\nimport (\n     log \n\n     github.com/bmob/bmob-go-sdk \n)\n\nvar (\n    appConfig = bmob.RestConfig{ ,\n         }\n)\n\ntype TestData struct {\n    Score string\n    //data  DataType\n}\n\ntype MyRes struct {\n    bmob.RestResponse\n    bmob.ImageResponse\n}\n\ntype TestDataRes struct {\n    TestData\n    MyRes\n}\n\nfunc main() {\n    a := bmob.RestResponse{}\n    log.Println(a)\n    log.Println( **************************************** )\n    var respDst = TestDataRes{}\n\n    header, err := bmob.DoRestReq(appConfig,\n        bmob.RestRequest{\n            bmob.BaseReq{\n                 GET ,\n                bmob.ApiRestURL( GameScore ) +  / ,\n                 },\n             application/json ,\n            nil},\n         respDst)\n    if err == nil {\n        log.Println(header)\n        log.Println(respDst)\n    } else {\n        log.Panic(err)\n    }\n\n    log.Println( **************************************** )\n}", 
+            "title": "运行效果"
+        }, 
+        {
+            "location": "/index.html#_3", 
+            "text": "RestConfig - Bmob配置类，使用的时候需要修改里面的配置信息    数据类型 - 封装了Bmob预定义的数据类型，用户可在此基础上进行定制，在users.go等文件里定义    DoRestRequest - Bmob基础方法，用于完成REST API请求", 
+            "title": "类库说明"
+        }, 
+        {
+            "location": "/index.html#bmob", 
+            "text": "官方网址： http://www.bmob.cn  问答社区： http://wenda.bmob.cn  技术邮箱：support@bmob.cn", 
+            "title": "Bmob官方信息"
+        }, 
+        {
+            "location": "/module/develop_doc/README/index.html", 
+            "text": "简介\n\n\nBmob平台为您的移动应用提供了一个完整的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用Bmob平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。\nGo SDK封装了Bmob RESTful API，但并不包含功能封装，如果需要调用具体的功能，请参考官方RESTful API开发文档\nhttp://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html\n\n\n快速入门\n\n\n建议您在阅读本开发文档之前，先阅读我们提供的 \ngo快速入门文档\n，便于您后续的开发。\n\n\n应用程序\n\n\n在Bmob平台注册后，每个账户可创建多个应用程序，创建的每个应用程序有各自的Application ID，应用程序将凭其Application ID使用Bmob SDK。\n\n\n应用安全\n\n\n请大家在使用Bmob开发应用程序之前，仔细阅读“数据与安全”的文档：\nhttp://docs.bmob.cn/other/Other/m_bql/doc/index.html\n\n\n数据类型\n\n\n除了JSON标准里定义的数据类型外，还支持Bmob自定义的数据类型：\nhttp://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#对象\n\n这些类型操作相关的基本数据结构在types.go中定义，由于JSON是schema-less的，你可以只填充必要的字段来完成操作\n\n\nRESTful请求\n\n\n一次典型的RESTFul请求如下：\n\n\n  header, err := bmob.DoRestReq(appConfig,\n    bmob.RestRequest{\n      bmob.BaseReq{\n        \nGET\n,\n        bmob.ApiRestURL(\nGameScore\n) + \n/\n,\n        \n},\n      \napplication/json\n,\n      nil},\n    \nrespDst}\n  if err == nil {\n    log.Println(header}\n    log.Println(respDst}\n  } else {\n    log.Panic(err}\n  }\n\n\n\n\n参数：\n\n appConfig - 保存了APP相关的key等信息\n\n RestRequest - 使用Bmob RESTful API 所需的信息： {方法， url， sessionToken}， 数据类型， body\n\n respDst - 用于保存解析后的response\n返回值：\n\n header - http.Header， 请求返回的标准HTTP头\n* err - 错误信息\n\n\ncurl -X GET \\\n    -H \nX-Bmob-Application-Id: Your Application ID\n \\\n    -H \nX-Bmob-REST-API-Key: Your REST API Key\n \\\n    -G \\\n    --data-urlencode 'where={\ncreatedAt\n:{\n$gte\n:{\n__type\n:\nDate\n,\niso\n:\n2011-08-21 18:02:52\n}}}' \\\n    https://api.bmob.cn/1/classes/GameScore\n\n\n\n\n再一次请求中，你需要指定的HTTP方法，URL，sessionToken等均可以在BaseReq中指定，\nAPP验证需要的KEY等在RestConfig中指定\n数据段则在转成[]byte类型后传入\n上传不同类型的格式时，需要指定编码格式，默认为text/plain，\n\n\n数据对象\n\n\nBmob请求格式化数据时，body为JSON格式，用户可以自定义需要的字段，但是由于返回的数据会附加Bmob预定义的字段，所以需要单独处理。 SDK中采取的写法如下：\n\n\ntype TestDataType struct {\n  Score string\n  data  DataType\n}\n\ntype TestDataRes struct {\n  TestData\n  bmob.RestResponse\n}\n\n\n\n\n通过继承自定义的Response结构体，我们可以同时解析返回的数据里的用户定义数据和系统定义数据。\n\n\nRestResponse包含了解析最常用的请求响应所需的字段，如果需要其他解析其他请求的响应，可以继承SDK中提供的相应的结构体，如ImageResponse\n\n\ntype MyRes struct {\n  bmob.RestResponse\n  bmob.ImageResponse\n}\n\n\n\n\n这个结构体可以解析标准的RESTful响应和Image请求相关的响应", 
+            "title": "开发文档"
+        }, 
+        {
+            "location": "/module/develop_doc/README/index.html#_1", 
+            "text": "Bmob平台为您的移动应用提供了一个完整的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用Bmob平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。\nGo SDK封装了Bmob RESTful API，但并不包含功能封装，如果需要调用具体的功能，请参考官方RESTful API开发文档 http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html", 
+            "title": "简介"
+        }, 
+        {
+            "location": "/module/develop_doc/README/index.html#_2", 
+            "text": "建议您在阅读本开发文档之前，先阅读我们提供的  go快速入门文档 ，便于您后续的开发。", 
+            "title": "快速入门"
+        }, 
+        {
+            "location": "/module/develop_doc/README/index.html#_3", 
+            "text": "在Bmob平台注册后，每个账户可创建多个应用程序，创建的每个应用程序有各自的Application ID，应用程序将凭其Application ID使用Bmob SDK。", 
+            "title": "应用程序"
+        }, 
+        {
+            "location": "/module/develop_doc/README/index.html#_4", 
+            "text": "请大家在使用Bmob开发应用程序之前，仔细阅读“数据与安全”的文档： http://docs.bmob.cn/other/Other/m_bql/doc/index.html", 
+            "title": "应用安全"
+        }, 
+        {
+            "location": "/module/develop_doc/README/index.html#_5", 
+            "text": "除了JSON标准里定义的数据类型外，还支持Bmob自定义的数据类型： http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#对象 \n这些类型操作相关的基本数据结构在types.go中定义，由于JSON是schema-less的，你可以只填充必要的字段来完成操作", 
+            "title": "数据类型"
+        }, 
+        {
+            "location": "/module/develop_doc/README/index.html#restful", 
+            "text": "一次典型的RESTFul请求如下：    header, err := bmob.DoRestReq(appConfig,\n    bmob.RestRequest{\n      bmob.BaseReq{\n         GET ,\n        bmob.ApiRestURL( GameScore ) +  / ,\n         },\n       application/json ,\n      nil},\n     respDst}\n  if err == nil {\n    log.Println(header}\n    log.Println(respDst}\n  } else {\n    log.Panic(err}\n  }  参数：  appConfig - 保存了APP相关的key等信息  RestRequest - 使用Bmob RESTful API 所需的信息： {方法， url， sessionToken}， 数据类型， body  respDst - 用于保存解析后的response\n返回值：  header - http.Header， 请求返回的标准HTTP头\n* err - 错误信息  curl -X GET \\\n    -H  X-Bmob-Application-Id: Your Application ID  \\\n    -H  X-Bmob-REST-API-Key: Your REST API Key  \\\n    -G \\\n    --data-urlencode 'where={ createdAt :{ $gte :{ __type : Date , iso : 2011-08-21 18:02:52 }}}' \\\n    https://api.bmob.cn/1/classes/GameScore  再一次请求中，你需要指定的HTTP方法，URL，sessionToken等均可以在BaseReq中指定，\nAPP验证需要的KEY等在RestConfig中指定\n数据段则在转成[]byte类型后传入\n上传不同类型的格式时，需要指定编码格式，默认为text/plain，", 
+            "title": "RESTful请求"
+        }, 
+        {
+            "location": "/module/develop_doc/README/index.html#_6", 
+            "text": "Bmob请求格式化数据时，body为JSON格式，用户可以自定义需要的字段，但是由于返回的数据会附加Bmob预定义的字段，所以需要单独处理。 SDK中采取的写法如下：  type TestDataType struct {\n  Score string\n  data  DataType\n}\n\ntype TestDataRes struct {\n  TestData\n  bmob.RestResponse\n}  通过继承自定义的Response结构体，我们可以同时解析返回的数据里的用户定义数据和系统定义数据。  RestResponse包含了解析最常用的请求响应所需的字段，如果需要其他解析其他请求的响应，可以继承SDK中提供的相应的结构体，如ImageResponse  type MyRes struct {\n  bmob.RestResponse\n  bmob.ImageResponse\n}  这个结构体可以解析标准的RESTful响应和Image请求相关的响应", 
+            "title": "数据对象"
+        }
+    ]
+}

@@ -4,55 +4,55 @@
     
     <url>
      <loc>/index.html</loc>
-     <lastmod>2017-05-16</lastmod>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/develop/index.html</loc>
-     <lastmod>2017-05-16</lastmod>
+     <loc>/module/develop_doc/README/index.html</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/example/index.html</loc>
-     <lastmod>2017-05-16</lastmod>
+     <loc>/module/example/README/index.html</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/autoupdate/index.html</loc>
-     <lastmod>2017-05-16</lastmod>
+     <loc>/module/auto_update/README/index.html</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/errorcode/index.html</loc>
-     <lastmod>2017-05-16</lastmod>
+     <loc>/module/error_code/README/index.html</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/common_problem/README/index.html</loc>
-     <lastmod>2017-05-16</lastmod>
+     <loc>/module/common_problem/README/index.html</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/update_log/README/index.html</loc>
-     <lastmod>2017-05-16</lastmod>
+     <loc>/module/update_log/README/index.html</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

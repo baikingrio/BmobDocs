@@ -1,0 +1,22 @@
+site_name: 错误码文档
+pages:
+- [index.md, 错误码]
+use_directory_urls: false
+copyright: Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.
+site_dir: "../../../../service/other/error_code"
+extra:
+  palette:
+    primary: 'blue grey'
+    accent: 'blue grey'
+  author:
+    github: 'wujiyu115'
+# Extensions
+markdown_extensions:
+  #高亮
+  - pymdownx.tasklist
+  - codehilite(css_class=codehilite)
+  - admonition
+  - toc:
+      permalink: '#'
+extra_css:
+    - css/custom.css

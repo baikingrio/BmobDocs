@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="./img/favicon.ico">
+        <title>SMS Android</title>
+        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">SMS Android</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="index.html">开发文档</a>
+                    </li>
+                    <li >
+                        <a href="module/error_code/README/index.html">错误码</a>
+                    </li>
+                    <li >
+                        <a href="module/common_problem/README/index.html">常见问题</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="module/error_code/README/index.html">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#sms">SMS初始化</a></li>
+        <li class="main "><a href="#_1">请求发送自定义的短信内容</a></li>
+        <li class="main "><a href="#_2">请求发送短信验证码</a></li>
+            <li><a href="#_3">验证验证码</a></li>
+            <li><a href="#_4">查询短信发送状态</a></li>
+        <li class="main "><a href="#_5">购买事项</a></li>
+            <li><a href="#_6">购买方法</a></li>
+            <li><a href="#_7">发票事宜</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p>除了与用户相关的包括一键注册，手机号码登录等操作外，Bmob 还推出了单独的短信验证码服务。 在实际的应用中，开发者希望能够通过短信验证的方式来与用户进行某些重要操作的确认，你就可以在用户验证过手机号码的前提下，使用 Bmob 提供的短信验证码服务(<code>Bmob SMS SDK</code>)。</p>
+<p>每个 Bmob 帐户有 10 条免费额度的短信数量用于测试，超过需要购买短信条数才能继续使用。</p>
+<p>默认使用 【比目科技】 作为签名，可以在控制台进行修改。</p>
+<p>下面是使用方法：</p>
+<h2 id="sms">SMS初始化</h2>
+<p>此短信SDK可单独使用，调用如下方法完成应用的初始化：</p>
+<p>1.默认的初始化</p>
+<pre><code class="java">
+BmobSMS.initialize(context,Bmob_Application_ID);
+
+</code></pre>
+
+<p>2.从v1.2.0开始，提供了对应的接口回调，收到短信验证码能读取到验证码，读取后能自动填入EditText，能提高用户体验，你需要传对应的接口参数：</p>
+<pre><code class="java">
+BmobSMS.initialize(context,Bmob_Application_ID，new MySMSCodeListener());
+
+class MySMSCodeListener implements SMSCodeListener{
+
+        @Override
+        public void onReceive(String content) {
+            if(et_smscode != null){
+                et_smscode.setText(content);
+            }
+        }
+
+    }
+
+</code></pre>
+
+<p>注: 如果用第二种方式初始化，需要相应的广播和短信权限，详见BmobSMSDemo。</p>
+<h2 id="_1">请求发送自定义的短信内容</h2>
+<p><strong>使用场景</strong></p>
+<p>此方法允许开发者使用 Bmob 的短信功能灵活发送自定义的短信内容到用户的手机上，可运用于多种场景下，比如 <code>发送祝福短信、推送消息、通知</code>等</p>
+<p><strong>使用前准备</strong></p>
+<p>有两种方式可以使用自定义模板
+1.开发者可在Bmob后台提交身份证信息（<code>Bmob后台-&gt;账户管理-&gt;身份验证</code>），并经<code>Bmob官方审核</code>通过，可以自定义模板。
+2.不提交身份信息，直接提交短信模板，并经<code>Bmob官方审核</code>通过，可以使用该模板。</p>
+<p><strong>短信模板需要符以下要求，否则模板审核不予通过。</strong></p>
+<p>注意：请不要发送任何敏感内容，请不要定制广告、营销以诱导用户行为的信息。具体如下：
+1.不得包含敏感关键，<a href="https://github.com/bmob/bmob-public-docs">关键字列表文档下载</a>，不得包含【】和 [] 
+2.带联系方式（电话、qq微信、邮箱地址）的短信。如：“目前我司推出xx产品最新优惠，联系陈生了解详情，电话123-1234-1234”;
+3.诱导用户行为，特别是带超链接。如“我司推出新作xxx游戏，下载链接http://xxx.com”等；
+当前有两种使用自定义模板</p>
+<p>发现上述情况，针对通过身份审核的开发者，第一次给予警告，第二次将直接关闭接口使用，针对通过模板审核请求使用的开发者，模板审核不给予通过。</p>
+<p><strong>调用示例</strong></p>
+<pre><code class="java">
+SimpleDateFormat format =new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+String sendTime = format.format(new Date());
+BmobSMS.requestSMS(context, number, &quot;审核通过后的短信内容&quot;,sendTime,new RequestSMSCodeListener() {
+
+    @Override
+    public void done(Integer smsId,BmobException ex) {
+        // TODO Auto-generated method stub
+        if(ex==null){//
+            Log.i(&quot;bmob&quot;,&quot;短信发送成功，短信id：&quot;+smsId);//用于查询本次短信发送详情
+        }else{
+            Log.i(&quot;bmob&quot;,&quot;errorCode = &quot;+ex.getErrorCode()+&quot;,errorMsg = &quot;+ex.getLocalizedMessage());
+        }
+    }
+});
+
+</code></pre>
+
+<p>注：</p>
+<p>1、如果需要立即发送，sendTime设置为null(不是空字符串"");</p>
+<p>2、sendTime的格式为 <code>yyyy-MM-dd HH:mm:ss</code>,如果sendTime的格式不正确或者是这个时间是过去的时间，那么短信会立即发送;</p>
+<p>3、smsId可用于查询该条短信的发送状态。</p>
+<h2 id="_2">请求发送短信验证码</h2>
+<p>通过<code>requestSMSCode</code>方式给绑定手机号的该用户发送指定短信模板的短信验证码：</p>
+<pre><code class="java">
+BmobSMS.requestSMSCode(context, &quot;11位手机号码&quot;, &quot;模板名称&quot;,new RequestSMSCodeListener() {
+
+    @Override
+    public void done(Integer smsId,BmobException ex) {
+        // TODO Auto-generated method stub
+        if(ex==null){//验证码发送成功
+            Log.i(&quot;bmob&quot;, &quot;短信id：&quot;+smsId);//用于查询本次短信发送详情
+        }
+    }
+});
+
+</code></pre>
+
+<p>短信默认模板：</p>
+<pre><code class="java">
+    您的验证码是`%smscode%`，有效期为`%ttl%`分钟。您正在使用`%appname%`的验证码。【比目科技】
+
+</code></pre>
+
+<p><strong>注：</strong></p>
+<p>1、<code>模板名称</code>：模板名称需要开发者在应用的管理后台进行短信模板的添加工作，具体：<code>短信服务</code>-&gt;<code>短信模板</code>,之后点击创建即可。</p>
+<p>具体请看下图：</p>
+<p><img alt="" src="./image/sms.png" /></p>
+<p>2、只有审核通过之后的自定义短信模板才可以被使用，如果自定义的短信模板其状态显示<code>审核中</code>或者<code>审核失败</code>,再调用该方法则会以<code>默认模板</code>来发送验证码。</p>
+<p><strong>3、开发者提交短信验证码模板时需注意以下几点：</strong></p>
+<p><strong>1）、模板中不能有【】和 [] ，否则审核不通过；</strong></p>
+<p><strong>2）、如果你提交的短信模板无法发送，则有可能包含一些敏感监控词，具体可去Github下载  <a href="https://github.com/bmob/bmob-public-docs/blob/master/%E7%9F%AD%E4%BF%A1%E5%85%B3%E9%94%AE%E5%AD%97%E7%9B%91%E6%8E%A7%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3.doc">短信关键字监控参考文档</a> 来查看提交内容是否合法。</strong></p>
+<p><strong>3）、一天一个应用给同一手机号发送的短信不能超过10条，否则会报<code>10010</code>错误，其他错误码可查看：<a href="http://docs.bmob.cn/sms/Android/g_errorcode/doc/index.html">短信功能相关错误码</a> 。</strong></p>
+<h3 id="_3">验证验证码</h3>
+<p>通过<code>verifySmsCode</code>方式可验证该短信验证码：</p>
+<pre><code class="java">
+BmobSMS.verifySmsCode(context,&quot;11位手机号码&quot;, &quot;验证码&quot;, new VerifySMSCodeListener() {
+
+    @Override
+    public void done(BmobException ex) {
+        // TODO Auto-generated method stub
+        if(ex==null){//短信验证码已验证成功
+            Log.i(&quot;bmob&quot;, &quot;验证通过&quot;);
+        }else{
+            Log.i(&quot;bmob&quot;, &quot;验证失败：code =&quot;+ex.getErrorCode()+&quot;,msg = &quot;+ex.getLocalizedMessage());
+        }
+    }
+});
+
+</code></pre>
+
+<h3 id="_4">查询短信发送状态</h3>
+<p>通过<code>querySmsState</code>方式可查询指定<code>smsId</code>的发送状态：</p>
+<pre><code class="java">
+BmobSMS.querySmsState(context, smsId, new QuerySMSStateListener() {
+
+            @Override
+            public void done(SmsState state, BmobException ex) {
+                // TODO Auto-generated method stub
+                if(ex==null){
+                    Log.i(&quot;bmob&quot;,&quot;短信状态：&quot;+state.getSmsState()+&quot;,验证状态：&quot;+state.getVerifyState());
+                }
+            }
+        });
+
+</code></pre>
+
+<p>注：<code>SmsState</code>包含两种状态：</p>
+<p>1、<code>smsState</code>（短信状态）   :SUCCESS（发送成功）、FAIL（发送失败）、SENDING(发送中)。</p>
+<p>2、<code>verifyState</code>（验证状态）:true(已验证)、false(未验证)。</p>
+<p><strong>注意事项：</strong></p>
+<p><strong>关于短信条数的计算规则如下:</strong></p>
+<ol>
+<li>实际计算的短信字数 = 模板的内容或自定义短信的内容字数 + 6。加上6是因为默认的签名【比目科技】占了6个字。</li>
+<li>实际计算的短信字数在70个字以下算1条。</li>
+<li>实际计算的短信字数超过70字的以67字为一条来计算的。也就是135个字数是计算为3条的。</li>
+<li>计算得到的短信条数在本条短信发送成功后将会从你的账户剩余的短信条数中扣除。</li>
+</ol>
+<p><strong>短信发送限制规则是1/分钟，5/小时，10/天。即对于一个应用来说，一天给同一手机号发送短信不能超过10条，一小时给同一手机号发送短信不能超过5条，一分钟给同一手机号发送短信不能超过1条。</strong></p>
+<h2 id="_5">购买事项</h2>
+<h3 id="_6">购买方法</h3>
+<p>短信条数只能输入整数，且不能少于1000条</p>
+<p><img alt="短信计费模式" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/jfms.png" /></p>
+<p>进入账号控制台，财务/财务统计点击购买短信即可。</p>
+<p><img alt="购买短信" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/14703632600603.jpg" /></p>
+<h3 id="_7">发票事宜</h3>
+<p>购买金额满100可提供发票，1000元以内的到付，1000以上（含1000）包邮。</p>
+<p>登录后台提交工单，提供购买服务的订单号和开票信息。</p>
+<p><strong>个人</strong></p>
+<p>发票抬头、邮寄地址、联系人及电话</p>
+<p><strong>企业</strong></p>
+<p>公司名称、统一社会信用代码、开户行及账号、邮寄地址、联系人及电话</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.</p>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '.';</script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
+        <script src="./js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 0.16.3
+Build Date UTC : 2017-05-17 07:33:06
+-->

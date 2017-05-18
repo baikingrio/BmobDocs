@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="./img/favicon.ico">
+        <title>Push Android</title>
+        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Push Android</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="index.html">开发文档</a>
+                    </li>
+                    <li >
+                        <a href="module/common_problem/README/index.html">常见问题</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="module/common_problem/README/index.html">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">消息推送简介</a></li>
+        <li class="main "><a href="#_2">消息推送快速入门</a></li>
+        <li class="main "><a href="#demo">消息推送的视频教程和Demo</a></li>
+        <li class="main "><a href="#_3">其他相关说明</a></li>
+            <li><a href="#_4">安装消息推送服务</a></li>
+            <li><a href="#_5">订阅频道和退订</a></li>
+            <li><a href="#_8">广播推送消息</a></li>
+            <li><a href="#_9">组播推送消息</a></li>
+            <li><a href="#_10">多播推送消息</a></li>
+            <li><a href="#_15">点播推送消息</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="_1">消息推送简介</h2>
+<p>推送通知是让用户及时被通知、和你的应用保持联系的一种非常棒的方式，你可以快速而有效地通知到所有的用户，下面这个教程将会教你如何使用Bmob来推送消息。</p>
+<h2 id="_2">消息推送快速入门</h2>
+<p>一、在Bmob官方网站的下载界面中，选择下载<a href="http://www.bmob.cn/downloads">Android推送SDK</a>，将下载的zip压缩包进行解压，得到<code>Bmob_Push_v(版本号)_日期.jar</code>，然后将它放在你项目根目录下的"libs"目录中。</p>
+<p>二、在您的应用程序AndroidManifest.xml文件中添加相应的权限：</p>
+<pre><code class="xml">    &lt;!--BmobSDK所需的权限 --&gt;
+    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
+    &lt;!--推送所需的权限--&gt;
+    &lt;uses-permission android:name=&quot;android.permission.RECEIVE_USER_PRESENT&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.RECEIVE_BOOT_COMPLETED&quot; /&gt;
+</code></pre>
+
+<p>三、在您的应用程序AndroidManifest.xml文件中注册BmobPush SDK运行所需的推送服务和消息接收器：</p>
+<pre><code class="xml">    &lt;service
+        android:label=&quot;PushService&quot;
+        android:name=&quot;cn.bmob.push.lib.service.PushService&quot;
+        android:process=&quot;:bmobpush&quot;
+        android:exported=&quot;true&quot;&gt;
+         &lt;intent-filter&gt;
+             &lt;action android:name=&quot;cn.bmob.push.lib.service.PushService&quot;/&gt;
+         &lt;/intent-filter&gt;
+    &lt;/service&gt;
+
+    &lt;!-- 用于进程保活 --&gt;
+    &lt;service
+        android:name=&quot;cn.bmob.push.lib.service.PushNotifyService&quot;
+        android:process=&quot;:bmobpush&quot; &gt;
+    &lt;/service&gt;
+
+    &lt;receiver android:name=&quot;cn.bmob.push.PushReceiver&quot; &gt;
+        &lt;intent-filter&gt;
+            &lt;!-- 系统启动完成后会调用 --&gt;
+            &lt;action android:name=&quot;android.intent.action.BOOT_COMPLETED&quot; /&gt;               
+            &lt;!-- 解锁完成后会调用 --&gt;
+            &lt;action android:name=&quot;android.intent.action.USER_PRESENT&quot; /&gt;
+            &lt;!-- 监听网络连通性 --&gt;
+            &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot; /&gt;               
+        &lt;/intent-filter&gt;
+    &lt;/receiver&gt;
+
+    &lt;!-- 第四部中创建的消息接收器，在这里进行注册 --&gt;
+    &lt;receiver android:name=&quot;your.package.MyPushMessageReceiver&quot;&gt;
+         &lt;intent-filter &gt;
+              &lt;action android:name=&quot;cn.bmob.push.action.MESSAGE&quot;/&gt;
+         &lt;/intent-filter&gt;
+    &lt;/receiver&gt;
+
+    &lt;!-- 接收心跳和唤醒的广播，要和PushService运行在同个进程 --&gt;
+    &lt;receiver
+         android:name=&quot;cn.bmob.push.PushNotifyReceiver&quot;
+         android:process=&quot;:bmobpush&quot; &gt;
+         &lt;intent-filter&gt;
+             &lt;!-- 接收心跳广播的action --&gt;
+             &lt;action android:name=&quot;cn.bmob.push.action.HEARTBEAT&quot; /&gt;
+             &lt;!-- 接收唤醒广播的action --&gt;
+             &lt;action android:name=&quot;cn.bmob.push.action.NOTIFY&quot; /&gt;
+         &lt;/intent-filter&gt;
+    &lt;/receiver&gt;
+</code></pre>
+
+<p>四、在你的应用程序中创建一个消息接收器。</p>
+<p>Push消息通过<code>action=cn.bmob.push.action.MESSAGE</code>的Intent把数据发送给客户端<code>your.package.MyPushMessageReceiver</code>,消息格式由应用自己决定，PushService只负责把服务器下发的消息以字符串格式透传给客户端。</p>
+<p><code>your.package.MyPushMessageReceiver</code>的代码示例如下：</p>
+<pre><code class="java">public class MyPushMessageReceiver extends BroadcastReceiver{
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        // TODO Auto-generated method stub
+        if(intent.getAction().equals(PushConstants.ACTION_MESSAGE)){
+            Log.d(&quot;bmob&quot;, &quot;客户端收到推送内容：&quot;+intent.getStringExtra(&quot;msg&quot;));
+        }
+    }
+
+}
+</code></pre>
+
+<p>五、启动推送服务</p>
+<p>在你的应用程序主Activity中调用如下方法：</p>
+<pre><code class="java">    // 初始化BmobSDK
+    Bmob.initialize(this, &quot;你的AppKey&quot;);
+    // 使用推送服务时的初始化操作
+    BmobInstallation.getCurrentInstallation().save();
+    // 启动推送服务
+    BmobPush.startWork(this);
+</code></pre>
+
+<p>代码中的"你的Application Id"就是你在Bmob后台中创建的应用程序的Application Id，如果你不知道这是什么，可以参考<a href="http://docs.bmob.cn/android/faststart/index.html?menukey=fast_start&amp;key=start_android" title="Android快速入门">快速入门文档</a>中的注册Bmob账号部分。</p>
+<p>六、在web端进行推送设置</p>
+<p>在应用面板--&gt;消息推送--&gt;推送设置界面中填写包名进行保存。
+<img alt="" src="./image/setting.png" /></p>
+<p>七、在web端推送消息</p>
+<p>完成以上步骤后，你可以运行应用程序，从web推送一条消息给客户端。
+<img alt="" src="./image/pushmsg.png" /></p>
+<p>在后台推送消息给Android和iOS两个平台的时候，有一些需要注意的：
+1、由于Android和iOS的提送机制不同，iOS要经过APNS，Android的推送完全是走Bmob的长连接服务，为兼容这个问题，如果你选择发送格式为“json”格式时，需要添加APNS兼容头部（见下面json的aps部分），推送内容格式如下：</p>
+<pre><code>{
+    &quot;aps&quot;: {
+    &quot;sound&quot;: &quot;cheering.caf&quot;, 
+    &quot;alert&quot;: &quot;这个是通知栏上显示的内容&quot;, 
+    &quot;badge&quot;: 0 
+    }, 
+    &quot;xx&quot; : &quot;json的key-value对，你可以根据情况添加更多的，客户端进行解析获取&quot;, 
+}
+</code></pre>
+
+<p>其中，sound是iOS接收时的声音，badge是iOS通知栏的累计消息数。</p>
+<p>2、如果你选择发送格式为“text”时，推送内容为“推送消息测试。。。。”，Bmob会自动添加aps部分发送给APNS，，相当于自动生成如下的json格式的推送内容：</p>
+<pre><code>{
+    &quot;aps&quot;: {
+        &quot;alert&quot;: &quot;推送消息测试。。。。&quot;, 
+    }
+}
+</code></pre>
+
+<p>同时，也会发送给Android端，相当于自动生成如下的json格式的推送内容：</p>
+<pre><code>{
+    &quot;alert&quot; : &quot;推送消息测试。。。。&quot;, 
+}
+</code></pre>
+
+<p>3、如果只是发送给Android端，大家可以自定义json格式的数据。</p>
+<p>4、由于iOS的APNS的推送的大小是有限制的，默认最多256bytes，因此,如果你需要跨平台互通的话，需注意推送的内容不要太长。</p>
+<p>5、想要更多了解Bmob的推送格式的朋友，如即时聊天，可以查看我们在问答社区中的回答：<a href="http://wenda.bmob.cn//?/question/204">http://wenda.bmob.cn//?/question/204</a></p>
+<p>八、源码下载</p>
+<p>为了更好的让开发者朋友正确的集成和使用Bmob推送功能，我们还提供了一个关于Bmob推送功能的简单Demo以供大家参考，有需要的朋友可以到如下地址进行源码的下载。<a href="https://github.com/bmob/bmob-android-demo-push">https://github.com/bmob/bmob-android-demo-push</a>,
+<a href="https://github.com/bmob/NewPushDemo">0.9版本或以上的Demo</a></p>
+<h2 id="demo">消息推送的视频教程和Demo</h2>
+<p>Bmob官方为大家准备了消息推送的视频教程，有需要的朋友可以移步浏览视频教程：</p>
+<p>客户端推送消息：<a href="http://v.youku.com/v_show/id_XNzQ4ODczOTc2.html">http://v.youku.com/v_show/id_XNzQ4ODczOTc2.html</a></p>
+<p>集成BmobPushSDK：<a href="http://v.youku.com/v_show/id_XNzQ4ODczOTc2.html">http://v.youku.com/v_show/id_XNzQ4ODczOTc2.html</a></p>
+<h2 id="_3">其他相关说明</h2>
+<p>以上文档仅仅介绍了如何实现消息的一次性推送，如果你还需要用到其他的推送方法，如组播、广播等，还需要详细阅读下面的相关知识。</p>
+<h3 id="_4">安装消息推送服务</h3>
+<p>每一个Bmob的App被安装在用户的设备上后，如果要使用消息推送功能，Bmob SDK会自动生成一个Installation对象。Installation对象包含了推送所需要的所有信息。举例：一个棒球的App，你可以让用户订阅感兴趣的棒球队，然后及时将这个球队的消息推送给用户 。
+您可以使用 BmobSDK，通过 <strong>BmobInstallation</strong> 对象进行一系列操作，就像你存储和获取其他的普通对象一样，比如BmobObject对象。</p>
+<p>BmobInstallation对象有几个系统默认的特殊字段来帮助你进行设备定位等管理：
+- <strong>channels</strong> : 当前这个设备订阅的渠道名称数组
+- <strong>timeZone</strong> : 设备所在位置的时区， 如Asia/Shanghai，这个会在每个BmobInstallation对象更新时同步（只读）
+- <strong>deviceType</strong> : 设备的的类型, 值为："ios" 或 "android" (只读)
+- <strong>installationId</strong> : Bmob使用的设备唯一号 (只读)</p>
+<h4 id="installation">保存 installation</h4>
+<p>使用消息推送前，首先需要保存设备信息。</p>
+<pre><code class="java">BmobInstallation.getCurrentInstallation().save();
+</code></pre>
+
+<h4 id="installation_1">自定义Installation表</h4>
+<p>开发者如果想要为设备信息表增加其他属性，则可以通过继承BmobInstallation类的方式来完成，用来定制更通用的推送。</p>
+<p>举例：</p>
+<pre><code class="java">public class MyBmobInstallation extends BmobInstallation {
+
+    /**  
+     * 用户id-这样可以将设备与用户之间进行绑定
+     */  
+    private String uid;
+
+    public MyBmobInstallation(Context context) {
+        super(context);
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+}
+</code></pre>
+
+<p>那么如何更新增加的<code>uid</code>字段的值呢？</p>
+<p><strong>具体思路：先将当前设备查询出来，之后调用<code>update</code>方法更新该值</strong></p>
+<p>示例如下：</p>
+<pre><code class="java">BmobQuery&lt;MyBmobInstallation&gt; query = new BmobQuery&lt;MyBmobInstallation&gt;();
+query.addWhereEqualTo(&quot;installationId&quot;, BmobInstallation.getInstallationId(this));
+query.findObjects(this, new FindListener&lt;MyBmobInstallation&gt;() {
+
+    @Override
+    public void onSuccess(List&lt;MyBmobInstallation&gt; object) {
+        // TODO Auto-generated method stub
+        if(object.size() &gt; 0){
+            MyBmobInstallation mbi = object.get(0);
+            mbi.setUid(&quot;用户id&quot;);
+            mbi.update(context,new UpdateListener() {
+
+                @Override
+                public void onSuccess() {
+                    // TODO Auto-generated method stub
+                    Log.i(&quot;bmob&quot;,&quot;设备信息更新成功&quot;);
+                }
+
+                @Override
+                public void onFailure(int code, String msg) {
+                    // TODO Auto-generated method stub
+                    Log.i(&quot;bmob&quot;,&quot;设备信息更新失败:&quot;+msg);
+                }
+            });
+        }else{
+        }
+    }
+
+    @Override
+    public void onError(int code, String msg) {
+        // TODO Auto-generated method stub
+    }
+});
+
+</code></pre>
+
+<p>注：</p>
+<p><strong>不能调用<code>save</code>方法保存，因为之前调用BmobInstallation.getCurrentInstallation(this).save()方法已经将该设备信息保存到设备表中。</strong></p>
+<h3 id="_5">订阅频道和退订</h3>
+<h4 id="_6">订阅频道</h4>
+<p>订阅频道可使用 <strong>subscribe</strong> 方法</p>
+<pre><code class="java">BmobInstallation installation = BmobInstallation.getCurrentInstallation();
+installation.subscribe(&quot;Giants&quot;);
+installation.subscribe(&quot;Mets&quot;);
+installation.save();
+</code></pre>
+
+<p>注：<code>V3.4.3</code>版本的Bmob SDK对频道订阅增加去重操作，也就是说：即使你调用subscribe方法订阅了多个相同的频道，Bmob只会记录一个频道。</p>
+<h4 id="_7">退订频道</h4>
+<p>退订频道可使用 <strong>unsubscribe</strong> 方法</p>
+<pre><code class="java">BmobInstallation installation = BmobInstallation.getCurrentInstallation();
+installation.unsubscribe(&quot;Giants&quot;);
+installation.save();
+</code></pre>
+
+<h3 id="_8">广播推送消息</h3>
+<p>在客户端实现推送消息的功能，通过 <strong>BmobPushManager</strong> 对象来完成，比如给所有设备推送一条消息，如下：</p>
+<pre><code class="java">BmobPushManager bmobPush = new BmobPushManager();
+bmobPush.pushMessageAll(&quot;Hello Bmob.&quot;);
+</code></pre>
+
+<h3 id="_9">组播推送消息</h3>
+<p>发送消息给订阅了Giants频道的用户</p>
+<pre><code class="java">BmobPushManager bmobPush = new BmobPushManager();
+BmobQuery&lt;BmobInstallation&gt; query = BmobInstallation.getQuery();
+List&lt;String&gt; channels = new ArrayList&lt;String&gt;();
+channels.add(&quot;Giants&quot;);
+
+query.addWhereEqualTo(&quot;channels&quot;, channels);
+bmobPush.setQuery(query);
+bmobPush.pushMessage(&quot;消息内容&quot;);
+</code></pre>
+
+<p>同时发送消息给多个频道时，可以将其他频道添加在channels中。</p>
+<h3 id="_10">多播推送消息</h3>
+<h4 id="_11">推送给不活跃的用户</h4>
+<pre><code class="java">BmobPushManager bmobPush = new BmobPushManager();
+BmobQuery&lt;BmobInstallation&gt; query = BmobInstallation.getQuery();
+query.addWhereLessThan(&quot;updatedAt&quot;, new BmobDate(new Date()));
+bmobPush.setQuery(query);
+bmobPush.pushMessage(&quot;消息内容&quot;);
+</code></pre>
+
+<h4 id="_12">根据查询条件做推送</h4>
+<pre><code class="java">BmobPushManager bmobPush = new BmobPushManager();
+BmobQuery&lt;BmobInstallation&gt; query = BmobInstallation.getQuery();
+query.addWhereEqualTo(&quot;score&quot;, 80);
+bmobPush.setQuery(query);
+bmobPush.pushMessage(&quot;消息内容&quot;);
+</code></pre>
+
+<p>请注意，where 条件查询的都是 installations 表。这里是假设 installations 表存储了 score 的Number属性，你可以像查询普通对象一样构造where查询</p>
+<h4 id="_13">根据平台做推送</h4>
+<p>给Android平台的终端推送</p>
+<pre><code class="java">BmobPushManager bmobPush = new BmobPushManager();
+BmobQuery&lt;BmobInstallation&gt; query = BmobInstallation.getQuery();
+query.addWhereEqualTo(&quot;deviceType&quot;, &quot;android&quot;);
+bmobPush.setQuery(query);
+bmobPush.pushMessage(&quot;消息内容&quot;);
+</code></pre>
+
+<p>给IOS平台的终端推送</p>
+<pre><code class="java">BmobPushManager bmobPush = new BmobPushManager();
+BmobQuery&lt;BmobInstallation&gt; query = BmobInstallation.getQuery();
+query.addWhereEqualTo(&quot;deviceType&quot;, &quot;ios&quot;);
+bmobPush.setQuery(query);
+bmobPush.pushMessage(&quot;消息内容&quot;);
+</code></pre>
+
+<h4 id="_14">根据地理位置信息做推送</h4>
+<pre><code class="java">BmobPushManager bmobPush = new BmobPushManager();
+BmobQuery&lt;BmobInstallation&gt; query = BmobInstallation.getQuery();
+query.addWhereWithinRadians(&quot;location&quot;, new BmobGeoPoint(112.934755, 24.52065), 1.0);
+bmobPush.setQuery(query);
+bmobPush.pushMessage(&quot;消息内容&quot;);
+</code></pre>
+
+<p>上面的例子假设 installation 表中有个 location 属性是 GeoPoint 类型，我们就可以根据地理信息位置做推送。</p>
+<h3 id="_15">点播推送消息</h3>
+<p>发送给Android单个客户端</p>
+<pre><code class="java">String installationId = &quot;客户端installationId&quot;;
+BmobPushManager bmobPush = new BmobPushManager();
+BmobQuery&lt;BmobInstallation&gt; query = BmobInstallation.getQuery();
+query.addWhereEqualTo(&quot;installationId&quot;, installationId);
+bmobPush.setQuery(query);
+bmobPush.pushMessage(&quot;消息内容&quot;);
+</code></pre>
+
+<p>发送给iOS单个客户端</p>
+<pre><code class="java">String deviceToken = &quot;客户端deviceToken&quot;;
+BmobPushManager bmobPush = new BmobPushManager();
+BmobQuery&lt;BmobInstallation&gt; query = BmobInstallation.getQuery();
+query.addWhereEqualTo(&quot;deviceToken&quot;, deviceToken);
+bmobPush.setQuery(query);
+bmobPush.pushMessage(&quot;消息内容&quot;);
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.</p>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '.';</script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
+        <script src="./js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 0.16.3
+Build Date UTC : 2017-05-17 08:29:13
+-->

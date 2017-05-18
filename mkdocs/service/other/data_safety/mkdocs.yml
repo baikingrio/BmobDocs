@@ -1,0 +1,6 @@
+site_name: 数据与安全
+pages:
+- [index.md, 数据与安全]
+use_directory_urls: false
+copyright: Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.
+site_dir: "../../../../service/other/data_safety"

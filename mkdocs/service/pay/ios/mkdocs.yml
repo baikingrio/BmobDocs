@@ -1,0 +1,9 @@
+site_name: Pay iOS
+pages:
+- [index.md, 开发文档]
+- [module/example/README.md, 示例和功能]
+- [module/error_code/README.md, 错误码]
+- [module/common_problem/README.md, 常见问题]
+use_directory_urls: false
+copyright: Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.
+site_dir: "../../../../service/pay/ios"

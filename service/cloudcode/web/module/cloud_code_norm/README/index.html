@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>云逻辑编写规范 - CloudCode Web</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../../index.html">CloudCode Web</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../../../index.html">快速入门</a>
+                    </li>
+                    <li >
+                        <a href="../../develop_doc/README/index.html">开发文档</a>
+                    </li>
+                    <li >
+                        <a href="../../timing_task/README/index.html">定时任务</a>
+                    </li>
+                    <li >
+                        <a href="../../cloud_code_weixin/README/index.html">微信云代码</a>
+                    </li>
+                    <li class="active">
+                        <a href="index.html">云逻辑编写规范</a>
+                    </li>
+                    <li >
+                        <a href="../../common_problem/README/index.html">常见问题</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../../cloud_code_weixin/README/index.html">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../common_problem/README/index.html">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">关于缩进</a></li>
+        <li class="main "><a href="#_2">关于空格</a></li>
+        <li class="main "><a href="#_3">关于命名</a></li>
+        <li class="main "><a href="#_4">关于双等号</a></li>
+        <li class="main "><a href="#_5">关于双引号</a></li>
+        <li class="main "><a href="#_6">关于大括号位置</a></li>
+        <li class="main "><a href="#_7">关于字面表达式的问题</a></li>
+        <li class="main "><a href="#objectarray">Object和Array创建时的逗号问题</a></li>
+        <li class="main "><a href="#witheval">避免使用with与eval</a></li>
+        <li class="main "><a href="#for-in">关于for-in循环</a></li>
+        <li class="main "><a href="#array">关于Array数组的问题</a></li>
+        <li class="main "><a href="#_8">关于变量声明</a></li>
+        <li class="main "><a href="#_9">注释规范</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p>好的编码规范是攻城师们要遵循的法则，Bmob云端逻辑希望大家能够养成良好的编码规范。Nodejs的编码规范与其他语言稍微有所不同，这里列举有所区别的地方。</p>
+<h2 id="_1">关于缩进</h2>
+<p>缩进，2个space，tab要转为2 space。这是Nodejs源码和module采用的标准，希望大家入乡随俗。</p>
+<h2 id="_2">关于空格</h2>
+<p>function关键词和函数名之间有一个空格；调用函数时，函数名和左括号之间没有空格。</p>
+<pre><code>// 正确
+function foo(bar) {...}
+foo(bar);
+foo(function callback(err, data) {...});
+foo(function (err, data) {...});
+
+// 错误
+function foo (bar) {...}
+foo (bar);
+foo(function callback (err, data) {...});
+foo(function(err, data) {...});
+</code></pre>
+
+<p>所有其他语法元素与左括号之间，都有一个空格。</p>
+<pre><code>// 正确
+return (a + b);
+if (a === 0) {...}
+for (var k in map) {...}
+while (i &gt; 0) {...}
+
+// 错误
+return(a + b);
+if(a === 0) {...}
+for(var k in map) {...}
+while(i &gt; 0) {...}
+</code></pre>
+
+<p>操作符号与参数之间有一个空格；能提高阅读性的空格不能省略。</p>
+<pre><code>// 正确
+var a = 1 + 2;
+for (var i = 0, l = items.length; i &lt; l; i++) {...}
+
+//错误
+var a=1+2;
+for(var i=0,l=items.length;i&lt;l;i++){...}
+</code></pre>
+
+<h2 id="_3">关于命名</h2>
+<p>好的变量与函数命名，可以避免大量的注释。Nodejs推荐使用驼峰式命名：</p>
+<pre><code>函数和变量：functionNamesLikeThis, variableNamesLikeThis
+类名和枚举类型：ClassNamesLikeThis, EnumNamesLikeThis
+类方法：methodNamesLikeThis
+常量：SYMBOLIC_CONSTANTS_LIKE_THIS
+</code></pre>
+<h2 id="_4">关于双等号</h2>
+<p>开发的时候大家请慎重使用==号，有时候结果未必会是您想的那样，请看下面的调试计算结果：</p>
+<pre><code>&gt; 0 == ''
+true
+&gt; 1 == true
+true
+&gt; 2 == true
+false
+&gt; 0 == '0'
+true
+&gt; false == 'false'
+false
+&gt; false == '0'
+true
+&gt; " \t\r\n " == 0
+true
+</code></pre>
+<h2 id="_5">关于双引号</h2>
+<p>使用string时，用单引号替代双引号（写JSON时除外）。</p>
+<pre><code>//正确
+var foo = 'bar';
+
+//错误
+var foo = &quot;bar&quot;;
+</code></pre>
+
+<h2 id="_6">关于大括号位置</h2>
+<pre><code>//正确
+if (true) {
+  response.end('winning');
+}
+//错误
+if (true)
+{
+  response.end ('losing');
+}
+</code></pre>
+
+<h2 id="_7">关于字面表达式的问题</h2>
+<p>使用字面表达式，用 '{}' ,'[]' 代替 new Array ，new Object，不要使用 string，bool，number 的对象类型，即不要调用 new String ，new Boolean ，new Number。 </p>
+<h2 id="objectarray">Object和Array创建时的逗号问题</h2>
+<p>Object ，Array 创建，当有多个元素时，注意分行排列时逗号的位置。</p>
+<pre><code>//正确
+var a = ['hello', 'world'];
+var b = {
+  good: 'code',
+  'is generally': 'pretty',
+};
+
+//错误
+var a = [
+  'hello', 'world'
+];
+var b = {&quot;good&quot;: 'code'
+  , is generally: 'pretty'
+};
+</code></pre>
+
+<h2 id="witheval">避免使用with与eval</h2>
+<h2 id="for-in">关于for-in循环</h2>
+<p>for-in 循环，仅在 object/hash/map 时使用，绝不要对Array 使用。</p>
+<h2 id="array">关于Array数组的问题</h2>
+<p>不要把Array 当做关联数组或Object 使用,即你不应该用非数字作为Array 的索引（有PHP开发经验的朋友尤其注意这点）。</p>
+<pre><code>//正确
+var a = {};
+a.hello = 'shit';
+a.foo = 'bar';
+
+//错误
+var a = []; // use '{}' instead
+a['hello'] = 'shit';
+a['foo'] = 'bar';
+</code></pre>
+
+<h2 id="_8">关于变量声明</h2>
+<p>变量声明时，应该每行声明一个，不应该都写在一行。</p>
+<pre><code>//正确
+var name = 'bmob';
+var website = 'www.bmob.cn';
+
+//错误
+var name = 'bmob'
+  ,website = 'www.bmob.cn'; 
+</code></pre>
+
+<h2 id="_9">注释规范</h2>
+<p>注释的规范如下所示：</p>
+<pre><code>/**
+ * 获取文章列表
+ * @param {number} num 文章数量.
+ * @param {string|date|null} dateTime 发布时间.
+ */
+var getPosts = function (num, dateTime) {
+  // ...
+};
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.</p>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../../..';</script>
+        <script data-main="../../../mkdocs/js/search.js" src="../../../mkdocs/js/require.js"></script>
+        <script src="../../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

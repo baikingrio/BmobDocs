@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>定时任务 - CloudCode Web</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../../index.html">CloudCode Web</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../../../index.html">快速入门</a>
+                    </li>
+                    <li >
+                        <a href="../../develop_doc/README/index.html">开发文档</a>
+                    </li>
+                    <li class="active">
+                        <a href="index.html">定时任务</a>
+                    </li>
+                    <li >
+                        <a href="../../cloud_code_weixin/README/index.html">微信云代码</a>
+                    </li>
+                    <li >
+                        <a href="../../cloud_code_norm/README/index.html">云逻辑编写规范</a>
+                    </li>
+                    <li >
+                        <a href="../../common_problem/README/index.html">常见问题</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../../develop_doc/README/index.html">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../cloud_code_weixin/README/index.html">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">定时任务</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h3 id="_1">定时任务</h3>
+<p>定时任务是专门为云端代码提供定时服务，用来定时触发云端代码的特定操作，满足比如定时计算排行榜等需求。规则如下：</p>
+<p><strong>注意：免费版用户最短间隔时间须大于1小时，否则规则无法保存，付费版用户不受该限制。</strong></p>
+<p>具体规则写法如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>取值范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>秒</td>
+<td>0到59</td>
+</tr>
+<tr>
+<td>分</td>
+<td>0到59</td>
+</tr>
+<tr>
+<td>小时</td>
+<td>0到23</td>
+</tr>
+<tr>
+<td>天</td>
+<td>1到31</td>
+</tr>
+<tr>
+<td>月</td>
+<td>1到12</td>
+</tr>
+<tr>
+<td>星期</td>
+<td>0到6, 分别对应：星期天、星期一、星期二、星期三、星期四、星期五、星期六</td>
+</tr>
+</tbody>
+</table>
+<p>“* * * * * *”分别对应：秒 分 时 日 月 星期。当星期的字段填了数字时，天和月的字段就应为“*”。具体例子如下：</p>
+<p>1.“* * * * * *”，表示每一秒，触发定时器一次。</p>
+<p>2.“1 * * * * *”，表示每分钟的秒数是1时，触发定时器一次。</p>
+<p>3.“0 0 * * * *”，表示每小时，触发定时器一次。</p>
+<p>4.“0 0 16 * * *”，表示每天的16时0分0秒，触发定时器一次。</p>
+<p>5.“0 0 0 1 * *”，表示每个月的1号0时0分0秒，触发定时器一次。</p>
+<p>6.“0 0 0 * * 0”，表示每个星期天的0时0分0秒，触发定时器一次。</p>
+<p>7.“0 0 0 1 5 *”，表示每年的5月的1号0时0分0秒，触发定时器一次。</p>
+<p>8.“* 0 * * * *”，表示每小时的0分里面的每一秒，触发定时器一次，即定时器触发了60次，一秒一次。</p>
+<p>9.“*/3 * * * * *”，表示每分钟的秒数是3的倍数时，触发定时器一次。</p>
+<p>10.“0 */10 * * * *”，表示每小时的0分、10分、20分、30分、40分、50分，触发定时器一次。</p>
+<p>11.“* * */5 * * *”，表示每天的0时、5时、10时、15时、20时里面的每一秒钟都触发定时器一次。</p>
+<p>12.“0 0 0 */10 * *”，表示每个月的10号、20号、30号的凌晨，触发定时器一次。</p>
+<p>13.“0 0 0 * * */3”，表示每个星期三和星期六的凌晨，触发定时器一次。</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.</p>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../../..';</script>
+        <script data-main="../../../mkdocs/js/search.js" src="../../../mkdocs/js/require.js"></script>
+        <script src="../../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

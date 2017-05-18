@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="./img/favicon.ico">
+        <title>SMS JavaScript</title>
+        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">SMS JavaScript</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="index.html">开发文档</a>
+                    </li>
+                    <li >
+                        <a href="module/common_problem/README/index.html">常见问题</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="module/common_problem/README/index.html">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">请求发送自定义的短信内容</a></li>
+        <li class="main "><a href="#_2">请求短信验证码</a></li>
+        <li class="main "><a href="#_3">验证短信验证码</a></li>
+        <li class="main "><a href="#_4">查询短信状态</a></li>
+        <li class="main "><a href="#_5">购买事项</a></li>
+            <li><a href="#_6">购买方法</a></li>
+            <li><a href="#_7">发票事宜</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p>短信服务的API集成在BmobSDK中，因此不熟悉的朋友在使用前先可以了解一下BmobSDK的集成<a href="http://docs.bmob.cn/data/JavaScript/a_faststart/doc/index.html">JS 快速入门</a></p>
+<p>在一些应用场景下，你可能希望用户验证手机号码后才能进行一些操作，例如充值等。这些操作跟用户系统没有关系，可以通过我们提供的的短信验证API来实现。</p>
+<p>每个 <a href="http://www.bmob.cn/" title="Bmob移动后端云服务平台">Bmob</a> 帐户有 10 个免费额度的短信数量，超过需要购买短信条数才能继续使用。</p>
+<p>为了保障短信的下发速度和送达率，<a href="http://www.bmob.cn/" title="Bmob移动后端云服务平台">Bmob</a> 为所有用户申请了一致的独享通道，默认使用 <strong>【云验证】</strong> 作为签名，且不可更改。</p>
+<h2 id="_1">请求发送自定义的短信内容</h2>
+<p><strong>使用场景</strong></p>
+<p>此方法允许开发者使用 Bmob 的短信功能灵活发送自定义的短信内容到用户的手机上，可运用于多种场景下，比如 <code>发送祝福短信、推送消息、通知</code>等</p>
+<p><strong>使用前准备</strong></p>
+<p>有两种方式可以使用自定义模板
+1.开发者可在Bmob后台提交身份证信息（<code>Bmob后台-&gt;账户管理-&gt;身份验证</code>），并经<code>Bmob官方审核</code>通过，可以自定义模板。
+2.不提交身份信息，直接提交短信模板，并经<code>Bmob官方审核</code>通过，可以使用该模板。</p>
+<p><strong>短信模板需要符以下要求，否则模板审核不予通过。</strong></p>
+<p>注意：请不要发送任何敏感内容，请不要定制广告、营销以诱导用户行为的信息。具体如下：
+1.不得包含敏感关键，<a href="https://github.com/bmob/bmob-public-docs">关键字列表文档下载</a>，不得包含【】和 [] 
+2.带联系方式（电话、qq微信、邮箱地址）的短信。如：“目前我司推出xx产品最新优惠，联系陈生了解详情，电话123-1234-1234”;
+3.诱导用户行为，特别是带超链接。如“我司推出新作xxx游戏，下载链接http://xxx.com”等；
+当前有两种使用自定义模板</p>
+<p>发现上述情况，针对通过身份审核的开发者，第一次给予警告，第二次将直接关闭接口使用，针对通过模板审核请求使用的开发者，模板审核不给予通过。</p>
+<p><strong>调用示例</strong></p>
+<p>输入手机号码、短信内容，就可以给用户的手机号码发送自定义的短信内容了，以下的content只要在不违反相关规定的前提下，你可以随意输入：</p>
+<pre><code>Bmob.Sms.requestSms({&quot;mobilePhoneNumber&quot;: &quot;131xxxxxxxx&quot;,&quot;content&quot;: &quot;您的验证码是：222222, 有效期是10分钟。&quot;} ).then(function(obj) {
+  alert(&quot;smsId:&quot;+obj.smsId); //
+}, function(err){
+  alert(&quot;发送失败:&quot;+err);
+});
+</code></pre>
+
+<p>你还可以选择定时发送，比如未来的某一时刻给某个手机发送一条短信，sendTime的格式必须是YYYY-mm-dd HH:ii:ss， 如: 2015-05-26 12:13:14，请求如下：</p>
+<pre><code>Bmob.Sms.requestSms({&quot;mobilePhoneNumber&quot;: &quot;131xxxxxxxx&quot;,&quot;content&quot;: &quot;您的验证码是：222222, 有效期是10分钟。&quot;,&quot;sendTime&quot;: &quot;2016-05-26 12:13:14&quot;} ).then(function(obj) {
+  alert(&quot;smsId:&quot;+obj.smsId); //
+}, function(err){
+  alert(&quot;发送失败:&quot;+err);
+});
+</code></pre>
+
+<p>成功返回，短信验证码ID，可用于后面使用查询短信状态接口来查询该条短信是否发送成功：</p>
+<pre><code>{
+    &quot;smsId&quot;: 1232222
+}
+</code></pre>
+
+<h2 id="_2">请求短信验证码</h2>
+<p>如果没有在管理后台创建好模板，可使用默认的模板，<a href="http://www.bmob.cn/" title="Bmob移动后端云服务平台">Bmob</a> 默认的模板是: <strong>您的验证码是%smscode%，有效期为%ttl%分钟。您正在使用%appname%的验证码</strong></p>
+<p>使用默认的模板请求短信验证码：</p>
+<pre><code>Bmob.Sms.requestSmsCode({&quot;mobilePhoneNumber&quot;: &quot;131xxxxxxxx&quot;} ).then(function(obj) {
+  alert(&quot;smsId:&quot;+obj.smsId); //
+}, function(err){
+  alert(&quot;发送失败:&quot;+err);
+});
+</code></pre>
+
+<p>成功返回，短信验证码ID，可用于后面使用查询短信状态接口来查询该短信验证码是否发送成功和是否验证过：</p>
+<pre><code>{
+    &quot;smsId&quot;: 1232222
+}
+</code></pre>
+
+<p>如果你已经在 <a href="http://www.bmob.cn/" title="Bmob移动后端云服务平台">Bmob</a> 后台设置了自己的模板，并已经是审核通过了，则可以使用自己的模板给用户的手机号码发送短信验证码了：</p>
+<pre><code>Bmob.Sms.requestSmsCode({&quot;mobilePhoneNumber&quot;: &quot;131xxxxxxxx&quot;, &quot;template&quot;:&quot;注册模板&quot;} ).then(function(obj) {
+  alert(&quot;smsId:&quot;+obj.smsId); //
+}, function(err){
+  alert(&quot;发送失败:&quot;+err);
+});
+</code></pre>
+
+<p>成功返回，短信验证码ID，可用于后面使用查询短信状态接口来查询该短信验证码是否发送成功和是否验证过：</p>
+<pre><code>{
+    &quot;smsId&quot;: 1232222
+}
+</code></pre>
+
+<h2 id="_3">验证短信验证码</h2>
+<p>通过以下接口，你可以验证用户输入的验证码是否是有效的：</p>
+<pre><code>Bmob.Sms.verifySmsCode(&quot;131xxxxxxxx&quot;, 125466).then(function(obj) {
+  alert(&quot;msg:&quot;+obj.msg); //
+}, function(err){
+  alert(&quot;发送失败:&quot;+err);
+});
+</code></pre>
+
+<p>成功返回以下JSON，表明验证码验证通过：</p>
+<pre><code>{
+    &quot;msg&quot;:&quot;ok&quot;
+}
+</code></pre>
+
+<h2 id="_4">查询短信状态</h2>
+<p>通过以下接口，你可以查询某条短信是否发送成功，如果是使用了Bmob的模板的话还能查询到是否被验证过，其实:smsId是请求短信验证码API返回的smsId值：</p>
+<pre><code>Bmob.Sms.querySms(6817361).then(function(obj) {
+  alert(&quot;status:&quot;+obj.sms_state); //
+}, function(err){
+  alert(&quot;发送失败:&quot;+err);
+});
+</code></pre>
+
+<p>成功返回以下JSON：</p>
+<pre><code>{
+  &quot;sms_state&quot;: &quot;SENDING&quot;, 
+  &quot;verify_state&quot;: false
+}
+</code></pre>
+
+<p>其中sms_state是发送状态，有值: SENDING-发送中，FAIL-发送失败 SUCCESS-发送成功
+其中verify_state是验证码是否验证状态， 有值: true-已验证 false-未验证</p>
+<h2 id="_5">购买事项</h2>
+<h3 id="_6">购买方法</h3>
+<p>短信条数只能输入整数，且不能少于1000条</p>
+<p><img alt="短信计费模式" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/jfms.png" /></p>
+<p>进入账号控制台，财务/财务统计点击购买短信即可。</p>
+<p><img alt="购买短信" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/14703632600603.jpg" /></p>
+<h3 id="_7">发票事宜</h3>
+<p>购买金额满100可提供发票，1000元以内的到付，1000以上（含1000）包邮。</p>
+<p>登录后台提交工单，提供购买服务的订单号和开票信息。</p>
+<p><strong>个人</strong></p>
+<p>发票抬头、邮寄地址、联系人及电话</p>
+<p><strong>企业</strong></p>
+<p>公司名称、统一社会信用代码、开户行及账号、邮寄地址、联系人及电话</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.</p>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '.';</script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
+        <script src="./js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 0.16.3
+Build Date UTC : 2017-05-17 07:48:41
+-->

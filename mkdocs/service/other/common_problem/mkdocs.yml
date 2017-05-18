@@ -1,0 +1,6 @@
+site_name: 常见问题
+pages:
+- [index.md, 常见问题]
+use_directory_urls: false
+copyright: Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.
+site_dir: "../../../../service/other/common_problem"

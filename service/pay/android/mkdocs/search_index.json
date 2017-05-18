@@ -1,0 +1,224 @@
+{
+    "docs": [
+        {
+            "location": "/index.html", 
+            "text": "简介\n\n\nAndroid支付SDK接口是Bmob为广大开发人员提供的统一、正规的收费手段，让没有企业认证的个人开发者，也能通过支付宝和微信向用户收费。该文档可以让您快速为自己的应用接入Bmob的支付功能。下图为使用支付的流程。\n\n\n\n\n使用需知\n\n\n\b\n使用Bmob支付组件前，请认真阅读\nBmob服务协议\n。\n\n\n对于以下两种情况，开发者需要特别注意：\n\n\n1.违反服务协议，特别是含有以下内容的应用：\n\n\n1）封建迷信和/或淫秽、色情、下流的信息或教唆犯罪的信息；\n\n\n2）博彩有奖、赌博游戏、“私服”、“外挂”等非法互联网出版活动；\n\n\nBmob平台有权进行独立判断并采取技术手段予以删除、屏蔽或断开链接。同时，本平台有权视用户的行为性质，采取包括但不限于暂停或终止服务，限制、冻结或终止本平台网站账号的使用，追究法律责任等措施。\n\n\n2.应用遇到过多的用户投诉，如应用的使用者支付了相关款项，但是该应用却没有提供相应的服务。本平台有权限制或冻结该应用支付收入的所有款项，并保留追究法律责任的权利。\n\n\n3.\nBmob将在每笔交易中收取8%服务费。\n\n\n打款需知\n\n\n1.打款前请先在控制台填写以下信息\n\n\n\n\n2.每月的1、2、16、17号为申请打款时间，15号、月尾日为打款时间，确保用户有半个月的追诉期。\n\n\n支持平台\n\n\n目前安卓的支付支持支付宝和微信支付。\n\n\n启用须知\n\n\n\n\n在Bmob账号管理平台进行身份认证，以保证资金安全，否则无法使用支付等功能。\n\n\n\n\n提交申请时，开发者的联系方式至少要有两种(邮箱，电话，QQ)，方便后续支付弹出的订单页面展示，如下\n\n\n\n\n\n\n\n如有任何疑问或者建议，欢迎加入Bmob支付的技术支持QQ群：273080081(1群)，521591577(2群)\n\n\n\n\n\n\n支付接口快速入门\n\n\n\n\n\n\n添加相关文件\n\n\n1 将下载的支付SDK的libs目录添加到项目下，包括\n和\n，so文件按项目需求添加(这个版本不需要支付宝jar包)\n\n\n2 将下载的支付SDK的assets目录添加到项目下，包括\n和\n，其中bp.db其实是apk文件，是微信支付插件\n\n\n\n\n\n\n在您项目的AndroidManifest.xml中添加以下权限:\n\n\nuses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" /\n\n\n\n\n\n\n\n\n修改混淆规则\n\n\n-libraryjars libs/BmobPay_v3.x.x_xxxxxx.jar\n-keepclasseswithmembers class c.b.** { *; }\n-keep interface c.b.PListener{ *; }\n-keep interface c.b.QListener{ *; }\n\n\n\n\n\n\n\n添加下免责Activity(注意这个是在运行时加载的类,可以忽略IDE给出的红色标识)\n\n\nactivity android:name=\"cn.bmob.pay.v3.act.PayAct\" /\n\n\n\n\n\n\n\n\n在您的应用程序主Application的onCreate中调用如下方法：\n  （Application ID在后台应用管理的 数据浏览-\n应用信息-\n应用密钥-\nApplication ID，如果appKey为空或者混淆规则不正确，会抛出IllegalArgumentException异常,因为init是异步的，越早初始化越好）\n\n\nBP.init(\"你的Application ID\");\n\n\n\n注意：新版的支付SDK不能被数据服务SDK的初始化方法取代了，无论您是否使用了Bmob数据服务SDK，都要进行支付SDK的初始化\n\n\n\n\n\n\n发起支付调用，请使用如下方法：\n\n\n/*\n\n     * 第4个参数为true时调用支付宝支付，为false时调用微信支付\n     \n/\n    BP.pay(\"商品名称\", \"商品描述\", 0.02, true, new Plistener(){...});\n\n\n\n\n\n\n在需要调用订单查询的地方，调用如下方法(微信订单和支付宝订单通用)：\n\n\nBP.query(\"订单id\", new QListener(){...});\n\n\n\n\n\n\n\n类库说明\n\n\nc.b.BP\n\n\n\n\nBP.pay(String title, String descript, double money, boolean aliOrWetchat, Plistener listener)\n\n\n\n\n\n\n\n\n\n\n类型\n\n\n名称\n\n\n说明\n\n\n\n\n\n\n\n\n\n\nString\n\n\ntitle\n\n\n商品的名称,请注意不要有违禁字眼,可以为空\n只允许中文、数字、英文和下划线、英文破折号，否则过滤\n\n\n\n\n\n\nString\n\n\ndescript\n\n\n商品的详情描述,请注意不要有违禁字眼,可以为空\n只允许中文、数字、英文和下划线、英文破折号，否则过滤\n\n\n\n\n\n\ndouble\n\n\nprice\n\n\n商品的价格,建议测试用0.02\n\n\n\n\n\n\nboolean\n\n\naliOrWetchat\n\n\n支付方式：true为支付宝支付，false为微信支付\n\n\n\n\n\n\nPlistener\n\n\nlistener\n\n\n支付结果监听类c.b.PListener\n有成功、失败、未知结果、返回订单号等方法\n\n\n\n\n\n\n\n\n注意\n\n\n支付时返回的信息都未必可靠，一切以查询订单返回的信息为准\n\n\n调用微信支付，要安装插件(如果没有安装,会监听器的fail方法会返回-3错误码)，插件在SDK文档的plugin文件夹下，demo有通过assets安装的示例\n\n\n\n\n\nBP.query(String orderId, QListener listener)\n\n\n\n\n\n\n\n\n\n\n类型\n\n\n名称\n\n\n说明\n\n\n\n\n\n\n\n\n\n\nString\n\n\norderId\n\n\n支付订单号,不可为空\n\n\n\n\n\n\nOrderQueryListener\n\n\nlistener\n\n\n查询结果监听类c.b.QListener\n有成功、失败等方法\n\n\n\n\n\n\n\n\n\n\n！！！ForceFree方法已经弃用(开发者需自己控制用户多次点击支付产生多个订单的问题)\n\n\n\n\nForceFree() \n\n\n当上一次支付操作尚未完成时,如果BmobPay对象发起再次请求,PayListener会回调fail方法返回并10777错误码,以免生成多个订单\n\n如果使用过程中出现了阻塞(比如异常强制关闭支付插件页面,会导致一直不能再发起请求，这是小概率事件),则调用此方法进行BmobPay的重置\n\n仅对下一次请求生效,而不是永久消除限制\n\n\n\n\n\n\nc.b.PListener\n\n\n\n\n\n\norderId(String orderId)\n\n\n无论支付成功与否,只要成功产生了请求,就返回订单号,请自行保存以便以后查询\n\n\n\n\n\n\nsucceed()\n\n\n支付成功,保险起见请调用查询方法确认结果\n\n\n\n\n\n\nfail(int code, String reason)\n\n\n支付失败,有可能是用户中断支付,也有可能是网络问题\n返回10777时说明上次操作尚未完成,拒绝多次请求以免生成多个订单(可用BP.ForceFree()方法强制取消一次限制)\n支付宝支付时6001为用户主动中断支付操作\n微信支付返回-2时为用户主动中断操作,返回-3为未安装Bmob支付插件.apk\n(如果多次出现异常请向Bmob工作人员反馈)\n\n\n\n\n\n\nunknow()\n\n\n因为网络等问题,不能确认是否支付成功,请稍后手动查询(小概率事件)\n\n\n\n\n\n\nc.b.QListener\n\n\n\n\n\n\nsucceed(String status)\n\n\n查询成功(并不是说支付成功),返回的status有NOTPAY和SUCCESS两种可能\n\n\n\n\n\n\nfail(int code, String reason)\n\n\n查询失败,有可能是网络问题,也有可能是订单号错误\n\n\n\n\n\n\n支付服务\n\n\n关于如何使用支付功能，请查看 \nAndroid支付SDK\n 或 \niOS支付SDK\n。RestAPI目前只提供了查询订单的功能。\n\n\n查询订单\n\n\ncurl -X GET \\\n-H \"X-Bmob-Application-Id: Your Application ID\" \\\n-H \"X-Bmob-REST-API-Key: Your REST API Key\" \\\nhttps://api.bmob.cn/1/pay/Bmob系统生成的订单号\n\n\n\n成功返回以下JSON, 失败时返回请看 \n支付功能相关错误码\n\n\n{\n\"name\": \"商品\",\n\"body\": \"商品详情\",\n\"create_time\": \"2015-03-24 11:14:58\",\n\"out_trade_no\": \"9f392618f449a71c6fcfdee38d2b29e4\",\n\"transaction_id\": \"2015061100001000330057820379\"\n\"pay_type\": \"WECHATPAY\",\n\"total_fee\": 0.01,\n\"trade_state\": \"NOTPAY\"\n}\n\n\n\n返回的信息简单描述如下：\n\n\n\n\nname           : 订单或商品名称 \n\n\nbody-商品详情\n\n\ncreate_time    : 调起支付的时间\n\n\nout_trade_no   : Bmob系统的订单号\n\n\ntransaction_id : 微信或支付宝的系统订单号\n\n\npay_type       : WECHATPAY（微信支付）或ALIPAY（支付宝支付）\n\n\ntotal_fee      : 订单总金额\n\n\ntrade_state    : NOTPAY（未支付）或 SUCCESS（支付成功）\n\n\n\n\n支付回调\n\n\n如图，可以在支付-配置信息处填入通知url。\n\n\n\n\n这样在支付成功后会向该url（SDK使用异步通知URL，PHP等调用网页支付的使用同步返回URL）发送post请求，结构如下：\n\n\n{\n    \ntrade_status\n:\n1\n,\n    \nout_trade_no\n:\n809488d695ed42ec56b57546d2df94cc\n,\n    \ntrade_no\n:\n2016033021001004810225607152\n\n}\n\n\n\n\ntrade_status：表示支付状态，目前只有支付成功才产生回调，值恒为1.\nout_trade_no：Bmob返回的订单号\ntrade_no：支付宝或微信返回的订单号\n\n\n新版支付v3.1.1(20170111)的更新提示\n\n\n\n\nForceFree方法已经弃用，开发者需自己控制用户多次点击支付产生多个订单的问题\n\n\n这一版本的SDK将会在支付的过程中呈现一个中间页面，这个页面负责引导用户的支付流程，带来的影响是：\n    1)可以不用在pay的回调里调用BP.query进行查询，因为这个页面会确定用户的支付结果(试用demo.apk进行体验)\n    2)可以不用在你自己的app内提供责任说明的页面\n\n\n支付宝支付需要用户手机已经安装支付宝，微信支付仍然需要安装插件\n\n\n市面上还流传小部分内存很吃紧的老款手机，在打开支付宝或者微信的时候可能导致你自己的app被系统杀掉，这种情况可以通过在后台填写\n支付结果的异步通知URL\n解决，结合云端代码来使用(详情见云端代码文档)\n\n\n不用再针对小米手机获取订单时9015的问题添加额外的代码，微信支付插件不用网络权限，但在部分手机可能还是需要用户手动开启\n允许微信支付插件被其它app调起\n的权限\n\n\n新版支付SDK对Unity支持的解决方法:\n\n\n新版支付SDK需要so文件，Unity3d开发者如果没有处理过类似情况，可以这样做：\n\n\n将SDK中libs文件夹下，除了/armeabi、/armeabi-v7a、x86以外的文件夹删掉(jar文件需要保留)，然后把libs文件夹放在Plugins/Android/下。也就是最后会有 Plugins/Android/libs/armeabi/bmobwpay.so文件\n\n\n\n\n\n\n\n\n其他\n\n\n\n\n\n\n混淆规则如下: \n\n\n-libraryjars libs/BmobPay_v3.x.x_xxxxxx.jar\n-keepclasseswithmembers class c.b.** { *; }\n-keep interface c.b.PListener{ *; }\n-keep interface c.b.QListener{ *; }\n\n\n\n\n\n\n\n在\nBmob财务管理平台\n订单管理处，金额从小数点后第三位开始不显示，比如支付了0.01元实收0.00，其实是0.0095\n\n\n\n\n如果用户的手机有“应用锁”功能（即点击应用后跳出系统设定的解锁界面，如小米、360、腾讯管家都可能有该功能），则可能会导致支付中断（支付宝返回6001，微信返回-2），这是微信和支付宝SDK出于安全考虑设置的，请建议用户出现该问题时先关掉支付宝钱包或微信的应用锁\n\n\n由于微信SDK的限制，无法判断微信是否已登陆用户，\n如果未登陆用户，监听器的fail方法可能不被调用\n，请开发者们提醒自己的用户确保微信已登陆\n\n\n如果支付宝已经选定了支付用的账户（或银行卡），但是支付失败，用户的支付宝账号会保留该订单，有可能从支付宝官网、支付宝钱包APP再次发起支付，在开发过程中请注意这种事情的处理情况\n\n\n如果请求支付的页面为横屏，微信支付页面可能出现抽风现象（卡顿甚至重启），是因为微信出现莫名Bug不停开启新支付页面导致内存爆满，解决方法：在AndroidManifest.xml中将com.bmob.pay.tool.PayActivity设为强制竖屏（上方有示例），并尽可能将自己调用的Activity也设置为竖屏", 
+            "title": "开发文档"
+        }, 
+        {
+            "location": "/index.html#_1", 
+            "text": "Android支付SDK接口是Bmob为广大开发人员提供的统一、正规的收费手段，让没有企业认证的个人开发者，也能通过支付宝和微信向用户收费。该文档可以让您快速为自己的应用接入Bmob的支付功能。下图为使用支付的流程。", 
+            "title": "简介"
+        }, 
+        {
+            "location": "/index.html#_2", 
+            "text": "\b\n使用Bmob支付组件前，请认真阅读 Bmob服务协议 。  对于以下两种情况，开发者需要特别注意：  1.违反服务协议，特别是含有以下内容的应用：  1）封建迷信和/或淫秽、色情、下流的信息或教唆犯罪的信息；  2）博彩有奖、赌博游戏、“私服”、“外挂”等非法互联网出版活动；  Bmob平台有权进行独立判断并采取技术手段予以删除、屏蔽或断开链接。同时，本平台有权视用户的行为性质，采取包括但不限于暂停或终止服务，限制、冻结或终止本平台网站账号的使用，追究法律责任等措施。  2.应用遇到过多的用户投诉，如应用的使用者支付了相关款项，但是该应用却没有提供相应的服务。本平台有权限制或冻结该应用支付收入的所有款项，并保留追究法律责任的权利。  3. Bmob将在每笔交易中收取8%服务费。", 
+            "title": "使用需知"
+        }, 
+        {
+            "location": "/index.html#_3", 
+            "text": "1.打款前请先在控制台填写以下信息   2.每月的1、2、16、17号为申请打款时间，15号、月尾日为打款时间，确保用户有半个月的追诉期。", 
+            "title": "打款需知"
+        }, 
+        {
+            "location": "/index.html#_4", 
+            "text": "目前安卓的支付支持支付宝和微信支付。", 
+            "title": "支持平台"
+        }, 
+        {
+            "location": "/index.html#_5", 
+            "text": "在Bmob账号管理平台进行身份认证，以保证资金安全，否则无法使用支付等功能。   提交申请时，开发者的联系方式至少要有两种(邮箱，电话，QQ)，方便后续支付弹出的订单页面展示，如下    如有任何疑问或者建议，欢迎加入Bmob支付的技术支持QQ群：273080081(1群)，521591577(2群)", 
+            "title": "启用须知"
+        }, 
+        {
+            "location": "/index.html#_6", 
+            "text": "添加相关文件  1 将下载的支付SDK的libs目录添加到项目下，包括 和 ，so文件按项目需求添加(这个版本不需要支付宝jar包)  2 将下载的支付SDK的assets目录添加到项目下，包括 和 ，其中bp.db其实是apk文件，是微信支付插件    在您项目的AndroidManifest.xml中添加以下权限:  uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" /     修改混淆规则  -libraryjars libs/BmobPay_v3.x.x_xxxxxx.jar\n-keepclasseswithmembers class c.b.** { *; }\n-keep interface c.b.PListener{ *; }\n-keep interface c.b.QListener{ *; }    添加下免责Activity(注意这个是在运行时加载的类,可以忽略IDE给出的红色标识)  activity android:name=\"cn.bmob.pay.v3.act.PayAct\" /     在您的应用程序主Application的onCreate中调用如下方法：\n  （Application ID在后台应用管理的 数据浏览- 应用信息- 应用密钥- Application ID，如果appKey为空或者混淆规则不正确，会抛出IllegalArgumentException异常,因为init是异步的，越早初始化越好）  BP.init(\"你的Application ID\");  注意：新版的支付SDK不能被数据服务SDK的初始化方法取代了，无论您是否使用了Bmob数据服务SDK，都要进行支付SDK的初始化    发起支付调用，请使用如下方法：  /* \n     * 第4个参数为true时调用支付宝支付，为false时调用微信支付\n      /\n    BP.pay(\"商品名称\", \"商品描述\", 0.02, true, new Plistener(){...});    在需要调用订单查询的地方，调用如下方法(微信订单和支付宝订单通用)：  BP.query(\"订单id\", new QListener(){...});", 
+            "title": "支付接口快速入门"
+        }, 
+        {
+            "location": "/index.html#_7", 
+            "text": "c.b.BP   BP.pay(String title, String descript, double money, boolean aliOrWetchat, Plistener listener)      类型  名称  说明      String  title  商品的名称,请注意不要有违禁字眼,可以为空 只允许中文、数字、英文和下划线、英文破折号，否则过滤    String  descript  商品的详情描述,请注意不要有违禁字眼,可以为空 只允许中文、数字、英文和下划线、英文破折号，否则过滤    double  price  商品的价格,建议测试用0.02    boolean  aliOrWetchat  支付方式：true为支付宝支付，false为微信支付    Plistener  listener  支付结果监听类c.b.PListener 有成功、失败、未知结果、返回订单号等方法     注意  支付时返回的信息都未必可靠，一切以查询订单返回的信息为准  调用微信支付，要安装插件(如果没有安装,会监听器的fail方法会返回-3错误码)，插件在SDK文档的plugin文件夹下，demo有通过assets安装的示例   BP.query(String orderId, QListener listener)      类型  名称  说明      String  orderId  支付订单号,不可为空    OrderQueryListener  listener  查询结果监听类c.b.QListener 有成功、失败等方法      ！！！ForceFree方法已经弃用(开发者需自己控制用户多次点击支付产生多个订单的问题)   ForceFree()   当上一次支付操作尚未完成时,如果BmobPay对象发起再次请求,PayListener会回调fail方法返回并10777错误码,以免生成多个订单 \n如果使用过程中出现了阻塞(比如异常强制关闭支付插件页面,会导致一直不能再发起请求，这是小概率事件),则调用此方法进行BmobPay的重置 \n仅对下一次请求生效,而不是永久消除限制    c.b.PListener    orderId(String orderId)  无论支付成功与否,只要成功产生了请求,就返回订单号,请自行保存以便以后查询    succeed()  支付成功,保险起见请调用查询方法确认结果    fail(int code, String reason)  支付失败,有可能是用户中断支付,也有可能是网络问题 返回10777时说明上次操作尚未完成,拒绝多次请求以免生成多个订单(可用BP.ForceFree()方法强制取消一次限制) 支付宝支付时6001为用户主动中断支付操作 微信支付返回-2时为用户主动中断操作,返回-3为未安装Bmob支付插件.apk (如果多次出现异常请向Bmob工作人员反馈)    unknow()  因为网络等问题,不能确认是否支付成功,请稍后手动查询(小概率事件)    c.b.QListener    succeed(String status)  查询成功(并不是说支付成功),返回的status有NOTPAY和SUCCESS两种可能    fail(int code, String reason)  查询失败,有可能是网络问题,也有可能是订单号错误", 
+            "title": "类库说明"
+        }, 
+        {
+            "location": "/index.html#_8", 
+            "text": "关于如何使用支付功能，请查看  Android支付SDK  或  iOS支付SDK 。RestAPI目前只提供了查询订单的功能。", 
+            "title": "支付服务"
+        }, 
+        {
+            "location": "/index.html#_9", 
+            "text": "curl -X GET \\\n-H \"X-Bmob-Application-Id: Your Application ID\" \\\n-H \"X-Bmob-REST-API-Key: Your REST API Key\" \\\nhttps://api.bmob.cn/1/pay/Bmob系统生成的订单号  成功返回以下JSON, 失败时返回请看  支付功能相关错误码  {\n\"name\": \"商品\",\n\"body\": \"商品详情\",\n\"create_time\": \"2015-03-24 11:14:58\",\n\"out_trade_no\": \"9f392618f449a71c6fcfdee38d2b29e4\",\n\"transaction_id\": \"2015061100001000330057820379\"\n\"pay_type\": \"WECHATPAY\",\n\"total_fee\": 0.01,\n\"trade_state\": \"NOTPAY\"\n}  返回的信息简单描述如下：   name           : 订单或商品名称   body-商品详情  create_time    : 调起支付的时间  out_trade_no   : Bmob系统的订单号  transaction_id : 微信或支付宝的系统订单号  pay_type       : WECHATPAY（微信支付）或ALIPAY（支付宝支付）  total_fee      : 订单总金额  trade_state    : NOTPAY（未支付）或 SUCCESS（支付成功）", 
+            "title": "查询订单"
+        }, 
+        {
+            "location": "/index.html#_10", 
+            "text": "如图，可以在支付-配置信息处填入通知url。   这样在支付成功后会向该url（SDK使用异步通知URL，PHP等调用网页支付的使用同步返回URL）发送post请求，结构如下：  {\n     trade_status : 1 ,\n     out_trade_no : 809488d695ed42ec56b57546d2df94cc ,\n     trade_no : 2016033021001004810225607152 \n}  trade_status：表示支付状态，目前只有支付成功才产生回调，值恒为1.\nout_trade_no：Bmob返回的订单号\ntrade_no：支付宝或微信返回的订单号", 
+            "title": "支付回调"
+        }, 
+        {
+            "location": "/index.html#v31120170111", 
+            "text": "ForceFree方法已经弃用，开发者需自己控制用户多次点击支付产生多个订单的问题  这一版本的SDK将会在支付的过程中呈现一个中间页面，这个页面负责引导用户的支付流程，带来的影响是：\n    1)可以不用在pay的回调里调用BP.query进行查询，因为这个页面会确定用户的支付结果(试用demo.apk进行体验)\n    2)可以不用在你自己的app内提供责任说明的页面  支付宝支付需要用户手机已经安装支付宝，微信支付仍然需要安装插件  市面上还流传小部分内存很吃紧的老款手机，在打开支付宝或者微信的时候可能导致你自己的app被系统杀掉，这种情况可以通过在后台填写 支付结果的异步通知URL 解决，结合云端代码来使用(详情见云端代码文档)  不用再针对小米手机获取订单时9015的问题添加额外的代码，微信支付插件不用网络权限，但在部分手机可能还是需要用户手动开启 允许微信支付插件被其它app调起 的权限  新版支付SDK对Unity支持的解决方法:  新版支付SDK需要so文件，Unity3d开发者如果没有处理过类似情况，可以这样做：  将SDK中libs文件夹下，除了/armeabi、/armeabi-v7a、x86以外的文件夹删掉(jar文件需要保留)，然后把libs文件夹放在Plugins/Android/下。也就是最后会有 Plugins/Android/libs/armeabi/bmobwpay.so文件", 
+            "title": "新版支付v3.1.1(20170111)的更新提示"
+        }, 
+        {
+            "location": "/index.html#_11", 
+            "text": "混淆规则如下:   -libraryjars libs/BmobPay_v3.x.x_xxxxxx.jar\n-keepclasseswithmembers class c.b.** { *; }\n-keep interface c.b.PListener{ *; }\n-keep interface c.b.QListener{ *; }    在 Bmob财务管理平台 订单管理处，金额从小数点后第三位开始不显示，比如支付了0.01元实收0.00，其实是0.0095   如果用户的手机有“应用锁”功能（即点击应用后跳出系统设定的解锁界面，如小米、360、腾讯管家都可能有该功能），则可能会导致支付中断（支付宝返回6001，微信返回-2），这是微信和支付宝SDK出于安全考虑设置的，请建议用户出现该问题时先关掉支付宝钱包或微信的应用锁  由于微信SDK的限制，无法判断微信是否已登陆用户， 如果未登陆用户，监听器的fail方法可能不被调用 ，请开发者们提醒自己的用户确保微信已登陆  如果支付宝已经选定了支付用的账户（或银行卡），但是支付失败，用户的支付宝账号会保留该订单，有可能从支付宝官网、支付宝钱包APP再次发起支付，在开发过程中请注意这种事情的处理情况  如果请求支付的页面为横屏，微信支付页面可能出现抽风现象（卡顿甚至重启），是因为微信出现莫名Bug不停开启新支付页面导致内存爆满，解决方法：在AndroidManifest.xml中将com.bmob.pay.tool.PayActivity设为强制竖屏（上方有示例），并尽可能将自己调用的Activity也设置为竖屏", 
+            "title": "其他"
+        }, 
+        {
+            "location": "/module/example/README/index.html", 
+            "text": "示例和功能\n\n\nandroid及iOS的demo在相应SDK压缩包里一起提供\nhttp://www.bmob.cn/downloads", 
+            "title": "示例和功能"
+        }, 
+        {
+            "location": "/module/example/README/index.html#_1", 
+            "text": "android及iOS的demo在相应SDK压缩包里一起提供 http://www.bmob.cn/downloads", 
+            "title": "示例和功能"
+        }, 
+        {
+            "location": "/module/error_code/README/index.html", 
+            "text": "iOS错误码列表\n\n\n\n\n\n\n\n\n错误码\n\n\n含义\n\n\n\n\n\n\n\n\n\n\n4000\n\n\n支付类型错误，请填写 BmobAlipay\n\n\n\n\n\n\n4001\n\n\n解析服务器返回的数据出错，可能是提交参数有问题\n\n\n\n\n\n\n4002\n\n\n查询不到订单号，请在支付回调执行后查询\n\n\n\n\n\n\n4004\n\n\n网络错误，请检查网络\n\n\n\n\n\n\n4005\n\n\n支付宝未安装，或者没有配置 info.plist 参数\n\n\n\n\n\n\n4006\n\n\n用户执行取消付款操作\n\n\n\n\n\n\n4007\n\n\n价格超出限额\n\n\n\n\n\n\n\n\nandroid错误码列表\n\n\n\n\n\n\n\n\n错误码\n\n\n原因\n\n\n\n\n\n\n\n\n\n\n-1\n\n\n微信返回的错误码，可能是未安装微信，也可能是微信没获得网络权限等\n\n\n\n\n\n\n-2\n\n\n微信支付用户中断操作\n\n\n\n\n\n\n-3\n\n\n未安装支付插件\n\n\n\n\n\n\n102\n\n\n设置了安全验证，但是签名或IP不对\n\n\n\n\n\n\n6001\n\n\n支付宝支付用户中断操作\n\n\n\n\n\n\n4000\n\n\n支付宝支付出错，可能是参数有问题\n\n\n\n\n\n\n1111\n\n\n解析服务器返回的数据出错，可能是提交参数有问题\n\n\n\n\n\n\n2222\n\n\n服务器端返回参数出错，可能是提交的参数有问题（如查询的订单号不存在）\n\n\n\n\n\n\n3333\n\n\n解析服务器数据出错，可能是提交参数有问题\n\n\n\n\n\n\n5277\n\n\n查询订单号时未输入订单号\n\n\n\n\n\n\n7777\n\n\n微信客户端未安装\n\n\n\n\n\n\n8888\n\n\n微信客户端版本不支持微信支付\n\n\n\n\n\n\n9010\n\n\n网络异常，可能是没有给应用网络权限\n\n\n\n\n\n\n10003\n\n\n商品名或详情不符合微信/支付宝的规定（如微信商品名不可以超过42个中文）\n\n\n\n\n\n\n10777\n\n\n上次发起的请求还未处理完成，禁止下次请求，可用BP.ForceFree()解除\n\n\n\n\n\n\n\n\n平时比较需要主动处理到的是-3、7777、8888、10777\n\n\nRESTAPI错误码列表\n\n\n\n\n\n\n\n\nHttpResponseCode\n\n\n错误码\n\n\n含义\n\n\n\n\n\n\n\n\n\n\n401\n\n\n\n\nunauthorized\n\n\n\n\n\n\n500\n\n\n\n\nIt is busy...Try it later!\n\n\n\n\n\n\n当HttpResponseCode的值为401或500时，接口返回的内容格式如下：\n\n\n\n\n\n\n\n\n\n\n\n\n{\n    \nerror\n: \nunauthorized\n\n}\n\n\n\n\nerror为上表中含义的值\n\n\n当HttpResponseCode的值为400时，接口返回的内容格式如下：\n\n\n{\n    \ncode\n: 101,\n    \nerror\n: \nobject not found for e1kXT22L\n\n}\n\n\n\n\ncode为下表中的错误码，error为下表中的内容\n以下是HttpResponseCode为404时返回内容的详细说明，信息中的%s，%d，%f将替换为详细的信息或具体的值。\n\n\n\n\n\n\n\n\n错误码\n\n\n内容\n\n\n含义\n\n\n\n\n\n\n\n\n\n\n101\n\n\nobject not found for %s. OR username or password incorrect\n\n\n查询的 对象或Class 不存在 或者 登录接口的用户名或密码不正确\n\n\n\n\n\n\n102\n\n\nInvalid key '%s' for find OR Invalid value for key '%s'. OR %s: invalid geopoint object.\n\n\n查询中的字段名是大小写敏感的，且必须以英文字母开头，有效的字符仅限在英文字母、数字以及下划线。，或查询对应的字段值不匹配，或提供的地理位置格式不正确\n\n\n\n\n\n\n103\n\n\nobjectId required. OR classname '%s' must start with a letter.\n\n\n查询单个对象或更新对象时必须提供objectId 或 非法的 class 名称，class 名称是大小写敏感的，并且必须以英文字母开头，有效的字符仅限在英文字母、数字以及下划线.\n\n\n\n\n\n\n104\n\n\nrelation className '%s' not exists.\n\n\n关联的class名称不存在\n\n\n\n\n\n\n105\n\n\ninvalid field name: %s. OR It is a reserved field: %s.\n\n\n字段名是大小写敏感的，且必须以英文字母开头，有效的字符仅限在英文字母、数字以及下划线 或 字段名是\nBmob\n默认保留的，如objectId,createdAt,updateAt,ACL\n\n\n\n\n\n\n106\n\n\n%s: is not a valid Pointer.\n\n\n不是一个正确的指针类型\n\n\n\n\n\n\n107\n\n\ninvalid json: %s.\n\n\n输入的json不是正确的json格式\n\n\n\n\n\n\n107\n\n\nThis endpoint only supports Content-Type: application/json requests, not %s.\n\n\n请求只支持Header头部Content-Type值为application/json或application/json; charset=utf-8\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n107\n\n\ninvalid date: %s.\n\n\n时间格式不正确\n\n\n\n\n\n\n107\n\n\nACL shoud be like: {\"*\":{\"read\":true},\"eAfHB29gP9\":{\"write\":true}}.\n\n\nACL应该像这样的{\"*\":{\"read\":true},\"eAfHB29gP9\":{\"write\":true}}\n\n\n\n\n\n\n107\n\n\ninvalid op value\n\n\n不是正确的__op的值\n\n\n\n\n\n\n108\n\n\nusername and password required.\n\n\n用户名和密码是必需的\n\n\n\n\n\n\n109\n\n\nlogin data required.\n\n\n登录信息是必需的，如邮箱和密码时缺少其中一个提示此信息\n\n\n\n\n\n\n111\n\n\ninvalid type for key '%s', expected '%s', but got '%s'.\n\n\n传入的字段值与字段类型不匹配，期望是这样(%s)的，但传过来却是这样(%s)的\n\n\n\n\n\n\n112\n\n\nrequests must be an array.\n\n\nrequests的值必须是数组\n\n\n\n\n\n\n113\n\n\nevery request shoud be an object like:{\"method\": \"POST\",\"path\": \"/1/classes/GameScore\",\"body\": {\"score\": 1337,\"playerName\": \"Sean Plott\"}}\n\n\nrequests数组中每个元素应该是一个像这样子的json对象\n\n\n\n\n\n\n114\n\n\nrequests array larger than %d\n\n\nrequests数组大于50\n\n\n\n\n\n\n117\n\n\nLatitude must be in [-90, 90]: %f. OR Longitude must be in [-180, 180]: %f.\n\n\n纬度范围在[-90, 90] 或 经度范围在[-180, 180]\n\n\n\n\n\n\n120\n\n\nEmail verify should be opened in your app setup page of bmob\n\n\n要使用此功能，请在\nBmob\n后台应用设置中打开邮箱认证功能开关\n\n\n\n\n\n\n131\n\n\nInvalid device token:%s\n\n\n不正确的deviceToken\n\n\n\n\n\n\n132\n\n\nInvalid installation ID:%s\n\n\n不正确的installationId\n\n\n\n\n\n\n133\n\n\nInvalid device type:%s\n\n\n不正确的deviceType\n\n\n\n\n\n\n134\n\n\ndevice token '%s' already token.\n\n\ndeviceToken已经存在\n\n\n\n\n\n\n135\n\n\ninstallation ID '%s' already token.\n\n\ninstallationId已经存在\n\n\n\n\n\n\n136\n\n\n%s cannot be changed by this operation OR deviceToken may not be set for deviceType android\n\n\n只读属性不能修改 或 android设备不需要设置deviceToken\n\n\n\n\n\n\n138\n\n\n%s is read only.\n\n\n表是只读的\n\n\n\n\n\n\n139\n\n\nRole names must be restricted to alphanumeric characters, dashes(-), underscores(_), and spaces.\n\n\n角色名称是大小写敏感的，并且必须以英文字母开头，有效的字符仅限在英文字母、数字、空格、横线以及下划线。\n\n\n\n\n\n\n\n\nrole name '%s' already taken.\n\n\n角色名称已经存在。\n\n\n\n\n\n\n141\n\n\nMissing the push data.\n\n\n缺失推送需要的data参数\n\n\n\n\n\n\n142\n\n\n%s shoule be like: 2013-12-04 00:51:13\n\n\n时间格式应该如下： 2013-12-04 00:51:13\n\n\n\n\n\n\n143\n\n\n%s must be a number\"\n\n\n必须是一个数字\n\n\n\n\n\n\n144\n\n\n%s cannot before now\n\n\n不能是之前的时间\n\n\n\n\n\n\n145\n\n\nfile size error\n\n\n文件大小错误\n\n\n\n\n\n\n146\n\n\nfile name error\n\n\n文件名错误\n\n\n\n\n\n\n147\n\n\nfile offeset error\n\n\n文件分页上传偏移量错误\n\n\n\n\n\n\n148\n\n\nfile ctx error\n\n\n文件上下文错误\n\n\n\n\n\n\n149\n\n\nempty file\n\n\n空文件\n\n\n\n\n\n\n150\n\n\nfile upload error\n\n\n文件上传错误\n\n\n\n\n\n\n151\n\n\nfile delete error\n\n\n文件删除错误\n\n\n\n\n\n\n160\n\n\nimage error\n\n\n图片错误\n\n\n\n\n\n\n161\n\n\nimage mode error\n\n\n图片模式错误\n\n\n\n\n\n\n162\n\n\nimage width error\n\n\n图片宽度错误\n\n\n\n\n\n\n163\n\n\nimage height error\n\n\n图片高度错误\n\n\n\n\n\n\n164\n\n\nimage longEdge error\n\n\n图片长边错误\n\n\n\n\n\n\n165\n\n\nimage shortgEdge error\n\n\n图片短边错误\n\n\n\n\n\n\n201\n\n\n%s missing\n\n\n缺失数据\n\n\n\n\n\n\n202\n\n\nusername '%s' already taken.\n\n\n用户名已经存在\n\n\n\n\n\n\n203\n\n\nemail '%s' already taken.\n\n\n邮箱已经存在\n\n\n\n\n\n\n204\n\n\nyou must provide an email.\n\n\n必须提供一个邮箱地址\n\n\n\n\n\n\n205\n\n\nno user found with email '%s'.\n\n\n没有找到此邮件的用户\n\n\n\n\n\n\n\n\nno user found with username '%s'.\n\n\n没有找到此用户名的用户\n\n\n\n\n\n\n206\n\n\nUser cannot be altered without sessionToken Error.\n\n\n登录用户才能修改自己的信息。RestAPI的Http Header中没有提供sessionToken的正确值，不能修改或删除用户\n\n\n\n\n\n\n207\n\n\ncode error.\n\n\n验证码错误\n\n\n\n\n\n\n208\n\n\nauthData error.\n\n\nauthData不正确\n\n\n\n\n\n\n\n\nauthData already linked by other user.\n\n\nauthData已经绑定了其他用户账户\n\n\n\n\n\n\n209\n\n\nmobilePhoneNumber '%s' already taken.\n\n\n该手机号码已经存在\n\n\n\n\n\n\n210\n\n\nold password incorrect.\n\n\n旧密码不正确\n\n\n\n\n\n\n301\n\n\n%s\n\n\n验证错误详细提示，如邮箱格式不正确\n\n\n\n\n\n\n302\n\n\nyour app setting '%s'.\n\n\nBmob后台设置了应用设置值， 如'不允许SDK创建表 '\n\n\n\n\n\n\n310\n\n\n%s\n\n\n云端逻辑运行错误的详细信息\n\n\n\n\n\n\n311\n\n\ninvalid cloudcode name: %s.\n\n\n云端逻辑名称是大小写敏感的，且必须以英文字母开头，有效的字符仅限在英文字母、数字以及下划线。\n\n\n\n\n\n\n401\n\n\nunique index cannot has duplicate value: %s\n\n\n唯一键不能存在重复的值\n\n\n\n\n\n\n402\n\n\nquery where larger than %d bytes.\n\n\n查询的wher语句长度大于具体多少个字节\n\n\n\n\n\n\n601\n\n\nInvalid bql:%s\n\n\n不正确的BQL查询语句\n\n\n\n\n\n\n\n\nVIP付费限制相关错误码\n\n\n\n\n\n\n\n\n错误码\n\n\n内容\n\n\n含义\n\n\n\n\n\n\n\n\n\n\n1002\n\n\nTables of the app can create has reached to limit\n\n\n该应用能创建的表数已达到限制\n\n\n\n\n\n\n1003\n\n\nRows of the table can add has reached to limit\n\n\n该表的行数已达到限制\n\n\n\n\n\n\n1004\n\n\nFields of the table can add has reached to limit\n\n\n该表的列数已达到限制\n\n\n\n\n\n\n1005\n\n\nRequest api of the this month has reached to limit\n\n\n每月api请求数量已达到限制\n\n\n\n\n\n\n1006\n\n\nCrontab jobs of the app has reached to limit\n\n\n该应用能创建定时任务数已达到限制\n\n\n\n\n\n\n1007\n\n\nCloudCodes of the app has reached to limit\n\n\n该应用能创建云端逻辑数已达到限制\n\n\n\n\n\n\n1500\n\n\nThe file is larger than file size you can upload\n\n\n你上传的文件大小已超出限制\n\n\n\n\n\n\n\n\n支付功能网络相关错误码\n\n\n\n\n\n\n\n\n错误码\n\n\n内容\n\n\n含义\n\n\n\n\n\n\n\n\n\n\n150\n\n\norder_no is null.\n\n\n订单号是空的.\n\n\n\n\n\n\n10001\n\n\n%s required\n\n\n有些项是必填的\n\n\n\n\n\n\n10002\n\n\norder_no not exists.\n\n\n你要查询的订单号不存在.\n\n\n\n\n\n\n10003\n\n\n%s.\n\n\n详细错误信息，如微信或支付宝返回的详细错误.\n\n\n\n\n\n\n10004\n\n\n%s.\n\n\n详细错误信息，如微信或支付宝返回的详细错误.", 
+            "title": "错误码"
+        }, 
+        {
+            "location": "/module/error_code/README/index.html#ios", 
+            "text": "错误码  含义      4000  支付类型错误，请填写 BmobAlipay    4001  解析服务器返回的数据出错，可能是提交参数有问题    4002  查询不到订单号，请在支付回调执行后查询    4004  网络错误，请检查网络    4005  支付宝未安装，或者没有配置 info.plist 参数    4006  用户执行取消付款操作    4007  价格超出限额", 
+            "title": "iOS错误码列表"
+        }, 
+        {
+            "location": "/module/error_code/README/index.html#android", 
+            "text": "错误码  原因      -1  微信返回的错误码，可能是未安装微信，也可能是微信没获得网络权限等    -2  微信支付用户中断操作    -3  未安装支付插件    102  设置了安全验证，但是签名或IP不对    6001  支付宝支付用户中断操作    4000  支付宝支付出错，可能是参数有问题    1111  解析服务器返回的数据出错，可能是提交参数有问题    2222  服务器端返回参数出错，可能是提交的参数有问题（如查询的订单号不存在）    3333  解析服务器数据出错，可能是提交参数有问题    5277  查询订单号时未输入订单号    7777  微信客户端未安装    8888  微信客户端版本不支持微信支付    9010  网络异常，可能是没有给应用网络权限    10003  商品名或详情不符合微信/支付宝的规定（如微信商品名不可以超过42个中文）    10777  上次发起的请求还未处理完成，禁止下次请求，可用BP.ForceFree()解除     平时比较需要主动处理到的是-3、7777、8888、10777", 
+            "title": "android错误码列表"
+        }, 
+        {
+            "location": "/module/error_code/README/index.html#restapi", 
+            "text": "HttpResponseCode  错误码  含义      401   unauthorized    500   It is busy...Try it later!    当HttpResponseCode的值为401或500时，接口返回的内容格式如下：       {\n     error :  unauthorized \n}  error为上表中含义的值  当HttpResponseCode的值为400时，接口返回的内容格式如下：  {\n     code : 101,\n     error :  object not found for e1kXT22L \n}  code为下表中的错误码，error为下表中的内容\n以下是HttpResponseCode为404时返回内容的详细说明，信息中的%s，%d，%f将替换为详细的信息或具体的值。     错误码  内容  含义      101  object not found for %s. OR username or password incorrect  查询的 对象或Class 不存在 或者 登录接口的用户名或密码不正确    102  Invalid key '%s' for find OR Invalid value for key '%s'. OR %s: invalid geopoint object.  查询中的字段名是大小写敏感的，且必须以英文字母开头，有效的字符仅限在英文字母、数字以及下划线。，或查询对应的字段值不匹配，或提供的地理位置格式不正确    103  objectId required. OR classname '%s' must start with a letter.  查询单个对象或更新对象时必须提供objectId 或 非法的 class 名称，class 名称是大小写敏感的，并且必须以英文字母开头，有效的字符仅限在英文字母、数字以及下划线.    104  relation className '%s' not exists.  关联的class名称不存在    105  invalid field name: %s. OR It is a reserved field: %s.  字段名是大小写敏感的，且必须以英文字母开头，有效的字符仅限在英文字母、数字以及下划线 或 字段名是 Bmob 默认保留的，如objectId,createdAt,updateAt,ACL    106  %s: is not a valid Pointer.  不是一个正确的指针类型    107  invalid json: %s.  输入的json不是正确的json格式    107  This endpoint only supports Content-Type: application/json requests, not %s.  请求只支持Header头部Content-Type值为application/json或application/json; charset=utf-8         107  invalid date: %s.  时间格式不正确    107  ACL shoud be like: {\"*\":{\"read\":true},\"eAfHB29gP9\":{\"write\":true}}.  ACL应该像这样的{\"*\":{\"read\":true},\"eAfHB29gP9\":{\"write\":true}}    107  invalid op value  不是正确的__op的值    108  username and password required.  用户名和密码是必需的    109  login data required.  登录信息是必需的，如邮箱和密码时缺少其中一个提示此信息    111  invalid type for key '%s', expected '%s', but got '%s'.  传入的字段值与字段类型不匹配，期望是这样(%s)的，但传过来却是这样(%s)的    112  requests must be an array.  requests的值必须是数组    113  every request shoud be an object like:{\"method\": \"POST\",\"path\": \"/1/classes/GameScore\",\"body\": {\"score\": 1337,\"playerName\": \"Sean Plott\"}}  requests数组中每个元素应该是一个像这样子的json对象    114  requests array larger than %d  requests数组大于50    117  Latitude must be in [-90, 90]: %f. OR Longitude must be in [-180, 180]: %f.  纬度范围在[-90, 90] 或 经度范围在[-180, 180]    120  Email verify should be opened in your app setup page of bmob  要使用此功能，请在 Bmob 后台应用设置中打开邮箱认证功能开关    131  Invalid device token:%s  不正确的deviceToken    132  Invalid installation ID:%s  不正确的installationId    133  Invalid device type:%s  不正确的deviceType    134  device token '%s' already token.  deviceToken已经存在    135  installation ID '%s' already token.  installationId已经存在    136  %s cannot be changed by this operation OR deviceToken may not be set for deviceType android  只读属性不能修改 或 android设备不需要设置deviceToken    138  %s is read only.  表是只读的    139  Role names must be restricted to alphanumeric characters, dashes(-), underscores(_), and spaces.  角色名称是大小写敏感的，并且必须以英文字母开头，有效的字符仅限在英文字母、数字、空格、横线以及下划线。     role name '%s' already taken.  角色名称已经存在。    141  Missing the push data.  缺失推送需要的data参数    142  %s shoule be like: 2013-12-04 00:51:13  时间格式应该如下： 2013-12-04 00:51:13    143  %s must be a number\"  必须是一个数字    144  %s cannot before now  不能是之前的时间    145  file size error  文件大小错误    146  file name error  文件名错误    147  file offeset error  文件分页上传偏移量错误    148  file ctx error  文件上下文错误    149  empty file  空文件    150  file upload error  文件上传错误    151  file delete error  文件删除错误    160  image error  图片错误    161  image mode error  图片模式错误    162  image width error  图片宽度错误    163  image height error  图片高度错误    164  image longEdge error  图片长边错误    165  image shortgEdge error  图片短边错误    201  %s missing  缺失数据    202  username '%s' already taken.  用户名已经存在    203  email '%s' already taken.  邮箱已经存在    204  you must provide an email.  必须提供一个邮箱地址    205  no user found with email '%s'.  没有找到此邮件的用户     no user found with username '%s'.  没有找到此用户名的用户    206  User cannot be altered without sessionToken Error.  登录用户才能修改自己的信息。RestAPI的Http Header中没有提供sessionToken的正确值，不能修改或删除用户    207  code error.  验证码错误    208  authData error.  authData不正确     authData already linked by other user.  authData已经绑定了其他用户账户    209  mobilePhoneNumber '%s' already taken.  该手机号码已经存在    210  old password incorrect.  旧密码不正确    301  %s  验证错误详细提示，如邮箱格式不正确    302  your app setting '%s'.  Bmob后台设置了应用设置值， 如'不允许SDK创建表 '    310  %s  云端逻辑运行错误的详细信息    311  invalid cloudcode name: %s.  云端逻辑名称是大小写敏感的，且必须以英文字母开头，有效的字符仅限在英文字母、数字以及下划线。    401  unique index cannot has duplicate value: %s  唯一键不能存在重复的值    402  query where larger than %d bytes.  查询的wher语句长度大于具体多少个字节    601  Invalid bql:%s  不正确的BQL查询语句", 
+            "title": "RESTAPI错误码列表"
+        }, 
+        {
+            "location": "/module/error_code/README/index.html#vip", 
+            "text": "错误码  内容  含义      1002  Tables of the app can create has reached to limit  该应用能创建的表数已达到限制    1003  Rows of the table can add has reached to limit  该表的行数已达到限制    1004  Fields of the table can add has reached to limit  该表的列数已达到限制    1005  Request api of the this month has reached to limit  每月api请求数量已达到限制    1006  Crontab jobs of the app has reached to limit  该应用能创建定时任务数已达到限制    1007  CloudCodes of the app has reached to limit  该应用能创建云端逻辑数已达到限制    1500  The file is larger than file size you can upload  你上传的文件大小已超出限制", 
+            "title": "VIP付费限制相关错误码"
+        }, 
+        {
+            "location": "/module/error_code/README/index.html#_1", 
+            "text": "错误码  内容  含义      150  order_no is null.  订单号是空的.    10001  %s required  有些项是必填的    10002  order_no not exists.  你要查询的订单号不存在.    10003  %s.  详细错误信息，如微信或支付宝返回的详细错误.    10004  %s.  详细错误信息，如微信或支付宝返回的详细错误.", 
+            "title": "支付功能网络相关错误码"
+        }, 
+        {
+            "location": "/module/common_problem/README/index.html", 
+            "text": "常见问题\n\n\nQ:网页支付的地址到底是什么？(php支付接口报异常)\nA:因为支付宝安全团队封杀的问题，网页支付暂时不支持，待寻求到解决方案再开放。\n\n\n\n\nQ:支付 弹出\"抱歉，该商户未开通支付宝服务，无法付款\"\nA:如果出现这种情况则表示支付宝账号并封了，bmob需要一定的时间去申请账号重新恢复。\n\n\n\n\nQ:新版的Android的Bmob Pay一直提示插件已过期\n运行BP.pay()后会弹出toast显示“bmob pay plugin is out-of-date, please update it”\n已经换成5月31日最新版本的sdk了，还是不行\n\n\nA:versionCode必须为6和6以上的才是最新版，你可以通过高BP.getPluginVersion来获取\n\n\n\n\nQ:新版支付SDK里的demo换成我自己的appID为什么不能支付，用Demo里的appID就可以？\nA:请创建自己的应用，用自己的appId使用支付SDK。具体的使用方法可以参考Demo和文档。\n\n\n\n\nQ:微信支付总是返回错误码10003， 是什么原因? 支付宝可以正常使用\nA:商品名或者商品描述不符合规范，或者是金额不是double\n\n\n\n\nQ:移动支付功能是否支持类似美团这种，用户购买了优惠券，资金暂存在我的账户，然后到期后，再由我把钱打给商家\nA:购买优惠券存到您的账户可以用我们的支付来实现，您的钱打给商家需要自行实现\n\n\n\n\nQ:Android客户端支付后如何反馈到自己的服务器\nA:在web端的“支付”--\n”支付配置“里可以填上你自己服务器的url地址，支付成功时会往这个地址发送一些订单成功的数据。\n\n\n\n\nQ:新版Android支付SDK在虚拟机下测试报错\nA:虚拟机上有很多的问题，不支持虚拟机调试。\n\n\n\n\nQ:微信支付插件在哪里？\nA:下载Bmob Android SDK之后，解压，可以看到 assets 文件夹下有一个 BmobPayPlugin.apk ，就是插件\n\n\n\n\nQ:支付宝支付显示的订单信息，怎么过滤了空格..?\nname of item ， 显示成了 nameofitem， 是支付宝过滤的空格还是bmob过滤的？这样英文显示不了\nA:是我们过滤的，文档中有描述的哦“商品名及商品描述只支持输入中文、英语、数字、下划线(_)及英文破折号(-)，其余字符自动过滤”，这个是由于支付宝那边是这么要求的，如果有除了刚刚说的那些字符外的其它字符会报错，因此我们这边主动过滤了。\n\n\n\n\nQ:开启验证后数据服务正常但发起支付提示verify error: sign incorrect.\nA:你在后台开启了应用安全验证并填写了签名，可以在调试时先关掉。发布正式版本时开启\n\n\n\n\nQ:bmob plugin isn't installed 支付这个是什么问题\nA:支付功能需要先安装支付插件才能使用\n\n\n\n\nQ:为什么一直提示支付中断，必须使用支付宝先发起一次支付请求后，然后切换为微信支付，点击支付后才可提示获取订单成功，并跳转至微信支付页面\nA:这个问题是因为部分手机（小米手机）不允许未打开过Activity的App访问网络的权限，而支付宝需要先打开Activity，所以可以成功，但微信支付首先是在Service中调用，所以网络请求被拒绝。解决的办法是在BP.pay方法调用之前加上如下代码：\n\n\ntry {\n    Intent intent = new Intent(Intent.ACTION_MAIN);\n    intent.addCategory(Intent.CATEGORY_LAUNCHER);\n    ComponentName cn = new ComponentName(\ncom.bmob.app.sport\n,\n            \ncom.bmob.app.sport.wxapi.BmobActivity\n);\n    intent.setComponent(cn);\n    this.startActivity(intent);\n} catch (Throwable e) {\n    e.printStackTrace();\n}\n这段代码加在BP.pay方法调用之前\n\n\n\n\n\n\nQ:unity怎么使用Bmob的支付呢？\nA:参考\n这里", 
+            "title": "常见问题"
+        }, 
+        {
+            "location": "/module/common_problem/README/index.html#_1", 
+            "text": "Q:网页支付的地址到底是什么？(php支付接口报异常)\nA:因为支付宝安全团队封杀的问题，网页支付暂时不支持，待寻求到解决方案再开放。   Q:支付 弹出\"抱歉，该商户未开通支付宝服务，无法付款\"\nA:如果出现这种情况则表示支付宝账号并封了，bmob需要一定的时间去申请账号重新恢复。   Q:新版的Android的Bmob Pay一直提示插件已过期\n运行BP.pay()后会弹出toast显示“bmob pay plugin is out-of-date, please update it”\n已经换成5月31日最新版本的sdk了，还是不行  A:versionCode必须为6和6以上的才是最新版，你可以通过高BP.getPluginVersion来获取   Q:新版支付SDK里的demo换成我自己的appID为什么不能支付，用Demo里的appID就可以？\nA:请创建自己的应用，用自己的appId使用支付SDK。具体的使用方法可以参考Demo和文档。   Q:微信支付总是返回错误码10003， 是什么原因? 支付宝可以正常使用\nA:商品名或者商品描述不符合规范，或者是金额不是double   Q:移动支付功能是否支持类似美团这种，用户购买了优惠券，资金暂存在我的账户，然后到期后，再由我把钱打给商家\nA:购买优惠券存到您的账户可以用我们的支付来实现，您的钱打给商家需要自行实现   Q:Android客户端支付后如何反馈到自己的服务器\nA:在web端的“支付”-- ”支付配置“里可以填上你自己服务器的url地址，支付成功时会往这个地址发送一些订单成功的数据。   Q:新版Android支付SDK在虚拟机下测试报错\nA:虚拟机上有很多的问题，不支持虚拟机调试。   Q:微信支付插件在哪里？\nA:下载Bmob Android SDK之后，解压，可以看到 assets 文件夹下有一个 BmobPayPlugin.apk ，就是插件   Q:支付宝支付显示的订单信息，怎么过滤了空格..?\nname of item ， 显示成了 nameofitem， 是支付宝过滤的空格还是bmob过滤的？这样英文显示不了\nA:是我们过滤的，文档中有描述的哦“商品名及商品描述只支持输入中文、英语、数字、下划线(_)及英文破折号(-)，其余字符自动过滤”，这个是由于支付宝那边是这么要求的，如果有除了刚刚说的那些字符外的其它字符会报错，因此我们这边主动过滤了。   Q:开启验证后数据服务正常但发起支付提示verify error: sign incorrect.\nA:你在后台开启了应用安全验证并填写了签名，可以在调试时先关掉。发布正式版本时开启   Q:bmob plugin isn't installed 支付这个是什么问题\nA:支付功能需要先安装支付插件才能使用   Q:为什么一直提示支付中断，必须使用支付宝先发起一次支付请求后，然后切换为微信支付，点击支付后才可提示获取订单成功，并跳转至微信支付页面\nA:这个问题是因为部分手机（小米手机）不允许未打开过Activity的App访问网络的权限，而支付宝需要先打开Activity，所以可以成功，但微信支付首先是在Service中调用，所以网络请求被拒绝。解决的办法是在BP.pay方法调用之前加上如下代码：  try {\n    Intent intent = new Intent(Intent.ACTION_MAIN);\n    intent.addCategory(Intent.CATEGORY_LAUNCHER);\n    ComponentName cn = new ComponentName( com.bmob.app.sport ,\n             com.bmob.app.sport.wxapi.BmobActivity );\n    intent.setComponent(cn);\n    this.startActivity(intent);\n} catch (Throwable e) {\n    e.printStackTrace();\n}\n这段代码加在BP.pay方法调用之前   Q:unity怎么使用Bmob的支付呢？\nA:参考 这里", 
+            "title": "常见问题"
+        }, 
+        {
+            "location": "/module/class_doc/README/index.html", 
+            "text": "类库文档\n\n\n支付SDK类库文档：\nhttp://docs.bmob.cn/pay/Android/i_doc/doc/index.html", 
+            "title": "类库文档"
+        }, 
+        {
+            "location": "/module/class_doc/README/index.html#_1", 
+            "text": "支付SDK类库文档： http://docs.bmob.cn/pay/Android/i_doc/doc/index.html", 
+            "title": "类库文档"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html", 
+            "text": "v3.1.1   2017年1月11日\n\n\n1.需要在AndroidManifest.xml添加声明一个Activity(cn.bmob.pay.v3.act.PayAct)\n2.需要添加so文件、更换jar文件、往assets文件夹放一个payassets.db文件\n3.恢复了对支付宝支付的支持(不需添加支付sdk，要求用户手机已安装支付宝客户端)\n4.网络请求过程不再放在插件，不会再因为插件无法请求网络导致出现9015、9016的错误，不会再出现不回调订单的错误\n5.取消10077(重复提交订单)的错误，不再提供ForceFree方法，由开发者自己控制好，避免短时间内频繁生成订单\n6.责任声明的页面由sdk统一提供了，开发者可以不再展示该声明(试用demo可体验)\n7.初始化方法参数无需传入Context\n8.初始化方法变成异步的，最好放在Application的onCreate方法内\n9.回调fail时，部分编译阶段的错误码对应的文字换成了中文的，以便快速排查问题，如果有编码问题请及时反馈\n\n\nv3.0.3   2016年6月21日\n\n\n1.请勿将支付sdk用于违规途径,一经发现,本平台可在不通知开发者的情况下紧急封禁账号以避免损失;\n2.支付宝支付和微信支付都需要使用支付插件(本目录下的’BmobPayPlugin.apk’),请确保有读写SD卡权限;\n3.如果担心插件被应用市场扫描出带有支付功能,可将插件通过加密或下载的方式隐藏起来;\n4.混淆规则如下:\n-libraryjars libs/xxx.jar(替换jar包名)\n-keepclasseswithmembers class c.b.\n { \n; }\n-keep interface c.b.PListener{ \n; }\n-keep interface c.b.QListener{ *; }\n\n\nv3.0.2   2016年5月31日\n\n\n1.将过长字符串通过getResourceAsStream方式加载,兼容部分旧的编译器\n2.更新了混淆规则,详细内容见文档\n3.支付插件的名字统一为\"安全支付控件\"\n\n\nv3.0.1   2016年5月30日\n\n\n1.提供关闭Service的接口，BP.ForceExit();\n2.修复102(安全认证)的问题\n3.将插件上的支付宝sdk升级到最新版\n4.支付插件改名为\"BPay安全控件\"\n5.Demo中添加了检查支付插件版本并更新的示例\n\n\nv3.0   2016年5月27日\n\n\n1.请勿将支付sdk用于违规途径,一经发现,本平台可在不通知开发者的情况下紧急封禁账号以避免损失;\n2.支付宝支付和微信支付都需要使用支付插件(本目录下的’BmobPlugin.apk’),请确保有读写SD卡权限;\n3.如果担心插件被应用市场扫描出带有支付功能,可将插件通过加密或下载的方式隐藏起来;\n4.混淆规则如下:\n-keep class c.b.BP\n-keep class c.b.PListener\n-keep class c.b.QListener\n-keepclasseswithmembers class c.b.BP{ \n; }\n-keepclasseswithmembers class * implements c.b.PListener{ \n; }\n-keepclasseswithmembers class * implements c.b.QListener{ *; }\n\n\nv2.7   2016年4月27日\n\n\n修复了Unity项目初始化时提示混淆失败的问题(在Assets/Android/assets下添加了s.db和j.db文件)\n\n\nv2.6   2016年4月11日\n\n\nBmobPay更新：\n1.修复了部分旧版混淆工具混淆失败的问题；\n2.处理了在非主线程初始化sdk失败的问题；\n3.提高了加载效率；\n4.sdk版本号为7\n微信支付插件更新：\n1.修复了未登录用户回调失败的问题；\n2.隐藏了中转页面；\n3.插件版本号改为4，可通过支付sdk的BP.getPluginVersion判断更新\n\n\nv2.5   2016年3月24日\n\n\n1、兼容armeabi、armeabi-v7a、arm64-v8a、x86、x86_64、mips等CPU指令集 2、修复某些特殊机型会崩溃的问题 3、修复已知Bug \n\n\nv2.4   2016年1月25日\n\n\n1.兼容64位机器，如果发现还有不兼容的机型请联系客服\n\n\nv2.3   2016年1月23日\n\n\n1.取消so文件\n2.提高sdk兼容性\n3.Unity添加安装微信支付插件功能(需更新so文件和jar文件,并提供cs文件参考)\n4.提示语优化\n5.混淆规则在demo的proguard-project.txt文件有示例\n\n\nv2.1   2016年1月18日\n\n\n1.支持Unity调用并提供了教程和示例代码,不懂Android也可以快速接入\n2.so文件缩小一半,更加轻量\n3.安全性大大提升\n4.推荐将插件后缀名改为db等,更容易上应用市场\n\n\nv2.0   2016年1月13日\n\n\n2.0版本与之前的版本有较大区别，不向下兼容。\n主要更新内容如下：\n1.去除SDK中Pay关键字\n2.添加两个新的Activity需要在AndroidManifest文件中注册。(旧版已注册的Activity可删除)\n3.类名改动，详细见支付文档说明。\n4.混淆改动，详细见支付文档说明。\n\n\nv1.0.3   2015年10月20日\n\n\n1.支付宝sdk更新:     \n    1)默认用主线程调用调用支付;     \n    2)更新支付宝官方sdk,从3个jar包改成1个jar包;     \n    3)版本号更新为3; \n2.微信支付插件:     \n    1)微信支付插件无更新; \n3.支付Demo更新:     \n    1)支付宝支付sdk更新成官方最新版;     \n    2)Dialog的调用增加了异常捕捉; \n\n\nv1.0.2a   2015年7月09日\n\n\n1.微信支付插件更新：\n    1）在近期任务中不可见\n    2）兼容微信的新Bug\n    3）状态栏（TitleBar）设为不可见\n    4）版本号更新为3\n2.支付 Sdk无更新\nPS：如果请求支付的页面为横屏，微信支付页面可能出现抽风现象（卡顿甚至重启），是因为微信出现莫名Bug不停开启新支付页面导致内存爆满，解决方法：在AndroidManifest.xml中将com.bmob.pay.tool.PayActivity设为强制竖屏（上方有示例），并尽可能将自己调用的Activity也设置为竖屏\n支付Sdk版本号 : 2\n微信支付插件版本号 : 3\n\n\nv1.0.2   2015年5月12日\n\n\n支付Sdk更新： \n1.BmobPay下增加了静态方法getPluginVersion，用于查看微信插件的版本号（当前版本为2），可按需更新； \n2.BmobPay下增加了静态方法getPaySdkVersion，用于查看Bmob支付Sdk的版本号（当前版本为2）； 微信支付插件更新： 修复了部分用户在未安装微信时调用微信支付未回调fail的Bug \n支付Sdk版本号 : 2 \n微信支付插件版本号 : 2 \n\n\nV1.0.1a   2015年4月14日\n\n\n支付宝官方的sdk有更新，Bmob的支付sdk无更新 \n支付宝sdk更新信息如下：     \n安卓版本号：v2.2.1    \n修改时间：2015-03-31    \n安卓更新点：修正部分机型横屏下安全输入法兼容问题，改成强制竖屏     \n          \n\n\nV1.0.1   2015年4月10日\n\n\n1.修复了商品名、描述字符串非法导致支付宝报ALI64的问题                              \n2.修复了防止多次提交订单时的锁只对下一次有效的BUG                                        3.优化了微信支付插件的Logo \n\n\nV1.0.0   2015年4月08日\n\n\n1、调用支付宝、微信支付的支付以及查询功能完成\n2、添加支付成功、失败、返回订单号等监听事件；\n3、更改支付宝支付、查询订单时无需安装插件，微信支付需要安装插件", 
+            "title": "更新日志"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v311-2017111", 
+            "text": "1.需要在AndroidManifest.xml添加声明一个Activity(cn.bmob.pay.v3.act.PayAct)\n2.需要添加so文件、更换jar文件、往assets文件夹放一个payassets.db文件\n3.恢复了对支付宝支付的支持(不需添加支付sdk，要求用户手机已安装支付宝客户端)\n4.网络请求过程不再放在插件，不会再因为插件无法请求网络导致出现9015、9016的错误，不会再出现不回调订单的错误\n5.取消10077(重复提交订单)的错误，不再提供ForceFree方法，由开发者自己控制好，避免短时间内频繁生成订单\n6.责任声明的页面由sdk统一提供了，开发者可以不再展示该声明(试用demo可体验)\n7.初始化方法参数无需传入Context\n8.初始化方法变成异步的，最好放在Application的onCreate方法内\n9.回调fail时，部分编译阶段的错误码对应的文字换成了中文的，以便快速排查问题，如果有编码问题请及时反馈", 
+            "title": "v3.1.1   2017年1月11日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v303-2016621", 
+            "text": "1.请勿将支付sdk用于违规途径,一经发现,本平台可在不通知开发者的情况下紧急封禁账号以避免损失;\n2.支付宝支付和微信支付都需要使用支付插件(本目录下的’BmobPayPlugin.apk’),请确保有读写SD卡权限;\n3.如果担心插件被应用市场扫描出带有支付功能,可将插件通过加密或下载的方式隐藏起来;\n4.混淆规则如下:\n-libraryjars libs/xxx.jar(替换jar包名)\n-keepclasseswithmembers class c.b.  {  ; }\n-keep interface c.b.PListener{  ; }\n-keep interface c.b.QListener{ *; }", 
+            "title": "v3.0.3   2016年6月21日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v302-2016531", 
+            "text": "1.将过长字符串通过getResourceAsStream方式加载,兼容部分旧的编译器\n2.更新了混淆规则,详细内容见文档\n3.支付插件的名字统一为\"安全支付控件\"", 
+            "title": "v3.0.2   2016年5月31日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v301-2016530", 
+            "text": "1.提供关闭Service的接口，BP.ForceExit();\n2.修复102(安全认证)的问题\n3.将插件上的支付宝sdk升级到最新版\n4.支付插件改名为\"BPay安全控件\"\n5.Demo中添加了检查支付插件版本并更新的示例", 
+            "title": "v3.0.1   2016年5月30日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v30-2016527", 
+            "text": "1.请勿将支付sdk用于违规途径,一经发现,本平台可在不通知开发者的情况下紧急封禁账号以避免损失;\n2.支付宝支付和微信支付都需要使用支付插件(本目录下的’BmobPlugin.apk’),请确保有读写SD卡权限;\n3.如果担心插件被应用市场扫描出带有支付功能,可将插件通过加密或下载的方式隐藏起来;\n4.混淆规则如下:\n-keep class c.b.BP\n-keep class c.b.PListener\n-keep class c.b.QListener\n-keepclasseswithmembers class c.b.BP{  ; }\n-keepclasseswithmembers class * implements c.b.PListener{  ; }\n-keepclasseswithmembers class * implements c.b.QListener{ *; }", 
+            "title": "v3.0   2016年5月27日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v27-2016427", 
+            "text": "修复了Unity项目初始化时提示混淆失败的问题(在Assets/Android/assets下添加了s.db和j.db文件)", 
+            "title": "v2.7   2016年4月27日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v26-2016411", 
+            "text": "BmobPay更新：\n1.修复了部分旧版混淆工具混淆失败的问题；\n2.处理了在非主线程初始化sdk失败的问题；\n3.提高了加载效率；\n4.sdk版本号为7\n微信支付插件更新：\n1.修复了未登录用户回调失败的问题；\n2.隐藏了中转页面；\n3.插件版本号改为4，可通过支付sdk的BP.getPluginVersion判断更新", 
+            "title": "v2.6   2016年4月11日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v25-2016324", 
+            "text": "1、兼容armeabi、armeabi-v7a、arm64-v8a、x86、x86_64、mips等CPU指令集 2、修复某些特殊机型会崩溃的问题 3、修复已知Bug", 
+            "title": "v2.5   2016年3月24日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v24-2016125", 
+            "text": "1.兼容64位机器，如果发现还有不兼容的机型请联系客服", 
+            "title": "v2.4   2016年1月25日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v23-2016123", 
+            "text": "1.取消so文件\n2.提高sdk兼容性\n3.Unity添加安装微信支付插件功能(需更新so文件和jar文件,并提供cs文件参考)\n4.提示语优化\n5.混淆规则在demo的proguard-project.txt文件有示例", 
+            "title": "v2.3   2016年1月23日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v21-2016118", 
+            "text": "1.支持Unity调用并提供了教程和示例代码,不懂Android也可以快速接入\n2.so文件缩小一半,更加轻量\n3.安全性大大提升\n4.推荐将插件后缀名改为db等,更容易上应用市场", 
+            "title": "v2.1   2016年1月18日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v20-2016113", 
+            "text": "2.0版本与之前的版本有较大区别，不向下兼容。\n主要更新内容如下：\n1.去除SDK中Pay关键字\n2.添加两个新的Activity需要在AndroidManifest文件中注册。(旧版已注册的Activity可删除)\n3.类名改动，详细见支付文档说明。\n4.混淆改动，详细见支付文档说明。", 
+            "title": "v2.0   2016年1月13日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v103-20151020", 
+            "text": "1.支付宝sdk更新:     \n    1)默认用主线程调用调用支付;     \n    2)更新支付宝官方sdk,从3个jar包改成1个jar包;     \n    3)版本号更新为3; \n2.微信支付插件:     \n    1)微信支付插件无更新; \n3.支付Demo更新:     \n    1)支付宝支付sdk更新成官方最新版;     \n    2)Dialog的调用增加了异常捕捉;", 
+            "title": "v1.0.3   2015年10月20日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v102a-2015709", 
+            "text": "1.微信支付插件更新：\n    1）在近期任务中不可见\n    2）兼容微信的新Bug\n    3）状态栏（TitleBar）设为不可见\n    4）版本号更新为3\n2.支付 Sdk无更新\nPS：如果请求支付的页面为横屏，微信支付页面可能出现抽风现象（卡顿甚至重启），是因为微信出现莫名Bug不停开启新支付页面导致内存爆满，解决方法：在AndroidManifest.xml中将com.bmob.pay.tool.PayActivity设为强制竖屏（上方有示例），并尽可能将自己调用的Activity也设置为竖屏\n支付Sdk版本号 : 2\n微信支付插件版本号 : 3", 
+            "title": "v1.0.2a   2015年7月09日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v102-2015512", 
+            "text": "支付Sdk更新： \n1.BmobPay下增加了静态方法getPluginVersion，用于查看微信插件的版本号（当前版本为2），可按需更新； \n2.BmobPay下增加了静态方法getPaySdkVersion，用于查看Bmob支付Sdk的版本号（当前版本为2）； 微信支付插件更新： 修复了部分用户在未安装微信时调用微信支付未回调fail的Bug \n支付Sdk版本号 : 2 \n微信支付插件版本号 : 2", 
+            "title": "v1.0.2   2015年5月12日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v101a-2015414", 
+            "text": "支付宝官方的sdk有更新，Bmob的支付sdk无更新 \n支付宝sdk更新信息如下：     \n安卓版本号：v2.2.1    \n修改时间：2015-03-31    \n安卓更新点：修正部分机型横屏下安全输入法兼容问题，改成强制竖屏", 
+            "title": "V1.0.1a   2015年4月14日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v101-2015410", 
+            "text": "1.修复了商品名、描述字符串非法导致支付宝报ALI64的问题                              \n2.修复了防止多次提交订单时的锁只对下一次有效的BUG                                        3.优化了微信支付插件的Logo", 
+            "title": "V1.0.1   2015年4月10日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v100-2015408", 
+            "text": "1、调用支付宝、微信支付的支付以及查询功能完成\n2、添加支付成功、失败、返回订单号等监听事件；\n3、更改支付宝支付、查询订单时无需安装插件，微信支付需要安装插件", 
+            "title": "V1.0.0   2015年4月08日"
+        }
+    ]
+}

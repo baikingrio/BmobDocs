@@ -1,0 +1,569 @@
+{
+    "docs": [
+        {
+            "location": "/index.html", 
+            "text": "1、BmobOldIM SDK 回顾\n\n\nAndroid BmobIM SDK v2.0.0之前的版本统称为\nBmobOldIM SDK\n ，BmobOldIM SDK已经开源但不再进行维护，请开发者集成Android BmobNewIM SDK进行开发。\n\n\n| BmobOldIM SDK 问题     | \n|--------------------------------|\n| 无法自定义消息类型                  | \n| 消息发送受限于BmobPushSDK            | \n| API设计不够合理规范且不易扩展      | \n| 聊天消息出现接收延迟或丢失         | \n\n\n2、BmobNewIM SDK 介绍\n\n\nAndroid BmobIM SDK v2.0.0开始的版本统称为\nBmobNewIM SDK\n，BmobNewIM SDK采用全新架构，设计更加合理规范，API更加简单易用，扩展性强，但不兼容 Android BmobOldIM SDK。\n\n\n2.1、Android BmobNewIM SDK 特点及其描述\n\n\n\n\n\n\n\n\nAndroid BmobNewIM SDK 特点\n\n\n描述\n\n\n\n\n\n\n\n\n\n\n与用户系统解耦\n\n\n终端用户聊天的唯一标识是objectId，不再受限于Bmob的用户系统\n\n\n\n\n\n\n支持多账号登录、跨平台\n\n\n支持单个设备多个账号登录，支持与iOS互通聊天\n\n\n\n\n\n\n支持多种格式的富媒体消息\n\n\n支持文本、图片、音频和地理位置等多种格式的富媒体消息\n\n\n\n\n\n\n允许开发者自定义消息\n\n\n支持开发者自定义消息类型，方便开发者扩展本业务逻辑\n\n\n\n\n\n\nAPI设计更加合理规范\n\n\n全新的架构设计，API更加简单易用，较BmobOldIM SDK 进一步降低开发者使用成本\n\n\n\n\n\n\n\n\n2.2、自IM SDK v2.0.5版本开始提供aar格式远程发布包，可以自动集成并结合Data SDK进行开发\n\n\n\n\n\n\n\n\nIM SDK aar格式所包含文件\n\n\nData SDK 版本\n\n\n\n\n\n\n\n\n\n\nBmobNewIM_(版本号)_(发布日期).jar\n\n\nBmobNewIM的核心SDK\n\n\n\n\n\n\nandroidasync_2.1.6.jar\n\n\n用于协议通讯\n\n\n\n\n\n\n\n\n2.3、IM SDK和Data SDK的版本对应关系\n\n\nIM SDK 使用Data SDK的BmobFile用于图片、语音等文件消息的发送，因此必须导入特定版本的BmobSDK。\n\n\n\n\n\n\n\n\nIM SDK 版本\n\n\nData SDK 版本\n\n\n\n\n\n\n\n\n\n\nbmob-im:1.1.8\n\n\nbmob-sdk:3.3.5\n\n\n\n\n\n\nbmob-im:1.1.9\n\n\nbmob-sdk:3.4.3\n\n\n\n\n\n\nbmob-im:2.0.1\n\n\nbmob-sdk:3.4.6-0304\n\n\n\n\n\n\nbmob-im:2.0.2\n\n\nbmob-sdk:3.4.6-0304\n\n\n\n\n\n\nbmob-im:2.0.3\n\n\nbmob-sdk:3.4.6\n\n\n\n\n\n\nbmob-im:2.0.4\n\n\nbmob-sdk:3.4.6\n\n\n\n\n\n\nbmob-im:2.0.5\n\n\nbmob-sdk:3.4.7-aar\n\n\n\n\n\n\nbmob-im:2.0.6\n\n\nbmob-sdk:3.5.5\n\n\n\n\n\n\n\n\n3、BmobNewIM SDK 集成\n\n\n3.1、手动集成\n\n\n3.1.1、下载Android BmobNewIM SDK开发包及其Demo\n\n\n\n\n\n\n\n\n下载平台\n\n\n下载地址\n\n\n\n\n\n\n\n\n\n\nBmob基于BmobNewIM SDK v2.0.6 的Demo\n\n\nbmob-newim-demo\n\n\n\n\n\n\nGithub基于BmobNewIM SDK v2.0.5 的Demo\n\n\nbmob-newim-demo \n\n\n\n\n\n\nGithub基于BmobNewIM SDK v2.0.6 的Demo\n\n\nbmob-newim-demo\n\n\n\n\n\n\n\n\n3.1.2、解压Android BmobNewIM SDK开发包\n\n\n\n\n\n\n\n\n文件\n\n\n使用\n\n\n\n\n\n\n\n\n\n\nlibs\n\n\n外部依赖库，拷贝于工程的libs文件夹；自Data SDK v3.4.7开始，加入libbmob.so文件；自Data SDK v3.5.2开始，加入libBmobStat.so文件。\n\n\n\n\n\n\nNewIM_V2.x.x_Demo\n\n\n开发示例，开发环境是Android Studio，功能是陌生人以及好友聊天\n\n\n\n\n\n\n\n\n3.1.3、在app下的build.gradle文件中设置jni依赖库的目录，设置后点击Sync Now同步配置\n\n\nandroid {\n    sourceSets {\n        main.jniLibs.srcDirs = ['libs']\n   }\n}\n\n\n\n\n3.2、自动集成\n\n\n3.2.1、在Project下的build.gradle文件中添加Bmob的maven仓库地址\n\n\nbuildscript {\n    repositories {\n        jcenter()\n    }\n    dependencies {\n        classpath 'com.android.tools.build:gradle:1.3.0'\n    }\n}\n\nallprojects {\n    repositories {\n        jcenter()\n        //Bmob的maven仓库地址，必须填写\n        maven { url \nhttps://raw.github.com/bmob/bmob-android-sdk/master\n }\n    }\n}\n\ntask clean(type: Delete) {\n    delete rootProject.buildDir\n}\n\n\n\n\n3.2.2、在app下的build.gradle文件中添加dependencies外部依赖库，添加后点击Sync Now同步配置\n\n\n    dependencies {\n        compile fileTree(dir: 'libs', include: ['*.jar'])\n        //bmob-im：特定版本的bmob-im依赖特定版本的bmob-sdk\n        compile 'cn.bmob.android:bmob-im:2.0.6@aar'\n        compile 'cn.bmob.android:bmob-sdk:3.5.5'\n    }\n\n\n\n\n3.3、配置AndroidManifest.xml\n\n\n3.3.1、 添加Bmob_APP_KEY\n\n\n   \nmeta-data\n        android:name=\nBmob_APP_KEY\n\n        android:value=\nBmob平台的Application ID\n /\n\n\n\n\n\n3.3.2、 添加权限\n\n\n请注意在Android 6.0版本开始某些权限需要动态获取，详情请看Android Developwers官方文档，\nandroid-6.0-changes\n和\nandroid-7.0-changes\n。\n\n\n    \n!--网络权限 --\n\n    \nuses-permission android:name=\nandroid.permission.INTERNET\n /\n\n    \n!-- 监听网络的变化 --\n\n    \nuses-permission android:name=\nandroid.permission.ACCESS_NETWORK_STATE\n /\n\n    \nuses-permission android:name=\nandroid.permission.CHANGE_NETWORK_STATE\n /\n\n    \n!-- 设备休眠 --\n\n    \nuses-permission android:name=\nandroid.permission.WAKE_LOCK\n /\n\n    \nuses-permission android:name=\nandroid.permission.READ_PHONE_STATE\n /\n\n    \n!-- sd卡存储--\n\n    \nuses-permission android:name=\nandroid.permission.WRITE_EXTERNAL_STORAGE\n /\n\n    \nuses-permission android:name=\nandroid.permission.READ_EXTERNAL_STORAGE\n /\n\n    \n!--摄像头--\n\n    \nuses-permission android:name=\nandroid.permission.CAMERA\n /\n\n    \n!--录音--\n\n    \nuses-permission android:name=\nandroid.permission.RECORD_AUDIO\n /\n\n    \n!--通知震动--\n\n    \nuses-permission android:name=\nandroid.permission.VIBRATE\n /\n\n\n\n\n\n\n3.3.3、 添加service、receiver标签：\n\n\n  \nreceiver android:name=\ncn.bmob.newim.core.ConnectChangeReceiver\n \n\n        \nintent-filter\n\n            \naction android:name=\ncn.bmob.action.RECONNECT\n /\n\n            \naction android:name=\nandroid.net.conn.CONNECTIVITY_CHANGE\n /\n\n            \naction android:name=\nandroid.intent.action.BOOT_COMPLETED\n /\n\n            \naction android:name=\nandroid.intent.action.USER_PRESENT\n /\n\n        \n/intent-filter\n\n  \n/receiver\n\n  \nservice\n    android:name=\ncn.bmob.newim.core.service.BmobIMService\n\n    android:process=\n:bmobcore\n /\n\n  \nservice\n    android:name=\ncn.bmob.newim.core.service.NotifyService\n\n    android:process=\n:bmobcore\n /\n\n  \nservice android:name=\ncn.bmob.newim.core.service.ReConnectService\n /\n\n  \nservice android:name=\ncn.bmob.newim.core.service.HeartBeatService\n /\n\n\n\n\n\n注：自v2.0.5版本开始，将原来的\nBmobImService\n名称更换为\nBmobIMService\n，请务必修改，否则将无法正常使用IM服务。\n\n\n3.4、代码配置\n\n\n3.4.1、注册消息接收器\n\n\n3.4.1.1、如果你使用的是\nNewIM_V2.0.2\n及以后的版本\n\n\n1、请自定义消息接收器继承自\nBmobIMMessageHandler\n来处理服务器发来的消息和离线消息。\n\n\npublic class DemoMessageHandler extends BmobIMMessageHandler{\n\n    @Override\n    public void onMessageReceive(final MessageEvent event) {\n        //当接收到服务器发来的消息时，此方法被调用\n    }\n\n    @Override\n    public void onOfflineReceive(final OfflineMessageEvent event) {\n        //每次调用connect方法时会查询一次离线消息，如果有，此方法会被调用\n    }\n}\n\n\n\n\n\n2、在Application的onCreate方法中注册这个\nDemoMessageHandler\n。\n\n\n\npublic class BmobIMApplication extends Application{\n\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        //NewIM初始化\n        BmobIM.init(this);\n        //注册消息接收器\n        BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));\n    }\n}\n\n\n\n\n3.4.1.2、如果你使用的SDK版本是\nNewIM_V2.0.1\n\n\n1、请创建一个广播消息接收器，用于接收服务器发来的消息。\n\n\n\npublic class MessageReceiver extends BroadcastReceiver {\n\n    @Override\n    public void onReceive(final Context context, Intent intent) {\n        if(intent!=null){\n            final MessageEvent event =(MessageEvent)intent.getSerializableExtra(\nevent\n);\n            //开发者可以在这里发应用通知\n    }\n}\n\n\n\n\n\n2、在\nAndroidManifest.xml\n中注册此receiver。\n\n\nreceiver\n    android:name=\n程序包名.MessageReceiver\n\n    android:enabled=\ntrue\n\n    \nintent-filter\n\n        \naction android:name=\ncn.bmob.im.action.MESSAGE\n/\n\n    \n/intent-filter\n\n\n/receiver\n\n\n\n\n\n\n3.4.2、初始化BmobNewIM SDK\n\n\n在Application的onCreate方法中调用\nBmobIM.init(context)\n。\n\n\npublic class BmobIMApplication extends Application{\n\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        //只有主进程运行的时候才需要初始化\n        if (getApplicationInfo().packageName.equals(getMyProcessName())){\n            //im初始化\n            BmobIM.init(this);\n            //注册消息接收器\n            BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));\n        }\n    }\n\n    /**\n     * 获取当前运行的进程名\n     * @return\n     */\n    public static String getMyProcessName() {\n        try {\n            File file = new File(\n/proc/\n + android.os.Process.myPid() + \n/\n + \ncmdline\n);\n            BufferedReader mBufferedReader = new BufferedReader(new FileReader(file));\n            String processName = mBufferedReader.readLine().trim();\n            mBufferedReader.close();\n            return processName;\n        } catch (Exception e) {\n            e.printStackTrace();\n            return null;\n        }\n    }\n\n}\n\n\n\n\n\n\n注：\n\n\n\n\n初始化方法包含了BmobSDK的初始化步骤，故无需再初始化BmobSDK。\n\n\n在初始化的时候，最好做下判断：只有主进程运行的时候才开始初始化，避免资源浪费。\n\n\n\n\n4、BmobNewIM SDK 使用\n\n\n4.1、服务器连接\n\n\n4.1.1、连接\n\n\n调用\nconnect\n方法，需要传入唯一用户标示\nclientId\n，Demo使用的是Bmob的用户登录系统\nobjectId\n。\n\n\nUser user = BmobUser.getCurrentUser(context,User.class);\nBmobIM.connect(user.getObjectId(), new ConnectListener() {\n    @Override\n    public void done(String uid, BmobException e) {\n        if (e == null) {\n            Logger.i(\nconnect success\n);\n        } else {\n            Logger.e(e.getErrorCode() + \n/\n + e.getMessage());\n        }\n    }\n});\n\n\n\n\n4.1.2、断开连接：\n\n\n调用\ndisConnect\n方法，客户端会断开与服务器之间的连接，再次聊天需要重新调用\nconnect\n方法完成与服务器之间的连接。\n\n\nBmobIM.getInstance().disConnect();\n\n\n\n\n\n4.1.3、监听服务器连接状态\n\n\n调用\nsetOnConnectStatusChangeListener\n方法即可监听到当前长链接的连接状态。\n\n\n BmobIM.getInstance().setOnConnectStatusChangeListener(new ConnectStatusChangeListener() {\n            @Override\n            public void onChange(ConnectionStatus status) {\n                Logger.i(\n + status.getMsg());\n            }\n        });\n\n\n\n\n4.2、会话\n\n\n4.2.1、创建会话\n\n\nBmobNewIM SDK 采用会话（\nBmobIMConversation\n）管理消息(\nBmobIMMessage\n)的方式，即消息的查询、发送和删除等操作均在指定会话下进行，因此需要获取指定会话信息并创建会话实例。目前创建会话有两种创建方式，分别是\n暂态会话\n和\n常态会话\n。\n\n\n4.2.1.1、暂态消息\n\n\nBmobNewIM SDK在\nBmobIMMessage\n类中新增\nisTransient\n属性来标识该条消息是否自动保存到\n聊天对象\n的本地DB中。\n\n\n\n\n设置为\ntrue\n,表明为暂态消息，那么这条消息\n并不会保存到聊天对象的本地db中\n，SDK只负责发送和接收。\n\n\n设置为\nfalse\n,表明不为暂态消息，SDK会\n自动保存该类型的消息到指定会话的数据库\n中。\n\n\n\n\n4.2.1.2、创建暂态会话\n\n\n该会话只提供消息发送功能，不可使用其他查询，删除等API，\n不会自动创建会话\n到本地DB中。一般用于\n自定义消息的发送\n，比如，添加好友的请求，在对方还没有同意的情况下，你并不希望在自己的会话列表中显示该会话。\nv2.0.4\n版本的NewIM开始提供此种方式创建暂态会话\n\n\n//开启私聊会话，isTransient可设置是否保存该会话到自己的本地会话表中\nstartPrivateConversation(BmobIMUserInfo info, boolean isTransient,ConversationListener listener)\n\n\n\n\n4.2.1.3、创建常态会话\n\n\n该会话提供消息查询、发送、删除等功能，SDK内部自动创建该会话。\n\n\n//开启私聊会话，默认会保存该会话到自己的本地会话表中\nstartPrivateConversation(BmobIMUserInfo info, ConversationListener listener)\n\n\n\n\n4.2.1.3、创建会话示例\n\n\nBmobIMUserInfo\n类，是用户信息类，有三个属性需要开发者关注下：userId(用户唯一id)，name(用户名)，avatar（用户头像）。\n\n\n//如果需要更新用户资料，开发者只需要传新的info进去就可以\nBmobIM.getInstance().startPrivateConversation(BmobIMUserInfo info, new ConversationListener() {\n    @Override\n    public void done(BmobIMConversation c, BmobException e) {\n        if(e==null){\n            //在此跳转到聊天页面\n            Bundle bundle = new Bundle();\n            bundle.putSerializable(\nc\n, c);\n            startActivity(ChatActivity.class, bundle, false);\n        }else{\n            toast(e.getMessage()+\n(\n+e.getErrorCode()+\n)\n);\n        }\n    }\n});\n\n\n\n\n4.2.2、查询全部会话\n\n\nBmobIM.getInstance().loadAllConversation()\n\n\n\n\n4.2.3、查询会话的未读消息数量\n\n\n4.2.3.1、查询指定会话下的未读消息数量\n\n\nBmobIM.getInstance().getUnReadCount(String conversationId)\n\n\n\n\n4.2.3.2、查询全部会话的全部未读消息数\n\n\nBmobIM.getInstance().getUnReadCount.getAllUnReadCount()\n\n\n\n\n4.2.4、删除指定会话\n\n\n//提供两种方式删除会话\nBmobIM.getInstance().deleteConversation(BmobIMConversation c);\nBmobIM.getInstance().deleteConversation(String conversationId);\n\n\n\n\n4.2.5、清空全部会话\n\n\nBmobIM.getInstance().clearAllConversation();\n\n\n\n\n4.2.6、更新会话标题、会话图标及用户信息\n\n\n由于BmobNewIM SDK并不包含与用户有关的逻辑，只负责存储用户信息并对外提供更新等方法,用来操作本地的用户信息。\n\n\n在与人单聊时，需要更新会话标题和会话图标及用户信息，可调用如下方法在\nDemoMessageHandler\n的全局消息接收器中进行统一更新。\n\n\n/**更新用户资料和会话资料\n * @param event\n * @param listener\n */\npublic void updateUserInfo(MessageEvent event,final UpdateCacheListener listener){\n    final BmobIMConversation conversation=event.getConversation();\n    final BmobIMUserInfo info =event.getFromUserInfo();\n    final BmobIMMessage msg =event.getMessage();\n    String username =info.getName();\n    String title =conversation.getConversationTitle();\n    //sdk内部，将新会话的会话标题用objectId表示，因此需要比对用户名和会话标题--单聊，后续会根据会话类型进行判断\n    if(!username.equals(title)) {\n        UserModel.getInstance().queryUserInfo(info.getUserId(), new QueryUserListener() {\n            @Override\n            public void done(User s, BmobException e) {\n                if(e==null){\n                    String name =s.getUsername();\n                    String avatar = s.getAvatar();\n                    conversation.setConversationIcon(avatar);\n                    conversation.setConversationTitle(name);\n                    info.setName(name);\n                    info.setAvatar(avatar);\n                    //更新用户资料\n                    BmobIM.getInstance().updateUserInfo(info);\n                   //更新会话资料-如果消息是暂态消息，则不更新会话资料\n                    if(!msg.isTransient()){\n                        BmobIM.getInstance().updateConversation(conversation);\n                    }\n                }else{\n                    Logger.e(e);\n                }\n                listener.done(null);\n            }\n        });\n    }else{\n        listener.internalDone(null);\n    }\n}\n\n\n\n\n4.3、消息\n\n\n消息(\nBmobIMMessage\n)是所有消息的基类，以下BmobNewIM SDK目前支持的消息类型。\n\n\n\n\n\n\n\n\n消息类型\n\n\n消息类名\n\n\n\n\n\n\n\n\n\n\n文本\n\n\nBmobIMTextMessage\n\n\n\n\n\n\n文件\n\n\nBmobIMFileMessage\n\n\n\n\n\n\n图像\n\n\nBmobIMImageMessage\n\n\n\n\n\n\n音频\n\n\nBmobIMAudioMessage\n\n\n\n\n\n\n视频\n\n\nBmobIMVideoMessage\n\n\n\n\n\n\n地理位置\n\n\nBmobIMLocationMessage\n\n\n\n\n\n\n\n\n4.3.1、获取指定会话信息并创建会话实例\n\n\nBmobNewIM SDK采用会话（\nBmobIMConversation\n）管理消息(\nBmobIMMessage\n)的方式，即消息的查询、发送和删除等操作均在指定会话下进行，因此需要通过以下两个步骤来获取指定会话信息并创建会话实例。\n\n\n1、 开启私聊\n\n\n//如果需要更新用户资料，开发者只需要传新的info进去就可以\nBmobIM.getInstance().startPrivateConversation(BmobImUserInfo info, new ConversationListener() {\n    @Override\n    public void done(BmobIMConversation c, BmobException e) {\n        if(e==null){\n            //在此跳转到聊天页面\n            Bundle bundle = new Bundle();\n            bundle.putSerializable(\nc\n, c);\n            startActivity(ChatActivity.class, bundle, false);\n        }else{\n            toast(e.getMessage()+\n(\n+e.getErrorCode()+\n)\n);\n        }\n    }\n});\n\n\n\n\n\n2、 创建会话实例\n\n\n使用\nBmobIMConversation.obtain(BmobIMClient client,BmobIMConversation conversation)\n方法传入\nBmobIMClient和BmobIMConversation的各自实例\n就可以创建一个用于控制消息查询、发送和删除的会话实例。\n\n\nBmobIMConversation c;\n//在聊天页面的onCreate方法中，通过如下方法创建新的会话实例,这个obtain方法才是真正创建一个管理消息发送的会话\nc=BmobIMConversation.obtain(BmobIMClient.getInstance(),(BmobIMConversation)getBundle().getSerializable(\nc\n));\n\n\n\n\n\n创建完成后，就可以使用这个会话实例\nc\n对消息进行各种操作啦，以下操作中的\nc\n都指的是该会话实例。\n\n\n注：\n如果不调用BmobIMConversation的\nobtain\n方法是无法控制消息发送等操作的，会报\nclient disconnect\n的错误。\n\n\n4.3.2、查询指定会话的聊天记录\n\n\n//首次加载，可设置msg为null，\n//下拉刷新的时候，可用消息表的第一个msg作为刷新的起始时间点，默认按照消息时间的降序排列，limit由开发者控制\nc.queryMessages(msg, limit, new MessagesQueryListener() {\n            @Override\n            public void done(List\nBmobIMMessage\n list, BmobException e) {\n                sw_refresh.setRefreshing(false);\n                if (e == null) {\n                    if (null != list \n list.size() \n 0) {\n                        adapter.addMessages(list);\n                        adapter.notifyDataSetChanged();\n                        layoutManager.scrollToPositionWithOffset(list.size() - 1, 0);\n                    }\n                } else {\n                    toast(e.getMessage() + \n(\n + e.getErrorCode() + \n)\n);\n                }\n            }\n        });\n\n\n\n\n\n4.3.3、删除指定会话的聊天记录\n\n\n删除消息不同于删除会话，会直接清空本地的消息记录数据。\n\n\n//删除指定聊天消息\nc.deleteMessage(BmobIMMessage msg)\n\n//删除一条或多条聊天消息\nc.deleteBatchMessage(List\nBmobIMMessage\n msgs)\n\n//清空该会话下的聊天消息，允许保留会话（可选）\nc.clearMessage(boolean isKeepConversion,MessageListener listener)\n\n注：isKeepConversion 表示是否保留该会话消息。\n\n\n\n\n\n4.3.4、更新指定会话的所有消息为已读状态\n\n\n可以在\nChatActivity\n的聊天页面的\nonDestory\n方法中调用如下方法\n更新该会话的的所有消息为已读状态\n：\n\n\n//更新此会话的所有消息为已读状态\nc.updateLocalCache();\n\n\n\n\n\n4.4、消息发送\n\n\n4.4.1、文本消息\n\n\n文本消息可以是纯文本，也可以是包含表情的文本消息，通过\nBmobIMTextMessage\n的\nsetContent\n方法设置内容来构建\nBmobIMTextMessage\n实例，再调用\nBmobIMConversation\n的\nsendMessage\n方法发送。\n\n\nBmobIMTextMessage msg =new BmobIMTextMessage();\nmsg.setContent(text);\n//可随意设置额外信息\nMap\nString,Object\n map =new HashMap\n();\nmap.put(\nlevel\n, \n1\n);\nmsg.setExtraMap(map);\nc.sendMessage(msg, new MessageSendListener() {\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        super.onStart(msg);\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText(\n);\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});\n\n\n\n\n\n4.4.2、图片消息\n\n\n图片可以是通过系统拍照或本地相册中获取的本地图片地址，也可以使用网络上某个有效的图片地址。然后构造一个\nBmobIMImageMessage\n对象，再调用\nBmobIMConversation\n的\nsendMessage\n方法发送。\n\n\n4.4.2.1、发送本地图片\n\n\n使用系统拍照功能或从本地相册中获取到本地图片地址(\nlocalPath\n)，然后调用构造方法\nBmobIMImageMessage（String localPath）\n来创建\nBmobIMImageMessage\n实例。\n\n\nBmobIMImageMessage image =new BmobIMImageMessage(localPath);\nc.sendMessage(image, new MessageSendListener() {\n\n    @Override\n    public void onProgress(int value) {\n        super.onProgress(value);\n        //文件类型的消息才有进度值:do something\n        Logger.i(\nonProgress：\n+value);\n    }\n\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText(\n);\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});\n\n\n\n\n\n4.4.2.2、发送远程图片URL\n\n\n例如，从微博或QQ中获取到某个图片地址，然后调用BmobIMImageMessage的\nsetRemoteUrl\n方法设置远程图片URL来创建\nBmobIMImageMessage\n实例。\n\n\nBmobIMImageMessage image =new BmobIMImageMessage();\nimage.setRemoteUrl(\nhttp://img.lakalaec.com/ad/57ab6dc2-43f2-4087-81e2-b5ab5681642d.jpg\n);\nc.sendMessage(image, new MessageSendListener() {\n\n    @Override\n    public void onProgress(int value) {\n        super.onProgress(value);\n        //文件类型的消息才有进度值\n        Logger.i(\nonProgress：\n+value);\n    }\n\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText(\n);\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});\n\n\n\n\n\n4.4.3、语音消息\n\n\n语音可以是通过录制音频得到的本地音频地址，也可以使用网络上某个有效的音频地址。然后构造一个\nBmobIMAudioMessage\n对象，再调用\nBmobIMConversation\n的\nsendMessage\n方法发送。\n\n\n4.4.3.1、发送本地音频文件：\n\n\nBmobIMAudioMessage image =new BmobIMAudioMessage(localPath);\nc.sendMessage(image, new MessageSendListener() {\n\n    @Override\n    public void onProgress(int value) {\n        super.onProgress(value);\n        //文件类型的消息才有进度值:do something\n        Logger.i(\nonProgress：\n+value);\n    }\n\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText(\n);\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});\n\n\n\n\n\n4.4.3.2、发送远程语音URL地址\n\n\n同样的，语音消息也支持发送远程语音URL地址：\n\n\nBmobIMAudioMessage image =new BmobIMAudioMessage();\nimage.setRemoteUrl(\n远程语音地址\n);\nc.sendMessage(image, new MessageSendListener() {\n\n    @Override\n    public void onProgress(int value) {\n        super.onProgress(value);\n        //文件类型的消息才有进度值\n        Logger.i(\nonProgress：\n+value);\n    }\n\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText(\n);\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});\n\n\n\n\n\n4.4.4、地理位置消息\n\n\n地理位置可以通过任意地图SDK获取到经纬度，详细地址等信息，然后调用\nBmobIMLocationMessage(String address,double latitude,double longitude)\n构造方法构建\nBmobIMLocationMessage\n实例，再调用\nBmobIMConversation\n的\nsendMessage\n方法发送。：\n\n\nBmobIMLocationMessage location =new BmobIMLocationMessage(\n广州番禺区\n,23.5,112.0);\nc.sendMessage(location,  new MessageSendListener() {\n\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText(\n);\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});\n\n\n\n\n\n4.5、消息接收\n\n\n4.5.1、自定义消息接收器\n\n\n4.5.1.1、\nNewIM_V2.0.4及以后\n的NewBmobIM SDK版本\n\n\n如果你使用的是\nNewIM_V2.0.4以后(包含v2.0.4)\n的SDK版本,那么不仅可以使用\nBmobIMMessageHandler\n方式来注册全局的消息接收器，还可以使用\nMessageListHandler\n为单个页面注册消息接收器，具体步骤如下：\n\n\n\n\n在\nActivity/Fragment\n中实现\nMessageListHandler\n接口；\n\n\n在\nonResume\n方法中添加页面消息监听器：\nBmobIM.getInstance().addMessageListHandler(this)\n；\n\n\n在\nonPause\n方法中移除页面消息监听器：\nBmobIM.getInstance().removeMessageListHandler(this)\n；\n\n\n在\nMessageListHandler\n接口的\nonMessageReceive\n方法中做相关的操作。\n\n\n\n\n具体示例可查看NewIMDemo中的\nChatActivity\n类：\n\n\n@Override\npublic void onMessageReceive(List\nMessageEvent\n list) {\n    //当注册页面消息监听时候，有消息（包含离线消息）到来时会回调该方法\n    for (int i=0;i\nlist.size();i++){\n        //do something...\n    }\n}\n\n\n\n\n\n4.5.1.2、\nNewIM_V2.0.2及以后\n的NewBmobIM SDK版本\n\n\n如果你使用的是\nNewIM_V2.0.2以后(包含v2.0.2)\n的SDK版本,那么只需要自定义消息接收器继承自\nBmobIMMessageHandler\n来处理服务器发来的消息和离线消息。\n\n\n\npublic class DemoMessageHandler extends BmobIMMessageHandler{\n\n    private Context context;\n    public DemoMessageHandler(Context context) {\n        this.context = context;\n    }\n\n    @Override\n    public void onMessageReceive(final MessageEvent event) {\n        //当接收到服务器发来的消息时，此方法被调用\n        //可以统一在此检测更新会话及用户信息\n        UserModel.getInstance().updateUserInfo(event, new UpdateCacheListener() {\n            @Override\n            public void done(BmobException e) {\n                BmobIMMessage msg = event.getMessage();\n                //用户自定义的消息类型，其类型值均为0\n                if(BmobIMMessageType.getMessageTypeValue(msg.getMsgType())==0){\n                    //自行处理自定义消息类型\n                    Logger.i(msg.getMsgType() + \n,\n + msg.getContent() + \n,\n + msg.getExtra());\n                }else{//SDK内部内部支持的消息类型\n                    if (BmobNotificationManager.getInstance(context).isShowNotification()){\n                        //如果需要显示通知栏，可以使用BmobNotificationManager类提供的方法，也可以自己写通知栏显示方法\n                   }else{//直接发送消息事件\n                        Logger.i(\n当前处于应用内，发送event\n);\n                        EventBus.getDefault().post(event);\n                    }\n                }\n            }\n        });\n    }\n\n    @Override\n    public void onOfflineReceive(final OfflineMessageEvent event) {\n        //每次调用connect方法时会查询一次离线消息，如果有，此方法会被调用\n        Map\nString,List\nMessageEvent\n map =event.getEventMap();\n        Logger.i(\n离线消息属于\n+map.size()+\n个用户\n);\n        for (Map.Entry\nString, List\nMessageEvent\n entry : map.entrySet()) {\n            List\nMessageEvent\n list =entry.getValue();\n            //挨个检测离线用户信息是否需要更新\n            UserModel.getInstance().updateUserInfo(list.get(0), new UpdateCacheListener() {\n                @Override\n                public void done(BmobException e) {\n                    EventBus.getDefault().post(event);\n                }\n            });\n        }\n    }\n}\n\n\n\n\n\n同样，别忘记在Application的onCreate方法中注册这个\nDemoMessageHandler\n：\n\n\n\npublic class BmobIMApplication extends Application{\n\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        //注册消息接收器\n        BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));\n    }\n}\n\n\n\n\n4.5.1.3、\nNewIM_V2.0.1\n的NewBmobIM SDK版本\n\n\n如果你使用的SDK版本是\nNewIM_V2.0.1\n,那么你需要在应用中创建一个\nBroadcastReceiver\n广播消息接收器，用于接收服务器发来的消息。\n\n\npublic class MessageReceiver extends BroadcastReceiver {\n\n    @Override\n    public void onReceive(final Context context, Intent intent) {\n        if(intent!=null){\n            final MessageEvent event =(MessageEvent)intent.getSerializableExtra(\"event\");\n            //可以统一在此检测更新会话及用户信息\n            UserModel.getInstance().updateUserInfo(event, new UpdateCacheListener() {\n                @Override\n                public void done(BmobException e) {\n                    BmobIMMessage msg = event.getMessage();\n                    //用户自定义的消息类型，其类型值均为0\n                    if(BmobIMMessageType.getMessageTypeValue(msg.getMsgType())==0){\n                        //自行处理自定义消息类型\n                        Logger.i(msg.getMsgType() + \",\" + msg.getContent() + \",\" + msg.getExtra());\n                    }else{//SDK内部内部支持的消息类型\n                        if (BmobNotificationManager.getInstance(context).isShowNotification()){\n                            //如果需要显示通知栏，可以使用BmobNotificationManager类提供的方法，也可以自己写通知栏显示方法\n                       }else{//直接发送消息事件\n                            Logger.i(\"当前处于应用内，发送event\");\n                            EventBus.getDefault().post(event);\n                        }\n                    }\n                }\n            });\n    }\n}\n\n\n\n别忘记在\nAndroidManifest.xml\n中注册这个receiver\n\n\nreceiver\n    android:name=\n程序包名.MessageReceiver\n\n    android:enabled=\ntrue\n\n    \nintent-filter\n\n        \naction android:name=\ncn.bmob.im.action.MESSAGE\n/\n\n    \n/intent-filter\n\n\n/receiver\n\n\n\n\n\n\n4.5.2、应用内消息接收\n\n\nV2.0.1\n的SDK内部集成EventBus库（\nV2.0.2\nSDK内部不再集成EventBus，开发者可以自行使用新版EventBus）来进行应用内消息的分发，故在应用内需要接收消息的地方注册和解注册EventBus即可。\n\n\nSDK内部有两种事件：\nMessageEvent（聊天消息）\n、\nOfflineMessageEvent(离线消息)\n。\n\n\n1、注册EventBus\n\n\nEventBus.getDefault().register(this);\n\n\n\n\n\n2、解注册EventBus\n\n\nEventBus.getDefault().unregister(this);\n\n\n\n\n\n3、处理聊天消息\n\n\n/**聊天消息接收事件\n * @param event\n */\npublic void onEventMainThread(MessageEvent event){\n    //处理聊天消息\n}\n\n\n\n\n\n4、处理离线消息\n\n\n\n/**离线消息接收事件\n * @param event\n */\npublic void onEventMainThread(OfflineMessageEvent event){\n    //处理离线消息\n}\n\n\n\n\n\n4.5.3、应用外通知栏提醒\n\n\nSDK新增\nBmobNotificationManager\n类，并提供如下两个方法供开发者展示通知栏:\n\n\n\n\n多个用户的多条消息合并成一条通知：有XX个联系人发来了XX条消息\n\n\n\n\n/**显示通知：多个用户的多条消息合并显示一条通知\n * @param event 某个消息事件：包含消息、会话及发送用户的信息\n * @param intent 跳转intent\n */\n BmobNotificationManager.getInstance(context).showNotification(MessageEvent event,Intent pendingIntent);\n\n\n\n\n\n\n\n自定义通知消息：始终只有一条通知，新消息覆盖旧消息\n\n\n\n\n /**显示通知\n * @param largerIcon 通知栏图标 开发者可传应用图标，也可以将聊天头像转成bitmap\n * @param title 标题\n * @param content 内容\n * @param ticker 状态栏上显示的内容\n * @param intent 跳转的intent\n */\nBmobNotificationManager.getInstance(context).showNotification(Bitmap largerIcon,String title, String content, String ticker,Intent intent);\n\n\n\n\n注：为了使SDK能够区分当前应用是否退出，开发者需进行以下几个步骤：\n\n\n1、在会话和聊天的Activity类实现'ObseverListener'监听器；\n\n\n2、在\nonResume\n方法中调用\nBmobNotificationManager.getInstance(context).addObserver(this)\n方法添加观察者；\n   在\nonPause\n方法中调用\nBmobNotificationManager.getInstance(context).removeObserver(this)\n方法移除观察者\n\n\n3、在主Activity的\nonDestroy\n方法中调用\nBmobNotificationManager.getInstance(context).clearObserver()\n清空观察者。\n\n\n4.6、自定义消息\n\n\n4.6.1、设置额外信息\n\n\n有些时候，开发者需要在发送消息时携带一些额外信息，例如\n发送方的设备类型、图片的拍摄地点或者音频的来源\n等，那么开发者可以通过 \nBmobIMExtraMessage.extraMap\n属性来解决，任何继承\nBmobIMExtraMessage\n类的消息均支持设置额外信息。\n\n\n    BmobIMAudioMessage audio =new BmobIMAudioMessage();\n    image.setRemoteUrl(\n远程音频地址\n);\n    //设置音频文件的来源\n    Map\nString,Object\n map =new HashMap\n();\n    map.put(\nfrom\n, \n优酷\n);\n    audio.setExtraMap(map);\n    c.sendMessage(audio, listener);\n\n\n\n\n4.6.2、创建新的消息类型\n\n\n如果设置额外信息无法满足开发者的需求，那么开发者也可以自定义自己的消息类型。\n\n\n4.6.2.1、创建自定义消息\n\n\n\n\n继承自\nBmobIMExtraMessage\n类；\n\n\n重写\ngetMsgType\n方法，填写自定义的消息类型；\n\n\n重写\nisTransient\n方法。\n\n\n\n\n    public class AddFriendMessage extends BmobIMExtraMessage{\n\n        @Override\n        public String getMsgType() {\n            return \nadd\n;\n        }\n\n        @Override\n        public boolean isTransient() {\n            //设置为true,表明为暂态消息，那么这条消息并不会保存到对方的本地db中\n            //设置为false,则会保存到对方指定会话的本地数据库中\n            return true;\n        }\n\n        public AddFriendMessage(){}\n\n    }\n\n\n\n\n4.6.2.2、发送自定义消息\n\n\n    //启动一个会话，如果isTransient设置为true,则不会创建在本地会话表中创建该会话，\n    //设置isTransient设置为false,则会在本地数据库的会话列表中先创建（如果没有）与该用户的会话信息，且将用户信息存储到本地的用户表中\n    BmobIMConversation c = BmobIM.getInstance().startPrivateConversation(info, true,null);\n    //这个obtain方法才是真正创建一个管理消息发送的会话\n    BmobIMConversation conversation = BmobIMConversation.obtain(BmobIMClient.getInstance(), c);\n    AddFriendMessage msg =new AddFriendMessage();\n    User currentUser = BmobUser.getCurrentUser(this,User.class);\n    msg.setContent(\n很高兴认识你，可以加个好友吗?\n);//给对方的一个留言信息\n    Map\nString,Object\n map =new HashMap\n();\n    map.put(\nname\n, currentUser.getUsername());//发送者姓名，这里只是举个例子，其实可以不需要传发送者的信息过去\n    map.put(\navatar\n,currentUser.getAvatar());//发送者的头像\n    map.put(\nuid\n,currentUser.getObjectId());//发送者的uid\n    msg.setExtraMap(map);\n    conversation.sendMessage(msg, new MessageSendListener() {\n        @Override\n        public void done(BmobIMMessage msg, BmobException e) {\n            if (e == null) {//发送成功\n                toast(\n好友请求发送成功，等待验证\n);\n            } else {//发送失败\n                toast(\n发送失败:\n + e.getMessage());\n            }\n        }\n    });\n\n\n\n\n4.7、用户管理\n\n\nBmobNewIM SDK只是即时通讯的消息收发渠道，本身并不提供用户体系。开发者可使用BmobSDK提供的用户管理方面功能，也可使用开发者自己的用户体系。\n\n\nBmobNewIM SDK内部会自动创建本地用户表，并对外提供方法供开发者调用来操作本地用户表。开发者只需要调用\nupdateUserInfo\n方法即可更新本地用户信息。\n\n\n4.7.1、BmobIMUserInfo介绍\n\n\nBmobNewIM SDK中用户的实体类为\nBmobIMUserInfo\n，其有四个属性，开发者只需要关心后三个即可。\n\n\n\n\n\n\n\n\n属性名\n\n\n属性含义\n\n\n\n\n\n\n\n\n\n\nid\n\n\n本地数据库用户表的id值，开发者无需关心\n\n\n\n\n\n\nuserId\n\n\n用户唯一id（Demo中用的是BmobUser的objectId）\n\n\n\n\n\n\nname\n\n\n用户名 （Demo中是用的是BmobUser的username）\n\n\n\n\n\n\navatar\n\n\n用户头像\n\n\n\n\n\n\n\n\n4.7.2、更新本地用户信息\n\n\n以下两种情况需要更新用户信息：\n1. 当注册或登录成功后，需要更新下当前用户的信息到本地数据库的用户表中，这样才能通过getUserInfo方法获取到本地的用户信息。\n2. 当接收到某人消息的时候，同样需要更新A的用户信息到本地用户表中，否则在会话界面将默认显示的是用户的userId，也就是Demo中的BmobUser的objectId值。\n\n\n4.7.2.1、更新单一本地用户信息\n\n\nBmobIM.getInstance().updateUserInfo(BmobIMUserInfo info)\n\n\n\n\n4.7.2.2、批量更新本地用户信息\n\n\nBmobIM.getInstance().updateBatchUserInfo(List\nBmobIMUserInfo\n list)\n\n\n\n\n4.7.3、获取本地用户信息\n\n\nBmobNewIM SDK内部会自动创建了一个本地数据库用来存储用户信息，开发者需要先调用\nupdateUserInfo\n更新用户信息到本地数据库中，才能通过\ngetUserInfo(uid)\n获取到本地用户信息。\n\n\nBmobIM.getInstance().getUserInfo(String uid)\n\n\n\n\n4.8、好友管理\n\n\nBmobNewIM SDK中并没有集成好友管理相关的功能，为了方便开发者建立基于好友之间的聊天模式，在\nv2.0.4\n版本开始的Demo中使用Data SDK新建了\nFriend\n表来进行好友管理。\n\n\n/**好友表\n * @author smile\n * @project Friend\n * @date 2016-04-26\n */\npublic class Friend extends BmobObject{\n\n    //用户\n    private User user;\n    //好友\n    private User friendUser;\n\n    //getter setter...\n}\n\n\n\n\n4.8.1、获取好友列表\n\n\n以下摘自\nUserModel(cn.bmob.imdemo.model)\n类：\n\n\n/**\n * 查询好友\n * @param listener\n */\npublic void queryFriends(final FindListener\nFriend\n listener){\n    BmobQuery\nFriend\n query = new BmobQuery\n();\n    User user =BmobUser.getCurrentUser(getContext(), User.class);\n    query.addWhereEqualTo(\nuser\n, user);\n    query.include(\nfriendUser\n);\n    query.order(\n-updatedAt\n);\n    query.findObjects(getContext(), new FindListener\nFriend\n() {\n        @Override\n        public void onSuccess(List\nFriend\n list) {\n            if (list != null \n list.size() \n 0) {\n                listener.onSuccess(list);\n            } else {\n                listener.onError(0, \n暂无联系人\n);\n            }\n        }\n\n        @Override\n        public void onError(int i, String s) {\n            listener.onError(i, s);\n        }\n    });\n}\n\n\n\n\n\n4.8.2、删除好友\n\n\n以下摘自\nUserModel(cn.bmob.imdemo.model)\n类：\n\n\n/**\n * 删除好友\n * @param f\n * @param listener\n */\npublic void deleteFriend(Friend f,DeleteListener listener){\n    Friend friend =new Friend();\n    friend.delete(getContext(),f.getObjectId(),listener);\n}\n\n\n\n\n\n4.8.3、添加好友\n\n\nDemo中创建了一个\nNewFriend\n的本地数据库类用来存储所有的添加好友请求。\n\n\n/**本地的好友请求表\n * @author :smile\n * @project:NewFriend\n * @date :2016-04-26-17:28\n */\npublic class NewFriend implements java.io.Serializable {\n\n    private Long id;\n    //用户uid\n    private String uid;\n    //留言消息\n    private String msg;\n    //用户名\n    private String name;\n    //头像\n    private String avatar;\n    //状态：未读、已读、已添加、已拒绝等\n    private Integer status;\n    //请求时间\n    private Long time;\n\n    //getter setter...\n\n}\n\n\n\n\n\nDemo中创建了一个\nAddFriendMessage\n类来展示如何发送自定义的添加好友请求的消息。\n\n\n/**添加好友请求-自定义消息类型\n * @author :smile\n * @project:AddFriendMessage\n * @date :2016-01-30-17:28\n */\npublic class AddFriendMessage extends BmobIMExtraMessage{\n\n    public AddFriendMessage(){}\n\n    @Override\n    public String getMsgType() {\n        //自定义一个`add`的消息类型\n        return \nadd\n;\n    }\n\n    @Override\n    public boolean isTransient() {\n        //设置为true,表明为暂态消息，那么这条消息并不会保存到本地db中，SDK只负责发送出去\n        //设置为false,则会保存到指定会话的数据库中\n        return true;\n    }\n\n    ...\n\n}\n\n\n\n\n\nDemo中创建了一个\nAgreeAddFriendMessage\n类来展示如何发送自定义的同意添加好友请求的消息，并在对方的本地会话表中新增消息类型。\n\n\n/**同意添加好友请求-仅仅只用于发送同意添加好友的消息\n * @author smile\n * @project AgreeAddFriendMessage\n * @date 2016-03-04-10:41\n */\npublic class AgreeAddFriendMessage extends BmobIMExtraMessage{\n\n    //以下均是从extra里面抽离出来的字段，方便获取\n    private String uid;//最初的发送方\n    private Long time;\n    private String msg;//用于通知栏显示的内容\n\n    @Override\n    public String getMsgType() {\n        return \nagree\n;\n    }\n\n    @Override\n    public boolean isTransient() {\n        //如果需要在对方的会话表中新增一条该类型的消息，则设置为false，表明是非暂态会话\n        //此处将同意添加好友的请求设置为false，为了演示怎样向会话表和消息表中新增一个类型，在对方的会话列表中增加`我通过了你的好友验证请求，我们可以开始聊天了!`这样的类型\n        return false;\n    }\n\n    //getter setter...\n\n    ...\n}\n\n\n\n\n\n4.8.4、发送添加好友的请求\n\n\n以下摘自\nUserInfoActivity(cn.bmob.imdemo.ui)\n类：\n\n\n/**\n * 发送添加好友的请求\n */\nprivate void sendAddFriendMessage(){\n    //启动一个暂态会话，也就是isTransient为true,表明该会话仅执行发送消息的操作，不会保存会话和消息到本地数据库中，\n    BmobIMConversation c = BmobIM.getInstance().startPrivateConversation(info, true,null);\n    //这个obtain方法才是真正创建一个管理消息发送的会话\n    BmobIMConversation conversation = BmobIMConversation.obtain(BmobIMClient.getInstance(), c);\n    //新建一个添加好友的自定义消息实体\n    AddFriendMessage msg =new AddFriendMessage();\n    User currentUser = BmobUser.getCurrentUser(this,User.class);\n    msg.setContent(\n很高兴认识你，可以加个好友吗?\n);//给对方的一个留言信息\n    Map\nString,Object\n map =new HashMap\n();\n    map.put(\nname\n, currentUser.getUsername());//发送者姓名，这里只是举个例子，其实可以不需要传发送者的信息过去\n    map.put(\navatar\n,currentUser.getAvatar());//发送者的头像\n    map.put(\nuid\n,currentUser.getObjectId());//发送者的uid\n    msg.setExtraMap(map);\n    conversation.sendMessage(msg, new MessageSendListener() {\n        @Override\n        public void done(BmobIMMessage msg, BmobException e) {\n            if (e == null) {//发送成功\n                toast(\n好友请求发送成功，等待验证\n);\n            } else {//发送失败\n                toast(\n发送失败:\n + e.getMessage());\n            }\n        }\n    });\n}\n\n\n\n\n\n4.8.5、发送同意添加好友的请求\n\n\n以下摘自\nNewFriendHolder(cn.bmob.imdemo.adapter)\n类：\n\n\n/**\n * 发送同意添加好友的请求\n */\nprivate void sendAgreeAddFriendMessage(final NewFriend add,final SaveListener listener){\n    //发给谁，就填谁的用户信息\n    BmobIMUserInfo info = new BmobIMUserInfo(add.getUid(), add.getName(), add.getAvatar());\n    //启动一个暂态会话，也就是isTransient为true,表明该会话仅执行发送消息的操作，不会保存会话和消息到本地数据库中，\n    BmobIMConversation c = BmobIM.getInstance().startPrivateConversation(info,true,null);\n    //这个obtain方法才是真正创建一个管理消息发送的会话\n    BmobIMConversation conversation = BmobIMConversation.obtain(BmobIMClient.getInstance(),c);\n    //而AgreeAddFriendMessage的isTransient设置为false，表明我希望在对方的会话数据库中保存该类型的消息\n    AgreeAddFriendMessage msg =new AgreeAddFriendMessage();\n    User currentUser = BmobUser.getCurrentUser(getContext(), User.class);\n    msg.setContent(\n我通过了你的好友验证请求，我们可以开始聊天了!\n);//---这句话是直接存储到对方的消息表中的\n    Map\nString,Object\n map =new HashMap\n();\n    map.put(\nmsg\n,currentUser.getUsername()+\n同意添加你为好友\n);//显示在通知栏上面的内容\n    map.put(\nuid\n,add.getUid());//发送者的uid-方便请求添加的发送方找到该条添加好友的请求\n    map.put(\ntime\n, add.getTime());//添加好友的请求时间\n    msg.setExtraMap(map);\n    conversation.sendMessage(msg, new MessageSendListener() {\n        @Override\n        public void done(BmobIMMessage msg, BmobException e){\n            if (e == null) {//发送成功\n                //修改本地的好友请求记录\n                NewFriendManager.getInstance(getContext()).updateNewFriend(add.getUid(),add.getTime(),Config.STATUS_VERIFIED);\n                listener.onSuccess();\n            } else {//发送失败\n                listener.onFailure(e.getErrorCode(),e.getMessage());\n            }\n        }\n    });\n}\n\n\n\n\n\n4.8.6、接收并处理好友相关的请求\n\n\n以下摘自\nDemoMessageHandler(cn.bmob.imdemo)\n类：\n\n\n/**\n * 处理自定义消息类型:用户自定义的消息类型，其类型值均为0\n * @param msg\n */\nprivate void processCustomMessage(BmobIMMessage msg,BmobIMUserInfo info){\n    String type =msg.getMsgType();\n    //发送页面刷新的广播\n    EventBus.getDefault().post(new RefreshEvent());\n    //处理消息\n    if(type.equals(\nadd\n)){//接收到的添加好友的请求\n        NewFriend friend = AddFriendMessage.convert(msg);\n        //本地好友请求表做下校验，本地没有的才允许显示通知栏--有可能离线消息会有些重复\n        long id = NewFriendManager.getInstance(context).insertOrUpdateNewFriend(friend);\n        if(id\n0){\n            showAddNotify(friend);\n        }\n    }else if(type.equals(\nagree\n)){//接收到的对方同意添加自己为好友,此时需要做的事情：1、添加对方为好友，2、显示通知\n        AgreeAddFriendMessage agree = AgreeAddFriendMessage.convert(msg);\n        addFriend(agree.getFromId());//添加消息的发送方为好友\n        //这里应该也需要做下校验--来检测下是否已经同意过该好友请求，我这里省略了\n        showAgreeNotify(info,agree);\n    }else{\n        Toast.makeText(context,\n接收到的自定义消息：\n+msg.getMsgType() + \n,\n + msg.getContent() + \n,\n + msg.getExtra(),Toast.LENGTH_SHORT).show();\n    }\n}\n\n\n\n\n\n4.8.7、添加到Friend表中\n\n\n以下摘自\nDemoMessageHandler(cn.bmob.imdemo)\n类：\n\n\n/**\n * 添加对方为自己的好友\n * @param uid\n */\nprivate void addFriend(String uid){\n    User user =new User();\n    user.setObjectId(uid);\n    //添加到Friend表中\n    UserModel.getInstance().agreeAddFriend(user, new SaveListener() {\n        @Override\n        public void onSuccess() {\n            Log.i(\nbmob\n, \nonSuccess\n);\n        }\n\n        @Override\n        public void onFailure(int i, String s) {\n            Log.i(\nbmob\n, \nonFailure:\n+s+\n-\n+i);\n        }\n    });\n}", 
+            "title": "开发文档"
+        }, 
+        {
+            "location": "/index.html#1bmoboldim-sdk", 
+            "text": "Android BmobIM SDK v2.0.0之前的版本统称为 BmobOldIM SDK  ，BmobOldIM SDK已经开源但不再进行维护，请开发者集成Android BmobNewIM SDK进行开发。  | BmobOldIM SDK 问题     | \n|--------------------------------|\n| 无法自定义消息类型                  | \n| 消息发送受限于BmobPushSDK            | \n| API设计不够合理规范且不易扩展      | \n| 聊天消息出现接收延迟或丢失         |", 
+            "title": "1、BmobOldIM SDK 回顾"
+        }, 
+        {
+            "location": "/index.html#2bmobnewim-sdk", 
+            "text": "Android BmobIM SDK v2.0.0开始的版本统称为 BmobNewIM SDK ，BmobNewIM SDK采用全新架构，设计更加合理规范，API更加简单易用，扩展性强，但不兼容 Android BmobOldIM SDK。", 
+            "title": "2、BmobNewIM SDK 介绍"
+        }, 
+        {
+            "location": "/index.html#21android-bmobnewim-sdk", 
+            "text": "Android BmobNewIM SDK 特点  描述      与用户系统解耦  终端用户聊天的唯一标识是objectId，不再受限于Bmob的用户系统    支持多账号登录、跨平台  支持单个设备多个账号登录，支持与iOS互通聊天    支持多种格式的富媒体消息  支持文本、图片、音频和地理位置等多种格式的富媒体消息    允许开发者自定义消息  支持开发者自定义消息类型，方便开发者扩展本业务逻辑    API设计更加合理规范  全新的架构设计，API更加简单易用，较BmobOldIM SDK 进一步降低开发者使用成本", 
+            "title": "2.1、Android BmobNewIM SDK 特点及其描述"
+        }, 
+        {
+            "location": "/index.html#22im-sdk-v205aardata-sdk", 
+            "text": "IM SDK aar格式所包含文件  Data SDK 版本      BmobNewIM_(版本号)_(发布日期).jar  BmobNewIM的核心SDK    androidasync_2.1.6.jar  用于协议通讯", 
+            "title": "2.2、自IM SDK v2.0.5版本开始提供aar格式远程发布包，可以自动集成并结合Data SDK进行开发"
+        }, 
+        {
+            "location": "/index.html#23im-sdkdata-sdk", 
+            "text": "IM SDK 使用Data SDK的BmobFile用于图片、语音等文件消息的发送，因此必须导入特定版本的BmobSDK。     IM SDK 版本  Data SDK 版本      bmob-im:1.1.8  bmob-sdk:3.3.5    bmob-im:1.1.9  bmob-sdk:3.4.3    bmob-im:2.0.1  bmob-sdk:3.4.6-0304    bmob-im:2.0.2  bmob-sdk:3.4.6-0304    bmob-im:2.0.3  bmob-sdk:3.4.6    bmob-im:2.0.4  bmob-sdk:3.4.6    bmob-im:2.0.5  bmob-sdk:3.4.7-aar    bmob-im:2.0.6  bmob-sdk:3.5.5", 
+            "title": "2.3、IM SDK和Data SDK的版本对应关系"
+        }, 
+        {
+            "location": "/index.html#3bmobnewim-sdk", 
+            "text": "", 
+            "title": "3、BmobNewIM SDK 集成"
+        }, 
+        {
+            "location": "/index.html#31", 
+            "text": "", 
+            "title": "3.1、手动集成"
+        }, 
+        {
+            "location": "/index.html#311android-bmobnewim-sdkdemo", 
+            "text": "下载平台  下载地址      Bmob基于BmobNewIM SDK v2.0.6 的Demo  bmob-newim-demo    Github基于BmobNewIM SDK v2.0.5 的Demo  bmob-newim-demo     Github基于BmobNewIM SDK v2.0.6 的Demo  bmob-newim-demo", 
+            "title": "3.1.1、下载Android BmobNewIM SDK开发包及其Demo"
+        }, 
+        {
+            "location": "/index.html#312android-bmobnewim-sdk", 
+            "text": "文件  使用      libs  外部依赖库，拷贝于工程的libs文件夹；自Data SDK v3.4.7开始，加入libbmob.so文件；自Data SDK v3.5.2开始，加入libBmobStat.so文件。    NewIM_V2.x.x_Demo  开发示例，开发环境是Android Studio，功能是陌生人以及好友聊天", 
+            "title": "3.1.2、解压Android BmobNewIM SDK开发包"
+        }, 
+        {
+            "location": "/index.html#313appbuildgradlejnisync-now", 
+            "text": "android {\n    sourceSets {\n        main.jniLibs.srcDirs = ['libs']\n   }\n}", 
+            "title": "3.1.3、在app下的build.gradle文件中设置jni依赖库的目录，设置后点击Sync Now同步配置"
+        }, 
+        {
+            "location": "/index.html#32", 
+            "text": "", 
+            "title": "3.2、自动集成"
+        }, 
+        {
+            "location": "/index.html#321projectbuildgradlebmobmaven", 
+            "text": "buildscript {\n    repositories {\n        jcenter()\n    }\n    dependencies {\n        classpath 'com.android.tools.build:gradle:1.3.0'\n    }\n}\n\nallprojects {\n    repositories {\n        jcenter()\n        //Bmob的maven仓库地址，必须填写\n        maven { url  https://raw.github.com/bmob/bmob-android-sdk/master  }\n    }\n}\n\ntask clean(type: Delete) {\n    delete rootProject.buildDir\n}", 
+            "title": "3.2.1、在Project下的build.gradle文件中添加Bmob的maven仓库地址"
+        }, 
+        {
+            "location": "/index.html#322appbuildgradledependenciessync-now", 
+            "text": "dependencies {\n        compile fileTree(dir: 'libs', include: ['*.jar'])\n        //bmob-im：特定版本的bmob-im依赖特定版本的bmob-sdk\n        compile 'cn.bmob.android:bmob-im:2.0.6@aar'\n        compile 'cn.bmob.android:bmob-sdk:3.5.5'\n    }", 
+            "title": "3.2.2、在app下的build.gradle文件中添加dependencies外部依赖库，添加后点击Sync Now同步配置"
+        }, 
+        {
+            "location": "/index.html#33androidmanifestxml", 
+            "text": "", 
+            "title": "3.3、配置AndroidManifest.xml"
+        }, 
+        {
+            "location": "/index.html#331-bmob_app_key", 
+            "text": "meta-data\n        android:name= Bmob_APP_KEY \n        android:value= Bmob平台的Application ID  /", 
+            "title": "3.3.1、 添加Bmob_APP_KEY"
+        }, 
+        {
+            "location": "/index.html#332", 
+            "text": "请注意在Android 6.0版本开始某些权限需要动态获取，详情请看Android Developwers官方文档， android-6.0-changes 和 android-7.0-changes 。       !--网络权限 -- \n     uses-permission android:name= android.permission.INTERNET  / \n     !-- 监听网络的变化 -- \n     uses-permission android:name= android.permission.ACCESS_NETWORK_STATE  / \n     uses-permission android:name= android.permission.CHANGE_NETWORK_STATE  / \n     !-- 设备休眠 -- \n     uses-permission android:name= android.permission.WAKE_LOCK  / \n     uses-permission android:name= android.permission.READ_PHONE_STATE  / \n     !-- sd卡存储-- \n     uses-permission android:name= android.permission.WRITE_EXTERNAL_STORAGE  / \n     uses-permission android:name= android.permission.READ_EXTERNAL_STORAGE  / \n     !--摄像头-- \n     uses-permission android:name= android.permission.CAMERA  / \n     !--录音-- \n     uses-permission android:name= android.permission.RECORD_AUDIO  / \n     !--通知震动-- \n     uses-permission android:name= android.permission.VIBRATE  /", 
+            "title": "3.3.2、 添加权限"
+        }, 
+        {
+            "location": "/index.html#333-servicereceiver", 
+            "text": "receiver android:name= cn.bmob.newim.core.ConnectChangeReceiver   \n         intent-filter \n             action android:name= cn.bmob.action.RECONNECT  / \n             action android:name= android.net.conn.CONNECTIVITY_CHANGE  / \n             action android:name= android.intent.action.BOOT_COMPLETED  / \n             action android:name= android.intent.action.USER_PRESENT  / \n         /intent-filter \n   /receiver \n   service\n    android:name= cn.bmob.newim.core.service.BmobIMService \n    android:process= :bmobcore  / \n   service\n    android:name= cn.bmob.newim.core.service.NotifyService \n    android:process= :bmobcore  / \n   service android:name= cn.bmob.newim.core.service.ReConnectService  / \n   service android:name= cn.bmob.newim.core.service.HeartBeatService  /   注：自v2.0.5版本开始，将原来的 BmobImService 名称更换为 BmobIMService ，请务必修改，否则将无法正常使用IM服务。", 
+            "title": "3.3.3、 添加service、receiver标签："
+        }, 
+        {
+            "location": "/index.html#34", 
+            "text": "", 
+            "title": "3.4、代码配置"
+        }, 
+        {
+            "location": "/index.html#341", 
+            "text": "", 
+            "title": "3.4.1、注册消息接收器"
+        }, 
+        {
+            "location": "/index.html#3411newim_v202", 
+            "text": "1、请自定义消息接收器继承自 BmobIMMessageHandler 来处理服务器发来的消息和离线消息。  public class DemoMessageHandler extends BmobIMMessageHandler{\n\n    @Override\n    public void onMessageReceive(final MessageEvent event) {\n        //当接收到服务器发来的消息时，此方法被调用\n    }\n\n    @Override\n    public void onOfflineReceive(final OfflineMessageEvent event) {\n        //每次调用connect方法时会查询一次离线消息，如果有，此方法会被调用\n    }\n}  2、在Application的onCreate方法中注册这个 DemoMessageHandler 。  \npublic class BmobIMApplication extends Application{\n\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        //NewIM初始化\n        BmobIM.init(this);\n        //注册消息接收器\n        BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));\n    }\n}", 
+            "title": "3.4.1.1、如果你使用的是NewIM_V2.0.2及以后的版本"
+        }, 
+        {
+            "location": "/index.html#3412sdknewim_v201", 
+            "text": "1、请创建一个广播消息接收器，用于接收服务器发来的消息。  \npublic class MessageReceiver extends BroadcastReceiver {\n\n    @Override\n    public void onReceive(final Context context, Intent intent) {\n        if(intent!=null){\n            final MessageEvent event =(MessageEvent)intent.getSerializableExtra( event );\n            //开发者可以在这里发应用通知\n    }\n}  2、在 AndroidManifest.xml 中注册此receiver。  receiver\n    android:name= 程序包名.MessageReceiver \n    android:enabled= true \n     intent-filter \n         action android:name= cn.bmob.im.action.MESSAGE / \n     /intent-filter  /receiver", 
+            "title": "3.4.1.2、如果你使用的SDK版本是NewIM_V2.0.1"
+        }, 
+        {
+            "location": "/index.html#342bmobnewim-sdk", 
+            "text": "在Application的onCreate方法中调用 BmobIM.init(context) 。  public class BmobIMApplication extends Application{\n\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        //只有主进程运行的时候才需要初始化\n        if (getApplicationInfo().packageName.equals(getMyProcessName())){\n            //im初始化\n            BmobIM.init(this);\n            //注册消息接收器\n            BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));\n        }\n    }\n\n    /**\n     * 获取当前运行的进程名\n     * @return\n     */\n    public static String getMyProcessName() {\n        try {\n            File file = new File( /proc/  + android.os.Process.myPid() +  /  +  cmdline );\n            BufferedReader mBufferedReader = new BufferedReader(new FileReader(file));\n            String processName = mBufferedReader.readLine().trim();\n            mBufferedReader.close();\n            return processName;\n        } catch (Exception e) {\n            e.printStackTrace();\n            return null;\n        }\n    }\n\n}  注：   初始化方法包含了BmobSDK的初始化步骤，故无需再初始化BmobSDK。  在初始化的时候，最好做下判断：只有主进程运行的时候才开始初始化，避免资源浪费。", 
+            "title": "3.4.2、初始化BmobNewIM SDK"
+        }, 
+        {
+            "location": "/index.html#4bmobnewim-sdk", 
+            "text": "", 
+            "title": "4、BmobNewIM SDK 使用"
+        }, 
+        {
+            "location": "/index.html#41", 
+            "text": "", 
+            "title": "4.1、服务器连接"
+        }, 
+        {
+            "location": "/index.html#411", 
+            "text": "调用 connect 方法，需要传入唯一用户标示 clientId ，Demo使用的是Bmob的用户登录系统 objectId 。  User user = BmobUser.getCurrentUser(context,User.class);\nBmobIM.connect(user.getObjectId(), new ConnectListener() {\n    @Override\n    public void done(String uid, BmobException e) {\n        if (e == null) {\n            Logger.i( connect success );\n        } else {\n            Logger.e(e.getErrorCode() +  /  + e.getMessage());\n        }\n    }\n});", 
+            "title": "4.1.1、连接"
+        }, 
+        {
+            "location": "/index.html#412", 
+            "text": "调用 disConnect 方法，客户端会断开与服务器之间的连接，再次聊天需要重新调用 connect 方法完成与服务器之间的连接。  BmobIM.getInstance().disConnect();", 
+            "title": "4.1.2、断开连接："
+        }, 
+        {
+            "location": "/index.html#413", 
+            "text": "调用 setOnConnectStatusChangeListener 方法即可监听到当前长链接的连接状态。   BmobIM.getInstance().setOnConnectStatusChangeListener(new ConnectStatusChangeListener() {\n            @Override\n            public void onChange(ConnectionStatus status) {\n                Logger.i(  + status.getMsg());\n            }\n        });", 
+            "title": "4.1.3、监听服务器连接状态"
+        }, 
+        {
+            "location": "/index.html#42", 
+            "text": "", 
+            "title": "4.2、会话"
+        }, 
+        {
+            "location": "/index.html#421", 
+            "text": "BmobNewIM SDK 采用会话（ BmobIMConversation ）管理消息( BmobIMMessage )的方式，即消息的查询、发送和删除等操作均在指定会话下进行，因此需要获取指定会话信息并创建会话实例。目前创建会话有两种创建方式，分别是 暂态会话 和 常态会话 。", 
+            "title": "4.2.1、创建会话"
+        }, 
+        {
+            "location": "/index.html#4211", 
+            "text": "BmobNewIM SDK在 BmobIMMessage 类中新增 isTransient 属性来标识该条消息是否自动保存到 聊天对象 的本地DB中。   设置为 true ,表明为暂态消息，那么这条消息 并不会保存到聊天对象的本地db中 ，SDK只负责发送和接收。  设置为 false ,表明不为暂态消息，SDK会 自动保存该类型的消息到指定会话的数据库 中。", 
+            "title": "4.2.1.1、暂态消息"
+        }, 
+        {
+            "location": "/index.html#4212", 
+            "text": "该会话只提供消息发送功能，不可使用其他查询，删除等API， 不会自动创建会话 到本地DB中。一般用于 自定义消息的发送 ，比如，添加好友的请求，在对方还没有同意的情况下，你并不希望在自己的会话列表中显示该会话。 v2.0.4 版本的NewIM开始提供此种方式创建暂态会话  //开启私聊会话，isTransient可设置是否保存该会话到自己的本地会话表中\nstartPrivateConversation(BmobIMUserInfo info, boolean isTransient,ConversationListener listener)", 
+            "title": "4.2.1.2、创建暂态会话"
+        }, 
+        {
+            "location": "/index.html#4213", 
+            "text": "该会话提供消息查询、发送、删除等功能，SDK内部自动创建该会话。  //开启私聊会话，默认会保存该会话到自己的本地会话表中\nstartPrivateConversation(BmobIMUserInfo info, ConversationListener listener)", 
+            "title": "4.2.1.3、创建常态会话"
+        }, 
+        {
+            "location": "/index.html#4213_1", 
+            "text": "BmobIMUserInfo 类，是用户信息类，有三个属性需要开发者关注下：userId(用户唯一id)，name(用户名)，avatar（用户头像）。  //如果需要更新用户资料，开发者只需要传新的info进去就可以\nBmobIM.getInstance().startPrivateConversation(BmobIMUserInfo info, new ConversationListener() {\n    @Override\n    public void done(BmobIMConversation c, BmobException e) {\n        if(e==null){\n            //在此跳转到聊天页面\n            Bundle bundle = new Bundle();\n            bundle.putSerializable( c , c);\n            startActivity(ChatActivity.class, bundle, false);\n        }else{\n            toast(e.getMessage()+ ( +e.getErrorCode()+ ) );\n        }\n    }\n});", 
+            "title": "4.2.1.3、创建会话示例"
+        }, 
+        {
+            "location": "/index.html#422", 
+            "text": "BmobIM.getInstance().loadAllConversation()", 
+            "title": "4.2.2、查询全部会话"
+        }, 
+        {
+            "location": "/index.html#423", 
+            "text": "", 
+            "title": "4.2.3、查询会话的未读消息数量"
+        }, 
+        {
+            "location": "/index.html#4231", 
+            "text": "BmobIM.getInstance().getUnReadCount(String conversationId)", 
+            "title": "4.2.3.1、查询指定会话下的未读消息数量"
+        }, 
+        {
+            "location": "/index.html#4232", 
+            "text": "BmobIM.getInstance().getUnReadCount.getAllUnReadCount()", 
+            "title": "4.2.3.2、查询全部会话的全部未读消息数"
+        }, 
+        {
+            "location": "/index.html#424", 
+            "text": "//提供两种方式删除会话\nBmobIM.getInstance().deleteConversation(BmobIMConversation c);\nBmobIM.getInstance().deleteConversation(String conversationId);", 
+            "title": "4.2.4、删除指定会话"
+        }, 
+        {
+            "location": "/index.html#425", 
+            "text": "BmobIM.getInstance().clearAllConversation();", 
+            "title": "4.2.5、清空全部会话"
+        }, 
+        {
+            "location": "/index.html#426", 
+            "text": "由于BmobNewIM SDK并不包含与用户有关的逻辑，只负责存储用户信息并对外提供更新等方法,用来操作本地的用户信息。  在与人单聊时，需要更新会话标题和会话图标及用户信息，可调用如下方法在 DemoMessageHandler 的全局消息接收器中进行统一更新。  /**更新用户资料和会话资料\n * @param event\n * @param listener\n */\npublic void updateUserInfo(MessageEvent event,final UpdateCacheListener listener){\n    final BmobIMConversation conversation=event.getConversation();\n    final BmobIMUserInfo info =event.getFromUserInfo();\n    final BmobIMMessage msg =event.getMessage();\n    String username =info.getName();\n    String title =conversation.getConversationTitle();\n    //sdk内部，将新会话的会话标题用objectId表示，因此需要比对用户名和会话标题--单聊，后续会根据会话类型进行判断\n    if(!username.equals(title)) {\n        UserModel.getInstance().queryUserInfo(info.getUserId(), new QueryUserListener() {\n            @Override\n            public void done(User s, BmobException e) {\n                if(e==null){\n                    String name =s.getUsername();\n                    String avatar = s.getAvatar();\n                    conversation.setConversationIcon(avatar);\n                    conversation.setConversationTitle(name);\n                    info.setName(name);\n                    info.setAvatar(avatar);\n                    //更新用户资料\n                    BmobIM.getInstance().updateUserInfo(info);\n                   //更新会话资料-如果消息是暂态消息，则不更新会话资料\n                    if(!msg.isTransient()){\n                        BmobIM.getInstance().updateConversation(conversation);\n                    }\n                }else{\n                    Logger.e(e);\n                }\n                listener.done(null);\n            }\n        });\n    }else{\n        listener.internalDone(null);\n    }\n}", 
+            "title": "4.2.6、更新会话标题、会话图标及用户信息"
+        }, 
+        {
+            "location": "/index.html#43", 
+            "text": "消息( BmobIMMessage )是所有消息的基类，以下BmobNewIM SDK目前支持的消息类型。     消息类型  消息类名      文本  BmobIMTextMessage    文件  BmobIMFileMessage    图像  BmobIMImageMessage    音频  BmobIMAudioMessage    视频  BmobIMVideoMessage    地理位置  BmobIMLocationMessage", 
+            "title": "4.3、消息"
+        }, 
+        {
+            "location": "/index.html#431", 
+            "text": "BmobNewIM SDK采用会话（ BmobIMConversation ）管理消息( BmobIMMessage )的方式，即消息的查询、发送和删除等操作均在指定会话下进行，因此需要通过以下两个步骤来获取指定会话信息并创建会话实例。  1、 开启私聊  //如果需要更新用户资料，开发者只需要传新的info进去就可以\nBmobIM.getInstance().startPrivateConversation(BmobImUserInfo info, new ConversationListener() {\n    @Override\n    public void done(BmobIMConversation c, BmobException e) {\n        if(e==null){\n            //在此跳转到聊天页面\n            Bundle bundle = new Bundle();\n            bundle.putSerializable( c , c);\n            startActivity(ChatActivity.class, bundle, false);\n        }else{\n            toast(e.getMessage()+ ( +e.getErrorCode()+ ) );\n        }\n    }\n});  2、 创建会话实例  使用 BmobIMConversation.obtain(BmobIMClient client,BmobIMConversation conversation) 方法传入 BmobIMClient和BmobIMConversation的各自实例 就可以创建一个用于控制消息查询、发送和删除的会话实例。  BmobIMConversation c;\n//在聊天页面的onCreate方法中，通过如下方法创建新的会话实例,这个obtain方法才是真正创建一个管理消息发送的会话\nc=BmobIMConversation.obtain(BmobIMClient.getInstance(),(BmobIMConversation)getBundle().getSerializable( c ));  创建完成后，就可以使用这个会话实例 c 对消息进行各种操作啦，以下操作中的 c 都指的是该会话实例。  注：\n如果不调用BmobIMConversation的 obtain 方法是无法控制消息发送等操作的，会报 client disconnect 的错误。", 
+            "title": "4.3.1、获取指定会话信息并创建会话实例"
+        }, 
+        {
+            "location": "/index.html#432", 
+            "text": "//首次加载，可设置msg为null，\n//下拉刷新的时候，可用消息表的第一个msg作为刷新的起始时间点，默认按照消息时间的降序排列，limit由开发者控制\nc.queryMessages(msg, limit, new MessagesQueryListener() {\n            @Override\n            public void done(List BmobIMMessage  list, BmobException e) {\n                sw_refresh.setRefreshing(false);\n                if (e == null) {\n                    if (null != list   list.size()   0) {\n                        adapter.addMessages(list);\n                        adapter.notifyDataSetChanged();\n                        layoutManager.scrollToPositionWithOffset(list.size() - 1, 0);\n                    }\n                } else {\n                    toast(e.getMessage() +  (  + e.getErrorCode() +  ) );\n                }\n            }\n        });", 
+            "title": "4.3.2、查询指定会话的聊天记录"
+        }, 
+        {
+            "location": "/index.html#433", 
+            "text": "删除消息不同于删除会话，会直接清空本地的消息记录数据。  //删除指定聊天消息\nc.deleteMessage(BmobIMMessage msg)\n\n//删除一条或多条聊天消息\nc.deleteBatchMessage(List BmobIMMessage  msgs)\n\n//清空该会话下的聊天消息，允许保留会话（可选）\nc.clearMessage(boolean isKeepConversion,MessageListener listener)\n\n注：isKeepConversion 表示是否保留该会话消息。", 
+            "title": "4.3.3、删除指定会话的聊天记录"
+        }, 
+        {
+            "location": "/index.html#434", 
+            "text": "可以在 ChatActivity 的聊天页面的 onDestory 方法中调用如下方法 更新该会话的的所有消息为已读状态 ：  //更新此会话的所有消息为已读状态\nc.updateLocalCache();", 
+            "title": "4.3.4、更新指定会话的所有消息为已读状态"
+        }, 
+        {
+            "location": "/index.html#44", 
+            "text": "", 
+            "title": "4.4、消息发送"
+        }, 
+        {
+            "location": "/index.html#441", 
+            "text": "文本消息可以是纯文本，也可以是包含表情的文本消息，通过 BmobIMTextMessage 的 setContent 方法设置内容来构建 BmobIMTextMessage 实例，再调用 BmobIMConversation 的 sendMessage 方法发送。  BmobIMTextMessage msg =new BmobIMTextMessage();\nmsg.setContent(text);\n//可随意设置额外信息\nMap String,Object  map =new HashMap ();\nmap.put( level ,  1 );\nmsg.setExtraMap(map);\nc.sendMessage(msg, new MessageSendListener() {\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        super.onStart(msg);\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText( );\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});", 
+            "title": "4.4.1、文本消息"
+        }, 
+        {
+            "location": "/index.html#442", 
+            "text": "图片可以是通过系统拍照或本地相册中获取的本地图片地址，也可以使用网络上某个有效的图片地址。然后构造一个 BmobIMImageMessage 对象，再调用 BmobIMConversation 的 sendMessage 方法发送。", 
+            "title": "4.4.2、图片消息"
+        }, 
+        {
+            "location": "/index.html#4421", 
+            "text": "使用系统拍照功能或从本地相册中获取到本地图片地址( localPath )，然后调用构造方法 BmobIMImageMessage（String localPath） 来创建 BmobIMImageMessage 实例。  BmobIMImageMessage image =new BmobIMImageMessage(localPath);\nc.sendMessage(image, new MessageSendListener() {\n\n    @Override\n    public void onProgress(int value) {\n        super.onProgress(value);\n        //文件类型的消息才有进度值:do something\n        Logger.i( onProgress： +value);\n    }\n\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText( );\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});", 
+            "title": "4.4.2.1、发送本地图片"
+        }, 
+        {
+            "location": "/index.html#4422url", 
+            "text": "例如，从微博或QQ中获取到某个图片地址，然后调用BmobIMImageMessage的 setRemoteUrl 方法设置远程图片URL来创建 BmobIMImageMessage 实例。  BmobIMImageMessage image =new BmobIMImageMessage();\nimage.setRemoteUrl( http://img.lakalaec.com/ad/57ab6dc2-43f2-4087-81e2-b5ab5681642d.jpg );\nc.sendMessage(image, new MessageSendListener() {\n\n    @Override\n    public void onProgress(int value) {\n        super.onProgress(value);\n        //文件类型的消息才有进度值\n        Logger.i( onProgress： +value);\n    }\n\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText( );\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});", 
+            "title": "4.4.2.2、发送远程图片URL"
+        }, 
+        {
+            "location": "/index.html#443", 
+            "text": "语音可以是通过录制音频得到的本地音频地址，也可以使用网络上某个有效的音频地址。然后构造一个 BmobIMAudioMessage 对象，再调用 BmobIMConversation 的 sendMessage 方法发送。", 
+            "title": "4.4.3、语音消息"
+        }, 
+        {
+            "location": "/index.html#4431", 
+            "text": "BmobIMAudioMessage image =new BmobIMAudioMessage(localPath);\nc.sendMessage(image, new MessageSendListener() {\n\n    @Override\n    public void onProgress(int value) {\n        super.onProgress(value);\n        //文件类型的消息才有进度值:do something\n        Logger.i( onProgress： +value);\n    }\n\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText( );\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});", 
+            "title": "4.4.3.1、发送本地音频文件："
+        }, 
+        {
+            "location": "/index.html#4432url", 
+            "text": "同样的，语音消息也支持发送远程语音URL地址：  BmobIMAudioMessage image =new BmobIMAudioMessage();\nimage.setRemoteUrl( 远程语音地址 );\nc.sendMessage(image, new MessageSendListener() {\n\n    @Override\n    public void onProgress(int value) {\n        super.onProgress(value);\n        //文件类型的消息才有进度值\n        Logger.i( onProgress： +value);\n    }\n\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText( );\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});", 
+            "title": "4.4.3.2、发送远程语音URL地址"
+        }, 
+        {
+            "location": "/index.html#444", 
+            "text": "地理位置可以通过任意地图SDK获取到经纬度，详细地址等信息，然后调用 BmobIMLocationMessage(String address,double latitude,double longitude) 构造方法构建 BmobIMLocationMessage 实例，再调用 BmobIMConversation 的 sendMessage 方法发送。：  BmobIMLocationMessage location =new BmobIMLocationMessage( 广州番禺区 ,23.5,112.0);\nc.sendMessage(location,  new MessageSendListener() {\n\n    @Override\n    public void onStart(BmobIMMessage msg) {\n        scrollToBottom();\n        adapter.addMessage(msg);\n        adapter.notifyDataSetChanged();\n    }\n\n    @Override\n    public void done(BmobIMMessage msg, BmobException e) {\n        scrollToBottom();\n        adapter.notifyDataSetChanged();\n        edit_msg.setText( );\n        if (e != null) {\n            toast(e.getMessage());\n        }\n    }\n});", 
+            "title": "4.4.4、地理位置消息"
+        }, 
+        {
+            "location": "/index.html#45", 
+            "text": "", 
+            "title": "4.5、消息接收"
+        }, 
+        {
+            "location": "/index.html#451", 
+            "text": "", 
+            "title": "4.5.1、自定义消息接收器"
+        }, 
+        {
+            "location": "/index.html#4511newim_v204newbmobim-sdk", 
+            "text": "如果你使用的是 NewIM_V2.0.4以后(包含v2.0.4) 的SDK版本,那么不仅可以使用 BmobIMMessageHandler 方式来注册全局的消息接收器，还可以使用 MessageListHandler 为单个页面注册消息接收器，具体步骤如下：   在 Activity/Fragment 中实现 MessageListHandler 接口；  在 onResume 方法中添加页面消息监听器： BmobIM.getInstance().addMessageListHandler(this) ；  在 onPause 方法中移除页面消息监听器： BmobIM.getInstance().removeMessageListHandler(this) ；  在 MessageListHandler 接口的 onMessageReceive 方法中做相关的操作。   具体示例可查看NewIMDemo中的 ChatActivity 类：  @Override\npublic void onMessageReceive(List MessageEvent  list) {\n    //当注册页面消息监听时候，有消息（包含离线消息）到来时会回调该方法\n    for (int i=0;i list.size();i++){\n        //do something...\n    }\n}", 
+            "title": "4.5.1.1、NewIM_V2.0.4及以后的NewBmobIM SDK版本"
+        }, 
+        {
+            "location": "/index.html#4512newim_v202newbmobim-sdk", 
+            "text": "如果你使用的是 NewIM_V2.0.2以后(包含v2.0.2) 的SDK版本,那么只需要自定义消息接收器继承自 BmobIMMessageHandler 来处理服务器发来的消息和离线消息。  \npublic class DemoMessageHandler extends BmobIMMessageHandler{\n\n    private Context context;\n    public DemoMessageHandler(Context context) {\n        this.context = context;\n    }\n\n    @Override\n    public void onMessageReceive(final MessageEvent event) {\n        //当接收到服务器发来的消息时，此方法被调用\n        //可以统一在此检测更新会话及用户信息\n        UserModel.getInstance().updateUserInfo(event, new UpdateCacheListener() {\n            @Override\n            public void done(BmobException e) {\n                BmobIMMessage msg = event.getMessage();\n                //用户自定义的消息类型，其类型值均为0\n                if(BmobIMMessageType.getMessageTypeValue(msg.getMsgType())==0){\n                    //自行处理自定义消息类型\n                    Logger.i(msg.getMsgType() +  ,  + msg.getContent() +  ,  + msg.getExtra());\n                }else{//SDK内部内部支持的消息类型\n                    if (BmobNotificationManager.getInstance(context).isShowNotification()){\n                        //如果需要显示通知栏，可以使用BmobNotificationManager类提供的方法，也可以自己写通知栏显示方法\n                   }else{//直接发送消息事件\n                        Logger.i( 当前处于应用内，发送event );\n                        EventBus.getDefault().post(event);\n                    }\n                }\n            }\n        });\n    }\n\n    @Override\n    public void onOfflineReceive(final OfflineMessageEvent event) {\n        //每次调用connect方法时会查询一次离线消息，如果有，此方法会被调用\n        Map String,List MessageEvent  map =event.getEventMap();\n        Logger.i( 离线消息属于 +map.size()+ 个用户 );\n        for (Map.Entry String, List MessageEvent  entry : map.entrySet()) {\n            List MessageEvent  list =entry.getValue();\n            //挨个检测离线用户信息是否需要更新\n            UserModel.getInstance().updateUserInfo(list.get(0), new UpdateCacheListener() {\n                @Override\n                public void done(BmobException e) {\n                    EventBus.getDefault().post(event);\n                }\n            });\n        }\n    }\n}  同样，别忘记在Application的onCreate方法中注册这个 DemoMessageHandler ：  \npublic class BmobIMApplication extends Application{\n\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        //注册消息接收器\n        BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));\n    }\n}", 
+            "title": "4.5.1.2、NewIM_V2.0.2及以后的NewBmobIM SDK版本"
+        }, 
+        {
+            "location": "/index.html#4513newim_v201newbmobim-sdk", 
+            "text": "如果你使用的SDK版本是 NewIM_V2.0.1 ,那么你需要在应用中创建一个 BroadcastReceiver 广播消息接收器，用于接收服务器发来的消息。  public class MessageReceiver extends BroadcastReceiver {\n\n    @Override\n    public void onReceive(final Context context, Intent intent) {\n        if(intent!=null){\n            final MessageEvent event =(MessageEvent)intent.getSerializableExtra(\"event\");\n            //可以统一在此检测更新会话及用户信息\n            UserModel.getInstance().updateUserInfo(event, new UpdateCacheListener() {\n                @Override\n                public void done(BmobException e) {\n                    BmobIMMessage msg = event.getMessage();\n                    //用户自定义的消息类型，其类型值均为0\n                    if(BmobIMMessageType.getMessageTypeValue(msg.getMsgType())==0){\n                        //自行处理自定义消息类型\n                        Logger.i(msg.getMsgType() + \",\" + msg.getContent() + \",\" + msg.getExtra());\n                    }else{//SDK内部内部支持的消息类型\n                        if (BmobNotificationManager.getInstance(context).isShowNotification()){\n                            //如果需要显示通知栏，可以使用BmobNotificationManager类提供的方法，也可以自己写通知栏显示方法\n                       }else{//直接发送消息事件\n                            Logger.i(\"当前处于应用内，发送event\");\n                            EventBus.getDefault().post(event);\n                        }\n                    }\n                }\n            });\n    }\n}  别忘记在 AndroidManifest.xml 中注册这个receiver  receiver\n    android:name= 程序包名.MessageReceiver \n    android:enabled= true \n     intent-filter \n         action android:name= cn.bmob.im.action.MESSAGE / \n     /intent-filter  /receiver", 
+            "title": "4.5.1.3、NewIM_V2.0.1的NewBmobIM SDK版本"
+        }, 
+        {
+            "location": "/index.html#452", 
+            "text": "V2.0.1 的SDK内部集成EventBus库（ V2.0.2 SDK内部不再集成EventBus，开发者可以自行使用新版EventBus）来进行应用内消息的分发，故在应用内需要接收消息的地方注册和解注册EventBus即可。  SDK内部有两种事件： MessageEvent（聊天消息） 、 OfflineMessageEvent(离线消息) 。  1、注册EventBus  EventBus.getDefault().register(this);  2、解注册EventBus  EventBus.getDefault().unregister(this);  3、处理聊天消息  /**聊天消息接收事件\n * @param event\n */\npublic void onEventMainThread(MessageEvent event){\n    //处理聊天消息\n}  4、处理离线消息  \n/**离线消息接收事件\n * @param event\n */\npublic void onEventMainThread(OfflineMessageEvent event){\n    //处理离线消息\n}", 
+            "title": "4.5.2、应用内消息接收"
+        }, 
+        {
+            "location": "/index.html#453", 
+            "text": "SDK新增 BmobNotificationManager 类，并提供如下两个方法供开发者展示通知栏:   多个用户的多条消息合并成一条通知：有XX个联系人发来了XX条消息   /**显示通知：多个用户的多条消息合并显示一条通知\n * @param event 某个消息事件：包含消息、会话及发送用户的信息\n * @param intent 跳转intent\n */\n BmobNotificationManager.getInstance(context).showNotification(MessageEvent event,Intent pendingIntent);   自定义通知消息：始终只有一条通知，新消息覆盖旧消息    /**显示通知\n * @param largerIcon 通知栏图标 开发者可传应用图标，也可以将聊天头像转成bitmap\n * @param title 标题\n * @param content 内容\n * @param ticker 状态栏上显示的内容\n * @param intent 跳转的intent\n */\nBmobNotificationManager.getInstance(context).showNotification(Bitmap largerIcon,String title, String content, String ticker,Intent intent);  注：为了使SDK能够区分当前应用是否退出，开发者需进行以下几个步骤：  1、在会话和聊天的Activity类实现'ObseverListener'监听器；  2、在 onResume 方法中调用 BmobNotificationManager.getInstance(context).addObserver(this) 方法添加观察者；\n   在 onPause 方法中调用 BmobNotificationManager.getInstance(context).removeObserver(this) 方法移除观察者  3、在主Activity的 onDestroy 方法中调用 BmobNotificationManager.getInstance(context).clearObserver() 清空观察者。", 
+            "title": "4.5.3、应用外通知栏提醒"
+        }, 
+        {
+            "location": "/index.html#46", 
+            "text": "", 
+            "title": "4.6、自定义消息"
+        }, 
+        {
+            "location": "/index.html#461", 
+            "text": "有些时候，开发者需要在发送消息时携带一些额外信息，例如 发送方的设备类型、图片的拍摄地点或者音频的来源 等，那么开发者可以通过  BmobIMExtraMessage.extraMap 属性来解决，任何继承 BmobIMExtraMessage 类的消息均支持设置额外信息。      BmobIMAudioMessage audio =new BmobIMAudioMessage();\n    image.setRemoteUrl( 远程音频地址 );\n    //设置音频文件的来源\n    Map String,Object  map =new HashMap ();\n    map.put( from ,  优酷 );\n    audio.setExtraMap(map);\n    c.sendMessage(audio, listener);", 
+            "title": "4.6.1、设置额外信息"
+        }, 
+        {
+            "location": "/index.html#462", 
+            "text": "如果设置额外信息无法满足开发者的需求，那么开发者也可以自定义自己的消息类型。", 
+            "title": "4.6.2、创建新的消息类型"
+        }, 
+        {
+            "location": "/index.html#4621", 
+            "text": "继承自 BmobIMExtraMessage 类；  重写 getMsgType 方法，填写自定义的消息类型；  重写 isTransient 方法。       public class AddFriendMessage extends BmobIMExtraMessage{\n\n        @Override\n        public String getMsgType() {\n            return  add ;\n        }\n\n        @Override\n        public boolean isTransient() {\n            //设置为true,表明为暂态消息，那么这条消息并不会保存到对方的本地db中\n            //设置为false,则会保存到对方指定会话的本地数据库中\n            return true;\n        }\n\n        public AddFriendMessage(){}\n\n    }", 
+            "title": "4.6.2.1、创建自定义消息"
+        }, 
+        {
+            "location": "/index.html#4622", 
+            "text": "//启动一个会话，如果isTransient设置为true,则不会创建在本地会话表中创建该会话，\n    //设置isTransient设置为false,则会在本地数据库的会话列表中先创建（如果没有）与该用户的会话信息，且将用户信息存储到本地的用户表中\n    BmobIMConversation c = BmobIM.getInstance().startPrivateConversation(info, true,null);\n    //这个obtain方法才是真正创建一个管理消息发送的会话\n    BmobIMConversation conversation = BmobIMConversation.obtain(BmobIMClient.getInstance(), c);\n    AddFriendMessage msg =new AddFriendMessage();\n    User currentUser = BmobUser.getCurrentUser(this,User.class);\n    msg.setContent( 很高兴认识你，可以加个好友吗? );//给对方的一个留言信息\n    Map String,Object  map =new HashMap ();\n    map.put( name , currentUser.getUsername());//发送者姓名，这里只是举个例子，其实可以不需要传发送者的信息过去\n    map.put( avatar ,currentUser.getAvatar());//发送者的头像\n    map.put( uid ,currentUser.getObjectId());//发送者的uid\n    msg.setExtraMap(map);\n    conversation.sendMessage(msg, new MessageSendListener() {\n        @Override\n        public void done(BmobIMMessage msg, BmobException e) {\n            if (e == null) {//发送成功\n                toast( 好友请求发送成功，等待验证 );\n            } else {//发送失败\n                toast( 发送失败:  + e.getMessage());\n            }\n        }\n    });", 
+            "title": "4.6.2.2、发送自定义消息"
+        }, 
+        {
+            "location": "/index.html#47", 
+            "text": "BmobNewIM SDK只是即时通讯的消息收发渠道，本身并不提供用户体系。开发者可使用BmobSDK提供的用户管理方面功能，也可使用开发者自己的用户体系。  BmobNewIM SDK内部会自动创建本地用户表，并对外提供方法供开发者调用来操作本地用户表。开发者只需要调用 updateUserInfo 方法即可更新本地用户信息。", 
+            "title": "4.7、用户管理"
+        }, 
+        {
+            "location": "/index.html#471bmobimuserinfo", 
+            "text": "BmobNewIM SDK中用户的实体类为 BmobIMUserInfo ，其有四个属性，开发者只需要关心后三个即可。     属性名  属性含义      id  本地数据库用户表的id值，开发者无需关心    userId  用户唯一id（Demo中用的是BmobUser的objectId）    name  用户名 （Demo中是用的是BmobUser的username）    avatar  用户头像", 
+            "title": "4.7.1、BmobIMUserInfo介绍"
+        }, 
+        {
+            "location": "/index.html#472", 
+            "text": "以下两种情况需要更新用户信息：\n1. 当注册或登录成功后，需要更新下当前用户的信息到本地数据库的用户表中，这样才能通过getUserInfo方法获取到本地的用户信息。\n2. 当接收到某人消息的时候，同样需要更新A的用户信息到本地用户表中，否则在会话界面将默认显示的是用户的userId，也就是Demo中的BmobUser的objectId值。", 
+            "title": "4.7.2、更新本地用户信息"
+        }, 
+        {
+            "location": "/index.html#4721", 
+            "text": "BmobIM.getInstance().updateUserInfo(BmobIMUserInfo info)", 
+            "title": "4.7.2.1、更新单一本地用户信息"
+        }, 
+        {
+            "location": "/index.html#4722", 
+            "text": "BmobIM.getInstance().updateBatchUserInfo(List BmobIMUserInfo  list)", 
+            "title": "4.7.2.2、批量更新本地用户信息"
+        }, 
+        {
+            "location": "/index.html#473", 
+            "text": "BmobNewIM SDK内部会自动创建了一个本地数据库用来存储用户信息，开发者需要先调用 updateUserInfo 更新用户信息到本地数据库中，才能通过 getUserInfo(uid) 获取到本地用户信息。  BmobIM.getInstance().getUserInfo(String uid)", 
+            "title": "4.7.3、获取本地用户信息"
+        }, 
+        {
+            "location": "/index.html#48", 
+            "text": "BmobNewIM SDK中并没有集成好友管理相关的功能，为了方便开发者建立基于好友之间的聊天模式，在 v2.0.4 版本开始的Demo中使用Data SDK新建了 Friend 表来进行好友管理。  /**好友表\n * @author smile\n * @project Friend\n * @date 2016-04-26\n */\npublic class Friend extends BmobObject{\n\n    //用户\n    private User user;\n    //好友\n    private User friendUser;\n\n    //getter setter...\n}", 
+            "title": "4.8、好友管理"
+        }, 
+        {
+            "location": "/index.html#481", 
+            "text": "以下摘自 UserModel(cn.bmob.imdemo.model) 类：  /**\n * 查询好友\n * @param listener\n */\npublic void queryFriends(final FindListener Friend  listener){\n    BmobQuery Friend  query = new BmobQuery ();\n    User user =BmobUser.getCurrentUser(getContext(), User.class);\n    query.addWhereEqualTo( user , user);\n    query.include( friendUser );\n    query.order( -updatedAt );\n    query.findObjects(getContext(), new FindListener Friend () {\n        @Override\n        public void onSuccess(List Friend  list) {\n            if (list != null   list.size()   0) {\n                listener.onSuccess(list);\n            } else {\n                listener.onError(0,  暂无联系人 );\n            }\n        }\n\n        @Override\n        public void onError(int i, String s) {\n            listener.onError(i, s);\n        }\n    });\n}", 
+            "title": "4.8.1、获取好友列表"
+        }, 
+        {
+            "location": "/index.html#482", 
+            "text": "以下摘自 UserModel(cn.bmob.imdemo.model) 类：  /**\n * 删除好友\n * @param f\n * @param listener\n */\npublic void deleteFriend(Friend f,DeleteListener listener){\n    Friend friend =new Friend();\n    friend.delete(getContext(),f.getObjectId(),listener);\n}", 
+            "title": "4.8.2、删除好友"
+        }, 
+        {
+            "location": "/index.html#483", 
+            "text": "Demo中创建了一个 NewFriend 的本地数据库类用来存储所有的添加好友请求。  /**本地的好友请求表\n * @author :smile\n * @project:NewFriend\n * @date :2016-04-26-17:28\n */\npublic class NewFriend implements java.io.Serializable {\n\n    private Long id;\n    //用户uid\n    private String uid;\n    //留言消息\n    private String msg;\n    //用户名\n    private String name;\n    //头像\n    private String avatar;\n    //状态：未读、已读、已添加、已拒绝等\n    private Integer status;\n    //请求时间\n    private Long time;\n\n    //getter setter...\n\n}  Demo中创建了一个 AddFriendMessage 类来展示如何发送自定义的添加好友请求的消息。  /**添加好友请求-自定义消息类型\n * @author :smile\n * @project:AddFriendMessage\n * @date :2016-01-30-17:28\n */\npublic class AddFriendMessage extends BmobIMExtraMessage{\n\n    public AddFriendMessage(){}\n\n    @Override\n    public String getMsgType() {\n        //自定义一个`add`的消息类型\n        return  add ;\n    }\n\n    @Override\n    public boolean isTransient() {\n        //设置为true,表明为暂态消息，那么这条消息并不会保存到本地db中，SDK只负责发送出去\n        //设置为false,则会保存到指定会话的数据库中\n        return true;\n    }\n\n    ...\n\n}  Demo中创建了一个 AgreeAddFriendMessage 类来展示如何发送自定义的同意添加好友请求的消息，并在对方的本地会话表中新增消息类型。  /**同意添加好友请求-仅仅只用于发送同意添加好友的消息\n * @author smile\n * @project AgreeAddFriendMessage\n * @date 2016-03-04-10:41\n */\npublic class AgreeAddFriendMessage extends BmobIMExtraMessage{\n\n    //以下均是从extra里面抽离出来的字段，方便获取\n    private String uid;//最初的发送方\n    private Long time;\n    private String msg;//用于通知栏显示的内容\n\n    @Override\n    public String getMsgType() {\n        return  agree ;\n    }\n\n    @Override\n    public boolean isTransient() {\n        //如果需要在对方的会话表中新增一条该类型的消息，则设置为false，表明是非暂态会话\n        //此处将同意添加好友的请求设置为false，为了演示怎样向会话表和消息表中新增一个类型，在对方的会话列表中增加`我通过了你的好友验证请求，我们可以开始聊天了!`这样的类型\n        return false;\n    }\n\n    //getter setter...\n\n    ...\n}", 
+            "title": "4.8.3、添加好友"
+        }, 
+        {
+            "location": "/index.html#484", 
+            "text": "以下摘自 UserInfoActivity(cn.bmob.imdemo.ui) 类：  /**\n * 发送添加好友的请求\n */\nprivate void sendAddFriendMessage(){\n    //启动一个暂态会话，也就是isTransient为true,表明该会话仅执行发送消息的操作，不会保存会话和消息到本地数据库中，\n    BmobIMConversation c = BmobIM.getInstance().startPrivateConversation(info, true,null);\n    //这个obtain方法才是真正创建一个管理消息发送的会话\n    BmobIMConversation conversation = BmobIMConversation.obtain(BmobIMClient.getInstance(), c);\n    //新建一个添加好友的自定义消息实体\n    AddFriendMessage msg =new AddFriendMessage();\n    User currentUser = BmobUser.getCurrentUser(this,User.class);\n    msg.setContent( 很高兴认识你，可以加个好友吗? );//给对方的一个留言信息\n    Map String,Object  map =new HashMap ();\n    map.put( name , currentUser.getUsername());//发送者姓名，这里只是举个例子，其实可以不需要传发送者的信息过去\n    map.put( avatar ,currentUser.getAvatar());//发送者的头像\n    map.put( uid ,currentUser.getObjectId());//发送者的uid\n    msg.setExtraMap(map);\n    conversation.sendMessage(msg, new MessageSendListener() {\n        @Override\n        public void done(BmobIMMessage msg, BmobException e) {\n            if (e == null) {//发送成功\n                toast( 好友请求发送成功，等待验证 );\n            } else {//发送失败\n                toast( 发送失败:  + e.getMessage());\n            }\n        }\n    });\n}", 
+            "title": "4.8.4、发送添加好友的请求"
+        }, 
+        {
+            "location": "/index.html#485", 
+            "text": "以下摘自 NewFriendHolder(cn.bmob.imdemo.adapter) 类：  /**\n * 发送同意添加好友的请求\n */\nprivate void sendAgreeAddFriendMessage(final NewFriend add,final SaveListener listener){\n    //发给谁，就填谁的用户信息\n    BmobIMUserInfo info = new BmobIMUserInfo(add.getUid(), add.getName(), add.getAvatar());\n    //启动一个暂态会话，也就是isTransient为true,表明该会话仅执行发送消息的操作，不会保存会话和消息到本地数据库中，\n    BmobIMConversation c = BmobIM.getInstance().startPrivateConversation(info,true,null);\n    //这个obtain方法才是真正创建一个管理消息发送的会话\n    BmobIMConversation conversation = BmobIMConversation.obtain(BmobIMClient.getInstance(),c);\n    //而AgreeAddFriendMessage的isTransient设置为false，表明我希望在对方的会话数据库中保存该类型的消息\n    AgreeAddFriendMessage msg =new AgreeAddFriendMessage();\n    User currentUser = BmobUser.getCurrentUser(getContext(), User.class);\n    msg.setContent( 我通过了你的好友验证请求，我们可以开始聊天了! );//---这句话是直接存储到对方的消息表中的\n    Map String,Object  map =new HashMap ();\n    map.put( msg ,currentUser.getUsername()+ 同意添加你为好友 );//显示在通知栏上面的内容\n    map.put( uid ,add.getUid());//发送者的uid-方便请求添加的发送方找到该条添加好友的请求\n    map.put( time , add.getTime());//添加好友的请求时间\n    msg.setExtraMap(map);\n    conversation.sendMessage(msg, new MessageSendListener() {\n        @Override\n        public void done(BmobIMMessage msg, BmobException e){\n            if (e == null) {//发送成功\n                //修改本地的好友请求记录\n                NewFriendManager.getInstance(getContext()).updateNewFriend(add.getUid(),add.getTime(),Config.STATUS_VERIFIED);\n                listener.onSuccess();\n            } else {//发送失败\n                listener.onFailure(e.getErrorCode(),e.getMessage());\n            }\n        }\n    });\n}", 
+            "title": "4.8.5、发送同意添加好友的请求"
+        }, 
+        {
+            "location": "/index.html#486", 
+            "text": "以下摘自 DemoMessageHandler(cn.bmob.imdemo) 类：  /**\n * 处理自定义消息类型:用户自定义的消息类型，其类型值均为0\n * @param msg\n */\nprivate void processCustomMessage(BmobIMMessage msg,BmobIMUserInfo info){\n    String type =msg.getMsgType();\n    //发送页面刷新的广播\n    EventBus.getDefault().post(new RefreshEvent());\n    //处理消息\n    if(type.equals( add )){//接收到的添加好友的请求\n        NewFriend friend = AddFriendMessage.convert(msg);\n        //本地好友请求表做下校验，本地没有的才允许显示通知栏--有可能离线消息会有些重复\n        long id = NewFriendManager.getInstance(context).insertOrUpdateNewFriend(friend);\n        if(id 0){\n            showAddNotify(friend);\n        }\n    }else if(type.equals( agree )){//接收到的对方同意添加自己为好友,此时需要做的事情：1、添加对方为好友，2、显示通知\n        AgreeAddFriendMessage agree = AgreeAddFriendMessage.convert(msg);\n        addFriend(agree.getFromId());//添加消息的发送方为好友\n        //这里应该也需要做下校验--来检测下是否已经同意过该好友请求，我这里省略了\n        showAgreeNotify(info,agree);\n    }else{\n        Toast.makeText(context, 接收到的自定义消息： +msg.getMsgType() +  ,  + msg.getContent() +  ,  + msg.getExtra(),Toast.LENGTH_SHORT).show();\n    }\n}", 
+            "title": "4.8.6、接收并处理好友相关的请求"
+        }, 
+        {
+            "location": "/index.html#487friend", 
+            "text": "以下摘自 DemoMessageHandler(cn.bmob.imdemo) 类：  /**\n * 添加对方为自己的好友\n * @param uid\n */\nprivate void addFriend(String uid){\n    User user =new User();\n    user.setObjectId(uid);\n    //添加到Friend表中\n    UserModel.getInstance().agreeAddFriend(user, new SaveListener() {\n        @Override\n        public void onSuccess() {\n            Log.i( bmob ,  onSuccess );\n        }\n\n        @Override\n        public void onFailure(int i, String s) {\n            Log.i( bmob ,  onFailure: +s+ - +i);\n        }\n    });\n}", 
+            "title": "4.8.7、添加到Friend表中"
+        }, 
+        {
+            "location": "/module/common_problem/README/index.html", 
+            "text": "常见问题\n\n\nQ:我看了官网即时聊天的demo，同样都是继承BombObject的javabean类（数据表）为什么有的是创建在云端，有的保存在本地数据库？这是怎么设置的\nA:自己控制的呀，想保存到后台，那你就调用save方法来创建数据，保存到本地就自己创建数据库\n\n\n\n\nQ:BmobIM2.0 发送自定义消息失败\n\n\nSendCommentMessage commentMessage=new SendCommentMessage();\n            User currentUser = BmobUser.getCurrentUser(DynamicDetailActivity.this,User.class);\n            Map\nString,Object\n map =new HashMap\n();\n            map.put(\nname\n, currentUser.getUsername());//发送者姓名，这里只是举个例子，其实可以不需要传发送者的信息过去\n            map.put(\navatar\n,currentUser.getAvatar());//发送者的头像\n            map.put(\ndynamicId\n,dynamicid);//发送者的uid\n            //启动一个会话，如果isTransient设置为true,则不会创建在本地会话表中创建记录，\n            //设置isTransient设置为false,则会在本地数据库的会话列表中先创建（如果没有）与该用户的会话信息，且将用户信息存储到本地的用户表中\n            //构造聊天方的用户信息:传入用户id、用户名和用户头像三个参数\n            BmobIMUserInfo info;\n            if (atUser!=null){\n                info = new BmobIMUserInfo(atUser.getObjectId(),atUser.getUsername(),atUser.getAvatar());\n            }else{\n                info = new BmobIMUserInfo(dynamic.getAuthor().getObjectId(),dynamic.getAuthor().getUsername(),dynamic.getAuthor().getAvatar());\n            }\n            BmobIMConversation c = BmobIM.getInstance().startPrivateConversation(info, true,null);\n            c.sendMessage(commentMessage, new MessageSendListener() {\n                @Override\n                public void done(BmobIMMessage bmobIMMessage, BmobException e) {\n                    if (bmobIMMessage!=null){\n\n                    }\n                }\n            });\n\n\n\n\n\nA:还少了一个步骤，使用obtain方法创建一个用于控制发送消息的会话实例\n\n\n\n\nQ:BmobIMUserInfo info为null\nBmobIMUserInfo info = BmobIM.getInstance().getUserInfo((String) BmobUser.getObjectByKey(mContext, \"objectId\"));\ninfo为null是为什么\n\n\nA:用户信息需要开发者自己调用sdk提供的更新本地用户信息的方法（BmobIM.getInstance().updateUserInfo(BmobIMUserInfo info)）来存储的，然后才能通过getUserInfo方法获取的，因为IMSDK内部维护了一个用户表。\n\n\n\n\nQ:怎么查询别人要请求添加我为好友的信息？就是想加我好友的人的列表。\nandroid，即时通讯，我用另外一个小号发送了请求加我大号为好友的请求，但是我怎么查询出谁发送了这个请求，查询出来后我才能点击同意啊。文档上只说加好友和同意加好友，没说怎么查询列举出添加好友的请求的信息。\n\n\nA:目前的demo里面的好友添加请求是查询本地数据库的（可查看\nNewFriendActivity\n中的query方法，NewFriendManager.getInstance(this).getAllNewFriend()方法查询好友添加请求），查询出来的就是谁添加我为好友的请求\n\n\n\n\nQ:Android Im拖动未阅读的会话数量控件调用conversation.updateLocalCache()不能将会话标记为已经阅读\nA:conversation.updateLocalCache();这个方法需要先开启私聊并创建会话后拿到的新会话实例才可以调用的，具体可参考ChatActivity中的用法。\n\n\n\n\nQ:Android使用Bmob IM聊天时有离线消息就会闪退\nA:android.content.res.Resources$NotFoundException: String resource ID #0x7f060015\n你这个错误是因为没有导入bmob_im_notification_strings.xml这个文件造成的。\n\n\n请查看官方IM文档中关于下载NewIMSDK及官方Demo的描述：\nvalues(bmob_im_notification_strings.xml)-用于通知栏显示\n\n\n\n\nQ:想用聊天组件，连接服务器出错误\nA:看Android开发文档中SDK导入部分的解释：\n\n\n每个版本的im依赖特定版本的bmob-sdk：\n\n\nbmob-im:1.1.8---\nbmob-sdk:3.3.5\nbmob-im:1.1.9---\nbmob-sdk:3.4.3\nbmob-im:2.0.1---\nbmob-sdk:3.4.6-0304\nbmob-im:2.0.2---\nbmob-sdk:3.4.6-0304\nbmob-im:2.0.3---\nbmob-sdk:3.4.6\n\n\n\n\nQ:发送消息的时候添加的额外参数在接收的时候怎么拿到\nA:getExtra返回的是一个字符串，再自行解析。\n\n\n\n\nQ:用android studio打开后，报不是gradle工程，是啥原因？\nA:使用as 是需要依赖gradle来下载各种jar包的，因为需要翻墙下载", 
+            "title": "常见问题"
+        }, 
+        {
+            "location": "/module/common_problem/README/index.html#_1", 
+            "text": "Q:我看了官网即时聊天的demo，同样都是继承BombObject的javabean类（数据表）为什么有的是创建在云端，有的保存在本地数据库？这是怎么设置的\nA:自己控制的呀，想保存到后台，那你就调用save方法来创建数据，保存到本地就自己创建数据库   Q:BmobIM2.0 发送自定义消息失败  SendCommentMessage commentMessage=new SendCommentMessage();\n            User currentUser = BmobUser.getCurrentUser(DynamicDetailActivity.this,User.class);\n            Map String,Object  map =new HashMap ();\n            map.put( name , currentUser.getUsername());//发送者姓名，这里只是举个例子，其实可以不需要传发送者的信息过去\n            map.put( avatar ,currentUser.getAvatar());//发送者的头像\n            map.put( dynamicId ,dynamicid);//发送者的uid\n            //启动一个会话，如果isTransient设置为true,则不会创建在本地会话表中创建记录，\n            //设置isTransient设置为false,则会在本地数据库的会话列表中先创建（如果没有）与该用户的会话信息，且将用户信息存储到本地的用户表中\n            //构造聊天方的用户信息:传入用户id、用户名和用户头像三个参数\n            BmobIMUserInfo info;\n            if (atUser!=null){\n                info = new BmobIMUserInfo(atUser.getObjectId(),atUser.getUsername(),atUser.getAvatar());\n            }else{\n                info = new BmobIMUserInfo(dynamic.getAuthor().getObjectId(),dynamic.getAuthor().getUsername(),dynamic.getAuthor().getAvatar());\n            }\n            BmobIMConversation c = BmobIM.getInstance().startPrivateConversation(info, true,null);\n            c.sendMessage(commentMessage, new MessageSendListener() {\n                @Override\n                public void done(BmobIMMessage bmobIMMessage, BmobException e) {\n                    if (bmobIMMessage!=null){\n\n                    }\n                }\n            });  A:还少了一个步骤，使用obtain方法创建一个用于控制发送消息的会话实例   Q:BmobIMUserInfo info为null\nBmobIMUserInfo info = BmobIM.getInstance().getUserInfo((String) BmobUser.getObjectByKey(mContext, \"objectId\"));\ninfo为null是为什么  A:用户信息需要开发者自己调用sdk提供的更新本地用户信息的方法（BmobIM.getInstance().updateUserInfo(BmobIMUserInfo info)）来存储的，然后才能通过getUserInfo方法获取的，因为IMSDK内部维护了一个用户表。   Q:怎么查询别人要请求添加我为好友的信息？就是想加我好友的人的列表。\nandroid，即时通讯，我用另外一个小号发送了请求加我大号为好友的请求，但是我怎么查询出谁发送了这个请求，查询出来后我才能点击同意啊。文档上只说加好友和同意加好友，没说怎么查询列举出添加好友的请求的信息。  A:目前的demo里面的好友添加请求是查询本地数据库的（可查看\nNewFriendActivity\n中的query方法，NewFriendManager.getInstance(this).getAllNewFriend()方法查询好友添加请求），查询出来的就是谁添加我为好友的请求   Q:Android Im拖动未阅读的会话数量控件调用conversation.updateLocalCache()不能将会话标记为已经阅读\nA:conversation.updateLocalCache();这个方法需要先开启私聊并创建会话后拿到的新会话实例才可以调用的，具体可参考ChatActivity中的用法。   Q:Android使用Bmob IM聊天时有离线消息就会闪退\nA:android.content.res.Resources$NotFoundException: String resource ID #0x7f060015\n你这个错误是因为没有导入bmob_im_notification_strings.xml这个文件造成的。  请查看官方IM文档中关于下载NewIMSDK及官方Demo的描述：\nvalues(bmob_im_notification_strings.xml)-用于通知栏显示   Q:想用聊天组件，连接服务器出错误\nA:看Android开发文档中SDK导入部分的解释：  每个版本的im依赖特定版本的bmob-sdk：  bmob-im:1.1.8--- bmob-sdk:3.3.5\nbmob-im:1.1.9--- bmob-sdk:3.4.3\nbmob-im:2.0.1--- bmob-sdk:3.4.6-0304\nbmob-im:2.0.2--- bmob-sdk:3.4.6-0304\nbmob-im:2.0.3--- bmob-sdk:3.4.6   Q:发送消息的时候添加的额外参数在接收的时候怎么拿到\nA:getExtra返回的是一个字符串，再自行解析。   Q:用android studio打开后，报不是gradle工程，是啥原因？\nA:使用as 是需要依赖gradle来下载各种jar包的，因为需要翻墙下载", 
+            "title": "常见问题"
+        }, 
+        {
+            "location": "/module/class_doc/README/index.html", 
+            "text": "类库文档\n\n\n及时通讯类库文档：\nhttp://docs.bmob.cn/im/Android/i_doc/doc/index.html", 
+            "title": "类库文档"
+        }, 
+        {
+            "location": "/module/class_doc/README/index.html#_1", 
+            "text": "及时通讯类库文档： http://docs.bmob.cn/im/Android/i_doc/doc/index.html", 
+            "title": "类库文档"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html", 
+            "text": "v2.0.6_Beta   2016年04月28日\n\n\n1、BmobNewIM_v2.0.6将所依赖的数据SDK提升为BmobSDK_v3.5.5。\n\n\nv2.0.5_Beta   2016年6月01日\n\n\n1、BmobImService更名为BmobIMService,请务必修改；\n2、自2.0.5版本开始，提供aar格式的NewIMSDK,包含BmobNewIM_xxxx.jar、androidasync_2.1.6.jar、bmob_im_notification_strings.xml，开发者不再需要导入以上文件；\n3、demo提供自定义会话类型的示例，并修复部分已知问题；\n4、操作本地会话及消息表时去除服务连接的检验，减少client disconnect的发生；\n5、与之配套使用的BmobSDK版本3.4.7。\n\n\nv2.0.4_Beta   2016年4月29日\n\n\n1、优化服务重连机制；\n2、优化核心进程保活；\n3、新增消息监听器MessageListHandler,允许为单一页面注册消息接收器；\n3、修复发送BmobIMVideoMessage视频消息时出现的类型转换异常；\n4、配套Demo中新增好友管理功能，包含添加好友，同意添加好友、查询好友、删除好友等功能。\n\n\nv2.0.3_Beta   2016年4月19日\n\n\n1、修复离线消息重复获取的问题；\n2、修复语音消息无法获取时长的问题；\n3、修复部分机型无法发送语音的问题；\n4、依赖BmobSDK_v3.4.6_0415。\n\n\nv2.0.2_Beta   2016年3月10日\n\n\n1、增加消息接收器（BmobIMMessageHandler），方便对消息进行统一管理；\n2、修复接收的消息无法使用isTransient属性来存储消息；\n3、修复通知栏显示网址的问题；\n4、修复锁屏期间接收的消息无法及时更新到聊天界面的问题；\n5、支持跨平台与iOS进行通讯；\n6、SDK内部不再集成EventBus库,方便开发者使用新版EventBus。\n\n\nv2.0.1_Beta   2016年3月04日\n\n\n1、新增支持图片消息（BmobIMImageMessage）、语音消息（BmobIMAudioMessage）、地理位置消息（BmobIMLocationMessage）；\n2、新增通知管理器（BmobNotificationManager）类，方便开发者显示通知栏；\n3、支持自定义消息类型，API使用更加简便；\n4、修复切换账号时无法正确显示对应账号下会话的问题；\n5、完善服务重连机制，优化服务性能。\n\n\nv2.0.0_Beta   2016年2月01日\n\n\n1、全新架构、接口设计更加人性化，降低开发者使用成本；2、支持文本发送；3、支持陌生人聊天。\n\n\nv1.1.9_Beta   2015年8月20日\n\n\n1、允许自定义好友查询的总数；\n2、配套使用的BmobSDK为V3.4.3_0820版本。\n\n\nv1.1.8_Beta   2015年4月08日\n\n\n1、完善服务重连机制，同步提升聊天稳定性和及时性；\n2、配套使用的BmobSDK为V3.3.5_0408版本。 \n---------------强烈建议更新-------------------\n\n\nv1.1.7_Beta   2015年3月18日\n\n\n1、兼容Android5.0系统，解决由Service Intent must be explicit的系统警告导致无法接收到聊天消息的问题；\n2、同步更新BmobSDK到3.3.4版本。\n\n\nv1.1.6_Beta   2015年2月04日\n\n\n1、允许开发者自定义通知栏提示语;\n2、修复由于聊天双方的本机时间不一致导致的聊天记录顺序错位的问题;\n3、与之配套使用的BmobSDK为BmobSDK_V3.3.2_0128.jar。\n\n\nv1.1.5_Beta   2015年1月05日\n\n\n1、修复发送图片或者语音时导致应用奔溃的问题；\n2、新增支持自定义聊天消息体。\n\n\nv1.1.4_Beta   2014年10月27日\n\n\n1、修复查询附近的人中无法过滤性别为女的用户的bug；\n2、优化导致推送延迟或无法接收到推送的问题。\n\n\nv1.1.3_Beta   2014年10月23日\n\n\n1、聊天消息和Tag标记的消息的时间单位保持一致，均为秒；\n2、解决聊天消息和好友验证消息多次提醒的问题；\n3、重写sendTagMessage方法，支持扩展MsgTag，\n4、新增支持查询当前用户所有的未读消息个数；\n5、解决多设备登录同一账号时无法下线的问题；\n6、优化由于推送服务频繁重启导致无法收发消息的bug。\n\n\nv1.1.2_Beta   2014年9月23日\n\n\n1、新增支持陌生人聊天，允许发送给非好友用户；\n2、新增支持自定义消息的发送，便于开发者扩展；\n3、新版本大幅度增加稳定性和及时性，保证实时到达率。\n4、排除web后端推送对客户端的影响。\n\n\nv1.1.1_Beta   2014年8月14日\n\n\n1、新增查询指定范围内的附近的人列表；\n2、添加用户的性别设置；\n3、附近的人新增额外属性查询：如查询性别为女的用户。\n\n\nv1.1.0_Beta   2014年8月01日\n\n\n1、解决接收语音（时间超过10s）播放不成功的问题;\n2、增加服务的稳定性，防止被杀死;\n3、当账号注销登陆后又未登陆其他设备时，该账号仍能接收来自其他账号的消息（再次登陆成功之后即可看见未读消息）。\n\n\nv1.0.9_Beta   2014年7月25日\n\n\n1、修复图片或语音发送较慢的问题；\n2、修复注册成功之后退出应用之后再次回到登陆页的问题；\n3、修复部分机型接收到的语音消息无法播放的问题\n4、修复好友头像更换后会话界面的好友头像无法及时更换的问题。\n5、修复当应用锁屏后在回到聊天页面时，新接收的消息重复显示的问题;\n\n\nv1.0.8_Beta   2014年7月17日\n\n\n1、支持跨平台聊天，与ios端完成互通，跨平台支持的消息类型：纯文字、表情、图片。\n2、解决多次登录之后，本地存储的昵称和头像均消失的问题;\n3、新增对通知的声音和震动的控制。\n\n\nv1.0.7_Beta   2014年7月14日\n\n\n解决用户注册账户时报错的bug。\n\n\nv1.0.6_Beta   2014年7月11日\n\n\n1、解决当应用锁屏后在回到聊天页面时，新接收的消息不能显示的问题;\n2、解决频繁接收到不属于本人好友的消息而导致页面不断刷新的问题；\n3、解决播放语音过程中出现的播放错误的问题;\n4、修正发送图片的方式，重构部分代码。\n\n\nv1.0.5_Beta   2014年7月04日\n\n\n1、新增对单一用户的语音消息的发送;\n2、修复分页查询附近的人和好友列表时出现重复数据的问题;\n3、修复其他bug。\n\n\nv1.0.4_Beta   2014年6月27日\n\n\n1、新增地理位置交友.可查看附近的人列表; 2、支持分页列表的分页查询;\n3、修改其他bug。\n\n\nv1.0.3_Beta   2014年6月25日\n\n\n1、新增对单一用户的位置类型的消息的发送;\n2、支持黑名单管理功能;\n3、修改其他bug。\n\n\nv1.0.2_Beta   2014年6月23日\n\n\n解决用户注册或登录成功之后，无法收发消息的问题。\n\n\nv1.0.1_beta   2014年6月20日\n\n\n1、新增对单一用户的聊天图片（本地相册和拍照）发送;\n2、新增消息回执发送：已发送、已阅读两种状态;\n3、修改添加好友时出现的发送好友验证失败的bug;\n4、解决多账户登陆同一设备时，非当前登陆账号接收不到消息的bug。\n\n\nv1.0.0_Beta   2014年6月13日\n\n\n1、提供完整的好友管理功能，包括添加好友、删除好友、好友列表，也可以与你已有的用户系统完全解耦;\n2、支持单一用户的文字和表情聊天;\n3、支持会话的本地化存储;\n4、自定义消息接受机制;\n5、同一账号多处登陆强制下线。", 
+            "title": "更新日志"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v206_beta-20160428", 
+            "text": "1、BmobNewIM_v2.0.6将所依赖的数据SDK提升为BmobSDK_v3.5.5。", 
+            "title": "v2.0.6_Beta   2016年04月28日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v205_beta-2016601", 
+            "text": "1、BmobImService更名为BmobIMService,请务必修改；\n2、自2.0.5版本开始，提供aar格式的NewIMSDK,包含BmobNewIM_xxxx.jar、androidasync_2.1.6.jar、bmob_im_notification_strings.xml，开发者不再需要导入以上文件；\n3、demo提供自定义会话类型的示例，并修复部分已知问题；\n4、操作本地会话及消息表时去除服务连接的检验，减少client disconnect的发生；\n5、与之配套使用的BmobSDK版本3.4.7。", 
+            "title": "v2.0.5_Beta   2016年6月01日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v204_beta-2016429", 
+            "text": "1、优化服务重连机制；\n2、优化核心进程保活；\n3、新增消息监听器MessageListHandler,允许为单一页面注册消息接收器；\n3、修复发送BmobIMVideoMessage视频消息时出现的类型转换异常；\n4、配套Demo中新增好友管理功能，包含添加好友，同意添加好友、查询好友、删除好友等功能。", 
+            "title": "v2.0.4_Beta   2016年4月29日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v203_beta-2016419", 
+            "text": "1、修复离线消息重复获取的问题；\n2、修复语音消息无法获取时长的问题；\n3、修复部分机型无法发送语音的问题；\n4、依赖BmobSDK_v3.4.6_0415。", 
+            "title": "v2.0.3_Beta   2016年4月19日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v202_beta-2016310", 
+            "text": "1、增加消息接收器（BmobIMMessageHandler），方便对消息进行统一管理；\n2、修复接收的消息无法使用isTransient属性来存储消息；\n3、修复通知栏显示网址的问题；\n4、修复锁屏期间接收的消息无法及时更新到聊天界面的问题；\n5、支持跨平台与iOS进行通讯；\n6、SDK内部不再集成EventBus库,方便开发者使用新版EventBus。", 
+            "title": "v2.0.2_Beta   2016年3月10日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v201_beta-2016304", 
+            "text": "1、新增支持图片消息（BmobIMImageMessage）、语音消息（BmobIMAudioMessage）、地理位置消息（BmobIMLocationMessage）；\n2、新增通知管理器（BmobNotificationManager）类，方便开发者显示通知栏；\n3、支持自定义消息类型，API使用更加简便；\n4、修复切换账号时无法正确显示对应账号下会话的问题；\n5、完善服务重连机制，优化服务性能。", 
+            "title": "v2.0.1_Beta   2016年3月04日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v200_beta-2016201", 
+            "text": "1、全新架构、接口设计更加人性化，降低开发者使用成本；2、支持文本发送；3、支持陌生人聊天。", 
+            "title": "v2.0.0_Beta   2016年2月01日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v119_beta-2015820", 
+            "text": "1、允许自定义好友查询的总数；\n2、配套使用的BmobSDK为V3.4.3_0820版本。", 
+            "title": "v1.1.9_Beta   2015年8月20日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v118_beta-2015408", 
+            "text": "1、完善服务重连机制，同步提升聊天稳定性和及时性；\n2、配套使用的BmobSDK为V3.3.5_0408版本。 \n---------------强烈建议更新-------------------", 
+            "title": "v1.1.8_Beta   2015年4月08日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v117_beta-2015318", 
+            "text": "1、兼容Android5.0系统，解决由Service Intent must be explicit的系统警告导致无法接收到聊天消息的问题；\n2、同步更新BmobSDK到3.3.4版本。", 
+            "title": "v1.1.7_Beta   2015年3月18日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v116_beta-2015204", 
+            "text": "1、允许开发者自定义通知栏提示语;\n2、修复由于聊天双方的本机时间不一致导致的聊天记录顺序错位的问题;\n3、与之配套使用的BmobSDK为BmobSDK_V3.3.2_0128.jar。", 
+            "title": "v1.1.6_Beta   2015年2月04日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v115_beta-2015105", 
+            "text": "1、修复发送图片或者语音时导致应用奔溃的问题；\n2、新增支持自定义聊天消息体。", 
+            "title": "v1.1.5_Beta   2015年1月05日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v114_beta-20141027", 
+            "text": "1、修复查询附近的人中无法过滤性别为女的用户的bug；\n2、优化导致推送延迟或无法接收到推送的问题。", 
+            "title": "v1.1.4_Beta   2014年10月27日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v113_beta-20141023", 
+            "text": "1、聊天消息和Tag标记的消息的时间单位保持一致，均为秒；\n2、解决聊天消息和好友验证消息多次提醒的问题；\n3、重写sendTagMessage方法，支持扩展MsgTag，\n4、新增支持查询当前用户所有的未读消息个数；\n5、解决多设备登录同一账号时无法下线的问题；\n6、优化由于推送服务频繁重启导致无法收发消息的bug。", 
+            "title": "v1.1.3_Beta   2014年10月23日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v112_beta-2014923", 
+            "text": "1、新增支持陌生人聊天，允许发送给非好友用户；\n2、新增支持自定义消息的发送，便于开发者扩展；\n3、新版本大幅度增加稳定性和及时性，保证实时到达率。\n4、排除web后端推送对客户端的影响。", 
+            "title": "v1.1.2_Beta   2014年9月23日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v111_beta-2014814", 
+            "text": "1、新增查询指定范围内的附近的人列表；\n2、添加用户的性别设置；\n3、附近的人新增额外属性查询：如查询性别为女的用户。", 
+            "title": "v1.1.1_Beta   2014年8月14日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v110_beta-2014801", 
+            "text": "1、解决接收语音（时间超过10s）播放不成功的问题;\n2、增加服务的稳定性，防止被杀死;\n3、当账号注销登陆后又未登陆其他设备时，该账号仍能接收来自其他账号的消息（再次登陆成功之后即可看见未读消息）。", 
+            "title": "v1.1.0_Beta   2014年8月01日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v109_beta-2014725", 
+            "text": "1、修复图片或语音发送较慢的问题；\n2、修复注册成功之后退出应用之后再次回到登陆页的问题；\n3、修复部分机型接收到的语音消息无法播放的问题\n4、修复好友头像更换后会话界面的好友头像无法及时更换的问题。\n5、修复当应用锁屏后在回到聊天页面时，新接收的消息重复显示的问题;", 
+            "title": "v1.0.9_Beta   2014年7月25日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v108_beta-2014717", 
+            "text": "1、支持跨平台聊天，与ios端完成互通，跨平台支持的消息类型：纯文字、表情、图片。\n2、解决多次登录之后，本地存储的昵称和头像均消失的问题;\n3、新增对通知的声音和震动的控制。", 
+            "title": "v1.0.8_Beta   2014年7月17日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v107_beta-2014714", 
+            "text": "解决用户注册账户时报错的bug。", 
+            "title": "v1.0.7_Beta   2014年7月14日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v106_beta-2014711", 
+            "text": "1、解决当应用锁屏后在回到聊天页面时，新接收的消息不能显示的问题;\n2、解决频繁接收到不属于本人好友的消息而导致页面不断刷新的问题；\n3、解决播放语音过程中出现的播放错误的问题;\n4、修正发送图片的方式，重构部分代码。", 
+            "title": "v1.0.6_Beta   2014年7月11日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v105_beta-2014704", 
+            "text": "1、新增对单一用户的语音消息的发送;\n2、修复分页查询附近的人和好友列表时出现重复数据的问题;\n3、修复其他bug。", 
+            "title": "v1.0.5_Beta   2014年7月04日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v104_beta-2014627", 
+            "text": "1、新增地理位置交友.可查看附近的人列表; 2、支持分页列表的分页查询;\n3、修改其他bug。", 
+            "title": "v1.0.4_Beta   2014年6月27日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v103_beta-2014625", 
+            "text": "1、新增对单一用户的位置类型的消息的发送;\n2、支持黑名单管理功能;\n3、修改其他bug。", 
+            "title": "v1.0.3_Beta   2014年6月25日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v102_beta-2014623", 
+            "text": "解决用户注册或登录成功之后，无法收发消息的问题。", 
+            "title": "v1.0.2_Beta   2014年6月23日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v101_beta-2014620", 
+            "text": "1、新增对单一用户的聊天图片（本地相册和拍照）发送;\n2、新增消息回执发送：已发送、已阅读两种状态;\n3、修改添加好友时出现的发送好友验证失败的bug;\n4、解决多账户登陆同一设备时，非当前登陆账号接收不到消息的bug。", 
+            "title": "v1.0.1_beta   2014年6月20日"
+        }, 
+        {
+            "location": "/module/update_log/README/index.html#v100_beta-2014613", 
+            "text": "1、提供完整的好友管理功能，包括添加好友、删除好友、好友列表，也可以与你已有的用户系统完全解耦;\n2、支持单一用户的文字和表情聊天;\n3、支持会话的本地化存储;\n4、自定义消息接受机制;\n5、同一账号多处登陆强制下线。", 
+            "title": "v1.0.0_Beta   2014年6月13日"
+        }
+    ]
+}

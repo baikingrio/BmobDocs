@@ -1,6 +1,26 @@
 site_name: 常见问题
 pages:
-- [index.md, 常见问题]
+- [index.md, 平台常见问题]
+- [module/data/README.md, 数据服务, 数据服务]
+- [module/data/README_Android.md, 数据服务, Android]
+- [module/data/README_iOS.md, 数据服务, iOS]
+- [module/data/README_Restful.md, 数据服务, Restful]
+- [module/data/README_CSharp.md, 数据服务, C#]
+- [module/data/README_JavaScript.md, 数据服务, JavaScript]
+- [module/data/README_PHP.md, 数据服务, PHP]
+- [module/data/README_Cocos2d-x.md, 数据服务, Cocos2d-x]
+- [module/sms/README.md, 短信服务, 短信服务]
+- [module/sms/README_iOS.md, 短信服务, iOS]
+- [module/im/README.md, 即时通讯, 即时通讯]
+- [module/im/README_Android.md, 即时通讯, Android]
+- [module/im/README_iOS.md, 即时通讯, iOS]
+- [module/push/README.md, 推送功能, 推送功能]
+- [module/push/README_Android.md, 推送功能, Android]
+- [module/push/README_iOS.md, 推送功能, iOS]
+- [module/pay/README.md, 移动支付, 移动支付]
+- [module/pay/README_Android.md, 移动支付, Android]
+- [module/cloud_code/README.md, 云端逻辑, 云端逻辑]
+- [module/cloud_code/README_iOS.md, 云端逻辑, iOS]
 use_directory_urls: false
 copyright: Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.
 site_dir: "../../../../service/other/common_problem"

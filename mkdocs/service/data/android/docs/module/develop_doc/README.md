@@ -30,6 +30,7 @@ Bmob平台为您的移动应用提供了一个完整的后端解决方案，我�
 - 在初始化方法中传一个渠道参数(不传默认没开启统计功能)
 
 		Bmob.initialize(this,APPID,"Bmob");
+
 - 将libs文件夹内的BmobStat.jar文件添加进项目（AS选择远程依赖可以忽略，本地依赖需要指定libs文件夹，Eclipse中放进libs即可）；
 
 	
@@ -234,7 +235,7 @@ public class GameScore extends BmobObject{
 |Pointer |特定对象|Bmob特有类型，用来标识指针类型|
 |Relation|BmobRelation|Bmob特有类型，用来标识数据关联|
 
-**注：不能使用int、float、short byte、double、character等基本数据类型。`**
+**注：不能使用int、float、short byte、double、character等基本数据类型。**
 
 ## 类名和表名的关系
 
@@ -323,8 +324,11 @@ objectId: "0c6db13c", score: 89, playerName: "比目", isPay: false,createdAt:"2
 ```
 
 **这里需要注意的是：**
+
 1. 如果服务器端不存在GameScore表，那么系统将自动建表，并插入数据。
+
 2. 如果服务器端已经存在GameScore表，和相应的score、playerName、isPay字段，那么你此时添加的数据和数据类型也应该和服务器端的表结构一致，否则会保存数据失败。
+
 3. 每个BmobObject对象都有几个默认的键(数据列)是不需要开发者指定的，`objectId`是每个保存成功数据的唯一标识符。`createdAt`和`updatedAt`代表每个对象(每条数据)在服务器上创建和最后修改的时间。这些键(数据列)的创建和数据内容是由服务器端自主来完成的。`因此，使用save和insert方法时,不需要调用setObjectId方法，否则会出现提示：“It is a reserved field: objectId(105)”--表明objectId为系统保留字段，不允许修改。`。
 
 ## 更新数据
@@ -495,24 +499,24 @@ new BmobObject().insertBatch(this, persons, new SaveListener() {
 });
 //第二种方式：v3.5.0开始提供
 new BmobBatch().insertBatch(persons).doBatch(new QueryListListener<BatchResult>() {
-
-			@Override
-			public void done(List<BatchResult> o, BmobException e) {
-				if(e==null){
-					for(int i=0;i<o.size();i++){
-						BatchResult result = o.get(i);
-						BmobException ex =result.getError();
-						if(ex==null){
-							log("第"+i+"个数据批量添加成功："+result.getCreatedAt()+","+result.getObjectId()+","+result.getUpdatedAt());
-						}else{
-							log("第"+i+"个数据批量添加失败："+ex.getMessage()+","+ex.getErrorCode());
-						}
-					}
+	@Override
+	public void done(List<BatchResult> o, BmobException e) {
+		if(e==null){
+			for(int i=0;i<o.size();i++){
+				BatchResult result = o.get(i);
+				BmobException ex =result.getError();
+				if(ex==null){
+					log("第"+i+"个数据批量添加成功："+result.getCreatedAt()
+					+","+result.getObjectId()+","+result.getUpdatedAt());
 				}else{
-					Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+					log("第"+i+"个数据批量添加失败："+ex.getMessage()+","+ex.getErrorCode());
 				}
 			}
-		});
+		}else{
+			Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+		}
+	}
+});
 ```
 
 ### 批量更新
@@ -549,23 +553,23 @@ new BmobObject().updateBatch(this, persons, new UpdateListener() {
 //第二种方式：v3.5.0开始提供
 new BmobBatch().updateBatch(persons).doBatch(new QueryListListener<BatchResult>() {
 
-			@Override
-			public void done(List<BatchResult> o, BmobException e) {
-				if(e==null){
-					for(int i=0;i<o.size();i++){
-						BatchResult result = o.get(i);
-						BmobException ex =result.getError();
-						if(ex==null){
-							log("第"+i+"个数据批量更新成功："+result.getUpdatedAt());
-						}else{
-							log("第"+i+"个数据批量更新失败："+ex.getMessage()+","+ex.getErrorCode());
-						}
-					}
+	@Override
+	public void done(List<BatchResult> o, BmobException e) {
+		if(e==null){
+			for(int i=0;i<o.size();i++){
+				BatchResult result = o.get(i);
+				BmobException ex =result.getError();
+				if(ex==null){
+					log("第"+i+"个数据批量更新成功："+result.getUpdatedAt());
 				}else{
-					Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+					log("第"+i+"个数据批量更新失败："+ex.getMessage()+","+ex.getErrorCode());
 				}
 			}
-		});
+		}else{
+			Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+		}
+	}
+});
 ```
 
 ### 批量删除
@@ -733,21 +737,23 @@ query.findObjects(new FindListener<GameScore>() {
 查询的结果不需要进行任何处理，BmobSDK已经为你封装成相应的JavaBean集合了，你直接使用即可。
 
 **注：**
-1 通过setLimit方法设置返回的记录数量。更多细节可查看下一节(查询条件)中的分页查询。</br>
-2 v3.5.2开始可以对查询条件等提供链式调用的写法，如下：</br>
+
+1. 通过setLimit方法设置返回的记录数量。更多细节可查看下一节(查询条件)中的分页查询。</br>
+
+2. v3.5.2开始可以对查询条件等提供链式调用的写法，如下：</br>
 ```java
 BmobQuery<Book> query = new BmobQuery<>();
-        query.setLimit(8).setSkip(1).order("-createdAt")
-                .findObjects(new FindListener<Book>() {
-                    @Override
-                    public void done(List<Book> object, BmobException e) {
-                        if (e == null) {
-                            // ...
-                        } else {
-                            // ...
-                        }
-                    }
-                });	
+query.setLimit(8).setSkip(1).order("-createdAt")
+		.findObjects(new FindListener<Book>() {
+			@Override
+			public void done(List<Book> object, BmobException e) {
+				if (e == null) {
+					// ...
+				} else {
+					// ...
+				}
+			}
+		});	
 ```
 
 ### 查询条件
@@ -805,8 +811,11 @@ query.addWhereNotContainedIn("playerName", Arrays.asList(names));
 `时间查询`比较特殊，我们需要结合`BmobDate`这个类来查询某个指定日期时间前后的数据，这里也给出示例供大家参考：
 
 比如:
+
 如果想查询指定日期之前的数据，则可以使用`addWhereLessThan`或者`addWhereLessThanOrEqualTo`（包含当天）来查询。
+
 如果想查询指定日期之后的数据，则可以使用`addWhereGreaterThan`或`addWhereGreaterThanOrEqualTo`（包含当天）来查询。
+
 如果想查询指定时间当天的数据，则需要使用`复合与查询`来查询，例如，想`查询2015年5月1号当天的Person数据`,示例代码如下：
 
 ```java
@@ -841,6 +850,7 @@ query.and(and);
 ```
 
 注：
+
 **由于createdAt、updatedAt是服务器自动生成的时间，在服务器保存的是精确到微秒值的时间，所以，基于时间类型的比较的值要加1秒。**
 
 #### 数组查询
@@ -1073,12 +1083,16 @@ bmobQuery.findObjects(new FindListener<Person>() {
 |setHasGroupCount|boolean hasCount|是否返回每个分组的记录数|
 
 注：
-1、为避免和用户创建的列名称冲突，Bmob约定以上查询返回的字段采用`_(关键字)+首字母大写的列名` 的格式：
+
+1. 为避免和用户创建的列名称冲突，Bmob约定以上查询返回的字段采用`_(关键字)+首字母大写的列名` 的格式：
+
 例：
 计算玩家得分表（GameScore）中列名为score的总和，那么返回的结果集会有一个列名为`_sumScore`，
 若设置了setHasGroupCount（true）,则结果集中会返回`_count`。
-2、以上方法可自由组合且与之前的查询语句中的where, order, limit, skip等组合一起使用。 
-3、因为返回格式不固定，故使用`findStatistics`来专门处理统计查询。
+
+2. 以上方法可自由组合且与之前的查询语句中的where, order, limit, skip等组合一起使用。 
+
+3. 因为返回格式不固定，故使用`findStatistics`来专门处理统计查询。
 
 #### 统计查询方法
 
@@ -1372,7 +1386,9 @@ query.findObjects(new FindListener<Person>() {
 ```
 
 **注：**
+
 **1、只有当缓存查询的条件一模一样时才会获取到缓存到本地的缓存数据。**
+
 **2、设置的默认的最大缓存时长为5小时。**
 
 ### BQL查询
@@ -1571,9 +1587,13 @@ new BmobQuery<GameScore>().doSQLQuery(sql,new SQLQueryListener<GameScore>(){
 ```
 
 **注**
+
 **1、我们更推荐使用占位符语法，理论上会降低 BQL 转换的性能开销；**
+
 **2、最后的可变参数会自动替换查询语句中的问号位置（按照问号的先后出现顺序），有多少个问号，最后的可变参数就应该有多少个；**
+
 **3、同样的，统计查询也支持占位符,只需要将`doSQLQuery`替换成`doStatisticQuery`方法即可；**
+
 **4、只有查询条件`where``limit`子句支持占位符查询，和统计查询有关的`group by`、`order by`、`having`等字句是不支持占位符的。**
 
 例如：
@@ -1634,11 +1654,17 @@ query.doSQLQuery(new SQLQueryListener<GameScore>(){
 ```
 
 **注：**
+
 **doSQLQuery目前有三种查询方式进行SQL查询，分别是：**
+
 **1、doSQLQuery（Context context,SQLQueryListener<T> listener)**
+
 **2、doSQLQuery（Context context, String bql, SQLQueryListener<T> listener)----基本BQL查询**
+
 **3、doSQLQuery（Context context, String bql, SQLQueryListener<T> listener,Object... params)----占位符查询**
+
 **只有`第一种查询方式`才能和`query.hasCachedResult(context,class)`或者`query.clearCachedResult(context,class)`并列使用。**
+
 **建议使用`第一种查询方式`进行BQL缓存查询。**
 
 ## 数组

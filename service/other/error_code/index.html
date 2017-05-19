@@ -13,7 +13,6 @@
         <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="./css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/highlight.css">
-        <link href="./css/custom.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -57,6 +56,7 @@
         <li class="main "><a href="#restapi">RESTAPI错误码列表</a></li>
         <li class="main "><a href="#vip">VIP付费限制相关错误码</a></li>
         <li class="main "><a href="#_1">短信功能相关错误码</a></li>
+        <li class="main "><a href="#_2">支付功能错误码</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -133,7 +133,7 @@
 </tr>
 <tr>
 <td>9013</td>
-<td>BmobObject Object names(database table name) format is not correct.</td>
+<td>BmobObject Object names(database table name) <br/>format is not correct.</td>
 <td>BmobObject（数据表名称）格式不正确</td>
 </tr>
 <tr>
@@ -165,6 +165,26 @@
 <td>9019</td>
 <td>格式不正确：手机号码、邮箱地址、验证码</td>
 <td>格式不正确：手机号码、邮箱地址、验证码</td>
+</tr>
+<tr>
+<td>9020</td>
+<td>保存CDN信息失败</td>
+<td>保存CDN信息失败</td>
+</tr>
+<tr>
+<td>9021</td>
+<td>permission not defined.You must write android<br/>.permission.WAKE_LOCK  in AndroidManifest.xml "<uses-permission<br/> android:name="android.permission.WAKE_LOCK".</td>
+<td>文件上传缺少wakelock权限</td>
+</tr>
+<tr>
+<td>9022</td>
+<td>upload failure,please retry.</td>
+<td>文件上传失败，请重新上传</td>
+</tr>
+<tr>
+<td>9023</td>
+<td>please call Bmob.initialize to init sdk.</td>
+<td>请调用Bmob类的initialize方法去初始化SDK</td>
 </tr>
 </tbody>
 </table>
@@ -309,43 +329,41 @@
 <table>
 <thead>
 <tr>
-<th>HttpResponseCode</th>
+<th align="left">HttpResponseCode</th>
 <th align="left">错误码</th>
 <th align="left">含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>401</td>
+<td align="left">401</td>
 <td align="left"></td>
 <td align="left">unauthorized</td>
 </tr>
 <tr>
-<td>500</td>
+<td align="left">500</td>
 <td align="left"></td>
 <td align="left">It is busy...Try it later!</td>
 </tr>
 <tr>
-<td>当HttpResponseCode的值为401或500时，接口返回的内容格式如下：</td>
+<td align="left">当HttpResponseCode的值为401或500时，接口返回的内容格式如下：</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 </tbody>
 </table>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;unauthorized&quot;</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="JSON">{
+    &quot;error&quot;: &quot;unauthorized&quot;
+}
+</code></pre>
 
 <p>error为上表中含义的值</p>
 <p>当HttpResponseCode的值为400时，接口返回的内容格式如下：</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="mi">101</span><span class="p">,</span>
-    <span class="nt">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;object not found for e1kXT22L&quot;</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="JSON">{
+    &quot;code&quot;: 101,
+    &quot;error&quot;: &quot;object not found for e1kXT22L&quot;
+}
+</code></pre>
 
 <p>code为下表中的错误码，error为下表中的内容
 以下是HttpResponseCode为404时返回内容的详细说明，信息中的%s，%d，%f将替换为详细的信息或具体的值。</p>
@@ -397,11 +415,6 @@
 <td align="left">107</td>
 <td align="left">This endpoint only supports Content-Type: application/json requests, not %s.</td>
 <td align="left">请求只支持Header头部Content-Type值为application/json或application/json; charset=utf-8</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
 </tr>
 <tr>
 <td align="left">107</td>
@@ -746,7 +759,7 @@
 <tr>
 <td align="left">10010</td>
 <td align="left">mobile '%s' send message limited.</td>
-<td align="left">该手机号发送短信达到限制(对于一个应用来说，一天给同一手机号发送短信不能超过10条，一小时给同一手机号发送短信不能超过5条，一分钟给同一手机号发送短信不能超过1条)</td>
+<td align="left">该手机号发送短信达到限制(对于一个应用来说，一天给同<br/>一手机号发送短信不能超过10条，一小时给同一手机号发<br/>送短信不能超过5条，一分钟给同一手机号发送短信不能超过1条)</td>
 </tr>
 <tr>
 <td align="left">10011</td>
@@ -762,6 +775,199 @@
 <td align="left">10013</td>
 <td align="left">sms content illegal.</td>
 <td align="left">非法短信内容</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">支付功能错误码<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th align="left">错误码</th>
+<th align="left">模块</th>
+<th align="left">内容</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">-1</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">微信返回的错误码，可能是未安装微信，也可能是微信没获得网络权限等</td>
+</tr>
+<tr>
+<td align="left">-2</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">微信支付用户中断操作</td>
+</tr>
+<tr>
+<td align="left">-3</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">未安装支付插件</td>
+</tr>
+<tr>
+<td align="left">102</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">设置了安全验证，但是签名或IP不对</td>
+</tr>
+<tr>
+<td align="left">6001</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">支付宝支付用户中断操作</td>
+</tr>
+<tr>
+<td align="left">4000</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">支付宝支付出错，可能是参数有问题</td>
+</tr>
+<tr>
+<td align="left">1111</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">解析服务器返回的数据出错，可能是提交参数有问题</td>
+</tr>
+<tr>
+<td align="left">2222</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">服务器端返回参数出错，可能是提交的参数有问题（如查询的订单号不存在）</td>
+</tr>
+<tr>
+<td align="left">3333</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">解析服务器数据出错，可能是提交参数有问题</td>
+</tr>
+<tr>
+<td align="left">5277</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">查询订单号时未输入订单号</td>
+</tr>
+<tr>
+<td align="left">7777</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">微信客户端未安装</td>
+</tr>
+<tr>
+<td align="left">8888</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">微信客户端版本不支持微信支付</td>
+</tr>
+<tr>
+<td align="left">9010</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">网络异常，可能是没有给应用网络权限</td>
+</tr>
+<tr>
+<td align="left">10003</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">商品名或详情不符合微信/支付宝的规定（如微信商品名不可以超过42个中文）</td>
+</tr>
+<tr>
+<td align="left">10777</td>
+<td align="left">Android</td>
+<td align="left"></td>
+<td align="left">上次发起的请求还未处理完成，禁止下次请求，可用BP.ForceFree()解除</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">4000</td>
+<td align="left">iOS</td>
+<td align="left"></td>
+<td align="left">支付类型错误，请填写 BmobAlipay</td>
+</tr>
+<tr>
+<td align="left">4001</td>
+<td align="left">iOS</td>
+<td align="left"></td>
+<td align="left">解析服务器返回的数据出错，可能是提交参数有问题</td>
+</tr>
+<tr>
+<td align="left">4002</td>
+<td align="left">iOS</td>
+<td align="left"></td>
+<td align="left">查询不到订单号，请在支付回调执行后查询</td>
+</tr>
+<tr>
+<td align="left">4004</td>
+<td align="left">iOS</td>
+<td align="left"></td>
+<td align="left">网络错误，请检查网络</td>
+</tr>
+<tr>
+<td align="left">4005</td>
+<td align="left">iOS</td>
+<td align="left"></td>
+<td align="left">支付宝未安装，或者没有配置 info.plist 参数</td>
+</tr>
+<tr>
+<td align="left">4006</td>
+<td align="left">iOS</td>
+<td align="left"></td>
+<td align="left">用户执行取消付款操作</td>
+</tr>
+<tr>
+<td align="left">4007</td>
+<td align="left">iOS</td>
+<td align="left"></td>
+<td align="left">价格超出限额</td>
+</tr>
+<tr>
+<td align="left">4008</td>
+<td align="left">iOS</td>
+<td align="left"></td>
+<td align="left">获取支付参数错误，请稍后重试</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">150</td>
+<td align="left">Restful</td>
+<td align="left">order_no is null.</td>
+<td align="left">订单号是空的.</td>
+</tr>
+<tr>
+<td align="left">10001</td>
+<td align="left">Restful</td>
+<td align="left">%s required</td>
+<td align="left">有些项是必填的</td>
+</tr>
+<tr>
+<td align="left">10002</td>
+<td align="left">Restful</td>
+<td align="left">order_no not exists.</td>
+<td align="left">你要查询的订单号不存在.</td>
+</tr>
+<tr>
+<td align="left">10003</td>
+<td align="left">Restful</td>
+<td align="left">%s.</td>
+<td align="left">详细错误信息，如微信或支付宝返回的详细错误.</td>
+</tr>
+<tr>
+<td align="left">10004</td>
+<td align="left">Restful</td>
+<td align="left">%s.</td>
+<td align="left">详细错误信息，如微信或支付宝返回的详细错误.</td>
 </tr>
 </tbody>
 </table></div>
@@ -804,5 +1010,5 @@
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-05-18 03:16:38
+Build Date UTC : 2017-05-19 07:10:08
 -->

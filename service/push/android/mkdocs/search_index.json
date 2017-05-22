@@ -94,16 +94,6 @@
             "location": "/index.html#_15", 
             "text": "发送给Android单个客户端  String installationId =  客户端installationId ;\nBmobPushManager bmobPush = new BmobPushManager();\nBmobQuery BmobInstallation  query = BmobInstallation.getQuery();\nquery.addWhereEqualTo( installationId , installationId);\nbmobPush.setQuery(query);\nbmobPush.pushMessage( 消息内容 );  发送给iOS单个客户端  String deviceToken =  客户端deviceToken ;\nBmobPushManager bmobPush = new BmobPushManager();\nBmobQuery BmobInstallation  query = BmobInstallation.getQuery();\nquery.addWhereEqualTo( deviceToken , deviceToken);\nbmobPush.setQuery(query);\nbmobPush.pushMessage( 消息内容 );", 
             "title": "点播推送消息"
-        }, 
-        {
-            "location": "/module/common_problem/README/index.html", 
-            "text": "常见问题\n\n\nQ: 手机中安装两个包含bmob push sdk的app，那么这时另一个包含bmobpush sdk的app会报错。\nA:解决方法：\n删除androidMainfest.xml中\n\npermission android:protectionLevel=\"normal\" android:name=\"cn.bmob.permission.push\"\n/permission\n\n这一句。\n\n\n其实这一句完全可以不加，也可以正常使用，亲测2个app推送正常，且不报错，关于原因请百度android permission相关知识（如果找不到再找客服吧~）\n\n\n\n\nQ:消息推送后点击消息进入不同的fragment页面\nA:这个是需要自己去定义的，在点击进入时应该有一个地方可以控制页面的行为的，具体的谷歌百度会有很多资料\n\n\n\n\nQ:用PushManager.pushMessage(text)推送的消息能设置过期时间吗？默认的过期时间是多久？\nA:暂时没有该功能。\n\n\n\n\nQ:消息推送里要设置的包名是指什么包\nA:消息推送里要设置的包名是你应用的包名（Androidmanifest文件中的package）", 
-            "title": "常见问题"
-        }, 
-        {
-            "location": "/module/common_problem/README/index.html#_1", 
-            "text": "Q: 手机中安装两个包含bmob push sdk的app，那么这时另一个包含bmobpush sdk的app会报错。\nA:解决方法：\n删除androidMainfest.xml中 permission android:protectionLevel=\"normal\" android:name=\"cn.bmob.permission.push\" /permission \n这一句。  其实这一句完全可以不加，也可以正常使用，亲测2个app推送正常，且不报错，关于原因请百度android permission相关知识（如果找不到再找客服吧~）   Q:消息推送后点击消息进入不同的fragment页面\nA:这个是需要自己去定义的，在点击进入时应该有一个地方可以控制页面的行为的，具体的谷歌百度会有很多资料   Q:用PushManager.pushMessage(text)推送的消息能设置过期时间吗？默认的过期时间是多久？\nA:暂时没有该功能。   Q:消息推送里要设置的包名是指什么包\nA:消息推送里要设置的包名是你应用的包名（Androidmanifest文件中的package）", 
-            "title": "常见问题"
         }
     ]
 }

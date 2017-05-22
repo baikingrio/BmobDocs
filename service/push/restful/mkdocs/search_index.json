@@ -109,16 +109,6 @@
             "location": "/index.html#_17", 
             "text": "过期时间，可以是绝对时间：  curl -X POST \\\n  -H  X-Bmob-Application-Id: Your Application ID           \\\n  -H  X-Bmob-REST-API-Key: Your REST API Key         \\\n  -H  Content-Type: application/json  \\\n  -d '{\n         expiration_time :  2013-12-04 00:51:13 ,\n         data : {\n           alert :  Season tickets on sale until December  4, 2013 \n        }\n      }' \\\n  https://api.bmob.cn/1/push  也可以是相对时间（根据push_time做定期推送，从push_time时间开始算起，直到expiration_interval时间后过期），下面的请求表示消息将在2012-01-28 00:51:13这个时间点开始推送，直到7天后过期:  curl -X POST \\\n  -H  X-Bmob-Application-Id: Your Application ID           \\\n  -H  X-Bmob-REST-API-Key: Your REST API Key         \\\n  -H  Content-Type: application/json  \\\n  -d '{\n         push_time :  2012-01-28 00:51:13 ,\n         expiration_interval : 518400,\n         data : {\n           alert :  Season tickets on sale until December  4, 2013 \n        }\n      }' \\\n  https://api.bmob.cn/1/push", 
             "title": "设置消息过期时间"
-        }, 
-        {
-            "location": "/module/common_problem/README/index.html", 
-            "text": "常见问题\n\n\nQ:推送服务采用的协议是什么\nA: \nWebsocket\n\n\n\n\nQ:会不会限制推送消息的数量\nA:没有限制！\n\n\n推送的用户数量没有限制，每天推送的消息条数也没有限制，所有都没有限制。\n\n\n\n\nQ:服务器能支撑的长连接有多大\nA:Bmob的推送服务器是耗内存型的，保持1个长连接占用\n10KB的内存，64GB的内存能够支撑600万用户的长连接。\n\n\n\n\nQ:Android推送收不到消息\nA:\n1.手机是否连入网络 \n\n2.包名（应用包名，看配置文件）是否正确填写在web后台中  \n\n\n如果还是不能接收到推送，请检查：  \n\n\n3.手机是否有bmob的推送后台在运行\n\n4.后台的Installation表有没有该手机对应的设备信息\n\n\n\n\nQ:iOS推送接收不到消息\nA:\niOS的推送都是用apns。你确认是否操作了几点：\n\n1.检查推送的代码是否写错; \n\n2.真机操作；\n\n3.Bmob后台上传了未加密的p12证书； \n\n4.Bmob数据后台的Installation表是否可以看到对应数据。\n\n5.push token是否保存到服务器了\n\n\n\n\nQ:推送的耗电和耗流量情况怎样\nA:\n以下说到的，不考虑推送的内容部分。推送内容的多少是由开发者决定的。\n\n\n另外，实测电量、流量消耗，与网络状况相关比较大。\n\n\n所以这里的数据是理论平均值：流量消耗 50K/天，电量消耗 60mAh/天。\n\n\n\n\nQ:可以推送富文本到客户端吗\nA:不直接支持文件的推送，但可以通过推送 url 来实现。\n即先推送文件下载 url，到客户端触发逻辑来通过 url 下载文件。\n\n\n\n\nQ:iOS在服务端如何推送有声音和Badge提示\nA:需要开发者自己定义JSON格式，格式如下：\n\n\n{\n    \nalert\n : \nYou got your emails.\n,\n    \nbadge\n : 9,\n    \nsound\n : \nbingbong.aiff\n\n}", 
-            "title": "常见问题"
-        }, 
-        {
-            "location": "/module/common_problem/README/index.html#_1", 
-            "text": "Q:推送服务采用的协议是什么\nA:  Websocket   Q:会不会限制推送消息的数量\nA:没有限制！  推送的用户数量没有限制，每天推送的消息条数也没有限制，所有都没有限制。   Q:服务器能支撑的长连接有多大\nA:Bmob的推送服务器是耗内存型的，保持1个长连接占用 10KB的内存，64GB的内存能够支撑600万用户的长连接。   Q:Android推送收不到消息\nA:\n1.手机是否连入网络  \n2.包名（应用包名，看配置文件）是否正确填写在web后台中    如果还是不能接收到推送，请检查：    3.手机是否有bmob的推送后台在运行 \n4.后台的Installation表有没有该手机对应的设备信息   Q:iOS推送接收不到消息\nA:\niOS的推送都是用apns。你确认是否操作了几点： \n1.检查推送的代码是否写错;  \n2.真机操作； \n3.Bmob后台上传了未加密的p12证书；  \n4.Bmob数据后台的Installation表是否可以看到对应数据。 \n5.push token是否保存到服务器了   Q:推送的耗电和耗流量情况怎样\nA:\n以下说到的，不考虑推送的内容部分。推送内容的多少是由开发者决定的。  另外，实测电量、流量消耗，与网络状况相关比较大。  所以这里的数据是理论平均值：流量消耗 50K/天，电量消耗 60mAh/天。   Q:可以推送富文本到客户端吗\nA:不直接支持文件的推送，但可以通过推送 url 来实现。\n即先推送文件下载 url，到客户端触发逻辑来通过 url 下载文件。   Q:iOS在服务端如何推送有声音和Badge提示\nA:需要开发者自己定义JSON格式，格式如下：  {\n     alert  :  You got your emails. ,\n     badge  : 9,\n     sound  :  bingbong.aiff \n}", 
-            "title": "常见问题"
         }
     ]
 }

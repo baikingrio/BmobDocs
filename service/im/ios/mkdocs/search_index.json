@@ -121,16 +121,6 @@
             "title": "接收消息"
         }, 
         {
-            "location": "/module/common_problem/README/index.html", 
-            "text": "常见问题\n\n\nQ:BmobIm服务器的消息怎么删除，每次删除程序再打开都会有离线消息\nA:这些是服务端自动存储的，并不是保存在表中，而是后端以另一种形式保存，无需用户自行维护～", 
-            "title": "常见问题"
-        }, 
-        {
-            "location": "/module/common_problem/README/index.html#_1", 
-            "text": "Q:BmobIm服务器的消息怎么删除，每次删除程序再打开都会有离线消息\nA:这些是服务端自动存储的，并不是保存在表中，而是后端以另一种形式保存，无需用户自行维护～", 
-            "title": "常见问题"
-        }, 
-        {
             "location": "/module/update_log/README/index.html", 
             "text": "v2.0.1_Beta   2016年3月11日\n\n\n\n\n增加BmobIMFileMessage,BmobIMLocationMessage\n\n\n修改BmobIMImageMessage跟BmobIMAudioMessage集成自BmobIMFileMessage\n\n\n修改BmobIMMessage的msgType属性为字符串类型 4.支持用户自定义消息类型 5.数据库方面SDK已做兼容  \n\n\n\n\nv2.0.0_Beta   2016年2月02日\n\n\n\n\n用全新的架构来设计IMSDK，通过tcp协议进行通信，支持单聊（发送文本消息，图片，声音文件）\n\n\n自动发送推送，当用户断开连接后，如果用户允许推送了（已设置好推送配置等），可以发送推送给用户\n\n\nSDK内部已实现自动拉取消息，不用开发者自己设定定时器去获取，保证消息抵达率\n\n\n\n\nv1.0.2_Beta   2015年5月12日\n\n\n\n\nDemo兼容iOS8 \n\n\n修复bug \n\n\n更换了百度地图的SDK \n\n\n\n\nv1.0.1_Beta   2014年7月28日\n\n\n\n\n添加发送图片功能 \n\n\n添加发送地理位置功能 \n\n\n添加查找附近的人功能 \n\n\n做了兼容处理，可以与Android进行聊天 \n\n\n\n\n需要注意的几点：\n\n\n\n\nV1.0.1的BmobIM是基于推送服务的，所以需要开发者自己在bmob后端添加证书。 \n\n\n由于模拟器接收不了推送，所以需要真机测试 \n\n\nBmobIM用到数据库，所以除了需要添加BmobSDK所依赖的库之外，还需要添加libsqlite3.dylib \n\n\n因为地理位置那块使用了百度地图的SDK，所以开发者用那块的服务时，需要添加百度地图的依赖库。 \n\n\nDemo基于iOS6.0 ＋，使用ARC \n\n\n\n\nv1.0.0_Beta   2014年6月30日\n\n\n\n\n提供完整的好友管理功能，包括添加好友、删除好友、好友列表，也可以与你已有的用户系统完全解耦; \n\n\n支持单一用户的文字和表情聊天; \n\n\n支持会话的本地化存储；", 
             "title": "更新日志"

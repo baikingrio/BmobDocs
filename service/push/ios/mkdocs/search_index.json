@@ -69,16 +69,6 @@
             "location": "/index.html#_9", 
             "text": "给特定的用户发送信息，推送给安卓用户与推送给苹果用户有所区别，样例如下：  1、发送给单个安卓用户  BmobPush *push = [BmobPush push];\nBmobQuery *query = [BmobInstallation query];\n[query whereKey:@ installationId  equalTo:@ xxxxxxxxxxxxxxxx ];\n[push setQuery:query];\n[push setMessage:@ 推送给某个安卓用户的消息 ]\n[push sendPushInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {\n        NSLog(@ error %@ ,[error description]);\n}];  2、推送给单个苹果用户  BmobPush *push = [BmobPush push];\nBmobQuery *query = [BmobInstallation query];\n[query whereKey:@ deviceToken  equalTo:@ xxxxxxxxxxxxxxxx ];\n[push setQuery:query];\n[push setMessage:@ 推送给某个苹果用户的消息 ]\n[push sendPushInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {\n        NSLog(@ error %@ ,[error description]);\n}];", 
             "title": "点播推送"
-        }, 
-        {
-            "location": "/module/common_problem/README/index.html", 
-            "text": "常见问题\n\n\nQ:按照设制好了IOS推送，推送后显示状态为“发送至APNS”，但前面写着“推送0条”，此时，手机也未接收到信息，是为什么？\nA:\n1.看看Installation表是否有设备信息；\n2.Bmob后台中是否把推送证书添加上去（不能加密）；\n3.你先尝试推送给所有的真实手机。\n\n\n\n\nQ:如何用 BmobPush发送原始apns报文？\nA:要发送原始信息的可以使用-(void)setData:(NSDictionary *)data;方法\n\n\n\n\nQ:在iOS中 在代码中如何创建一个空表 只包含各列的属性 而不创建具体的一条数据。\nA:参考代码\n\n\nBmobInstallation *ins = [BmobInstallation currentInstallation];\n[ins saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {\n    if (error) {\n        NSLog(@\n%@\n,error);\n    } else {\n        NSLog(@\nsuccess\n);\n        NSLog(@\n%@\n,ins.objectId);\n    }\n}];\n\n\n\n\n\n\nQ:消息推送的条件查询（根据特定的查询条件进行推送）能在自己创建的表格中进行查询条件推送\nA:只能使用自带的installation表来查询。\n\n\n\n\nQ:在installation 表中创立新的列无法添加进去数据\n\n\nBmobInstallation *currentIntallation = [BmobInstallation currentInstallation];\n[currentIntallation setObject:@\n123\n forKey:@\nclasses\n];\n\n[currentIntallation saveInBackground];\n\n\n\n\nA:确实是无法直接这么加的，建议使用channel来实现业务需求\n\n\n\n\nQ:消息推送的条件查询（根据特定的查询条件进行推送）能在自己创建的表格中进行查询条件推送吗！！！\nA:不可以，只能使用自带的installation表来查询", 
-            "title": "常见问题"
-        }, 
-        {
-            "location": "/module/common_problem/README/index.html#_1", 
-            "text": "Q:按照设制好了IOS推送，推送后显示状态为“发送至APNS”，但前面写着“推送0条”，此时，手机也未接收到信息，是为什么？\nA:\n1.看看Installation表是否有设备信息；\n2.Bmob后台中是否把推送证书添加上去（不能加密）；\n3.你先尝试推送给所有的真实手机。   Q:如何用 BmobPush发送原始apns报文？\nA:要发送原始信息的可以使用-(void)setData:(NSDictionary *)data;方法   Q:在iOS中 在代码中如何创建一个空表 只包含各列的属性 而不创建具体的一条数据。\nA:参考代码  BmobInstallation *ins = [BmobInstallation currentInstallation];\n[ins saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {\n    if (error) {\n        NSLog(@ %@ ,error);\n    } else {\n        NSLog(@ success );\n        NSLog(@ %@ ,ins.objectId);\n    }\n}];   Q:消息推送的条件查询（根据特定的查询条件进行推送）能在自己创建的表格中进行查询条件推送\nA:只能使用自带的installation表来查询。   Q:在installation 表中创立新的列无法添加进去数据  BmobInstallation *currentIntallation = [BmobInstallation currentInstallation];\n[currentIntallation setObject:@ 123  forKey:@ classes ];\n\n[currentIntallation saveInBackground];  A:确实是无法直接这么加的，建议使用channel来实现业务需求   Q:消息推送的条件查询（根据特定的查询条件进行推送）能在自己创建的表格中进行查询条件推送吗！！！\nA:不可以，只能使用自带的installation表来查询", 
-            "title": "常见问题"
         }
     ]
 }

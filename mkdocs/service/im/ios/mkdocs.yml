@@ -1,7 +1,7 @@
 site_name: IM iOS
 pages:
 - [index.md, 开发文档]
-- [module/common_problem/README.md, 常见问题]
+#- [module/common_problem/README.md, 常见问题]
 - [module/update_log/README.md, 更新日志]
 use_directory_urls: false
 copyright: Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.

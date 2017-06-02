@@ -1463,6 +1463,22 @@ private void addFriend(String uid){
         }
     });
 }
+</code></pre>
+
+<h4 id="5">5. 混淆</h4>
+<pre><code># 不混淆im sdk
+-keep class cn.bmob.newim.**{*;}
+-dontwarn cn.bmob.newim.**
+# 不混淆greenDao类
+-dontwarn de.greenrobot.dao.**
+-keep class de.greenrobot.dao.** { *;}
+-keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
+    public static java.lang.String TABLENAME;
+}
+-keep class **$Properties
+# 不混淆async
+-dontwarn com.koushikdutta.async.**
+-keep class com.koushikdutta.async.** { *;}
 </code></pre></div>
         </div>
 
@@ -1503,5 +1519,5 @@ private void addFriend(String uid){
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-05-22 07:27:36
+Build Date UTC : 2017-06-02 07:00:07
 -->

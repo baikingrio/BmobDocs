@@ -1,5 +1,9 @@
 # Bmob文档中心 #
-基于 [MkDocs][1] 的 Bmob 文档中心, [在线预览](https://baikingrio.github.io/bmobdocs/)
+基于 [MkDocs][1] 的 Bmob 文档中心
+
+[在线预览](https://baikingrio.github.io/bmobdocs/)
+
+如访问GitHub较慢，可访问[国内地址](http://liaobaikun.oschina.io/bmobdocs/)
 
 ## 目录结构说明 ##
 

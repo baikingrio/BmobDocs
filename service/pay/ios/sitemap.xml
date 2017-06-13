@@ -4,7 +4,7 @@
     
     <url>
      <loc>/index.html</loc>
-     <lastmod>2017-05-22</lastmod>
+     <lastmod>2017-06-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,15 @@
     
     <url>
      <loc>/module/example/README/index.html</loc>
-     <lastmod>2017-05-22</lastmod>
+     <lastmod>2017-06-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/module/update_log/README/index.html</loc>
+     <lastmod>2017-06-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

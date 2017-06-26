@@ -13,6 +13,7 @@
         <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="./css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/highlight.css">
+        <link href="./extra.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -58,7 +59,22 @@
 
 <h3 id="_1">开发 文档</h3>
 <p>云端代码的调用方法非常简单，如下为调用执行云端方法<code>test</code>的实现代码：</p>
-<pre><code class="java">    Bmob.Endpoint&lt;Hashtable&gt;(&quot;test&quot;, (resp, exception) =&gt; 
+<pre><code class="C#">Bmob.Endpoint&lt;Hashtable&gt;(&quot;test&quot;, (resp, exception) =&gt; 
+{
+    if (exception != null)
+    {
+        print(&quot;调用失败, 失败原因为： &quot; + exception.Message);
+        return;
+    }
+
+    print(&quot;返回对象为： &quot; + resp);
+});
+</code></pre>
+
+<p>调用时传递参数：</p>
+<pre><code class="C#">IDictionary&lt;String, Object&gt; parameters ＝  new IDictionary&lt;String, Object&gt;{{&quot;name&quot;,&quot;jay&quot;}};
+
+Bmob.Endpoint&lt;Hashtable&gt;(&quot;test&quot;, parameters, (resp, exception) =&gt; 
     {
         if (exception != null)
         {
@@ -110,5 +126,5 @@
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-05-22 07:38:51
+Build Date UTC : 2017-06-26 06:52:21
 -->

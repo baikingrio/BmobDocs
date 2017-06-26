@@ -2,12 +2,12 @@
     "docs": [
         {
             "location": "/index.html", 
-            "text": "开发 文档\n\n\n云端代码的调用方法非常简单，如下为调用执行云端方法\ntest\n的实现代码：\n\n\n    Bmob.Endpoint\nHashtable\n(\ntest\n, (resp, exception) =\n \n    {\n        if (exception != null)\n        {\n            print(\n调用失败, 失败原因为： \n + exception.Message);\n            return;\n        }\n\n        print(\n返回对象为： \n + resp);\n    });\n\n\n\n\n相关云端代码的编写方式，请参考\n云端代码开发文档\n。", 
+            "text": "开发 文档\n\n\n云端代码的调用方法非常简单，如下为调用执行云端方法\ntest\n的实现代码：\n\n\nBmob.Endpoint\nHashtable\n(\ntest\n, (resp, exception) =\n \n{\n    if (exception != null)\n    {\n        print(\n调用失败, 失败原因为： \n + exception.Message);\n        return;\n    }\n\n    print(\n返回对象为： \n + resp);\n});\n\n\n\n\n调用时传递参数：\n\n\nIDictionary\nString, Object\n parameters ＝  new IDictionary\nString, Object\n{{\nname\n,\njay\n}};\n\nBmob.Endpoint\nHashtable\n(\ntest\n, parameters, (resp, exception) =\n \n    {\n        if (exception != null)\n        {\n            print(\n调用失败, 失败原因为： \n + exception.Message);\n            return;\n        }\n\n        print(\n返回对象为： \n + resp);\n    });\n\n\n\n\n相关云端代码的编写方式，请参考\n云端代码开发文档\n。", 
             "title": "开发文档"
         }, 
         {
             "location": "/index.html#_1", 
-            "text": "云端代码的调用方法非常简单，如下为调用执行云端方法 test 的实现代码：      Bmob.Endpoint Hashtable ( test , (resp, exception) =  \n    {\n        if (exception != null)\n        {\n            print( 调用失败, 失败原因为：   + exception.Message);\n            return;\n        }\n\n        print( 返回对象为：   + resp);\n    });  相关云端代码的编写方式，请参考 云端代码开发文档 。", 
+            "text": "云端代码的调用方法非常简单，如下为调用执行云端方法 test 的实现代码：  Bmob.Endpoint Hashtable ( test , (resp, exception) =  \n{\n    if (exception != null)\n    {\n        print( 调用失败, 失败原因为：   + exception.Message);\n        return;\n    }\n\n    print( 返回对象为：   + resp);\n});  调用时传递参数：  IDictionary String, Object  parameters ＝  new IDictionary String, Object {{ name , jay }};\n\nBmob.Endpoint Hashtable ( test , parameters, (resp, exception) =  \n    {\n        if (exception != null)\n        {\n            print( 调用失败, 失败原因为：   + exception.Message);\n            return;\n        }\n\n        print( 返回对象为：   + resp);\n    });  相关云端代码的编写方式，请参考 云端代码开发文档 。", 
             "title": "开发 文档"
         }
     ]

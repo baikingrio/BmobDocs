@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bmob Docs</title>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../assets/plugins/elegant_font/css/style.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .hidden-scroll {
+            overflow: hidden;
+        }
+
+        .navbar-brand, .navbar-brand:hover {
+            color: #FFF !important;
+            background: #3593ff !important;
+            display: block;
+        }
+
+        .navbar {
+            border: none !important;
+        }
+
+        .tab-content {
+            margin-top: 50px
+        }
+
+        .bs-docs-header {
+            position: relative;
+            padding: 30px 0;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+            background-color: #3593ff;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#247de4), to(#3593ff));
+            background-image: -webkit-linear-gradient(top, #247de4 0%, #3593ff 100%);
+            background-image: -o-linear-gradient(top, #247de4 0%, #3593ff 100%);
+            background-image: linear-gradient(to bottom, #247de4 0%, #3593ff 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
+            background-repeat: repeat-x;
+        }
+
+        .mod-chapters .chapter {
+            border-bottom: 1px solid #d9dde1;
+            padding: 0 24px 12px;
+        }
+
+        .mod-chapters .chapter h3 {
+            position: relative;
+            height: 53px;
+            line-height: 65px;
+            font-size: 16px;
+            color: #07111b;
+            font-weight: 700;
+        }
+
+        .mod-chapters .chapter .video li {
+            position: relative;
+            height: 40px;
+            line-height: 40px;
+            padding-left: 8px;
+            background-color: #f3f5f7;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .mod-chapters .chapter .video li:hover {
+            background-color: #333;
+        }
+
+        .mod-chapters .chapter .video li a {
+            color: #787d82;
+        }
+
+        .mod-chapters .chapter .video li:hover a {
+            color: #FFF;
+        }
+
+        .mark {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, .9);
+            z-index: 4999
+        }
+
+        .video-wrap {
+            width: 960px;
+            height: 640px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .video-close {
+            width: 75px;
+            height: 75px;
+            background: #333;
+            position: absolute;
+            top: 0;
+            right: -75px;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .title {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            color: #FFF;
+            font-size: 32px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" style="margin: 0">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand hidden-sm">Bmob视频教程</span>
+        </div>
+        <div class="navbar-collapse collapse" role="navigation">
+            <ul class="nav navbar-nav" role="tablist">
+				<li class="active"><a href="#SDK" aria-controls="SDK" role="tab" data-toggle="tab">数据服务</a></li>
+                <li><a href="#IM" aria-controls="IM" role="tab" data-toggle="tab">即时通讯</a></li>
+                <li><a href="#PUSH" aria-controls="PUSH" role="tab" data-toggle="tab">推送服务</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content">
+
+	<!--数据[SDK]-->
+    <div role="tabpanel" class="tab-pane active" id="SDK">
+        <div class="bs-docs-header">
+            <div class="container text-left">
+                <h2>数据服务SDK视频教程</h2>
+                <p>Bmob平台为您的移动应用提供了一个完整的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用Bmob平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="mod-chapters"></div>
+        </div>
+
+    </div>
+
+    <!--即时通讯[BmobNewIM SDK]-->
+    <div role="tabpanel" class="tab-pane" id="IM">
+        <div class="bs-docs-header">
+            <div class="container text-left">
+                <h2>即时通讯SDK视频教程</h2>
+                <p>Bmob平台为您的移动应用提供了一个完整的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用Bmob平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="mod-chapters"></div>
+        </div>
+    </div>
+
+    <!--推送[BmobPush SDK]-->
+    <div role="tabpanel" class="tab-pane" id="PUSH">
+        <div class="bs-docs-header">
+            <div class="container text-left">
+                <h2>推送服务SDK视频教程</h2>
+                <p>Bmob平台为您的移动应用提供了一个完整的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用Bmob平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="mod-chapters"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="mark" style="display: none">
+    <div class="video-wrap">
+        <div class="video-close">
+            <span>
+            <svg t="1508917936580" class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg" p-id="3711" xmlns:xlink="http://www.w3.org/1999/xlink" width="40"
+                 height="40"><defs><style type="text/css"></style></defs><path
+                    d="M577 512l369.6-369.5c17.9-18 17.9-47.1 0-65-17.9-18-47-18-65 0L512 447 142.4 77.4c-17.9-17.9-47-17.9-65 0-17.9 18-17.9 47.1 0 65L447 512 77.5 881.5c-17.9 17.9-17.9 47.1 0 65s47 18 65 0L512 577l369.6 369.6c17.9 18 47 18 64.9 0 17.9-18 17.9-47.1 0-65L577 512z"
+                    fill="#999" p-id="3712"></path></svg>
+            </span>
+        </div>
+        <div class="title">123123</div>
+        <iframe id="video" src="" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+    </div>
+</div>
+
+
+<!-- Main Javascript -->
+<script type="text/javascript" src="../assets/plugins/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+<script type="text/javascript" src="../assets/js/main.js"></script>
+<script type="text/javascript" src="./data.js"></script>
+<script>
+    $(function () {
+        var mark = $('.mark');
+        var video = $('#video');
+        var close = $('.video-close');
+        var body = $('body');
+
+        function details(data) {
+            var content = '';
+            for (var i = 0; i < data.length; i++) {
+                content +='<div class="chapter chapter-active">' +
+                    '<h3>' +
+                    '<span class="icon-drop_down .js-open js-open"></span>' +
+                    '<strong>' +
+                    data[i].title +
+                    '</strong>' +
+                    '</h3>' +
+                    '<ul class="video">' +
+                        sub(data[i].chapter) +
+                    '</ul>' +
+                    '</div>'
+            }
+            function sub(item) {
+                var li = '';
+                for(var i = 0; i< item.length; i++ ){
+                    li+='<li data-media-id="'+ item[i].id +' ">'+
+                        '<a class="J-media-item">'+
+                            item[i].title +
+                        '</a>'+
+                        '</li>'
+                }
+                return li;
+            }
+            return content
+        }
+
+        $('#SDK .mod-chapters').html(details(dataSDK));
+        $('#IM .mod-chapters').html(details(IMSDK));
+        $('#PUSH .mod-chapters').html(details(PUSHSDK));
+
+        $('.video li').on('click',function () {
+            body.addClass('hidden-scroll');
+            var id = $(this).data('media-id');
+            var title = $(this).find('a').html();
+            video.prev('.title').html(title);
+            video.attr('src', 'http://player.youku.com/embed/' + id);
+            setTimeout(function () {
+                mark.fadeIn();
+            },300);
+        });
+
+        close.click(function () {
+            video.attr('src', '');
+            mark.fadeOut();
+            body.removeClass('hidden-scroll');
+        });
+
+    })
+</script>
+</body>
+</html>

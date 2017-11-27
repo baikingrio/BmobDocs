@@ -102,27 +102,7 @@
 
 ```
 
-## 查询短信验证码状态
 
-查询短信验证码状态示例代码：
-
-```
-    [BmobSMS querySMSCodeStateInBackgroundWithSMSId:smsId resultBlock:^(NSDictionary *dic, NSError *error) {
-        if (dic) {
-            NSLog(@"%@",dic);
-        } else {
-            NSLog(@"%@",error);
-        }
-    }];
-```
-
-```
-注：SmsState包含两种状态：
-
-1、smsState（短信状态） :SUCCESS（发送成功）、FAIL（发送失败）、SENDING(发送中)。
-
-2、verifyState（验证状态）:true(已验证)、false(未验证)。
-```
 
 注意事项：
 

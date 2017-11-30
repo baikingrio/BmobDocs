@@ -1,9 +1,8 @@
 # Bmob文档中心 #
 基于 [MkDocs][1] 的 Bmob 文档中心
 
-[在线预览](https://baikingrio.github.io/bmobdocs/)
+[在线预览](http://doc.bmob.cn/)
 
-如访问GitHub较慢，可访问[国内地址](http://liaobaikun.oschina.io/bmobdocs/)
 
 ## 目录结构说明 ##
 
@@ -91,8 +90,19 @@ pages:
 - [index.md, Home]      # 导航栏目Home
 - [about.md, About]     # 导航栏目About
 ```
-
 其他详细配置可参考MkDocs 中文文档 配置部分
+
+## 文档修改示例
+注意：本文档中心是由多个MkDocs项目组成，修改某个文档时，请到对应的MKDocs项目下进行修改，下面举例修改数据服务下的Android开发文档。
+- 首先进入到数据服务的android文档目录，这也是数据服务android文档的MKDocs根目录
+```
+$ cd mkdocs/service/data/android/
+```
+- 然后修改docs目录下的index.md文件内容，该文件是MKDocs最终生成的静态页面的首页，对应如下页面http://doc.bmob.cn/service/data/android/index.html
+
+- 修改完成后，在mkdocs/service/data/android/目录下执行`mkdocs build --clean`命令生成静态文档页面
+
+- 最后可在本开源项目根目录下使用Git相关命令提交更新即可
 
 ## 其他LINKS ##
 

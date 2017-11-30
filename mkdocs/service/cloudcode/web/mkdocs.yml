@@ -3,8 +3,8 @@ pages:
 - [index.md, 快速入门]
 - [module/develop_doc/README.md, 开发文档]
 - [module/timing_task/README.md, 定时任务]
-- [module/cloud_code_weixin/README.md, 微信云代码]
-- [module/cloud_code_norm/README.md, 云逻辑编写规范]
+- [module/cloud_code_weixin/README.md, 微信云函数]
+- [module/cloud_code_norm/README.md, 云函数编写规范]
 #- [module/common_problem/README.md, 常见问题]
 use_directory_urls: false
 copyright: Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.

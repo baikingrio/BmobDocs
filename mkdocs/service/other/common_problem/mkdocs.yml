@@ -19,8 +19,8 @@ pages:
 - [module/push/README_iOS.md, 推送功能, iOS]
 - [module/pay/README.md, 移动支付, 移动支付]
 - [module/pay/README_Android.md, 移动支付, Android]
-- [module/cloud_code/README.md, 云端逻辑, 云端逻辑]
-- [module/cloud_code/README_iOS.md, 云端逻辑, iOS]
+- [module/cloud_code/README.md, 云函数, 云函数]
+- [module/cloud_code/README_iOS.md, 云函数, iOS]
 use_directory_urls: false
 copyright: Copyright © 2017 <a href="http://www.bmob.cn/" target="_blank">Bmob</a>, Maintained by the Bmob Support.
 site_dir: "../../../../service/other/common_problem"

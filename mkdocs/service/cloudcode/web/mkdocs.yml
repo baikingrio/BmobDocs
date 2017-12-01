@@ -1,4 +1,4 @@
-site_name: CloudCode Web
+site_name: 云函数 Web
 pages:
 - [index.md, 快速入门]
 - [module/develop_doc/README.md, 开发文档]

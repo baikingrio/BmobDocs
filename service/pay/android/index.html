@@ -104,15 +104,14 @@
 <p>Android支付SDK接口是Bmob为广大开发人员提供的统一、正规的收费手段，让没有企业认证的个人开发者，也能通过支付宝和微信向用户收费。该文档可以让您快速为自己的应用接入Bmob的支付功能。下图为使用支付的流程。</p>
 <p><img alt="" src="http://i.imgur.com/pP4Cki6.png" /></p>
 <h2 id="_2">使用需知</h2>
-<p>
-使用Bmob支付组件前，请认真阅读<a href="http://www.bmob.cn/service">Bmob服务协议</a>。</p>
+<p>使用Bmob支付组件前，请认真阅读<a href="http://www.bmob.cn/service">Bmob服务协议</a>。</p>
 <p>对于以下两种情况，开发者需要特别注意：</p>
 <p>1.违反服务协议，特别是含有以下内容的应用：</p>
 <p><strong>1）封建迷信和/或淫秽、色情、下流的信息或教唆犯罪的信息；</strong>
 <strong>2）博彩有奖、赌博游戏、“私服”、“外挂”等非法互联网出版活动；</strong></p>
 <p>Bmob平台有权进行独立判断并采取技术手段予以删除、屏蔽或断开链接。同时，本平台有权视用户的行为性质，采取包括但不限于暂停或终止服务，限制、冻结或终止本平台网站账号的使用，追究法律责任等措施。</p>
 <p>2.应用遇到过多的用户投诉，如应用的使用者支付了相关款项，但是该应用却没有提供相应的服务。本平台有权限制或冻结该应用支付收入的所有款项，并保留追究法律责任的权利。</p>
-<p>3.<strong>Bmob将在每笔交易中收取8%服务费。</strong></p>
+<p>3.<strong>Bmob将在每笔交易中收取10%服务费。</strong></p>
 <h2 id="_3">打款需知</h2>
 <p>1.打款前请先在控制台填写以下信息</p>
 <p><img alt="" src="./image/14579272227324.jpg" /></p>
@@ -164,21 +163,24 @@
 </li>
 <li>
 <p>发起支付调用，请使用如下方法：</p>
-<p>/*<em>
-     * 第4个参数为true时调用支付宝支付，为false时调用微信支付
-     </em>/
-    BP.pay("商品名称", "商品描述", 0.02, true, new Plistener(){...});</p>
-</li>
-<li>
-<p>在需要调用订单查询的地方，调用如下方法(微信订单和支付宝订单通用)：</p>
-<pre><code>BP.query("订单id", new QListener(){...});
-</code></pre>
 </li>
 </ul>
+<pre><code>    /**
+     * 第4个参数为支付方式：BP.PayType_Alipay(支付宝)、BP.PayType_Wechat(微信)、BP.PayType_QQ(QQ)
+     */
+    BP.pay(&quot;商品名称&quot;, &quot;商品描述&quot;, 0.02, BP.PayType_Alipay,, new Plistener(){...});
+</code></pre>
+
+<ul>
+<li>在需要调用订单查询的地方，调用如下方法(微信订单和支付宝订单通用)：</li>
+</ul>
+<pre><code>    BP.query(&quot;订单id&quot;, new QListener(){...});
+</code></pre>
+
 <h2 id="_7">类库说明</h2>
 <p><strong>c.b.BP</strong></p>
 <ul>
-<li>BP.pay(String title, String descript, double money, boolean aliOrWetchat, Plistener listener)</li>
+<li>BP.pay(String title, String descript, double money, int payType, Plistener listener)</li>
 </ul>
 <table>
 <thead>
@@ -205,9 +207,9 @@
 <td>商品的价格,建议测试用0.02</td>
 </tr>
 <tr>
-<td>boolean</td>
-<td>aliOrWetchat</td>
-<td>支付方式：true为支付宝支付，false为微信支付</td>
+<td>Int</td>
+<td>payType</td>
+<td>支付方式：BP.PayType_Alipay(支付宝)、BP.PayType_Wechat(微信)、BP.PayType_QQ(QQ)</td>
 </tr>
 <tr>
 <td>Plistener</td>
@@ -400,5 +402,5 @@ trade_no：支付宝或微信返回的订单号</p>
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-10-30 07:27:54
+Build Date UTC : 2017-11-30 06:48:45
 -->

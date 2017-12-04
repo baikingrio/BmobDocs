@@ -5,7 +5,7 @@ Android支付SDK接口是Bmob为广大开发人员提供的统一、正规的收
 ![](http://i.imgur.com/pP4Cki6.png)
 
 ## 使用需知
-
+
 使用Bmob支付组件前，请认真阅读[Bmob服务协议](http://www.bmob.cn/service)。
 
 对于以下两种情况，开发者需要特别注意：
@@ -19,7 +19,7 @@ Bmob平台有权进行独立判断并采取技术手段予以删除、屏蔽或�
 
 2.应用遇到过多的用户投诉，如应用的使用者支付了相关款项，但是该应用却没有提供相应的服务。本平台有权限制或冻结该应用支付收入的所有款项，并保留追究法律责任的权利。
 
-3.**Bmob将在每笔交易中收取8%服务费。**
+3.**Bmob将在每笔交易中收取10%服务费。**
 
 ##  打款需知
 
@@ -74,28 +74,28 @@ Bmob平台有权进行独立判断并采取技术手段予以删除、屏蔽或�
 **注意：新版的支付SDK不能被数据服务SDK的初始化方法取代了，无论您是否使用了Bmob数据服务SDK，都要进行支付SDK的初始化**
 
 - 发起支付调用，请使用如下方法：
-	
+```
 	/**
-     	 * 第4个参数为true时调用支付宝支付，为false时调用微信支付
-     	 */
-		BP.pay("商品名称", "商品描述", 0.02, true, new Plistener(){...});
-		
+	 * 第4个参数为支付方式：BP.PayType_Alipay(支付宝)、BP.PayType_Wechat(微信)、BP.PayType_QQ(QQ)
+	 */
+	BP.pay("商品名称", "商品描述", 0.02, BP.PayType_Alipay,, new Plistener(){...});
+```
 - 在需要调用订单查询的地方，调用如下方法(微信订单和支付宝订单通用)：
-
-		BP.query("订单id", new QListener(){...});
-
+```
+	BP.query("订单id", new QListener(){...});
+```
 ## 类库说明
 
 **c.b.BP**
 
-- BP.pay(String title, String descript, double money, boolean aliOrWetchat, Plistener listener)
+- BP.pay(String title, String descript, double money, int payType, Plistener listener)
 
 |类型|名称|说明|
 |---|---|---|
 |String|title|商品的名称,请注意不要有违禁字眼,可以为空<p>只允许中文、数字、英文和下划线、英文破折号，否则过滤|
 |String|descript|商品的详情描述,请注意不要有违禁字眼,可以为空<p>只允许中文、数字、英文和下划线、英文破折号，否则过滤|
 |double|price|商品的价格,建议测试用0.02|
-|boolean|aliOrWetchat|支付方式：true为支付宝支付，false为微信支付|
+|Int|payType|支付方式：BP.PayType_Alipay(支付宝)、BP.PayType_Wechat(微信)、BP.PayType_QQ(QQ)|
 |Plistener|listener|支付结果监听类c.b.PListener<p>有成功、失败、未知结果、返回订单号等方法|
 
 **注意**
@@ -203,6 +203,7 @@ Bmob平台有权进行独立判断并采取技术手段予以删除、屏蔽或�
 trade_status：表示支付状态，目前只有支付成功才产生回调，值恒为1.
 out_trade_no：Bmob返回的订单号
 trade_no：支付宝或微信返回的订单号
+
 ## 新版支付v3.1.1(20170111)的更新提示
 - ForceFree方法已经弃用，开发者需自己控制用户多次点击支付产生多个订单的问题
 - 这一版本的SDK将会在支付的过程中呈现一个中间页面，这个页面负责引导用户的支付流程，带来的影响是：
@@ -214,6 +215,7 @@ trade_no：支付宝或微信返回的订单号
 - 新版支付SDK对Unity支持的解决方法:
 	- 新版支付SDK需要so文件，Unity3d开发者如果没有处理过类似情况，可以这样做：
 	- 将SDK中libs文件夹下，除了/armeabi、/armeabi-v7a、x86以外的文件夹删掉(jar文件需要保留)，然后把libs文件夹放在Plugins/Android/下。也就是最后会有 Plugins/Android/libs/armeabi/bmobwpay.so文件
+
 ## 其他
 - 混淆规则如下: 
 

@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="./img/favicon.ico">
-        <title>CloudCode Restful</title>
+        <title>云函数 Restful</title>
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="./css/base.css" rel="stylesheet">
@@ -32,7 +32,7 @@
 
         <!-- Collapsed navigation -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">CloudCode Restful</a>
+            <a class="navbar-brand" href="index.html">云函数 Restful</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -58,8 +58,8 @@
                 <div class="col-md-9" role="main">
 
 <h3 id="_1">开发文档</h3>
-<p>相关云端逻辑的编写方式，请参考<a href="http://docs.bmob.cn/cloudcode/WEB/a_faststart/doc/index.html">云端逻辑开发文档</a></p>
-<p>在REST API中可以调用云端逻辑。例如，想调用云端逻辑的方法hello:</p>
+<p>相关云函数的编写方式，请参考<a href="http://docs.bmob.cn/cloudcode/WEB/a_faststart/doc/index.html">云函数开发文档</a></p>
+<p>在REST API中可以调用云函数。例如，想调用云函数的方法hello:</p>
 <p><strong>请求</strong></p>
 <ul>
 <li>
@@ -93,11 +93,11 @@ Content-Type: application/json
 <p>status: 200 OK</p>
 </li>
 <li>
-<p>body: 对应云端逻辑返回的格式。</p>
+<p>body: 对应云函数返回的格式。</p>
 </li>
 </ul>
 <p><strong>例子</strong></p>
-<p>如调用名为hello的云端逻辑可使用以下请求。</p>
+<p>如调用名为hello的云函数可使用以下请求。</p>
 <pre><code>curl -X POST \
   -H &quot;X-Bmob-Application-Id: Your Application ID&quot; \
   -H &quot;X-Bmob-REST-API-Key: Your REST API Key&quot; \
@@ -106,7 +106,7 @@ Content-Type: application/json
   https://api.bmob.cn/1/functions/hello
 </code></pre>
 
-<p>如果运行的云端逻辑不需要传入参数，请参考下面的例子。
+<p>如果运行的云函数不需要传入参数，请参考下面的例子。
 <strong>注意，"{}"是不能缺的</strong></p>
 <pre><code>curl -X POST \
   -H &quot;X-Bmob-Application-Id: Your Application ID&quot; \
@@ -154,5 +154,5 @@ Content-Type: application/json
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-10-30 07:21:43
+Build Date UTC : 2017-12-01 02:34:35
 -->

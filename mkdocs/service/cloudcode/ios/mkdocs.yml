@@ -1,4 +1,4 @@
-site_name: CloudCode iOS
+site_name: 云函数 iOS
 pages:
 - [index.md, 开发文档]
 #- [module/common_problem/README.md, 常见问题]

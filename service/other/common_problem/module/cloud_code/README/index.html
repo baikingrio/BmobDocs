@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../../img/favicon.ico">
-        <title>云端逻辑 - 常见问题</title>
+        <title>云函数 - 常见问题</title>
         <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
@@ -146,11 +146,11 @@
                         </ul>
                     </li>
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">云端逻辑 <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">云函数 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
 <li class="active">
-    <a href="index.html">云端逻辑</a>
+    <a href="index.html">云函数</a>
 </li>
                             
 <li >
@@ -184,30 +184,30 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#_1">云端逻辑常见问题</a></li>
+        <li class="main active"><a href="#_1">云函数常见问题</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="_1">云端逻辑常见问题</h1>
-<p>Q:使用云端逻辑需要掌握什么语言</p>
-<p>A:<code>Javascript</code>，因为云端逻辑是用<code>Nodejs</code>部署架构的。</p>
+<h1 id="_1">云函数常见问题</h1>
+<p>Q:使用云函数需要掌握什么语言</p>
+<p>A:<code>Javascript</code>，因为云函数是用<code>Nodejs</code>部署架构的。</p>
 <hr />
-<p>Q:云端逻辑能做什么事情</p>
-<p>A:云端逻辑的推出是为了给大家解决更多后端业务逻辑的问题，让大家尽可能把更多的业务逻辑挪到云端，实现更快的更新迭代。目前，云端逻辑除可以自由操作云端数据库外，还提供了<code>邮件模块</code>、<code>HTTP模块</code>和<code>事件模块</code>等，方便大家自由发挥。</p>
+<p>Q:云函数能做什么事情</p>
+<p>A:云函数的推出是为了给大家解决更多后端业务逻辑的问题，让大家尽可能把更多的业务逻辑挪到云端，实现更快的更新迭代。目前，云函数除可以自由操作云端数据库外，还提供了<code>邮件模块</code>、<code>HTTP模块</code>和<code>事件模块</code>等，方便大家自由发挥。</p>
 <hr />
-<p>Q:云端逻辑能上传文件吗</p>
+<p>Q:云函数能上传文件吗</p>
 <p>A:暂不支持。</p>
 <hr />
-<p>Q:如何调试云端逻辑</p>
+<p>Q:如何调试云函数</p>
 <p>A:
-- Bmob在Web端（当前云端逻辑的下边）为大家提供最简单的云端逻辑的调试工具。
-- 云端逻辑本地化调试工具：<a href="https://github.com/bmob/bmob-cloud-tool">https://github.com/bmob/bmob-cloud-tool</a> 。</p>
+- Bmob在Web端（当前云函数的下边）为大家提供最简单的云函数的调试工具。
+- 云函数本地化调试工具：<a href="https://github.com/bmob/bmob-cloud-tool">https://github.com/bmob/bmob-cloud-tool</a> 。</p>
 <hr />
-<p>Q:云端逻辑或者android上update能否不用objectid用组合条件</p>
+<p>Q:云函数或者android上update能否不用objectid用组合条件</p>
 <p>A:只能根据objectid来，在查询返回的结果集中有objectid</p>
 <hr />
-<p>Q:云端逻辑，可以把消息发给IMSDK吗</p>
+<p>Q:云函数，可以把消息发给IMSDK吗</p>
 <p>A:目前不可以。</p>
 <hr />
 <p>Q:url转码怎么转</p>
@@ -219,14 +219,14 @@
 <p>Q:相同的代码，在Local中可以返回正确的结果，在Server中返回错误。请问如何解决？</p>
 <p>A:把本地的nodejs版本改成和云端一样，然后调试通过就可以了</p>
 <hr />
-<p>Q:bmob的短信服务端验证接口云端代码怎么做？要发送一个post请求</p>
-<p>A:使用云端代码发送http请求即可</p>
+<p>Q:bmob的短信服务端验证接口云函数怎么做？要发送一个post请求</p>
+<p>A:使用云函数发送http请求即可</p>
 <hr />
-<p>Q:生成新应用时云端代码没有复制到新应用</p>
-<p>A:可使用云端代码的本地调试工具可以运行后可以直接导入</p>
+<p>Q:生成新应用时云函数没有复制到新应用</p>
+<p>A:可使用云函数的本地调试工具可以运行后可以直接导入</p>
 <hr />
-<p>Q:云端代码能否实现 WebSocket ？</p>
-<p>A:云端代码无法使用第三方库</p>
+<p>Q:云函数能否实现 WebSocket ？</p>
+<p>A:云函数无法使用第三方库</p>
 <hr />
 <p>Q:往表中添加基本类型的数据是调用数据库对象的insert方法，而添加关联关系对象是用add方法？？那我的表里有这两种数据类型，该怎么添加数据</p>
 <p>A:分别存储</p>
@@ -243,7 +243,7 @@
 <p>Q:删除数据库记录只能用objectId吗？不能用where条件吗</p>
 <p>A:只能用objectId,where条件用于查询，查询后的结果集中会有ObjectId的。</p>
 <hr />
-<p>Q:云端逻辑怎么设定where条件</p>
+<p>Q:云函数怎么设定where条件</p>
 <p>A:</p>
 <pre><code>&quot;where&quot;:{
 &quot;updatedAt&quot;:{
@@ -299,22 +299,22 @@ response.send('data2');
 
 <p>A:不能这样取，只能取一次，然后再取一次，不能在里面for循环</p>
 <hr />
-<p>Q:云逻辑可以查询支付订单吗？返回订单结果和数额之类的，有相关函数吗</p>
-<p>A:可以使用云逻辑去调用restful接口来查询</p>
+<p>Q:云函数可以查询支付订单吗？返回订单结果和数额之类的，有相关函数吗</p>
+<p>A:可以使用云函数去调用restful接口来查询</p>
 <hr />
-<p>Q:云端代码可以实现抓取别的网页信息吗
-比如说，我客户端去请求云端代码，让云端代码实现抓取某个咨询网站的信息</p>
-<p>A:可以，使用云端代码的http请求抓取即可。</p>
+<p>Q:云函数可以实现抓取别的网页信息吗
+比如说，我客户端去请求云函数，让云函数实现抓取某个咨询网站的信息</p>
+<p>A:可以，使用云函数的http请求抓取即可。</p>
 <hr />
-<p>Q:请问云端代码可以发送短信吗？</p>
-<p>A:可以通过云端代码调用restful接口来实现。</p>
+<p>Q:请问云函数可以发送短信吗？</p>
+<p>A:可以通过云函数调用restful接口来实现。</p>
 <hr />
-<p>Q:云端代码更新用户表错误
+<p>Q:云函数更新用户表错误
 但是最后返回的err包含错误信息
 {"code":206,"message":"User cannot be altered without sessionToken Error."}</p>
 <p>A:必须先登录才能更新</p>
 <hr />
-<p>Q:请问云端代码怎么返回JSON数据</p>
+<p>Q:请问云函数怎么返回JSON数据</p>
 <p>A:</p>
 <pre><code>var data = { dir: 'kunhony', param: 'archive' };
 var str = JSON.stringify(data);
@@ -328,7 +328,7 @@ response.end(str);
 <p>Q:Bmob中如何支持Cookie？用于将SessionID分配给浏览器</p>
 <p>A:不支持set-cookie的方法。</p>
 <hr />
-<p>Q:请问云端逻辑如何返回错误？</p>
+<p>Q:请问云函数如何返回错误？</p>
 <p>A:如下，代码一般为这种形式，如果错误，返回response.send(err);</p>
 <pre><code>function onRequest(request, response, modules) {
 
@@ -352,13 +352,13 @@ functions.run({
 <p>Q:开发公众号可以获取微信的openid吗</p>
 <p>A:可以</p>
 <hr />
-<p>Q:云端代码如何进行模糊查询</p>
+<p>Q:云函数如何进行模糊查询</p>
 <p>A:调用restful的模糊查询接口</p>
 <hr />
-<p>Q:云逻辑能引入第三方模块吗？如underscore</p>
+<p>Q:云函数能引入第三方模块吗？如underscore</p>
 <p>A:不可以，如要使用第三方模块，可考虑使用窗口服务。</p>
 <hr />
-<p>Q:我有一个云端代码，客户端访问的时候查看一条数据库对象，如果不存在，则创建、返回，如果存在则直接返回。所有客户端的访问都是查看同一个对象，如何保证多个客户端同时访问的时候不会同时创建多个对象？</p>
+<p>Q:我有一个云函数，客户端访问的时候查看一条数据库对象，如果不存在，则创建、返回，如果存在则直接返回。所有客户端的访问都是查看同一个对象，如何保证多个客户端同时访问的时候不会同时创建多个对象？</p>
 <p>A:目前这个无法做到。</p>
 <hr />
 <p>Q:bql不支持 delete语句吗</p>
@@ -367,22 +367,22 @@ functions.run({
 <p>Q:表设置了 ACL， 我想用 master key 或 用户的 token 去更新表，在云端用批量更新模块，如何传入master key 或 用户的 token ？</p>
 <p>A:目前不支持</p>
 <hr />
-<p>Q:云端代码怎么延迟执行一个操作</p>
+<p>Q:云函数怎么延迟执行一个操作</p>
 <p>A:目前并无该项功能</p>
 <hr />
-<p>Q:云端代码中不同的模块中经常出现相同代码 有没有办法把这些代码提取到公共区域来复用</p>
-<p>A:云端代码之间是可以相互调用的，具体查看云端代码云对象章节。</p>
+<p>Q:云函数中不同的模块中经常出现相同代码 有没有办法把这些代码提取到公共区域来复用</p>
+<p>A:云函数之间是可以相互调用的，具体查看云函数云对象章节。</p>
 <hr />
 <p>Q:如何清空某个数据表？</p>
 <p>A:需要先将表的所有值查询下来，然后遍历去删除，具体参考文档的查询及删除对象章节</p>
 <hr />
 <p>Q:怎么在云端调用 获取短信验证码、验证短信验证码</p>
-<p>A:使用云端代码进行http请求，请求RESTful接口即可</p>
+<p>A:使用云函数进行http请求，请求RESTful接口即可</p>
 <hr />
 <p>Q:云端如何自定义返回数据</p>
 <p>A:定义好格式后以JSON形式返回</p>
 <hr />
-<p>Q:云端代码MD5加密中文，结果怎么和PHP的不一样？</p>
+<p>Q:云函数MD5加密中文，结果怎么和PHP的不一样？</p>
 <p>A:编码问题，https://cnodejs.org/topic/54ad4e40ce87bace2444cc49</p>
 <hr />
 <p>Q:BMOB云端数据库导入需手动导入CSV格式，如何做到自动抓取我本地CSV文件传入云端数据库</p>
@@ -397,7 +397,7 @@ functions.run({
 <p>Q:如果一个字段里没有值，查询后返回的内容也没有这个字段，如果才能让这个字段也出现在返回的内容里。</p>
 <p>A:由于后台使用的是MongoDB，是无模式的，没有初始值，因此只有显示地给该字段赋值才会有内容返回。</p>
 <hr />
-<p>Q:写云端代码的时候，只能通过objectId来查询符合条件的一行数据？我想用表中的其他字段当做查询条件怎么写?</p>
+<p>Q:写云函数的时候，只能通过objectId来查询符合条件的一行数据？我想用表中的其他字段当做查询条件怎么写?</p>
 <p>A:可以使用条件查询，具体查看数据库对象中的查询多条数据小节。</p>
 <hr />
 <p>Q:用skip和limit来实现分页查询的话，如果表里的数据更新的很快的话，会不会查询出重复的数据？</p>
@@ -409,38 +409,38 @@ functions.run({
 <p>Q:连上vpn没有数据返回</p>
 <p>A:可以在连上VPN时ping https://api.bmob.cn/看看能否ping通，有可能是VPN屏蔽了</p>
 <hr />
-<p>Q:云端代码中where条件怎么表示!=？</p>
+<p>Q:云函数中where条件怎么表示!=？</p>
 <p>A:您好，可以参考restful文档中的查询数据中的条件查询，大概的形式为"type":{"$ne":"delete"}</p>
 <hr />
 <p>Q:如何更新1000条以上的记录</p>
 <p>A:可以采用分页，先取1000条数据进行更新，再取1000条之后的数据接着更新</p>
 <hr />
-<p>Q:请问云端代码请求HTTP时如何获取cookies和带cookies访问？</p>
+<p>Q:请问云函数请求HTTP时如何获取cookies和带cookies访问？</p>
 <p>A:将var http = modules.oHttp；
 改成var http = modules.oHttp.defaults({jar: true});
 即可使用全局cookie，后面的链接就不需要手动输入cookie了。</p>
 <hr />
-<p>Q:JavaScript能调用云端代码吗（xx平台能调用云端代码）</p>
-<p>A:只要支持https请求就可以通过restful来调用云端代码，部分sdk直接封装了调用云端代码的接口，具体可以查看云端代码文档。</p>
+<p>Q:JavaScript能调用云函数吗（xx平台能调用云函数）</p>
+<p>A:只要支持https请求就可以通过restful来调用云函数，部分sdk直接封装了调用云函数的接口，具体可以查看云函数文档。</p>
 <hr />
 <p>Q:请问云端new Date()如何获取和createTime里面一样的时间</p>
-<p>A:createAt这个属性是特殊字段，为了节约HTTP流量，我们没有进行特殊字段类型处理，直接返回string类型。你在云端代码里面new Date()获取的是一样的时间，因为服务器的时间是保持一致的。至于两者的数据格式问题，你可以自行处理。</p>
+<p>A:createAt这个属性是特殊字段，为了节约HTTP流量，我们没有进行特殊字段类型处理，直接返回string类型。你在云函数里面new Date()获取的是一样的时间，因为服务器的时间是保持一致的。至于两者的数据格式问题，你可以自行处理。</p>
 <hr />
-<p>Q:云端代码数据库可以返回多少条记录？</p>
+<p>Q:云函数数据库可以返回多少条记录？</p>
 <p>A:一次最多只能返回1000次数据，如果要获取的数据大于整个数目，必须要分多次查询</p>
 <hr />
-<p>Q:云端代码只能添加方法吗
-我想在云端代码中添加一个功能模块，但是发现云端代码中的每个文件都是独立的，而且只能是方法，我想问一下能不能实现。</p>
-<p>A:完全可以在方法内声明方法或者类的，这个不影响，而且可以通过间接调用的方式调用其他云端代码的执行。</p>
+<p>Q:云函数只能添加方法吗
+我想在云函数中添加一个功能模块，但是发现云函数中的每个文件都是独立的，而且只能是方法，我想问一下能不能实现。</p>
+<p>A:完全可以在方法内声明方法或者类的，这个不影响，而且可以通过间接调用的方式调用其他云函数的执行。</p>
 <hr />
 <p>Q:webstorm在本地搭好服务器，在不联网的情况下，使用ios调用运行在本地的服务端代码，能不能利用这样的方式测试？</p>
 <p>A:不可以，数据保存在云端，不联网无法操作数据，本地调试过程中不需要客户端的参与。</p>
 <hr />
-<p>Q:云端代码执行console.log无输出</p>
-<p>A:在真正的云端代码上，不支持console.log这种输出，只能使用res.end()</p>
+<p>Q:云函数执行console.log无输出</p>
+<p>A:在真正的云函数上，不支持console.log这种输出，只能使用res.end()</p>
 <hr />
 <p>Q:云端怎么实现 var wpwp = require('wpwp')('YOUR-KEY');</p>
-<p>A:云端代码进行了封装，无法加载非官方模块。</p>
+<p>A:云函数进行了封装，无法加载非官方模块。</p>
 <hr />
 <p>Q:如何更新数据表中Date的数据</p>
 <p>A:</p>
@@ -458,10 +458,10 @@ db.updateUserByObjectId({&quot;objectId&quot;:request.body.objectId.toString() ,
 </code></pre>
 
 <hr />
-<p>Q:containedIn在云端代码里面是什么指令</p>
+<p>Q:containedIn在云函数里面是什么指令</p>
 <p>A:对应为 <a href="http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#查询">http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#查询</a> 里面的 $in 查询，你可以参考restful文档，在where条件中使用就可以了。</p>
 <hr />
-<p>Q:如何在云端代码中计算两个时间的时间差</p>
+<p>Q:如何在云函数中计算两个时间的时间差</p>
 <p>A:</p>
 <pre><code>var lastDate;//一定要是Date哦
 var nowDate = new Date(data); 
@@ -475,10 +475,10 @@ Date.parse(nowDate) - Date.parse(lastDate)
 <p>Q:批量操作对象中 "path": "/1/classes/GameScore" ，其中的 "/1/class/ "是什么来的？怎么确定下来的？</p>
 <p>A:/1/classse/ 是系统规定的路径，其中1是系统内部的版本号，classes表示接下来要操作的是数据表。</p>
 <hr />
-<p>Q:云代码能不能实现函数递归调用</p>
+<p>Q:云函数能不能实现函数递归调用</p>
 <p>A:可以，但要注意不能过于复杂，5s内无回调会提示超时。</p>
 <hr />
-<p>Q:我想用云端代码修改user表中的数组，要如何设置？如何先获取表中的数组呢？获取了之后又要如何用arr.addUnique更新？求示例。</p>
+<p>Q:我想用云函数修改user表中的数组，要如何设置？如何先获取表中的数组呢？获取了之后又要如何用arr.addUnique更新？求示例。</p>
 <p>A:要修改User表中的数据需要注意：
 1. 要么你有登录用户的sessionToken信息（也就是权限），这样可以修改用户信息；
 2. 要么你用masterKey（也就是超级权限）来修改用户信息。</p>
@@ -496,15 +496,15 @@ arr.addUnique({
 </code></pre>
 
 <hr />
-<p>Q:云端代码比较复杂的时候，很难找出根本原因
+<p>Q:云函数比较复杂的时候，很难找出根本原因
 1. 能否支持加入日志，通过查看日志来debug？
 2. 能否有类似IDE的断点，或者是报错信息更明确一点在哪里出错？</p>
-<p>A:可以借助我们开发的这个云端代码本地化调试工具来调试：
+<p>A:可以借助我们开发的这个云函数本地化调试工具来调试：
 https://github.com/bmob/bmob-cloud-tool</p>
 <hr />
-<p>Q:对于设置了ACL为用户只读的数据，如何在云端代码里将其全部读出？</p>
+<p>Q:对于设置了ACL为用户只读的数据，如何在云函数里将其全部读出？</p>
 <p>A:使用masterKey
-云端代码设置masterkey的方法：</p>
+云函数设置masterkey的方法：</p>
 <pre><code>function onRequest(request, response, modules) {
 var db = modules.oData;
 db.setHeader({&quot;X-Bmob-Master-Key&quot;:&quot;这里填写Master Key信息&quot;});
@@ -516,14 +516,14 @@ response.end(&quot;更新成功&quot;);
 
 <hr />
 <p>Q:如果把代码放在云端，本地JS调用时，是否需要输入Application ID、REST API Key才能进行调用呢？</p>
-<p>A:只需要在初始化js sdk的时候传人Application ID、REST API Key就行了，在js调用云端代码的时候不需要传入</p>
+<p>A:只需要在初始化js sdk的时候传人Application ID、REST API Key就行了，在js调用云函数的时候不需要传入</p>
 <hr />
-<p>Q:云端代码里如何获取当前时间</p>
-<p>A:云端代码是运行在nodejs的环境中，所以js的函数能用在云端代码上。
+<p>Q:云函数里如何获取当前时间</p>
+<p>A:云函数是运行在nodejs的环境中，所以js的函数能用在云函数上。
 获取时间： var now = new Date();</p>
 <hr />
-<p>Q:调用云端代码，能否获取调用者的真实IP,想用IP来做排行榜的地理位置统计</p>
-<p>A:云端代码打印headers</p>
+<p>Q:调用云函数，能否获取调用者的真实IP,想用IP来做排行榜的地理位置统计</p>
+<p>A:云函数打印headers</p>
 <pre><code>function onRequest(request, response, modules) {
 response.send(request.headers);
 } 

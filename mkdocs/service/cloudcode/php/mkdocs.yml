@@ -1,4 +1,4 @@
-site_name: CloudCode PHP
+site_name: 云函数 PHP
 pages:
 - [index.md, 开发文档]
 #- [module/common_problem/README.md, 常见问题]

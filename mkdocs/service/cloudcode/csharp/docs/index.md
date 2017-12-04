@@ -1,6 +1,6 @@
 ### 开发 文档
 
-云端代码的调用方法非常简单，如下为调用执行云端方法`test`的实现代码：
+云函数的调用方法非常简单，如下为调用执行云端方法`test`的实现代码：
 
 ```C#
 Bmob.Endpoint<Hashtable>("test", (resp, exception) => 
@@ -32,5 +32,5 @@ Bmob.Endpoint<Hashtable>("test", parameters, (resp, exception) =>
     });
 ```
 
-相关云端代码的编写方式，请参考[云端代码开发文档](http://docs.bmob.cn/cloudcode/WEB/a_faststart/doc/index.html)。
+相关云函数的编写方式，请参考[云函数开发文档](http://docs.bmob.cn/cloudcode/WEB/a_faststart/doc/index.html)。
 

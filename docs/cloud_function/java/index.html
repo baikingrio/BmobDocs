@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>开发文档 - Bmob文档中心</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/custom.css" rel="stylesheet" id="custom">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/main.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-fixed-top" role="navigation">
+    <div class="main-nav">
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">
+                <!--Bmob文档中心-->
+                <img src="../../img/logo.png" alt="">
+            </a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav">
+            
+              <li class="pull-left">
+                
+					<a href="../..">文档首页</a>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">数据服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../data/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/wechat_app/">小程序</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/cocos2d_x/">Cocos2D-X</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/csharp/">C# SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/go/">GO</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left active">
+                
+					<!--<a href="">云函数</a>-->
+					<li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">云函数 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li class="active">
+									<a href="./">Java 云函数</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../csharp/">C#</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../restful/">RESTful</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../web/">Web</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">支付服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">支付服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../pay/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../pay/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../pay/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">短信服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">短信服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../sms/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../sms/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../sms/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../sms/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../sms/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">IM服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">IM服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../im/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../im/ios/">iOS SDK</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">推送服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">推送服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../push/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../push/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../push/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../push/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../push/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">其他</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">其他 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../other/common_problem/">常见问题</a>
+                                </li>
+                            
+                            
+                                <li >
+                                    <a href="../../other/error_code/">错误码</a>
+                                </li>
+							
+                            
+                                <li >
+                                    <a href="../../other/data_safety/">数据安全</a>
+                                </li>
+							
+                            
+                                <li >
+                                    <a href="../../other/bql/">BQL</a>
+                                </li>
+							
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li>
+                  <a href="https://www.bmob.cn/repository/index" target="_blank">知识库</a>
+              </li>
+              <li>
+                  <a href="https://www.bmob.cn/downloads" target="_blank">下载</a>
+              </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+
+              <!---->
+                <!---->
+                    <!--<li >-->
+                        <!--<a rel="next" href="../ios/">-->
+                            <!--<i class="fa fa-arrow-left"></i> Previous-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li >-->
+                        <!--<a rel="prev" href="../javascript/">-->
+                            <!--Next <i class="fa fa-arrow-right"></i>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+              <!---->
+
+              <!---->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/bmob/bmobdocs/edit/master/docs/cloud_function/java/index.md">-->
+                            <!---->
+                                <!--<i class="fa fa-github"></i> Edit on GitHub-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+              <!---->
+            </ul>
+        </div>
+    </div>
+</div>
+        <div class="pagebody">
+                <div class="sidebar">
+                    <div class="bs-sidebar hidden-print affix well" role="complementary">
+
+	
+		
+	
+		
+				
+				
+				
+				
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+				
+					<div class="code-title">Java 云函数</div>
+				
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+				
+				
+		
+	
+
+
+	<ul class="nav bs-sidenav">
+		
+			
+		
+			
+		
+			
+				
+					
+						
+					
+						
+					
+						
+							
+								
+									<li class="active">
+										<a class="itm-l1" href="./">开发文档</a>
+										
+										<ul class="nav">
+											
+											<li class="active "><a href="#_1">调用方法</a>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#android-sdk">Android SDK</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#ios-sdk">iOS SDK</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#c-sdk">C# SDK</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#restful-api">Restful api</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#http">Http请求</a></li>
+												</ul>
+												
+											</li>
+												
+											<li class=""><a href="#_2">日志</a>
+												
+											</li>
+												
+											<li class=""><a href="#_3">代码规范</a>
+												
+											</li>
+												
+											<li class=""><a href="#request">Request对象</a>
+												
+											</li>
+												
+											<li class=""><a href="#response">Response对象</a>
+												
+											</li>
+												
+											<li class=""><a href="#modules">Modules对象</a>
+												
+											</li>
+												
+											<li class=""><a href="#_4">日志输出</a>
+												
+											</li>
+												
+											<li class=""><a href="#bmob">Bmob数据操作</a>
+												
+											</li>
+												
+											<li class=""><a href="#_5">内置类</a>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#httpresponse">HttpResponse</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#responsestatus">ResponseStatus</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#querier">Querier</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#bmobupdater">BmobUpdater</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#json">JSON</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#jsonobject">JSONObject</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#jsonarray">JSONArray</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#bmobpointer">BmobPointer</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#bmobfile">Bmobfile</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#bmobdate">BmobDate</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#bmobgeopoint">BmobGeoPoint</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#aes">AES</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#base64">Base64</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#crypto">Crypto</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#gzip">GZip</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#md5">MD5</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#rsa">RSA</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#sha1">SHA1</a></li>
+												</ul>
+												
+											</li>
+												
+											<li class=""><a href="#_6">内置方法：</a>
+												
+											</li>
+												
+											<li class=""><a href="#_7">示例：</a>
+												
+											</li>
+												
+											<li class=""><a href="#_8">注意事项</a>
+												
+											</li>
+												
+										</ul>
+										
+									</li>
+								
+							
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+				
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+	</ul>
+</div>
+                </div>
+                <div class="content" role="main">
+                    <div class="wrap">
+                        
+
+<ul>
+<li>云函数是一段部署在服务端的代码片段，采用 java 或 node.js 进行编写，然后部署运行在Bmob服务器</li>
+<li>通过云函数可以解决很多复杂的业务逻辑，从此无需将要将大量的数据发送到移动设备上做计算处理</li>
+<li>只需将这些计算都交由服务端运算处理，最后移动客户端仅仅需要接收云函数运算处理返回的数据结果就可以了</li>
+<li>通过更新云函数代码片段，客户端无需更新，便满足业务改动的需求。这样云函数便有更多的灵活性和自主性</li>
+</ul>
+<h2 id="_1">调用方法</h2>
+<p>云函数提供了以下几种方式提供调用：</p>
+<table>
+<thead>
+<tr>
+<th align="center">调用方式</th>
+<th align="center">所需信息</th>
+<th align="center">优点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">SDK</td>
+<td align="center">AppId</td>
+<td align="center">交互自带加密,接入快速</td>
+</tr>
+<tr>
+<td align="center">RestApi</td>
+<td align="center">AppId、RestKey</td>
+<td align="center">所有平台适用，通用性强</td>
+</tr>
+<tr>
+<td align="center">Http请求</td>
+<td align="center">Secret Key</td>
+<td align="center">所有平台适用，可用浏览器打开</td>
+</tr>
+</tbody>
+</table>
+<h3 id="android-sdk">Android SDK</h3>
+<h3 id="ios-sdk">iOS SDK</h3>
+<h3 id="c-sdk">C# SDK</h3>
+<h3 id="restful-api">Restful api</h3>
+<h3 id="http">Http请求</h3>
+<h2 id="_2">日志</h2>
+<ul>
+<li>可在Bmob后台根据时间、日志级别、内容关键字、方法名搜索想要的日志</li>
+<li>每个应用拥有最大10m的日志空间，循环写入</li>
+<li>高级用户有实时日志功能</li>
+</ul>
+<h2 id="_3">代码规范</h2>
+<ul>
+<li>
+<p>java云函数必须遵循以下格式：</p>
+<pre><code>public static void onRequest(final Request request, final Response response, final Modules modules) throws Throwable {
+// 上面这个方法体，不允许任何修改
+// 这里使用Java编写云函数
+// 最后一个字符必须是 }
+}
+</code></pre>
+</li>
+<li>
+<p>代码不能包含以下关键字：(保存代码时有错误提醒)</p>
+<pre><code>Class
+File
+System
+...
+</code></pre>
+</li>
+<li>
+<p>需要获取当前毫秒时，可用 <code>getTime()</code> 、<code>new java.util.Date().getTime()</code> 替代 <code>System.currentTimeMillis()</code></p>
+</li>
+<li>如果确实需要用到被禁止使用的关键字，例如查询"File"表，可用"F"+"ile"的形式拼接</li>
+<li>不可包含<code>/**/</code>注释，如需注释，请用 <code>//</code></li>
+<li>仅可写一个Java的方法，不能写多个方法、类变量、静态变量等</li>
+<li>云函数执行完毕后，必须用response.send方法返回响应数据，否则会被当做超时，多次超时可能会被暂停使用</li>
+</ul>
+<h2 id="request">Request对象</h2>
+<p>onRequest方法参数中 <code>Request request</code> 包含了本次请求的全部信息：</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">类型</th>
+<th align="center">获取方法</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">路径Path</td>
+<td align="center">String</td>
+<td align="center">request.getPath()</td>
+<td align="center">/xxxxxxxxxxxxxxxx/test1</td>
+</tr>
+<tr>
+<td align="center">方法Method</td>
+<td align="center">String</td>
+<td align="center">request.getMethod()</td>
+<td align="center">POST</td>
+</tr>
+<tr>
+<td align="center">请求头Headers</td>
+<td align="center">JSONObject</td>
+<td align="center">request.getHeaders()</td>
+<td align="center">{"User-Agent":["Chorme"]}</td>
+</tr>
+<tr>
+<td align="center">请求体Body</td>
+<td align="center">byte[]</td>
+<td align="center">request.getBody()</td>
+<td align="center">[98, 109, 111, 98]</td>
+</tr>
+<tr>
+<td align="center">Get参数</td>
+<td align="center">JSONObject</td>
+<td align="center">request.getQueryParams()</td>
+<td align="center">{"page": "1"}</td>
+</tr>
+<tr>
+<td align="center">Body内参数</td>
+<td align="center">JSONObject</td>
+<td align="center">request.getParams()</td>
+<td align="center">{"username": "zwr"}</td>
+</tr>
+<tr>
+<td align="center">单个请求头</td>
+<td align="center">String</td>
+<td align="center">request.getHeader(String key)</td>
+<td align="center">request.getHeader("User-Agent") = "Chrome"</td>
+</tr>
+<tr>
+<td align="center">单个Get参数</td>
+<td align="center">String</td>
+<td align="center">request.getQueryParam(String key)</td>
+<td align="center">request.getQueryParam("page") = "1"</td>
+</tr>
+</tbody>
+</table>
+<h2 id="response">Response对象</h2>
+<ul>
+<li>onRequest方法参数中 <code>Response response</code> 用于响应请求，返回数据</li>
+<li>
+<p>Response对象仅有名为 <code>send</code> 的方法，参数不同共有4种重载形式(Overloading):</p>
+</li>
+<li>
+<p>send(Object res)</p>
+</li>
+<li>send(Object res, int statusCode)</li>
+<li>send(Object res, int statusCode, String statusMsg)</li>
+<li>send(Object res, int statusCode, String statusMsg, JSONObject headers)</li>
+</ul>
+<p>以下是参数说明：</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">类型</th>
+<th align="center">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">res</td>
+<td align="center">Object</td>
+<td align="center">返回的内容：如果为byte[]类型直接返回；否则会返回res.toString("UTF-8")</td>
+</tr>
+<tr>
+<td align="center">statusCode</td>
+<td align="center">int</td>
+<td align="center">返回的Http响应状态码，例如200、404</td>
+</tr>
+<tr>
+<td align="center">statusMsg</td>
+<td align="center">String</td>
+<td align="center">返回的Http响应状态，例如OK、NotFound</td>
+</tr>
+<tr>
+<td align="center">headers</td>
+<td align="center">JSONObject</td>
+<td align="center">返回的头部信息，采用String-String的格式，例如{"Content-Type": "text/plain; charset=UTF-8"}</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>示例<pre><code>// 1. 直接返回字符串
+response.send("Hello world--Bmob");
+// 2. 返回404错误
+response.send("Error", 404, "NotFound");
+// 3. 返回中文字符串，需要返回包含charset的header
+response.send(
+    "你好，比目",
+    200,
+    "OK",
+    JSON.toJson("Content-Type", "text/plain; charset=UTF-8")
+);
+</code></pre>
+</li>
+</ul>
+<h2 id="modules">Modules对象</h2>
+<ul>
+<li>onRequest方法参数中 <code>Modules modules</code> 提供了几个模块供开发者调用：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">模块名</th>
+<th align="center">获取方式</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Bmob数据库操作对象</td>
+<td align="center">modules.oData</td>
+<td align="center">封装了Bmob的大多数api，以供开发者进行快速的业务逻辑开发，详见下文 <code>&lt;Bmob数据操作&gt;</code></td>
+</tr>
+<tr>
+<td align="center">日志输出对象</td>
+<td align="center">modules.oLog</td>
+<td align="center">提供了几个级别的日志输出，以便调试，详见下文 <code>&lt;日志输出&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">日志输出</h2>
+<pre><code>    // 设置需要输出的日志级别
+    // Level_All = 0
+    // Level_Debug = 1
+    // Level_Warn = 2
+    // Level_Error = 3
+    modules.oLog.level = modules.oLog.Level_All // 全部都会输出
+    modules.oLog.level = modules.oLog.Level_Warn // 仅输出Warn和Error
+    modules.oLog.level = modules.oLog.Level_Error // 仅Error级别日志
+
+    modules.oLog.d(Object) // 输出Debug级别日志
+    modules.oLog.w(Object) // 输出Warn级别日志
+    modules.oLog.e(Object) // 输出Error级别日志
+    modules.oLog.debug(String,Object...) // 格式化输出Debug级别日志
+    modules.oLog.warn(String,Object...) // 格式化输出Warn级别日志
+    modules.oLog.error(String,Object...) // 格式化输出Error级别日志
+</code></pre>
+<h2 id="bmob">Bmob数据操作</h2>
+<p>以下均为 <code>modules.oData</code> 的方法：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法体</th>
+<th align="center">返回值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">setDomain(String)</td>
+<td align="center">this</td>
+<td align="center">设置请求的域名，仅迁移用户需要使用</td>
+</tr>
+<tr>
+<td align="center">setTimeout(int)</td>
+<td align="center">this</td>
+<td align="center">设置超时时间(单位:毫秒)，与云函数超时无关</td>
+</tr>
+<tr>
+<td align="center">setHeader(String...)</td>
+<td align="center">this</td>
+<td align="center">设置请求头</td>
+</tr>
+<tr>
+<td align="center">setHeader(JSONObject)</td>
+<td align="center">this</td>
+<td align="center">设置请求头</td>
+</tr>
+<tr>
+<td align="center">setUserSession(String)</td>
+<td align="center">this</td>
+<td align="center">设置用户的Session Token</td>
+</tr>
+<tr>
+<td align="center">setMasterKey(String)</td>
+<td align="center">this</td>
+<td align="center">设置应用的Master Key</td>
+</tr>
+<tr>
+<td align="center">insert(String table,JSONObject data)</td>
+<td align="center">HttpResponse</td>
+<td align="center">往数据表中添加一行</td>
+</tr>
+<tr>
+<td align="center">remove(String table,String objectId)</td>
+<td align="center">HttpResponse</td>
+<td align="center">删除数据表中的一行</td>
+</tr>
+<tr>
+<td align="center">update(String table,String objectId,JSONObject data)</td>
+<td align="center">HttpResponse</td>
+<td align="center">更新数据表中的一行</td>
+</tr>
+<tr>
+<td align="center">find(Querier)</td>
+<td align="center">HttpResponse</td>
+<td align="center">使用查询器查询数据</td>
+</tr>
+<tr>
+<td align="center">findOne(String table,String objectId)</td>
+<td align="center">HttpResponse</td>
+<td align="center">查询数据表中的一行</td>
+</tr>
+<tr>
+<td align="center">uploadfile(String fileName,bytes[] bytes)</td>
+<td align="center">HttpResponse</td>
+<td align="center">上传一个文件</td>
+</tr>
+<tr>
+<td align="center">uploadfile(String fileName,bytes[] bytes,String contentType)</td>
+<td align="center">HttpResponse</td>
+<td align="center">上传一个文件，并指定格式</td>
+</tr>
+<tr>
+<td align="center">deletefile(String cdnName,String url)</td>
+<td align="center">HttpResponse</td>
+<td align="center">删除文件</td>
+</tr>
+<tr>
+<td align="center">deletefiles(JSONObject)</td>
+<td align="center">HttpResponse</td>
+<td align="center">批量删除文件</td>
+</tr>
+<tr>
+<td align="center">bql(String,Object...)</td>
+<td align="center">HttpResponse</td>
+<td align="center">使用BQL查询</td>
+</tr>
+<tr>
+<td align="center">userSignUp(JSONObject)</td>
+<td align="center">HttpResponse</td>
+<td align="center">用户注册</td>
+</tr>
+<tr>
+<td align="center">userLogin(String username,String password</td>
+<td align="center">HttpResponse</td>
+<td align="center">用户通过账号、密码登陆</td>
+</tr>
+<tr>
+<td align="center">userLoginBySMS(String mobile, String smsCode,JSONObject userInfo)</td>
+<td align="center">HttpResponse</td>
+<td align="center">用户通过短信验证码一键注册或登录</td>
+</tr>
+<tr>
+<td align="center">userResetPasswordByEmail(String email)</td>
+<td align="center">HttpResponse</td>
+<td align="center">用户请求Email重置密码</td>
+</tr>
+<tr>
+<td align="center">userResetPasswordBySMS(String smsCode,String password)</td>
+<td align="center">HttpResponse</td>
+<td align="center">用户通过短信验证码重置密码</td>
+</tr>
+<tr>
+<td align="center">userResetPasswordByPWD(String userId,String session, String oldPassword, String newPassword)</td>
+<td align="center">HttpResponse</td>
+<td align="center">用户通过旧密码修改新密码</td>
+</tr>
+<tr>
+<td align="center">sendCustomSMS(String mobile, String content)</td>
+<td align="center">HttpResponse</td>
+<td align="center">发送自定义短信</td>
+</tr>
+<tr>
+<td align="center">sendSMSCode(String mobile, String template)</td>
+<td align="center">HttpResponse</td>
+<td align="center">发送某模版的短信验证码</td>
+</tr>
+<tr>
+<td align="center">verifySMSCode(String mobile, String smsCode)</td>
+<td align="center">HttpResponse</td>
+<td align="center">验证短信验证码</td>
+</tr>
+<tr>
+<td align="center">payQuery(String orderId)</td>
+<td align="center">HttpResponse</td>
+<td align="center">查询支付订单</td>
+</tr>
+<tr>
+<td align="center">cloudCode(String funcName, JSONObject body)</td>
+<td align="center">HttpResponse</td>
+<td align="center">调用云函数</td>
+</tr>
+<tr>
+<td align="center">push(JSONObject body)</td>
+<td align="center">HttpResponse</td>
+<td align="center">向客户端推送消息</td>
+</tr>
+<tr>
+<td align="center">roleInsert(JSONObject data)</td>
+<td align="center">HttpResponse</td>
+<td align="center">ACL:创建角色</td>
+</tr>
+<tr>
+<td align="center">roleFindOne(String roleId)</td>
+<td align="center">HttpResponse</td>
+<td align="center">ACL:查询角色</td>
+</tr>
+<tr>
+<td align="center">roleUpdate(String roleId, JSONObject data)</td>
+<td align="center">HttpResponse</td>
+<td align="center">ACL:修改角色</td>
+</tr>
+<tr>
+<td align="center">roleDelete(String roleId)</td>
+<td align="center">HttpResponse</td>
+<td align="center">ACL:删除角色</td>
+</tr>
+<tr>
+<td align="center">getDBTime()</td>
+<td align="center">HttpResponse</td>
+<td align="center">获取Restful服务器的时间</td>
+</tr>
+<tr>
+<td align="center">batch(JSONArray requests)</td>
+<td align="center">HttpResponse</td>
+<td align="center">批量请求</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">内置类</h2>
+<h3 id="httpresponse">HttpResponse</h3>
+<p><strong>类变量</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="center">变量名</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">err</td>
+<td align="center">String</td>
+<td align="center">错误信息</td>
+</tr>
+<tr>
+<td align="center">res</td>
+<td align="center">ResponseStatus</td>
+<td align="center">请求状态(见下表)</td>
+</tr>
+<tr>
+<td align="center">data</td>
+<td align="center">byte[]</td>
+<td align="center">返回的数据</td>
+</tr>
+<tr>
+<td align="center">stringData</td>
+<td align="center">String</td>
+<td align="center">返回的数据转String格式</td>
+</tr>
+<tr>
+<td align="center">jsonData</td>
+<td align="center">JSONObject</td>
+<td align="center">返回的数据转JSON格式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="responsestatus">ResponseStatus</h3>
+<p><strong>类变量</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="center">变量名</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">code</td>
+<td align="center">int</td>
+<td align="center">状态码</td>
+</tr>
+<tr>
+<td align="center">status</td>
+<td align="center">String</td>
+<td align="center">状态描述</td>
+</tr>
+<tr>
+<td align="center">headers</td>
+<td align="center">JSONObject</td>
+<td align="center">返回的Http头部</td>
+</tr>
+</tbody>
+</table>
+<h3 id="querier">Querier</h3>
+<p><strong>类方法</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法体</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">\&lt;init>(String table)</td>
+<td align="center">构造方法，传入表名</td>
+</tr>
+<tr>
+<td align="center">Querier limit(int)</td>
+<td align="center">设置最大返回行数</td>
+</tr>
+<tr>
+<td align="center">Querier skip(int)</td>
+<td align="center">设置跳过的个数</td>
+</tr>
+<tr>
+<td align="center">Querier order(String)</td>
+<td align="center">排序规则</td>
+</tr>
+<tr>
+<td align="center">Querier keys(String)</td>
+<td align="center">需要返回的属性</td>
+</tr>
+<tr>
+<td align="center">Querier include(String)</td>
+<td align="center">需要返回详细信息的Pointer属性</td>
+</tr>
+<tr>
+<td align="center">Querier where(JSONObject)</td>
+<td align="center">设置查询条件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bmobupdater">BmobUpdater</h3>
+<p>该类的全部静态方法都用于设置insert、update方法的请求内容</p>
+<p><strong>静态方法</strong>：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法体</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">JSONObject add(JSONObject data,String key,Object value)</td>
+<td align="center">往data添加一个键值</td>
+</tr>
+<tr>
+<td align="center">JSONObject increment(JSONObject data,String key,Number number)</td>
+<td align="center">原子计数</td>
+</tr>
+<tr>
+<td align="center">JSONObject arrayAdd(JSONObject data,String key,Object obj)</td>
+<td align="center">往Array类型添加一项</td>
+</tr>
+<tr>
+<td align="center">JSONObject arrayAddAll(JSONObject data,String key,JSONArray objects)</td>
+<td align="center">往Array类型添加多项</td>
+</tr>
+<tr>
+<td align="center">JSONObject arrayAddUnique(JSONObject data,String key,Object obj)</td>
+<td align="center">往Array类型不重复地添加一项</td>
+</tr>
+<tr>
+<td align="center">JSONObject arrayAddAllUnique(JSONObject data,String key,JSONArray objects)</td>
+<td align="center">往Array类型不重复地添加多项</td>
+</tr>
+<tr>
+<td align="center">JSONObject arrayRemoveAll(JSONObject data,String key,JSONArray objects)</td>
+<td align="center">删除Array类型的多项</td>
+</tr>
+<tr>
+<td align="center">JSONObject addRelations(JSONObject data, String key,BmobPointer...pointers)</td>
+<td align="center">添加多个Relation关系</td>
+</tr>
+<tr>
+<td align="center">JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)</td>
+<td align="center">移除多个Relation关系</td>
+</tr>
+</tbody>
+</table>
+<h3 id="json">JSON</h3>
+<p>静态方法：</p>
+<pre><code>    String stringify(JSONObject m)
+    String stringify(JSONArray m)
+    JSONObject parse(String s)
+    JSONArray parseArray(String s)
+    JSONObject setJson(JSONObject json, Object... kNvs)
+    JSONArray append(JSONArray array, Object... objs)
+    JSONArray toArray(Object... objs)
+    JSONObject strsToJson(String... kNvs)
+    JSONObject toJson(Object... kNvs)
+</code></pre>
+<h3 id="jsonobject">JSONObject</h3>
+<p>类方法：</p>
+<pre><code>    int size()
+    boolean isEmpty()
+    boolean containsKey(Object key)
+    boolean containsValue(Object value)
+    Object get(Object key)
+    Object put(String key, Object value) 
+    Object remove(Object key)
+    void clear()
+    Set&lt;String&gt; keySet()
+    BigInteger getBigInteger(String key)
+    BigDecimal getBigDecimal(String key)
+    Boolean getBoolean(String key)
+    boolean getBooleanValue(String key) 
+    Byte getByte(String key)
+    byte getByteValue(String key)
+    Date getDate(String key)
+    Double getDouble(String key)
+    double getDoubleValue(String key)
+    Float getFloat(String key)
+    float getFloatValue(String key)
+    Integer getInteger(String key)
+    int getIntValue(String key)
+    JSONArray getJSONArray(String key)
+    JSONObject getJSONObject(String key)
+    Long getLong(String key)
+    long getLongValue(String key)
+    Short getShort(String key)
+    short getShortValue(String key)
+    String getString(String key)
+</code></pre>
+<h3 id="jsonarray">JSONArray</h3>
+<p>类方法：</p>
+<pre><code>    int size() 
+    boolean isEmpty() 
+    boolean contains(Object o) 
+    boolean add(Object e) 
+    boolean remove(Object o) 
+    boolean containsAll(Collection&lt;?&gt; c) 
+    boolean addAll(Collection&lt;? extends Object&gt; c) 
+    boolean addAll(int index, Collection&lt;? extends Object&gt; c) 
+    boolean removeAll(Collection&lt;?&gt; c) 
+    boolean retainAll(Collection&lt;?&gt; c) 
+    void clear() 
+    Object get(int index) 
+    Object set(int index, Object element) 
+    void add(int index, Object element) 
+    Object remove(int index) 
+    BigInteger getBigInteger(int index) 
+    BigDecimal getBigDecimal(int index) 
+    Boolean getBoolean(int index) 
+    boolean getBooleanValue(int index) 
+    Byte getByte(int index) 
+    byte getByteValue(int index) 
+    Date getDate(int index) 
+    Double getDouble(int index) 
+    double getDoubleValue(int index) 
+    Float getFloat(int index) 
+    float getFloatValue(int index) 
+    Integer getInteger(int index) 
+    int getIntValue(int index) 
+    JSONArray getJSONArray(int index) 
+    JSONObject getJSONObject(int index) 
+    Long getLong(int index) 
+    long getLongValue(int index) 
+    Short getShort(int index) 
+    short getShortValue(int index) 
+    String getString(int index)
+</code></pre>
+<h3 id="bmobpointer">BmobPointer</h3>
+<p>构造方法：</p>
+<pre><code>    BmobPointer(String className, String objectId)
+</code></pre>
+<h3 id="bmobfile">Bmobfile</h3>
+<p>构造方法：</p>
+<pre><code>    Bmobfile(String filename, String url)
+</code></pre>
+<h3 id="bmobdate">BmobDate</h3>
+<p>构造方法：</p>
+<pre><code>    BmobDate(String timeStamp)
+    BmobDate(long millSec)
+</code></pre>
+<h3 id="bmobgeopoint">BmobGeoPoint</h3>
+<p>构造方法：</p>
+<pre><code>    BmobGeoPoint(double longitude, double latitude)
+</code></pre>
+<h3 id="aes">AES</h3>
+<p>静态方法：</p>
+<pre><code>    byte[] aes(byte[] str, byte[] key, byte[] iv, boolean eOd, String keyAlgorithm, String cipherAlgorithm)
+    byte[] Encode(byte[] content, byte[] key, byte[] iv)
+    byte[] Decode(byte[] content, byte[] key, byte[] iv)
+</code></pre>
+<h3 id="base64">Base64</h3>
+<p>静态方法：</p>
+<pre><code>    String Encode(byte[] data)
+    byte[] Decode(String str)
+</code></pre>
+<h3 id="crypto">Crypto</h3>
+<p>静态方法：</p>
+<pre><code>    String Encode(String algorithm, String content)
+    String Encode(String algorithm, byte[] bytes)
+    byte[] EncodeToBytes(String algorithm, byte[] bytes)
+    String Bytes2Hex(byte bytes[])
+    String Bytes2Hex(byte bytes[], int offset, int length)
+</code></pre>
+<h3 id="gzip">GZip</h3>
+<p>静态方法：</p>
+<pre><code>    byte[] Decode(byte[] bytes)
+    byte[] Encode(byte[] bytes)
+</code></pre>
+<h3 id="md5">MD5</h3>
+<p>静态方法：</p>
+<pre><code>    String Encode(String content)
+    String Encode(byte[] bytes)
+    byte[] EncodeToBytes(byte[] bytes)
+</code></pre>
+<h3 id="rsa">RSA</h3>
+<p>静态方法：</p>
+<pre><code>    KeyPair GenerateKeys()
+    KeyPair RestoreKeys(byte[] keyBytes)
+    PublicKey ParsePublicKey(byte[] keyBytes)
+    byte[] Encode(PublicKey pubKey, byte[] content)
+    byte[] Decode(PrivateKey priKey, byte[] content)
+    byte[] Sign(PrivateKey priKey, byte[] content)
+    boolean Verify(PublicKey pubKey, byte[] content, byte[] sign)
+</code></pre>
+<h3 id="sha1">SHA1</h3>
+<p>静态方法：</p>
+<pre><code>    String Encode(String content)
+    String Encode(byte[] bytes)
+    byte[] EncodeToBytes(byte[] bytes)
+</code></pre>
+<h2 id="_6">内置方法：</h2>
+<pre><code>    long getTime() // 获取当前毫秒
+    String fmt(String, Object...) // 格式化
+    JSON.toJson(Object...) // Json化
+    JSONObject JSON.parse(String) // String转JSONObject
+    JSONArray JSON.parseArray(String) // String转JSONArray
+    boolean isStrEmpty(String) // 判断字符串是否为空
+    arraycopy(Object from, int fromOffset, Object to, int toOffset, int length) // 复制数组内容
+</code></pre>
+<h2 id="_7">示例：</h2>
+<ul>
+<li>
+<p><strong>场景1</strong>:</p>
+<p>用户在app提交了反馈，参数有"userObjectId"、"title"、"content"、"type"，需要保存到FeedBack表</p>
+<pre><code>JSONObject params = request.getParams();
+String title = params.getString("title");
+String content = params.getString("content");
+String userId = params.getString("userObjectId");
+int type = params.getIntValue("type");
+
+JSONObject data = JSON.toJson(
+    "title", title,
+    "content", content,
+    "type", type
+);
+BmobUpdater.add(
+    data,
+    "user",
+    new BmobPointer("_User", userId)
+);
+
+response.send(
+    modules.oData.insert(
+        "Feedback",
+        data
+    ).stringData
+);
+</code></pre>
+</li>
+<li>
+<p><strong>场景2</strong>:</p>
+<p>查询Feedback表中，type为1、title字段不为空，且创建时间在12小时以内的最新10条数据，并只需要反馈content和对应user的用户名</p>
+<pre><code>Querier q = new Querier("Feedback")
+                .limit(10)
+                .include("user")
+                .order("-createdAt");
+q.addWhereEqualTo("type", 1);
+q.addWhereExists("title");
+q.addWhereGreaterThanOrEqualTo("createdAt",
+    new BmobDate(getTime() - 12 * 60 * 60 * 1000)
+);
+HttpResponse res = modules.oData.find(q);
+JSONArray feedbacks = res.jsonData.getJSONArray("results");
+if (feedbacks == null)// 请求有错误，直接返回全部内容
+    response.send(res.data);
+else {
+    JSONArray arr = new JSONArray();
+    for (int i = 0, l = feedbacks.size(); i &lt; l; i++) {
+        JSONObject fb = feedbacks.getJSONObject(i);
+        JSONObject user = fb.getJSONObject("user");
+        arr.add(
+            JSON.toJson(
+                "username",
+                user == null ? null : user.getString("username"),
+                "content",
+                fb.getString("content")
+            )
+        );
+    }
+    response.send(JSON.toJson("results", arr));
+}
+</code></pre>
+</li>
+</ul>
+<h2 id="_8">注意事项</h2>
+<ul>
+<li>
+<p>如果你编写的Java云函数经常发生运行超时、上下行超流量、滥用内存等现象，官方将会自动封停你的云函数功能，修改后向客服申请方可继续使用</p>
+</li>
+<li>
+<p>如果某接口调用频率较高，超过默认并发量，则会直接返回错误，解决方法：</p>
+<pre><code>1.修改客户端代码，降低请求频率
+2.修改云函数，提高代码质量和效率，减少网络请求相关的超时时长，尽快结束工作
+3.购买更高的并发配置
+</code></pre>
+</li>
+<li>
+<p>如果需要接受更大的请求体，或返回更大的结果，请购买更高的配置</p>
+</li>
+</ul>
+                    </div>
+                </div>
+        </div>
+
+        <footer class="col-md-12">
+                <p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>
+            <!--<p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>-->
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/require.js"></script>
+        <script src="../../search/search.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    请输入您要搜索的内容
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&larr;</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&rarr;</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div id="go-top"><i class="fa fa-chevron-up"></i></div>
+    <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
+
+
+    </body>
+</html>

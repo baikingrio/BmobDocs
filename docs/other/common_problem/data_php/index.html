@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>数据服务PHP - Bmob文档中心</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../../css/highlight.css">
+        <link href="../../../css/custom.css" rel="stylesheet" id="custom">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../../js/highlight.pack.js"></script>
+        <script src="../../../js/main.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-fixed-top" role="navigation">
+    <div class="main-nav">
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../..">
+                <!--Bmob文档中心-->
+                <img src="../../../img/logo.png" alt="">
+            </a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav">
+            
+              <li class="pull-left">
+                
+					<a href="../../..">文档首页</a>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">数据服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../data/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/wechat_app/">小程序</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/cocos2d_x/">Cocos2D-X</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/csharp/">C# SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/go/">GO</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">云函数</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">云函数 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../cloud_function/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/java/">Java 云函数</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/csharp/">C#</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/restful/">RESTful</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/web/">Web</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">支付服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">支付服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../pay/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../pay/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../pay/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">短信服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">短信服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../sms/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../sms/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../sms/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../sms/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../sms/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">IM服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">IM服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../im/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../im/ios/">iOS SDK</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">推送服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">推送服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../push/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../push/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../push/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../push/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../push/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left active">
+                
+					<!--<a href="">其他</a>-->
+					<li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">其他 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li class="active">
+									<a href="../">常见问题</a>
+                                </li>
+                            
+                            
+                                <li >
+                                    <a href="../../error_code/">错误码</a>
+                                </li>
+							
+                            
+                                <li >
+                                    <a href="../../data_safety/">数据安全</a>
+                                </li>
+							
+                            
+                                <li >
+                                    <a href="../../bql/">BQL</a>
+                                </li>
+							
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li>
+                  <a href="https://www.bmob.cn/repository/index" target="_blank">知识库</a>
+              </li>
+              <li>
+                  <a href="https://www.bmob.cn/downloads" target="_blank">下载</a>
+              </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+
+              <!---->
+                <!---->
+                    <!--<li >-->
+                        <!--<a rel="next" href="../data_javascript/">-->
+                            <!--<i class="fa fa-arrow-left"></i> Previous-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li >-->
+                        <!--<a rel="prev" href="../data_restful/">-->
+                            <!--Next <i class="fa fa-arrow-right"></i>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+              <!---->
+
+              <!---->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/bmob/bmobdocs/edit/master/docs/other/common_problem/data_php.md">-->
+                            <!---->
+                                <!--<i class="fa fa-github"></i> Edit on GitHub-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+              <!---->
+            </ul>
+        </div>
+    </div>
+</div>
+        <div class="pagebody">
+                <div class="sidebar">
+                    <div class="bs-sidebar hidden-print affix well" role="complementary">
+
+	
+		
+	
+		
+				
+				
+				
+				
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+		
+	
+		
+				
+					<div class="code-title">常见问题</div>
+				
+				
+				
+				
+		
+	
+
+
+	<ul class="nav bs-sidenav">
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+					
+						
+							
+								
+									<li class="">
+										<a class="itm-l1" href="../">平台常见问题</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data/">数据服务</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_android/">数据服务Android</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_ios/">数据服务iOS</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_cocos2d-x/">数据服务Cocos2d-X</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_csharp/">数据服务C#</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_javascript/">数据服务JavaScript</a>
+										
+									</li>
+								
+									<li class="active">
+										<a class="itm-l1" href="./">数据服务PHP</a>
+										
+										<ul class="nav">
+											
+											<li class="active "><a href="#php">PHP 常见问题</a>
+												
+											</li>
+												
+										</ul>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_restful/">数据服务RESTful</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../cloud_function/">云函数</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../cloud_function_ios/">云函数iOS</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../im/">IM服务</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../im_android/">IM服务Android</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../im_ios/">IM服务iOS</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../push/">推送服务</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../push_android/">推送服务Android</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../push_ios/">推送服务iOS</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../pay/">支付服务</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../pay_android/">推送服务Android</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../sms/">短信服务</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../sms_ios/">短信服务</a>
+										
+									</li>
+								
+							
+						
+					
+						
+					
+						
+					
+						
+					
+				
+			
+		
+	</ul>
+</div>
+                </div>
+                <div class="content" role="main">
+                    <div class="wrap">
+                        
+
+<h1 id="php">PHP 常见问题</h1>
+<p>Q: php为什么添加数据的时候字段的值为中文就会出错<br>
+A: 检查下你的php编码，建议改为utf-8编码。</p>
+<hr />
+<p>Q: 有没有ts的sdk<br>
+A: php的sdk只有一个</p>
+<hr />
+<p>Q: 使用PHP CURL 推送消息的代码，推送不成功,能否给个例子<br>
+A: 请检查证书是否设置好</p>
+<hr />
+<p>Q: 操作数据库的话，比如更新两个表，数据回滚有没有？<br>
+A: Bmob暂时没有事务操作，你要想同时更新两个表的话，可以使用批量操作。</p>
+<hr />
+<p>Q: test.php出现unauthorized
+下载sdk之后，修改了配置文件的Application ID和REST API Key
+运行test.php出现BmobException: [0]: unauthorized 
+A: app id 或 restful key不正确</p>
+<hr />
+<p>Q: php 这边可以插入关联对象吗？<br>
+A: 现在官方有生成关联对象的方法 ：
+具体在bmob官方php接口中的BmobRestClient.class.php文件中的dataType()方法,可以自行阅读</p>
+<hr />
+<p>Q: bmob 最多能取多少条数据<br>
+A: 一次最多1000条</p>
+<hr />
+<p>Q: bmob bql多表查询如何实现<br>
+A: 目前不支持多表查询</p>
+<hr />
+<p>Q: php如何使用get（）方法取得不只100条数据？(PHPSDK如何循环获取数据?)<br>
+A: 请使用分页查询，设置limit值，limit值默认为100，可以根据需要进行设置，具体可查看php文档https://github.com/bmob/bmob-php-sdk/tree/master/doc_develop中的分页查询章节</p>
+<hr />
+<p>Q: 获取表中所有数据后怎么单个输出自己需要的数据<br>
+A: 查询后返回的是对象数组，您只需要遍历该数组即可。</p>
+<hr />
+<p>Q: PC上如何使用Bmob<br>
+PC上只能用C#和PHP开发吗？<br>
+A: #和PHP是我们官方出的SDK，你还可以根据restapi文档开发更多的SDK，非常简单。开发的时候需要注意点的是：1、https协议的问题； 2、header 和 body 的问题； 3、发送方式的问题，如POST、GET、PUT、DELETE。</p>
+<hr />
+<p>Q: 我有两个表，_User可以放用户的数据，另一个表的password怎么设置成密码？<br>
+A: 只有使用_User表的密码才能使用BmobUser的功能，否则接口需要自己再写</p>
+<hr />
+<p>Q: 实时数据是什么原理？是客户端轮询吗？<br>
+A: 客户端与服务器维护了一个长连接，有消息时由服务端主动推送消息</p>
+                    </div>
+                </div>
+        </div>
+
+        <footer class="col-md-12">
+                <p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>
+            <!--<p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>-->
+        </footer>
+        <script>var base_url = '../../..';</script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/require.js"></script>
+        <script src="../../../search/search.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    请输入您要搜索的内容
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&larr;</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&rarr;</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div id="go-top"><i class="fa fa-chevron-up"></i></div>
+    <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
+
+
+    </body>
+</html>

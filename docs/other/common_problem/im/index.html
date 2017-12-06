@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>IM服务 - Bmob文档中心</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../../css/highlight.css">
+        <link href="../../../css/custom.css" rel="stylesheet" id="custom">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../../js/highlight.pack.js"></script>
+        <script src="../../../js/main.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-fixed-top" role="navigation">
+    <div class="main-nav">
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../..">
+                <!--Bmob文档中心-->
+                <img src="../../../img/logo.png" alt="">
+            </a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav">
+            
+              <li class="pull-left">
+                
+					<a href="../../..">文档首页</a>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">数据服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../data/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/wechat_app/">小程序</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/cocos2d_x/">Cocos2D-X</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/csharp/">C# SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/go/">GO</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../data/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">云函数</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">云函数 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../cloud_function/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/java/">Java 云函数</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/csharp/">C#</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/restful/">RESTful</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../cloud_function/web/">Web</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">支付服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">支付服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../pay/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../pay/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../pay/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">短信服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">短信服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../sms/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../sms/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../sms/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../sms/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../sms/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">IM服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">IM服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../im/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../im/ios/">iOS SDK</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">推送服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">推送服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../../push/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../push/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../push/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../push/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../../push/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left active">
+                
+					<!--<a href="">其他</a>-->
+					<li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">其他 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li class="active">
+									<a href="../">常见问题</a>
+                                </li>
+                            
+                            
+                                <li >
+                                    <a href="../../error_code/">错误码</a>
+                                </li>
+							
+                            
+                                <li >
+                                    <a href="../../data_safety/">数据安全</a>
+                                </li>
+							
+                            
+                                <li >
+                                    <a href="../../bql/">BQL</a>
+                                </li>
+							
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li>
+                  <a href="https://www.bmob.cn/repository/index" target="_blank">知识库</a>
+              </li>
+              <li>
+                  <a href="https://www.bmob.cn/downloads" target="_blank">下载</a>
+              </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+
+              <!---->
+                <!---->
+                    <!--<li >-->
+                        <!--<a rel="next" href="../cloud_function_ios/">-->
+                            <!--<i class="fa fa-arrow-left"></i> Previous-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li >-->
+                        <!--<a rel="prev" href="../im_android/">-->
+                            <!--Next <i class="fa fa-arrow-right"></i>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+              <!---->
+
+              <!---->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/bmob/bmobdocs/edit/master/docs/other/common_problem/im.md">-->
+                            <!---->
+                                <!--<i class="fa fa-github"></i> Edit on GitHub-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+              <!---->
+            </ul>
+        </div>
+    </div>
+</div>
+        <div class="pagebody">
+                <div class="sidebar">
+                    <div class="bs-sidebar hidden-print affix well" role="complementary">
+
+	
+		
+	
+		
+				
+				
+				
+				
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+		
+	
+		
+				
+					<div class="code-title">常见问题</div>
+				
+				
+				
+				
+		
+	
+
+
+	<ul class="nav bs-sidenav">
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+					
+						
+							
+								
+									<li class="">
+										<a class="itm-l1" href="../">平台常见问题</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data/">数据服务</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_android/">数据服务Android</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_ios/">数据服务iOS</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_cocos2d-x/">数据服务Cocos2d-X</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_csharp/">数据服务C#</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_javascript/">数据服务JavaScript</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_php/">数据服务PHP</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../data_restful/">数据服务RESTful</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../cloud_function/">云函数</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../cloud_function_ios/">云函数iOS</a>
+										
+									</li>
+								
+									<li class="active">
+										<a class="itm-l1" href="./">IM服务</a>
+										
+										<ul class="nav">
+											
+											<li class="active "><a href="#_1">即时通讯常见问题</a>
+												
+											</li>
+												
+										</ul>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../im_android/">IM服务Android</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../im_ios/">IM服务iOS</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../push/">推送服务</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../push_android/">推送服务Android</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../push_ios/">推送服务iOS</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../pay/">支付服务</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../pay_android/">推送服务Android</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../sms/">短信服务</a>
+										
+									</li>
+								
+									<li class="">
+										<a class="itm-l1" href="../sms_ios/">短信服务</a>
+										
+									</li>
+								
+							
+						
+					
+						
+					
+						
+					
+						
+					
+				
+			
+		
+	</ul>
+</div>
+                </div>
+                <div class="content" role="main">
+                    <div class="wrap">
+                        
+
+<h1 id="_1">即时通讯常见问题</h1>
+<p>Q:IM的开源地址是什么？
+A:
+Android：<a href="https://github.com/bmob/bmob-android-im-sdk">bmob-android-im-sdk</a> <br />
+   iOS : <a href="https://github.com/bmob/bmob-iOS-im-sdk">bmob-iOS-im-sdk</a></p>
+<hr />
+<p>Q:为什么我的手机接收不到信息
+A:请先在Web后台配置包名或者证书。</p>
+<hr />
+<p>Q:消息推送的时候我没开启网络，在推送一段时间后再开启网络，会收到消息吗？
+A:在断网开始的一分钟内发的消息是接收不到的，因为心跳包的默认时间是一分钟，这一分钟内，服务器不认为该链接是断开的，所以消息不会保存成离线消息。</p>
+<hr />
+<p>Q:Bmob可以做群聊吗？
+A:可以利用<a href="http://docs.bmob.cn/data/Android/b_developdoc/doc/index.html#index_数据实时同步">数据实时同步</a>来实现群聊。</p>
+<p>思路可以这样：</p>
+<p>1.创建一个群聊表，包括 群组id信息 发送人信息 聊天信息，这里可以把所有的聊天内容放进去;<br />
+2.创建一个群组信息表，包括 群组用户列表 创建时间 群组名称等;<br />
+3.创建一个群组信息变更表，包括 群组id信息，用一个字段记录有消息新增;</p>
+<p>当有人在群组中发起聊天时，首先先往群聊表中新增一条记录，然后往群组信息表更表中更新一下记录。所有群组的人都监听自己群组对应的群组信息表更表的几行。 </p>
+<hr />
+<p>Q:为什么发送位置的时候定位不了
+A:
+1.如果你是直接用demo里面的bin目录下的apk的话，是不存在这个问题的。
+2.如果你是下载demo之后直接运行的话，需要去重新去百度地图官网申请key,因为demo里面的可以是和我的eclipse绑定在一起的，相信做过百度地图开发的知道这是为什么。</p>
+<p>Q:我想实现私信功能 应该用IM来实现吗
+A:有两种方案：
+1.使用IM实现
+2.如果私信功能对实时信要求并不是很高，那么也可以将聊天记录放在表中，并且采用定时拉取的方法。</p>
+<hr />
+<p>Q:im sdk支持群聊活着广播消息么？
+A:SDK内部暂时还没有实现群聊部分，只是在内部预留了相关的接口，方便后续开发而已。</p>
+<hr />
+<p>Q:android新版IM不支持好友管理?
+A:新版IM不同于旧版IM，不再提供与用户相关的操作了，比如登录、注册、好友管理相关的。开发者可以自行实现</p>
+<hr />
+<p>Q:用自己的key运行新版BmobIMDemo，IM通讯的各种消息的数据库表在哪？（IM即使通讯的注册数据是保存在哪里，BmobIM里面的聊天数据储存在哪个数据库
+）
+A:目前新版IM是没有将发送的消息存储到Bmob后台的，开发者可自行选择存储，sdk的聊天消息都是本地存储的</p>
+<hr />
+<p>Q:不论对方是否为我的好友，开启聊天的方式都是BmobIM.getInstance().startPrivateConversation（）吗</p>
+<p>意思是说好友和陌生人开启聊天的方式都是一样的?只是好友在聊天列表里方便查找？</p>
+<p>那陌生人的好友的区别在哪里？ 可以在聊天界面的标题 设置类似qq的添加好友吗？
+A:只有会话的概念，没有好友的概念，新版的IM好友管理需要开发者自行实现。</p>
+<hr />
+<p>Q:Unity使用Android和iOS的IM的SDK，可以实现即时通讯么？
+A:Unity支持调用android和iOS和IMSDK，可以实现</p>
+<hr />
+<p>Q:Bmob Im 是采用什么协议?
+A:基于TCP的自定义协议。</p>
+<hr />
+<p>Q:新版本IM兼容老版本吗？
+A:不兼容，新版IM采用全新的协议实现。</p>
+<hr />
+<p>Q:利用数据同步功能实现群聊
+答：用数据实时同步实现群聊的思路可以这样：</p>
+<p>1.创建一个群聊表，包括 群组id信息 发送人信息 聊天信息，这里可以把所有的聊天内容放进去
+2.创建一个群组信息表，包括 群组用户列表 创建时间 群组名称等
+3.创建一个群组信息变更表，包括 群组id信息，用一个字段记录有消息新增</p>
+<p>当有人在群组中发起聊天时，首先先往群聊表中新增一条记录，然后往群组信息表更表中更新一下记录。所有群组的人都监听自己群组对应的群组信息表更表的几行。</p>
+<p>热心的用户实现了一个<a href="http://blog.csdn.net/shangmingchao/article/details/50548898">Android基于Bmob群聊功能的实现</a></p>
+<hr />
+<p>Q:怎样用邮箱查找用户？</p>
+<p>参考查找用户那部分的代码：（如果希望邮箱是唯一的话，还需要在Web后台指定email字段是唯一键）</p>
+<p>查询用户
+查询用户和查询普通对象一样，只需指定BmobUser类即可，如下：</p>
+<pre><code>BmobQuery&lt;BmobUser&gt; query = new BmobQuery&lt;BmobUser&gt;();
+query.addWhereEqualTo(&quot;email&quot;, &quot;heshaoyue@bmob.cn&quot;);
+query.findObjects(this, new FindListener&lt;BmobUser&gt;() {
+@Override
+public void onSuccess(List&lt;BmobUser&gt; object) {
+// TODO Auto-generated method stub
+//这里得到的就是用户信息
+toast(&quot;查询用户邮箱成功：&quot;+object.size());
+}
+@Override
+public void onError(int code, String msg) {
+// TODO Auto-generated method stub
+toast(&quot;查询用户失败：&quot;+msg);
+}
+});
+</code></pre>
+
+<hr />
+<p>Q:关于离线消息的推送机制问题
+为什么我们离线能接受到消息呢？我们登陆的时候是不是因为服务器知道我们的帐号id再某个地方登陆了，就把消息推送到那个设备上，那么我们离线的时候下次再上线能接受到消息是怎么做到的？
+A:离线消息这个需要服务端支撑的，服务端在向特定用户（设备）下发消息的时候，会去检测下当前用户的客户端连接是否正常，如果连接已经关闭了，表明该设备下线或者处于关机状态，此时服务端会将发给该用户的所有消息凑存在一个数组中，之后在等该用户上线（重新建立连接）的时候，服务器会再将这些离线消息按照时间先后顺序依次下发给该用户。</p>
+<hr />
+<p>Q:使用了IM组件，推送怎么搞？
+A:最新版本的IM不需要再使用推送，如果需要在用户离线时使用推送功能，可以直接使用推送sdk推送内容。</p>
+<hr />
+<p>Q:为什么IM组件在有的手机上可以接受到聊天推送，有的手机上就接收不到呢？
+A:有一些定制过的机器，比如小米、魅族这些，你根据系统的情况做一下处理。</p>
+<hr />
+<p>Q:一个用户发送消息，另一个用户怎么知道他发送消息了。里面的工作原理是什么
+A:首先，两个用户对应的终端都跟Bmob服务器保持了一个心跳长连接服务，这样的话，终端和服务器端就可以双通道通讯了。</p>
+<p>接着，一个用户发送消息给另外一个用户，消息首先到Bmob服务器，Bmob服务器根据消息的内容体判断是发给哪个终端，然后再把消息发送下去。</p>
+<p>整个的工作原理就是：websocket长连接。</p>
+<hr />
+<p>Q:关于 BmobRealTimeData 的几个问题
+1.isConnected() 的返回结果是实时更新的吗？比如用户本来连接成功，但是过一会儿没有网络了，再调用该函数是不是会返回false？
+2.失去网络连接，然后又恢复网络连接后，BmobRealTimeData 实例会不会自动重连？
+3.这个是基于长连接的吗？耗电情况如何？</p>
+<p>A:
+1.实时的,没有网络返回false.
+2.会自动重连
+3.长连接, websocket,不会怎么耗电,你可以自行测试下</p>
+<hr />
+<p>Q:在IMSDK中如何获得用户的状态（在线，或下线，无打扰，等）
+A:可以定时（比如5分钟）更新一下用户表，这样就可以通过用户表的updatedAt和当前时间的比较，知道用户是否在线了。</p>
+<hr />
+<p>Q:BmobI'M2.0 有没有系统消息功能
+A:没有，需要用户自行扩展</p>
+<hr />
+<p>Q:发送请求添加好友，BmobIMUserInfo 是发送方，还是接收方的信息啊？
+A:发送方的信息，SDK内部已经弄好了，给别人发送消息，肯定需要接收方的信息</p>
+<hr />
+<p>Q:新版本IM是不是没有附近的人这个功能了
+A:新版IM已经不提供这样的功能了，这些功能开发者可以自行封装，新版IM采用的是全新架构，只负责消息的发送和接收，并不再提供与具体业务逻辑相关的API方法</p>
+                    </div>
+                </div>
+        </div>
+
+        <footer class="col-md-12">
+                <p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>
+            <!--<p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>-->
+        </footer>
+        <script>var base_url = '../../..';</script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/require.js"></script>
+        <script src="../../../search/search.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    请输入您要搜索的内容
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&larr;</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&rarr;</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div id="go-top"><i class="fa fa-chevron-up"></i></div>
+    <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
+
+
+    </body>
+</html>

@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>开发文档 - Bmob文档中心</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/custom.css" rel="stylesheet" id="custom">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/main.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-fixed-top" role="navigation">
+    <div class="main-nav">
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">
+                <!--Bmob文档中心-->
+                <img src="../../img/logo.png" alt="">
+            </a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav">
+            
+              <li class="pull-left">
+                
+					<a href="../..">文档首页</a>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">数据服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../data/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/wechat_app/">小程序</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/cocos2d_x/">Cocos2D-X</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/csharp/">C# SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/go/">GO</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../data/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">云函数</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">云函数 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../cloud_function/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../cloud_function/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../cloud_function/java/">Java 云函数</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../cloud_function/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../cloud_function/csharp/">C#</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../cloud_function/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../cloud_function/restful/">RESTful</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../cloud_function/web/">Web</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">支付服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">支付服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../pay/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../pay/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../pay/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left active">
+                
+					<!--<a href="">短信服务</a>-->
+					<li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">短信服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../php/">PHP</a>
+                                </li>
+                            
+                            
+								<li class="active">
+									<a href="./">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">IM服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">IM服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../im/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../im/ios/">iOS SDK</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">推送服务</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">推送服务 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../push/android/">Android SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../push/ios/">iOS SDK</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../push/javascript/">JavaScript</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../push/php/">PHP</a>
+                                </li>
+                            
+                            
+								<li >
+									<a href="../../push/restful/">RESTful</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li class="pull-left">
+                
+					<!--<a href="">其他</a>-->
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">其他 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+								<li >
+									<a href="../../other/common_problem/">常见问题</a>
+                                </li>
+                            
+                            
+                                <li >
+                                    <a href="../../other/error_code/">错误码</a>
+                                </li>
+							
+                            
+                                <li >
+                                    <a href="../../other/data_safety/">数据安全</a>
+                                </li>
+							
+                            
+                                <li >
+                                    <a href="../../other/bql/">BQL</a>
+                                </li>
+							
+                        </ul>
+                    </li>
+                
+              </li>
+            
+              <li>
+                  <a href="https://www.bmob.cn/repository/index" target="_blank">知识库</a>
+              </li>
+              <li>
+                  <a href="https://www.bmob.cn/downloads" target="_blank">下载</a>
+              </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+
+              <!---->
+                <!---->
+                    <!--<li >-->
+                        <!--<a rel="next" href="../php/">-->
+                            <!--<i class="fa fa-arrow-left"></i> Previous-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li >-->
+                        <!--<a rel="prev" href="../../im/android/">-->
+                            <!--Next <i class="fa fa-arrow-right"></i>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+              <!---->
+
+              <!---->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/bmob/bmobdocs/edit/master/docs/sms/restful/index.md">-->
+                            <!---->
+                                <!--<i class="fa fa-github"></i> Edit on GitHub-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+              <!---->
+            </ul>
+        </div>
+    </div>
+</div>
+        <div class="pagebody">
+                <div class="sidebar">
+                    <div class="bs-sidebar hidden-print affix well" role="complementary">
+
+	
+		
+	
+		
+				
+				
+				
+				
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+					<div class="code-title">RESTful</div>
+				
+		
+	
+		
+				
+				
+		
+	
+		
+				
+				
+				
+				
+				
+		
+	
+		
+				
+				
+				
+				
+		
+	
+
+
+	<ul class="nav bs-sidenav">
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+							
+								
+									<li class="active">
+										<a class="itm-l1" href="./">开发文档</a>
+										
+										<ul class="nav">
+											
+											<li class="active "><a href="#_1">请求发送短信内容</a>
+												
+											</li>
+												
+											<li class=""><a href="#_2">请求发送自定义的短信内容</a>
+												
+											</li>
+												
+											<li class=""><a href="#_3">请求短信验证码</a>
+												
+											</li>
+												
+											<li class=""><a href="#_4">验证短信验证码</a>
+												
+											</li>
+												
+											<li class=""><a href="#_5">查询短信状态</a>
+												
+											</li>
+												
+											<li class=""><a href="#_6">购买事项</a>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#_7">购买方法</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#_8">发票事宜</a></li>
+												</ul>
+												
+											</li>
+												
+										</ul>
+										
+									</li>
+								
+							
+						
+					
+				
+			
+		
+			
+		
+			
+		
+			
+		
+	</ul>
+</div>
+                </div>
+                <div class="content" role="main">
+                    <div class="wrap">
+                        
+
+<p>在一些应用场景下，你可能希望用户验证手机号码后才能进行一些操作，例如充值等。这些操作跟用户系统没有关系，可以通过我们提供的的短信验证API来实现。</p>
+<p>每个 Bmob 帐户有 10 条免费额度的短信数量用于测试，超过需要购买短信条数才能继续使用。</p>
+<p>默认使用 【比目科技】 作为签名，可以在控制台进行修改。</p>
+<h2 id="_1">请求发送短信内容</h2>
+<h2 id="_2">请求发送自定义的短信内容</h2>
+<p><strong>使用场景</strong></p>
+<p>此方法允许开发者使用 Bmob 的短信功能灵活发送自定义的短信内容到用户的手机上，可运用于多种场景下，比如 <code>发送祝福短信、推送消息、通知</code>等</p>
+<p><strong>使用前准备</strong></p>
+<p>有两种方式可以使用自定义模板
+1.开发者可在Bmob后台提交身份证信息（<code>Bmob后台-&gt;账户管理-&gt;身份验证</code>），并经<code>Bmob官方审核</code>通过，可以自定义模板。
+2.不提交身份信息，直接提交短信模板，并经<code>Bmob官方审核</code>通过，可以使用该模板。</p>
+<p><strong>短信模板需要符以下要求，否则模板审核不予通过。</strong></p>
+<p>注意：请不要发送任何敏感内容，请不要定制广告、营销以诱导用户行为的信息。具体如下：
+1.不得包含敏感关键，<a href="https://github.com/bmob/bmob-public-docs">关键字列表文档下载</a>，不得包含【】和 [] 
+2.带联系方式（电话、qq微信、邮箱地址）的短信。如：“目前我司推出xx产品最新优惠，联系陈生了解详情，电话123-1234-1234”;
+3.诱导用户行为，特别是带超链接。如“我司推出新作xxx游戏，下载链接http://xxx.com”等；
+当前有两种使用自定义模板</p>
+<p>发现上述情况，针对通过身份审核的开发者，第一次给予警告，第二次将直接关闭接口使用，针对通过模板审核请求使用的开发者，模板审核不给予通过。</p>
+<p><strong>请求</strong></p>
+<ul>
+<li>
+<p>url ：https://api.bmob.cn/1/requestSms</p>
+</li>
+<li>
+<p>method ：POST</p>
+</li>
+<li>
+<p>header:</p>
+</li>
+</ul>
+<pre><code>X-Bmob-Application-Id: Your Application ID
+X-Bmob-REST-API-Key: Your REST API Key
+Content-Type: application/json
+</code></pre>
+
+<ul>
+<li>body:</li>
+</ul>
+<pre><code>{
+  &quot;mobilePhoneNumber&quot;: phoneNum,
+  &quot;content&quot;: content,
+  &quot;sendTime&quot;:YYYY-mm-dd HH:ii:ss (选填)
+}
+</code></pre>
+
+<p><strong>成功时响应</strong></p>
+<ul>
+<li>
+<p>status: 200 OK</p>
+</li>
+<li>
+<p>body:</p>
+</li>
+</ul>
+<pre><code>{
+    &quot;smsId&quot;: smsId（可用于后面使用查询短信状态接口来查询该条短信是否发送成功）
+}
+</code></pre>
+
+<p><strong>例子</strong></p>
+<p>输入手机号码、短信内容，就可以给用户的手机号码发送自定义的短信内容了，以下的content只要在不违反相关规定的前提下，你可以随意输入：</p>
+<pre><code>curl -X POST \
+  -H &quot;X-Bmob-Application-Id: Your Application ID&quot;          \
+  -H &quot;X-Bmob-REST-API-Key: Your REST API Key&quot;        \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;mobilePhoneNumber&quot;: &quot;186xxxxxxxx&quot;, &quot;content&quot;:&quot;您的验证码是：222222, 有效期是10分钟。&quot;}' \
+  https://api.bmob.cn/1/requestSms
+</code></pre>
+
+<p>你可以选择定时发送，比如未来的某一时刻给某个手机发送一条短信，sendTime的格式必须是YYYY-mm-dd HH:ii:ss， 如: 2015-05-26 12:13:14，请求如下：</p>
+<pre><code>curl -X POST \
+  -H &quot;X-Bmob-Application-Id: Your Application ID&quot;          \
+  -H &quot;X-Bmob-REST-API-Key: Your REST API Key&quot;        \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;mobilePhoneNumber&quot;: &quot;186xxxxxxxx&quot;, &quot;content&quot;:&quot;您的验证码是：222222, 有效期是10分钟。感谢您使用Bmob。&quot;, &quot;sendTime&quot;:&quot;2016-05-26 12:13:14&quot;}' \
+  https://api.bmob.cn/1/requestSms
+</code></pre>
+
+<p>成功返回短信验证码ID：</p>
+<pre><code>{
+    &quot;smsId&quot;: 1232222
+}
+</code></pre>
+
+<h2 id="_3">请求短信验证码</h2>
+<p><strong>请求描述</strong></p>
+<p>使用特定的模板请求验证码，如果没有在管理后台创建好模板，可使用默认的模板，<a href="http://www.bmob.cn/" title="Bmob移动后端云服务平台">Bmob</a> 默认的模板是: <strong>您的验证码是%smscode%，有效期为%ttl%分钟。您正在使用%appname%的验证码</strong></p>
+<p><strong>请求</strong></p>
+<ul>
+<li>
+<p>url ：https://api.bmob.cn/1/requestSmsCode</p>
+</li>
+<li>
+<p>method ：POST</p>
+</li>
+<li>
+<p>header:</p>
+</li>
+</ul>
+<pre><code>X-Bmob-Application-Id: Your Application ID
+X-Bmob-REST-API-Key: Your REST API Key
+Content-Type: application/json
+</code></pre>
+
+<ul>
+<li>body:</li>
+</ul>
+<pre><code>{
+  &quot;mobilePhoneNumber&quot;: phoneNum,
+  &quot;template&quot;: templateName(选填，需先在管理后台创建)
+}
+</code></pre>
+
+<p><strong>成功时响应</strong></p>
+<ul>
+<li>
+<p>status: 200 OK</p>
+</li>
+<li>
+<p>body:</p>
+</li>
+</ul>
+<pre><code>{
+    &quot;smsId&quot;: smsId（可用于后面使用查询短信状态接口来查询该条短信是否发送成功）
+}
+</code></pre>
+
+<p><strong>例子</strong></p>
+<p>使用默认的模板请求短信验证码：</p>
+<pre><code>curl -X POST \
+  -H &quot;X-Bmob-Application-Id: Your Application ID&quot;          \
+  -H &quot;X-Bmob-REST-API-Key: Your REST API Key&quot;        \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;mobilePhoneNumber&quot;: &quot;186xxxxxxxx&quot;}' \
+  https://api.bmob.cn/1/requestSmsCode
+</code></pre>
+
+<p>成功返回，短信验证码ID，可用于后面使用查询短信状态接口来查询该短信验证码是否发送成功和是否验证过：</p>
+<pre><code>{
+    &quot;smsId&quot;: 1232222
+}
+</code></pre>
+
+<p>如果你已经在 <a href="http://www.bmob.cn/" title="Bmob移动后端云服务平台">Bmob</a> 后台设置了自己的模板，并已经是审核通过了，则可以使用自己的模板给用户的手机号码发送短信验证码了：</p>
+<pre><code>curl -X POST \
+  -H &quot;X-Bmob-Application-Id: Your Application ID&quot;          \
+  -H &quot;X-Bmob-REST-API-Key: Your REST API Key&quot;        \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;mobilePhoneNumber&quot;: &quot;186xxxxxxxx&quot;, &quot;template&quot;:&quot;注册模板&quot;}' \
+  https://api.bmob.cn/1/requestSmsCode
+</code></pre>
+
+<p>成功返回，短信验证码ID，可用于后面使用查询短信状态接口来查询该短信验证码是否发送成功和是否验证过：</p>
+<pre><code>{
+    &quot;smsId&quot;: 1232222
+}
+</code></pre>
+
+<h2 id="_4">验证短信验证码</h2>
+<p><strong>请求描述</strong></p>
+<p>通过以下接口，你可以验证用户输入的验证码是否是有效。</p>
+<p><strong>请求</strong></p>
+<ul>
+<li>
+<p>url ：https://api.bmob.cn/1/verifySmsCode/smsCode(用户收到的6位短信验证码)</p>
+</li>
+<li>
+<p>method ：POST</p>
+</li>
+<li>
+<p>header:</p>
+</li>
+</ul>
+<pre><code>X-Bmob-Application-Id: Your Application ID
+X-Bmob-REST-API-Key: Your REST API Key
+Content-Type: application/json
+</code></pre>
+
+<ul>
+<li>body:</li>
+</ul>
+<pre><code>{
+  &quot;mobilePhoneNumber&quot;: phoneNum
+}
+</code></pre>
+
+<p><strong>成功时响应</strong></p>
+<ul>
+<li>
+<p>status: 200 OK</p>
+</li>
+<li>
+<p>body:</p>
+</li>
+</ul>
+<pre><code>{
+    &quot;msg&quot;:&quot;ok&quot;
+}
+</code></pre>
+
+<p><strong>例子</strong></p>
+<p>例如，要验证 <code>186xxxxxxxx</code> 号码输入的 <code>876845</code> 验证码是否正确可使用以下请求：</p>
+<pre><code>curl -X POST \
+  -H &quot;X-Bmob-Application-Id: Your Application ID&quot;          \
+  -H &quot;X-Bmob-REST-API-Key: Your REST API Key&quot;        \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;mobilePhoneNumber&quot;: &quot;186xxxxxxxx&quot;}' \
+  https://api.bmob.cn/1/verifySmsCode/876845
+</code></pre>
+
+<h2 id="_5">查询短信状态</h2>
+<p><strong>请求描述</strong></p>
+<p>通过以下接口，你可以查询某条短信是否发送成功，如果是使用了验证码接口，还可以查询该验证码是否被验证过。</p>
+<p><strong>请求</strong></p>
+<ul>
+<li>
+<p>url ：https://api.bmob.cn/1/querySms/:smsId （注意smsId前有冒号(:)）</p>
+</li>
+<li>
+<p>method ：GET</p>
+</li>
+<li>
+<p>header:</p>
+</li>
+</ul>
+<pre><code>X-Bmob-Application-Id: Your Application ID
+X-Bmob-REST-API-Key: Your REST API Key
+Content-Type: application/json
+</code></pre>
+
+<p><strong>成功时响应</strong></p>
+<ul>
+<li>
+<p>status: 200 OK</p>
+</li>
+<li>
+<p>body:</p>
+</li>
+</ul>
+<pre><code>{
+  &quot;sms_state&quot;: state, 
+  &quot;verify_state&quot;: isVerify
+}
+</code></pre>
+
+<p>sms_state是发送状态，有值: SENDING-发送中，FAIL-发送失败 SUCCESS-发送成功
+verify_state是验证码是否验证状态， 有值: true-已验证 false-未验证</p>
+<p><strong>例子</strong></p>
+<p>例如，如果在上述发送短信接口或者请求验证码接口请求成功后返回的 <code>smsId</code> 为 <code>123678</code>，则可以使用以下请求查询这些短信的状态。</p>
+<pre><code>curl -X GET \
+  -H &quot;X-Bmob-Application-Id: Your Application ID&quot;          \
+  -H &quot;X-Bmob-REST-API-Key: Your REST API Key&quot;        \
+  https://api.bmob.cn/1/querySms/:123678
+</code></pre>
+
+<p>成功返回以下JSON：</p>
+<pre><code>{
+  &quot;sms_state&quot;: &quot;SENDING&quot;, 
+  &quot;verify_state&quot;: false
+}
+</code></pre>
+
+<p><strong>注意事项</strong></p>
+<p>关于短信条数的计算规则如下:</p>
+<ol>
+<li>实际计算的短信字数 = 模板的内容或自定义短信的内容字数 + 6。加上6是因为默认的签名【比目科技】占了6个字。</li>
+<li>实际计算的短信字数在70个字以下算1条。</li>
+<li>实际计算的短信字数超过70字的以67字为一条来计算的。也就是135个字数是计算为3条的。</li>
+<li>计算得到的短信条数在本条短信发送成功后将会从你的账户剩余的短信条数中扣除。</li>
+</ol>
+<p><strong>短信发送限制规则是1/分钟，5/小时，10/天。即对于一个应用来说，一天给同一手机号发送短信不能超过10条，一小时给同一手机号发送短信不能超过5条，一分钟给同一手机号发送短信不能超过1条</strong></p>
+<h2 id="_6">购买事项</h2>
+<h3 id="_7">购买方法</h3>
+<p>短信条数只能输入整数，且不能少于1000条</p>
+<p><img alt="短信计费模式" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/jfms.png" /></p>
+<p>进入账号控制台，财务/财务统计点击购买短信即可。</p>
+<p><img alt="购买短信" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/14703632600603.jpg" /></p>
+<h3 id="_8">发票事宜</h3>
+<p>购买金额满100可提供发票，1000元以内的到付，1000以上（含1000）包邮。</p>
+<p>登录后台提交工单，提供购买服务的订单号和开票信息。</p>
+<p><strong>个人</strong></p>
+<p>发票抬头、邮寄地址、联系人及电话</p>
+<p><strong>企业</strong></p>
+<p>公司名称、统一社会信用代码、开户行及账号、邮寄地址、联系人及电话</p>
+                    </div>
+                </div>
+        </div>
+
+        <footer class="col-md-12">
+                <p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>
+            <!--<p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>-->
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/require.js"></script>
+        <script src="../../search/search.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    请输入您要搜索的内容
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&larr;</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&rarr;</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div id="go-top"><i class="fa fa-chevron-up"></i></div>
+    <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
+
+
+    </body>
+</html>

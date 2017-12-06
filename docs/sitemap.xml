@@ -54,8 +54,60 @@
     </url>
         
     <url>
+     <loc>/data/cocos2d_x/</loc>
+     <lastmod>2017-12-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc></loc>
      <lastmod></lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/cloud_function/android/</loc>
+     <lastmod>2017-12-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/cloud_function/ios/</loc>
+     <lastmod>2017-12-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/cloud_function/java/</loc>
+     <lastmod>2017-12-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/cloud_function/csharp/</loc>
+     <lastmod>2017-12-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/cloud_function/php/</loc>
+     <lastmod>2017-12-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/cloud_function/javascript/</loc>
+     <lastmod>2017-12-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/cloud_function/restful/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -82,38 +134,8 @@
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/pay/restful/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -122,54 +144,32 @@
     
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/sms/android/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/sms/ios/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/sms/php/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/sms/javascript/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/sms/restful/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -194,32 +194,32 @@
     
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/push/android/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/push/ios/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/push/php/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/push/javascript/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/push/restful/</loc>
+     <lastmod>2017-12-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

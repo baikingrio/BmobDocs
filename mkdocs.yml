@@ -9,56 +9,48 @@ copyright: Copyright © 2017 Bmob, Maintained by the Bmob Support.
 pages:
 - '文档首页': 'index.md'
 - '数据服务':
-    - 'Android SDK': 
+    - 'Android': 
         - '快速入门': 'data/android/index.md'
         - '开发文档': 'data/android/develop_doc.md'
         - '示例/功能': 'data/android/example.md'
         - '自动更新': 'data/android/auto_update.md'
         - '类库文档': 'data/android/class_doc.md'
         - '更新日志': 'data/android/update_log.md'
-    - 'iOS SDK':
+    - 'iOS':
         - '快速入门': 'data/ios/index.md'
         - '开发文档': 'data/ios/develop_doc.md'
         - '示例/功能': 'data/ios/example.md'
         - '更新日志': 'data/ios/update_log.md'
-    - '小程序':
-        - '快速入门': 'data/wechat_app/index.md'
-        - '开发文档': 'data/wechat_app/develop_doc.md'
-        - '示例/功能': 'data/wechat_app/example.md'
-    - 'Cocos2D-X':
-        - '开发文档': 'data/cocos2d_x/index.md'
-    - 'C# SDK':
+    - 'C#':
         - '快速入门': 'data/csharp/index.md'
         - '开发文档': 'data/csharp/develop_doc.md'
         - '示例/功能': 'data/csharp/example.md'
+    - 'PHP':
+        - '快速入门': 'data/php/index.md'
+        - '开发文档': 'data/php/develop_doc.md'
     - 'GO':
         - '快速入门': 'data/go/index.md'
         - '开发文档': 'data/go/develop_doc.md'
+    - 'RESTful':
+        - '快速入门': 'data/restful/index.md'
+        - '开发文档': 'data/restful/develop_doc.md'
     - 'JavaScript':
         - '快速入门': 'data/javascript/index.md'
         - '开发文档': 'data/javascript/develop_doc.md'
         - '示例/功能': 'data/javascript/example.md'
-    - 'PHP':
-        - '快速入门': 'data/php/index.md'
-        - '开发文档': 'data/php/develop_doc.md'
-    - 'RESTful':
-        - '快速入门': 'data/restful/index.md'
-        - '开发文档': 'data/restful/develop_doc.md'
+    - 'Cocos2D-X': 'data/cocos2d_x/index.md'
+    - '小程序':
+        - '快速入门': 'data/wechat_app/index.md'
+        - '开发文档': 'data/wechat_app/develop_doc.md'
+        - '示例/功能': 'data/wechat_app/example.md'
 - '云函数':
-    - 'Android SDK':
-        - '开发文档': 'cloud_function/android/index.md'
-    - 'iOS SDK':
-        - '开发文档': 'cloud_function/ios/index.md'
-    - 'Java 云函数':
-        - '开发文档': 'cloud_function/java/index.md'
-    - 'JavaScript':
-        - '开发文档': 'cloud_function/javascript/index.md'
-    - 'C#':
-        - '开发文档': 'cloud_function/csharp/index.md'
-    - 'PHP':
-        - '开发文档': 'cloud_function/php/index.md'
-    - 'RESTful':
-        - '开发文档': 'cloud_function/restful/index.md'
+    - 'Android': 'cloud_function/android/index.md'
+    - 'iOS': 'cloud_function/ios/index.md'
+    - 'Java': 'cloud_function/java/index.md'
+    - 'C#': 'cloud_function/csharp/index.md'
+    - 'PHP': 'cloud_function/php/index.md'
+    - 'JavaScript': 'cloud_function/javascript/index.md'
+    - 'RESTful': 'cloud_function/restful/index.md'
     - 'Web':
         - '快速入门': 'cloud_function/web/index.md'
         - '开发文档': 'cloud_function/web/develop_doc.md'
@@ -66,47 +58,36 @@ pages:
         - '微信云函数': 'cloud_function/web/weixin.md'
         - '编码规范': 'cloud_function/web/norm.md'
 - '支付服务':
-    - 'Android SDK':
+    - 'Android':
         - '开发文档': 'pay/android/index.md'
         - '示例/功能': 'pay/android/example.md'
         - '类库文档': 'pay/android/class_doc.md'
         - '更新日志': 'pay/android/update_log.md'
-    - 'iOS SDK':
+    - 'iOS':
         - '开发文档': 'pay/ios/index.md'
         - '示例/功能': 'pay/ios/example.md'
         - '更新日志': 'pay/ios/update_log.md'
-    - 'RESTful':
-        - '开发文档': 'pay/restful/index.md'
+    - 'RESTful': 'pay/restful/index.md'
 - '短信服务':
-    - 'Android SDK':
-        - '开发文档': 'sms/android/index.md'
-    - 'iOS SDK':
-        - '开发文档': 'sms/ios/index.md'
-    - 'JavaScript':
-        - '开发文档': 'sms/javascript/index.md'
-    - 'PHP':
-        - '开发文档': 'sms/php/index.md'
-    - 'RESTful':
-        - '开发文档': 'sms/restful/index.md'
+    - 'Android': 'sms/android/index.md'
+    - 'iOS': 'sms/ios/index.md'
+    - 'PHP': 'sms/php/index.md'
+    - 'JavaScript': 'sms/javascript/index.md'
+    - 'RESTful': 'sms/restful/index.md'
 - 'IM服务':
-    - 'Android SDK':
+    - 'Android':
         - '开发文档': 'im/android/index.md'
         - '类库文档': 'im/android/class_doc.md'
         - '更新日志': 'im/android/update_log.md'
-    - 'iOS SDK':
+    - 'iOS':
         - '开发文档': 'im/ios/index.md'
         - '更新日志': 'im/ios/update_log.md'
 - '推送服务':
-    - 'Android SDK':
-        - '开发文档': 'push/android/index.md'
-    - 'iOS SDK':
-        - '开发文档': 'push/ios/index.md'
-    - 'JavaScript':
-        - '开发文档': 'push/javascript/index.md'
-    - 'PHP':
-        - '开发文档': 'push/php/index.md'
-    - 'RESTful':
-        - '开发文档': 'push/restful/index.md'
+    - 'Android': 'push/android/index.md'
+    - 'iOS': 'push/ios/index.md'
+    - 'PHP': 'push/php/index.md'
+    - 'JavaScript': 'push/javascript/index.md'
+    - 'RESTful': 'push/restful/index.md'
 - '其他':
     - '常见问题': 'other/common_problem/index.md'
     - '错误码': 'other/error_code/index.md'

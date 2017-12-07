@@ -4,7 +4,7 @@ Bmob平台为您的移动应用提供了一个完整的后端解决方案，我�
 
 ## 快速入门
 
-建议您在阅读本开发文档之前，先阅读我们提供的 [Android快速入门文档](http://docs.bmob.cn/data/Android/a_faststart/doc/index.html)，便于您后续的开发。<br>
+建议您在阅读本开发文档之前，先阅读我们提供的 [Android快速入门文档](https://docs.bmob.cn/data/Android/a_faststart/doc/index.html)，便于您后续的开发。<br>
 如果开发者想使用不同历史版本的SDK，可以移步[历史版本的github仓库](https://github.com/bmob/bmob-android-sdk-release/releases)，选择使用各个历史版本。
 ## 模板代码
 在使用SDK过程中，如果一些Api如查询是高频代码，可以把一些重复的样板代码抽出来，并在AndroidStudio中设置模板，即可实现快速输入，能提高编码效率，效果如下：
@@ -13,9 +13,16 @@ Bmob平台为您的移动应用提供了一个完整的后端解决方案，我�
 ## 数据迁移
 从v3.5.5开始，数据SDK新增了能重新设置请求域名的Api，类似数据迁移，调用方式如下：
 
-		Bmob.resetDomain("http://demo.bmob.cn/");
+
+		Bmob.resetDomain("http://open-vip.bmob.cn/8/");
 
 其中，参数为开发者的域名，调用后的所有请求都指向新的域名。
+
+**注: 仅数据迁移功能而言 目前是不需要开发者手动调用重置请求域名的resetDomain方法，不同用户级别的应用请求到的域名空间都是由Bmob后端控制(之前的迁移用户重置了也无妨);**
+## 海外加速
+
+如果您不是使用迁移服务的用户,但仅仅想使用海外加速功能的话，就需要在初始化sdk后就调用resetDomain方法(建议在Application中做)，传的参数也是上面数据迁移例子中的openvip域名。
+
 
 ## 统计SDK
 从v3.5.2开始，把统计SDK集成到了数据服务SDK，上传应用不再需要额外集成统计SDK，低于此版本的可以去控制台的应用官网下载。
@@ -30,7 +37,6 @@ Bmob平台为您的移动应用提供了一个完整的后端解决方案，我�
 - 在初始化方法中传一个渠道参数(不传默认没开启统计功能)
 
 		Bmob.initialize(this,APPID,"Bmob");
-
 - 将libs文件夹内的BmobStat.jar文件添加进项目（AS选择远程依赖可以忽略，本地依赖需要指定libs文件夹，Eclipse中放进libs即可）；
 
 	
@@ -167,6 +173,8 @@ public class GameScore extends BmobObject{
 	private Integer score;
 	private Boolean isPay;
     private BmobFile pic;
+	// 仅在客户端使用，不希望被gson序列化提交到后端云，记得用transient修饰
+	private transient Integer count;
 		
 	public String getPlayerName() {
 		return playerName;
@@ -212,11 +220,11 @@ public class GameScore extends BmobObject{
 
 为了提供更好的服务，BmobSDK中提供了`BmobUser、BmobInstallation、BmobRole`三个特殊的BmobObject对象来完成不同的功能，在这里我们统一称为特殊对象。
 
- - `BmobUser`对象主要是针对应用中的用户功能而提供的，它对应着web端的User表，使用BmobUser对象可以很方便的在应用中实现用户的注册、登录、邮箱验证等功能，具体的使用方法可查看文档的[`用户管理`](http://docs.bmob.cn/android/developdoc/index.html?menukey=develop_doc&key=develop_android#用户管理)部分。
+ - `BmobUser`对象主要是针对应用中的用户功能而提供的，它对应着web端的User表，使用BmobUser对象可以很方便的在应用中实现用户的注册、登录、邮箱验证等功能，具体的使用方法可查看文档的[`用户管理`](https://docs.bmob.cn/android/developdoc/index.html?menukey=develop_doc&key=develop_android#用户管理)部分。
 
- - `BmobInstallation`对象主要用于应用的安装设备管理中，它对应着web端的Installation表，任何安装了你应用的设备都会在此表中产生一条数据标示该设备。结合Bmob提供的推送功能，还可以实现将自定义的消息推送给不同的设备终端，具体的使用方法可查看文档的[`消息推送`](http://docs.bmob.cn/android/developdoc/index.html?menukey=develop_doc&key=develop_android#消息推送)部分。
+ - `BmobInstallation`对象主要用于应用的安装设备管理中，它对应着web端的Installation表，任何安装了你应用的设备都会在此表中产生一条数据标示该设备。结合Bmob提供的推送功能，还可以实现将自定义的消息推送给不同的设备终端，具体的使用方法可查看文档的[`消息推送`](https://docs.bmob.cn/android/developdoc/index.html?menukey=develop_doc&key=develop_android#消息推送)部分。
 
- - `BmobRole`对象主要用于角色管理，对应用于Web端的Role表，具体的使用方法可查看文档的[`ACL和角色`](http://docs.bmob.cn/android/developdoc/index.html?menukey=develop_doc&key=develop_android#ACL和角色)部分。
+ - `BmobRole`对象主要用于角色管理，对应用于Web端的Role表，具体的使用方法可查看文档的[`ACL和角色`](https://docs.bmob.cn/android/developdoc/index.html?menukey=develop_doc&key=develop_android#ACL和角色)部分。
 
 ## 数据类型
 
@@ -235,7 +243,7 @@ public class GameScore extends BmobObject{
 |Pointer |特定对象|Bmob特有类型，用来标识指针类型|
 |Relation|BmobRelation|Bmob特有类型，用来标识数据关联|
 
-**注：不能使用int、float、short byte、double、character等基本数据类型。**
+**注：不能使用int、float、short byte、double、character等基本数据类型。`**
 
 ## 类名和表名的关系
 
@@ -324,11 +332,8 @@ objectId: "0c6db13c", score: 89, playerName: "比目", isPay: false,createdAt:"2
 ```
 
 **这里需要注意的是：**
-
 1. 如果服务器端不存在GameScore表，那么系统将自动建表，并插入数据。
-
 2. 如果服务器端已经存在GameScore表，和相应的score、playerName、isPay字段，那么你此时添加的数据和数据类型也应该和服务器端的表结构一致，否则会保存数据失败。
-
 3. 每个BmobObject对象都有几个默认的键(数据列)是不需要开发者指定的，`objectId`是每个保存成功数据的唯一标识符。`createdAt`和`updatedAt`代表每个对象(每条数据)在服务器上创建和最后修改的时间。这些键(数据列)的创建和数据内容是由服务器端自主来完成的。`因此，使用save和insert方法时,不需要调用setObjectId方法，否则会出现提示：“It is a reserved field: objectId(105)”--表明objectId为系统保留字段，不允许修改。`。
 
 ## 更新数据
@@ -499,24 +504,24 @@ new BmobObject().insertBatch(this, persons, new SaveListener() {
 });
 //第二种方式：v3.5.0开始提供
 new BmobBatch().insertBatch(persons).doBatch(new QueryListListener<BatchResult>() {
-	@Override
-	public void done(List<BatchResult> o, BmobException e) {
-		if(e==null){
-			for(int i=0;i<o.size();i++){
-				BatchResult result = o.get(i);
-				BmobException ex =result.getError();
-				if(ex==null){
-					log("第"+i+"个数据批量添加成功："+result.getCreatedAt()
-					+","+result.getObjectId()+","+result.getUpdatedAt());
+
+			@Override
+			public void done(List<BatchResult> o, BmobException e) {
+				if(e==null){
+					for(int i=0;i<o.size();i++){
+						BatchResult result = o.get(i);
+						BmobException ex =result.getError();
+						if(ex==null){
+							log("第"+i+"个数据批量添加成功："+result.getCreatedAt()+","+result.getObjectId()+","+result.getUpdatedAt());
+						}else{
+							log("第"+i+"个数据批量添加失败："+ex.getMessage()+","+ex.getErrorCode());
+						}
+					}
 				}else{
-					log("第"+i+"个数据批量添加失败："+ex.getMessage()+","+ex.getErrorCode());
+					Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
 				}
 			}
-		}else{
-			Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
-		}
-	}
-});
+		});
 ```
 
 ### 批量更新
@@ -553,23 +558,23 @@ new BmobObject().updateBatch(this, persons, new UpdateListener() {
 //第二种方式：v3.5.0开始提供
 new BmobBatch().updateBatch(persons).doBatch(new QueryListListener<BatchResult>() {
 
-	@Override
-	public void done(List<BatchResult> o, BmobException e) {
-		if(e==null){
-			for(int i=0;i<o.size();i++){
-				BatchResult result = o.get(i);
-				BmobException ex =result.getError();
-				if(ex==null){
-					log("第"+i+"个数据批量更新成功："+result.getUpdatedAt());
+			@Override
+			public void done(List<BatchResult> o, BmobException e) {
+				if(e==null){
+					for(int i=0;i<o.size();i++){
+						BatchResult result = o.get(i);
+						BmobException ex =result.getError();
+						if(ex==null){
+							log("第"+i+"个数据批量更新成功："+result.getUpdatedAt());
+						}else{
+							log("第"+i+"个数据批量更新失败："+ex.getMessage()+","+ex.getErrorCode());
+						}
+					}
 				}else{
-					log("第"+i+"个数据批量更新失败："+ex.getMessage()+","+ex.getErrorCode());
+					Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
 				}
 			}
-		}else{
-			Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
-		}
-	}
-});
+		});
 ```
 
 ### 批量删除
@@ -705,7 +710,7 @@ query.getObject("a203eba875", new QueryListener<GameScore>() {
 
 ### 查询多条数据
 
-查询某个数据表中的所有数据是非常简单的查询操作，例如：查询GameScore表中playerName为“比目”的50条数据记录。
+查询某个数据表中的所有数据是非常简单的查询操作，查询的数据条数最多500.例如：查询GameScore表中playerName为“比目”的50条数据记录。
 
 ```java
 BmobQuery<GameScore> query = new BmobQuery<GameScore>();
@@ -737,23 +742,21 @@ query.findObjects(new FindListener<GameScore>() {
 查询的结果不需要进行任何处理，BmobSDK已经为你封装成相应的JavaBean集合了，你直接使用即可。
 
 **注：**
-
-1. 通过setLimit方法设置返回的记录数量。更多细节可查看下一节(查询条件)中的分页查询。</br>
-
-2. v3.5.2开始可以对查询条件等提供链式调用的写法，如下：</br>
+1 通过setLimit方法设置返回的记录数量。更多细节可查看下一节(查询条件)中的分页查询。</br>
+2 v3.5.2开始可以对查询条件等提供链式调用的写法，如下：</br>
 ```java
 BmobQuery<Book> query = new BmobQuery<>();
-query.setLimit(8).setSkip(1).order("-createdAt")
-		.findObjects(new FindListener<Book>() {
-			@Override
-			public void done(List<Book> object, BmobException e) {
-				if (e == null) {
-					// ...
-				} else {
-					// ...
-				}
-			}
-		});	
+        query.setLimit(8).setSkip(1).order("-createdAt")
+                .findObjects(new FindListener<Book>() {
+                    @Override
+                    public void done(List<Book> object, BmobException e) {
+                        if (e == null) {
+                            // ...
+                        } else {
+                            // ...
+                        }
+                    }
+                });	
 ```
 
 ### 查询条件
@@ -811,11 +814,8 @@ query.addWhereNotContainedIn("playerName", Arrays.asList(names));
 `时间查询`比较特殊，我们需要结合`BmobDate`这个类来查询某个指定日期时间前后的数据，这里也给出示例供大家参考：
 
 比如:
-
 如果想查询指定日期之前的数据，则可以使用`addWhereLessThan`或者`addWhereLessThanOrEqualTo`（包含当天）来查询。
-
 如果想查询指定日期之后的数据，则可以使用`addWhereGreaterThan`或`addWhereGreaterThanOrEqualTo`（包含当天）来查询。
-
 如果想查询指定时间当天的数据，则需要使用`复合与查询`来查询，例如，想`查询2015年5月1号当天的Person数据`,示例代码如下：
 
 ```java
@@ -850,7 +850,6 @@ query.and(and);
 ```
 
 注：
-
 **由于createdAt、updatedAt是服务器自动生成的时间，在服务器保存的是精确到微秒值的时间，所以，基于时间类型的比较的值要加1秒。**
 
 #### 数组查询
@@ -922,7 +921,7 @@ query.addWhereDoesNotExists("username");
 
 有时，在数据比较多的情况下，你希望查询出的符合要求的所有数据能按照多少条为一页来显示，这时可以使用`setLimit`方法来限制查询结果的数据条数来进行分页。
 
-默认情况下，Limit的值为`100`，最大有效设置值`1000`（设置的数值超过1000还是视为1000）。
+默认情况下，Limit的值为`100`，最大有效设置值`500`（设置的数值超过500还是视为500）。
 
 ```java
 query.setLimit(10); // 限制最多10条数据结果作为一页
@@ -1083,16 +1082,12 @@ bmobQuery.findObjects(new FindListener<Person>() {
 |setHasGroupCount|boolean hasCount|是否返回每个分组的记录数|
 
 注：
-
-1. 为避免和用户创建的列名称冲突，Bmob约定以上查询返回的字段采用`_(关键字)+首字母大写的列名` 的格式：
-
+1、为避免和用户创建的列名称冲突，Bmob约定以上查询返回的字段采用`_(关键字)+首字母大写的列名` 的格式：
 例：
 计算玩家得分表（GameScore）中列名为score的总和，那么返回的结果集会有一个列名为`_sumScore`，
 若设置了setHasGroupCount（true）,则结果集中会返回`_count`。
-
-2. 以上方法可自由组合且与之前的查询语句中的where, order, limit, skip等组合一起使用。 
-
-3. 因为返回格式不固定，故使用`findStatistics`来专门处理统计查询。
+2、以上方法可自由组合且与之前的查询语句中的where, order, limit, skip等组合一起使用。 
+3、因为返回格式不固定，故使用`findStatistics`来专门处理统计查询。
 
 #### 统计查询方法
 
@@ -1386,16 +1381,14 @@ query.findObjects(new FindListener<Person>() {
 ```
 
 **注：**
-
 **1、只有当缓存查询的条件一模一样时才会获取到缓存到本地的缓存数据。**
-
 **2、设置的默认的最大缓存时长为5小时。**
 
 ### BQL查询
 
 `Bmob Query Language`（简称 BQL） 是 Bmob 自 `BmobSDKV3.3.7` 版本开始，为查询 API 定制的一套类似 SQL 查询语法的子集和变种，主要目的是降低大家学习 Bmob 查询API 的成本，可以使用传统的 SQL 语法来查询 Bmob 应用内的数据。 
 
-具体的 BQL 语法，请参考 [Bmob Query Language 详细指南](http://docs.bmob.cn/other/Other/m_bql/doc/index.html)。
+具体的 BQL 语法，请参考 [Bmob Query Language 详细指南](https://docs.bmob.cn/other/Other/m_bql/doc/index.html)。
 
 #### 基本BQL查询
 
@@ -1562,7 +1555,7 @@ query.doSQLQuery(new SQLQueryListener<GameScore>(){
 
 ##### 内置函数
 
-对于包含`内置函数`的占位符查询，比较特殊，请使用`Bmob Query Language 详细指南`中的`内置函数`中[占位符查询用到的内置函数](http://docs.bmob.cn/other/Other/m_bql/doc/index.html#内置函数介绍)列出的形式进行查询操作：
+对于包含`内置函数`的占位符查询，比较特殊，请使用`Bmob Query Language 详细指南`中的`内置函数`中[占位符查询用到的内置函数](https://docs.bmob.cn/other/Other/m_bql/doc/index.html#内置函数介绍)列出的形式进行查询操作：
 
 举例：我想查询当前用户在2015年5月12日之后，在特定地理位置附近的游戏记录，可以这样：
 
@@ -1587,13 +1580,9 @@ new BmobQuery<GameScore>().doSQLQuery(sql,new SQLQueryListener<GameScore>(){
 ```
 
 **注**
-
 **1、我们更推荐使用占位符语法，理论上会降低 BQL 转换的性能开销；**
-
 **2、最后的可变参数会自动替换查询语句中的问号位置（按照问号的先后出现顺序），有多少个问号，最后的可变参数就应该有多少个；**
-
 **3、同样的，统计查询也支持占位符,只需要将`doSQLQuery`替换成`doStatisticQuery`方法即可；**
-
 **4、只有查询条件`where``limit`子句支持占位符查询，和统计查询有关的`group by`、`order by`、`having`等字句是不支持占位符的。**
 
 例如：
@@ -1654,17 +1643,11 @@ query.doSQLQuery(new SQLQueryListener<GameScore>(){
 ```
 
 **注：**
-
 **doSQLQuery目前有三种查询方式进行SQL查询，分别是：**
-
 **1、doSQLQuery（Context context,SQLQueryListener<T> listener)**
-
 **2、doSQLQuery（Context context, String bql, SQLQueryListener<T> listener)----基本BQL查询**
-
 **3、doSQLQuery（Context context, String bql, SQLQueryListener<T> listener,Object... params)----占位符查询**
-
 **只有`第一种查询方式`才能和`query.hasCachedResult(context,class)`或者`query.clearCachedResult(context,class)`并列使用。**
-
 **建议使用`第一种查询方式`进行BQL缓存查询。**
 
 ## 数组
@@ -2542,6 +2525,38 @@ Integer age = (Integer) BmobUser.getObjectByKey("age");
 Boolean sex = (Boolean) BmobUser.getObjectByKey("sex");
 ```
 
+#### 同步本地缓存的用户信息
+
+场景：用户已经登录的情况下，如果后端的用户信息有修改(如在控制台修改)，此时如果能同步下最新的用户信息并写到本地缓存中就会很方便，不用重新去登录。
+
+**自`V3.5.7`版本开始，SDK新增了`BmobUser.fetchUserJsonInfo(FetchUserInfoListener)`方法解决了用户信息的同步需求。**
+
+具体用法如下
+
+```java 
+
+    /**
+     * 更新本地用户信息
+     * 注意：需要先登录，否则会报9024错误
+     *
+     * @see cn.bmob.v3.helper.ErrorCode#E9024S
+     */
+    private void fetchUserInfo() {
+        BmobUser.fetchUserJsonInfo(new FetchUserInfoListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null) {
+                    log("Newest UserInfo is " + s);
+                } else {
+                    log(e);
+                }
+            }
+        });
+    }
+
+```
+
+
 ### 更新用户
 
 很多情况下你可能需要修改用户信息，比如你的应用具备修改个人资料的功能，Bmob提供的用户更新方式有两种写法：
@@ -2940,7 +2955,7 @@ BmobSMS.requestSMSCode("11位手机号码", "模板名称",new QueryListener<Int
 
 **2）、如果你提交的短信模板无法发送，则有可能包含一些敏感监控词，具体可去Github下载  [短信关键字监控参考文档](https://github.com/bmob/bmob-public-docs/blob/master/%E7%9F%AD%E4%BF%A1%E5%85%B3%E9%94%AE%E5%AD%97%E7%9B%91%E6%8E%A7%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3.doc)  来查看提交内容是否合法。**
 
-**3）、一天一个应用给同一手机号发送的短信不能超过10条，否则会报`10010`错误，其他错误码可查看  [短信功能相关错误码](http://docs.bmob.cn/other/Other/g_errorcode/doc/index.html#短信功能相关错误码) 。**
+**3）、一天一个应用给同一手机号发送的短信不能超过10条，否则会报`10010`错误，其他错误码可查看  [短信功能相关错误码](https://docs.bmob.cn/other/Other/g_errorcode/doc/index.html#短信功能相关错误码) 。**
 
 
 ##### 验证验证码
@@ -3163,6 +3178,19 @@ Bmob提供了非常简单的方法来实现第三方账号登陆的功能，目�
 #### 第三方登录的案例源码
 
 具体案例可参考我们Github上的demo：[https://github.com/bmob/bmob-android-demo-thirdpartylogin](https://github.com/bmob/bmob-android-demo-thirdpartylogin) ,这个源码包含了第三方登录的源码和登录之后如何获取用户基本信息的部分。
+## 图文消息
+
+2017年下半年开始，后端云提供了素材管理模块，控制台文件浏览功能合并到了该模块下；
+
+![](https://i.imgur.com/Unl4dwy.png)
+
+### 适用场景
+1. 如果您的应用是需要展示很多图文消息或文章，可以用这里编辑来实现富文本信息的存储和编辑管理；
+2. 以往上传文件缺少了一些关联信息如文件描述之类的需要额外建表，来实现文件和描述信息的关联，这里可以一并解决；
+### 使用方法
+1. 后端控制台新建图文信息并编辑后会新增一个_Article表，表中的关键字段有url,title,content，分别代表图文信息网页的url地址如[此例](http://bmob-cdn-782.b0.upaiyun.com/2017/12/07/78d403d140b2c0af80c12b8d9de67a7f.html),标题和网页源码，也能实时编辑。
+2. 客户端的使用，可以查询_Article表，既可以拿到url用webview组件加载，也可以用Android SDK中的TextView结合Html类解析html标签并展示。
+
 
 
 ## 文件管理
@@ -3171,7 +3199,7 @@ Bmob提供了非常简单的方法来实现第三方账号登陆的功能，目�
 
 **注：**
 
-1、以下均为SDK对文件进行操作的方法，如果你想在Web端对文件进行操作，请查看我们的帮助文档：[如何在Web后台上传文件](http://docs.bmob.cn/other/Other/h_helps/doc/index.html#Web开发者后台相关问题)
+1、以下均为SDK对文件进行操作的方法，如果你想在Web端对文件进行操作，请查看我们的帮助文档：[如何在Web后台上传文件](https://docs.bmob.cn/other/Other/h_helps/doc/index.html#Web开发者后台相关问题)
 
 2、自 `BmobSDKv3.4.6` 开始，文件服务需要注意以下几个方面：
 
@@ -3461,7 +3489,7 @@ BmobFile.deleteBatch(urls, new DeleteBatchListener() {
 });
 
 ```
-为方便大家理解文件服务的使用，Bmob提供了一个文件上传的案例和源码，大家可以到[示例和教程中查看和下载](http://docs.bmob.cn/data/Android/c_example/doc/index.html#上传文件案例教程)。
+为方便大家理解文件服务的使用，Bmob提供了一个文件上传的案例和源码，大家可以到[示例和教程中查看和下载](https://docs.bmob.cn/data/Android/c_example/doc/index.html#上传文件案例教程)。
 
 ### 缩略图
 
@@ -3545,7 +3573,7 @@ rtd.unsubRowDelete(testTableName, objectId);
 
 ## ACL和角色
 
-数据安全是软件系统中最重要的组成部分，为了更好的保护应用数据的安全，Bmob在软件架构层面提供了应用层次、表层次、ACL（Access Control List：访问控制列表）、角色管理（Role）四种不同粒度的权限控制的方式，确保用户数据的安全（详细请查看[Bmob数据与安全页面](http://docs.bmob.cn/other/Other/n_datasafety/doc/index.html)，了解Bmob如何保护数据安全）。
+数据安全是软件系统中最重要的组成部分，为了更好的保护应用数据的安全，Bmob在软件架构层面提供了应用层次、表层次、ACL（Access Control List：访问控制列表）、角色管理（Role）四种不同粒度的权限控制的方式，确保用户数据的安全（详细请查看[Bmob数据与安全页面](https://docs.bmob.cn/other/Other/n_datasafety/doc/index.html)，了解Bmob如何保护数据安全）。
 
 其中，最灵活的方法是通过ACL和角色，它的思路是每一条数据有一个用户和角色的列表，以及这些用户和角色拥有什么样的许可权限。
 
@@ -3817,7 +3845,7 @@ query.findObjects(new FindListener<Person>() {
 
 ## 应用安全
 
-请大家在使用Bmob开发应用程序之前，仔细阅读“数据与安全”的文档：[http://docs.bmob.cn/other/Other/n_datasafety/doc/index.html](http://docs.bmob.cn/other/Other/n_datasafety/doc/index.html)
+请大家在使用Bmob开发应用程序之前，仔细阅读“数据与安全”的文档：[https://docs.bmob.cn/other/Other/n_datasafety/doc/index.html](https://docs.bmob.cn/other/Other/n_datasafety/doc/index.html)
 
 
 ## 开源案例
@@ -3861,7 +3889,7 @@ Bmob.getServerTime(new QueryListener<Long>() {
 ### 自动更新组件
 
 Bmob为大家提供了应用的自动更新组件，使用这个组件可以快速方便实现应用的自动升级功能。
-详细的使用操作可以参考文档：[自动更新组件文档](http://docs.bmob.cn/data/Android/e_autoupdate/doc/index.html)
+详细的使用操作可以参考文档：[自动更新组件文档](https://docs.bmob.cn/data/Android/e_autoupdate/doc/index.html)
 
 ### 表结构
 
@@ -3952,7 +3980,7 @@ Bmob.getAllTableSchema(context, new QueryListListener<BmobTableSchema>() {
 
 ## 错误码列表
 
-**Android SDK的错误码都是以`9`开头的，其他错误码请点击查看：[RestAPI错误码列表](http://docs.bmob.cn/data/Android/g_errorcode/doc/index.html#RESTAPI错误码列表)。**
+**Android SDK的错误码都是以`9`开头的，其他错误码请点击查看：[RestAPI错误码列表](https://docs.bmob.cn/data/Android/g_errorcode/doc/index.html#RESTAPI错误码列表)。**
 
 **9001**
 

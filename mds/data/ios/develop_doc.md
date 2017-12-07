@@ -1,6 +1,7 @@
 ## 简介
 
 Bmob平台为您的移动应用提供了一个完整的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用Bmob平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。
+**欢迎加入iOS开发者2群495047653进行讨论，有问题麻烦在Bmob应用后台提交工单**
 
 ## 安装
 
@@ -15,7 +16,7 @@ iOS9默认不允许进行http请求，所以在使用SDK的过程中需要往Inf
 1. 完全取消http请求限制
 
 ```
-<key>NSAppTransportSecurity</key> 
+<key>NSAppTransportSecurity</key>
 <dict>
 <key>NSAllowsArbitraryLoads</key>
 <true/>
@@ -24,21 +25,21 @@ iOS9默认不允许进行http请求，所以在使用SDK的过程中需要往Inf
 2. 指定部分网址支持http
 
 ```
-<key>NSAppTransportSecurity</key> 
+<key>NSAppTransportSecurity</key>
 <dict>
-   <key>NSExceptionDomains</key>
-      <dict>     
-      		<key>yourserver.com</key>    
-       	<dict>      
-       	 	<key>NSIncludesSubdomains</key>
-         		<true/>
-				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-				<true/>             
-			 	<key>NSTemporaryExceptionMinimumTLSVersion</key>       
-			 	<string>TLSv1.1</string>    
-			</dict>   
-		</dict>
- </dict>
+<key>NSExceptionDomains</key>
+<dict>
+<key>yourserver.com</key>
+<dict>
+<key>NSIncludesSubdomains</key>
+<true/>
+<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+<true/>
+<key>NSTemporaryExceptionMinimumTLSVersion</key>
+<string>TLSv1.1</string>
+</dict>
+</dict>
+</dict>
 ```
 
 另外，最新版的sdk已支持bitcode。
@@ -51,13 +52,13 @@ iOS9默认不允许进行http请求，所以在使用SDK的过程中需要往Inf
 
 ### 应用安全
 
-请大家在使用Bmob开发应用程序之前，认真阅读我们给大家提供的“数据与安全”的文档，确保你的应用在发布时安全。文档 [请点击](http://docs.bmob.cn/other/Other/n_datasafety/doc/index.html);
+请大家在使用Bmob开发应用程序之前，认真阅读我们给大家提供的“数据与安全”的文档，确保你的应用在发布时安全。文档 [请点击](https://docs.bmob.cn/other/Other/n_datasafety/doc/index.html);
 
 ## 数据迁移
 从v2.1.8开始，数据SDK新增了能重新设置请求域名的Api，类似数据迁移，调用方式如下：
 ```
-[Bmob resetDomain:@"http://demo.bmob.cn/"];
-```  
+[Bmob resetDomain:@"https://open-vip.bmob.cn"];
+```
 其中，参数为开发者的域名，调用后的所有请求都指向新的域名。
 ## 对象
 
@@ -85,32 +86,32 @@ BmobObject提供以下几种方法对BmobOjbect进行初始化：
 
 ```
 /**
- *	创建一个带有className的BmobObject对象
- *
- *	@param	className	表示对象名称(类似数据库表名)
- *
- *	@return	BmobObject
- */
+*    创建一个带有className的BmobObject对象
+*
+*    @param    className    表示对象名称(类似数据库表名)
+*
+*    @return    BmobObject
+*/
 +(instancetype )objectWithClassName:(NSString*)className;
 
 
 /**
- *  创建一个带有className 和objectId的BmobObject对象
- *
- *  @param className 表名
- *  @param objectId  对象的id
- *
- *  @return BmobObject对象
- */
+*  创建一个带有className 和objectId的BmobObject对象
+*
+*  @param className 表名
+*  @param objectId  对象的id
+*
+*  @return BmobObject对象
+*/
 +(instancetype)objectWithoutDataWithClassName:(NSString*)className objectId:(NSString *)objectId;
 
 /**
- *  从字典创建BmobObject
- *
- *  @param dictionary 字典
- *
- *  @return BmobObject 对象
- */
+*  从字典创建BmobObject
+*
+*  @param dictionary 字典
+*
+*  @return BmobObject 对象
+*/
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 ```
 
@@ -121,52 +122,52 @@ BmobObject提供以下几种方法对BmobOjbect进行初始化：
 
 ```
 /**
- *	后台保存BmobObject对象，没有返回结果
- */
+*    后台保存BmobObject对象，没有返回结果
+*/
 -(void)saveInBackground;
 
 /**
- *	后台保存BmobObject对象，返回保存的结果
- *
- *	@param	block	返回保存的结果是成功还是失败
- */
+*    后台保存BmobObject对象，返回保存的结果
+*
+*    @param    block    返回保存的结果是成功还是失败
+*/
 -(void)saveInBackgroundWithResultBlock:(BmobBooleanResultBlock)block;
 ```
 
 比如，在一个游戏的应用中，当需要保存游戏分数、玩家信息到服务器中的时候，就可以创建GameScore表来添加数据，添加数据的形式类型与iOS中的NSMutableDictionary对象类似，如下：
 
 ```
-    //在GameScore创建一条数据，如果当前没GameScore表，则会创建GameScore表
-    BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
-    //score为1200
-    [gameScore setObject:[NSNumber numberWithInt:1200] forKey:@"score"];
-    //设置userName为小明
-    [gameScore setObject:@"小明" forKey:@"playerName"];
-    //设置cheatMode为NO
-    [gameScore setObject:[NSNumber numberWithBool:NO] forKey:@"cheatMode"];
-    //设置age为18
-    [gameScore setObject:[NSNumber numberWithInt:18] forKey:@"age"];
-    
-    //异步保存到服务器
-    [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            //创建成功后会返回objectId，updatedAt，createdAt等信息
-            //创建对象成功，打印对象值
-            NSLog(@"%@",gameScore);
-        } else if (error){
-            //发生错误后的动作
-            NSLog(@"%@",error);
-        } else {
-            NSLog(@"Unknow error");
-        }
-    }];
+//在GameScore创建一条数据，如果当前没GameScore表，则会创建GameScore表
+BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
+//score为1200
+[gameScore setObject:[NSNumber numberWithInt:1200] forKey:@"score"];
+//设置userName为小明
+[gameScore setObject:@"小明" forKey:@"playerName"];
+//设置cheatMode为NO
+[gameScore setObject:[NSNumber numberWithBool:NO] forKey:@"cheatMode"];
+//设置age为18
+[gameScore setObject:[NSNumber numberWithInt:18] forKey:@"age"];
+
+//异步保存到服务器
+[gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+//创建成功后会返回objectId，updatedAt，createdAt等信息
+//创建对象成功，打印对象值
+NSLog(@"%@",gameScore);
+} else if (error){
+//发生错误后的动作
+NSLog(@"%@",error);
+} else {
+NSLog(@"Unknow error");
+}
+}];
 
 ```
 
 运行完以上代码后，数据即可保存到服务器端了。为了确认数据是否真的已经保存成功，你可以在Bmob服务器端你的应用程序的数据浏览项目中查看。你应该看到类似这样的结果：
 
 ```
-	objectId: "0c6db13c", score: 1200, playerName: "小明", cheatMode: false, createdAt:"2012-03-29 10:32:54", updatedAt:"2012-03-29 10:32:54"
+objectId: "0c6db13c", score: 1200, playerName: "小明", cheatMode: false, createdAt:"2012-03-29 10:32:54", updatedAt:"2012-03-29 10:32:54"
 ```
 
 这里需要注意几点：
@@ -181,28 +182,28 @@ BmobObject提供以下几种方法对BmobOjbect进行初始化：
 上述方法中每添加一条数据需要设置一次键值对，如果觉得过于繁琐，可以通过一个NSDictionary来添加数据，利用以下方法即可:
 
 ```
-    -(void)saveAllWithDictionary:(NSDictionary*)dic;
-```  
+-(void)saveAllWithDictionary:(NSDictionary*)dic;
+```
 这个函数。
 
 如:
 
 ```
-    BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
-    //设置playerName列的值为小黑和age列的值18
-    NSDictionary *dic = @{@"playerName":@"小黑",@"score":@18};
-    [gameScore saveAllWithDictionary:dic];
-    //异步保存
-    [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            //创建成功后的动作
-        } else if (error){
-            //发生错误后的动作
-            NSLog(@"%@",error);
-        } else {
-            NSLog(@"Unknow error");
-        }
-    }];
+BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
+//设置playerName列的值为小黑和age列的值18
+NSDictionary *dic = @{@"playerName":@"小黑",@"score":@18};
+[gameScore saveAllWithDictionary:dic];
+//异步保存
+[gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+//创建成功后的动作
+} else if (error){
+//发生错误后的动作
+NSLog(@"%@",error);
+} else {
+NSLog(@"Unknow error");
+}
+}];
 ```
 
 ### 更新数据
@@ -211,35 +212,36 @@ BmobObject提供以下几种方法对BmobOjbect进行初始化：
 
 ```
 - (void)updateObject{
-    //创建一条数据，并上传至服务器
-    BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
-    [gameScore setObject:[NSNumber numberWithInt:1200] forKey:@"score"];
-    
-    //异步保存到服务器
-    [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            //创建成功后会返回objectId，updatedAt，createdAt等信息
-            NSLog(@"创建成功,以下为对象值");
-            NSLog(@"%@",gameScore);
-            
-            //此处是更新操作
-            [gameScore setObject:[NSNumber numberWithInt:110] forKey:@"score"];
-            [gameScore updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                if (isSuccessful) {
-                    NSLog(@"更新成功，以下为对象值，可以看到score值已经改变");
-                    NSLog(@"%@",gameScore);
-                } else {
-                    NSLog(@"%@",error);
-                }
-            }];
-            
-        } else if (error){
-            //发生错误后的动作
-            NSLog(@"%@",error);
-        } else {
-            NSLog(@"Unknow error");
-        }
-    }];
+//创建一条数据，并上传至服务器
+BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
+[gameScore setObject:[NSNumber numberWithInt:1200] forKey:@"score"];
+
+//异步保存到服务器
+[gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+//创建成功后会返回objectId，updatedAt，createdAt等信息
+NSLog(@"创建成功,以下为对象值");
+NSLog(@"%@",gameScore);
+
+//此处是更新操作
+BmobObject  *gameScoreChange = [BmobObject objectWithoutDataWithClassName:@"GameScore" objectId:gameScore.objectId];
+[gameScoreChange setObject:[NSNumber numberWithInt:110] forKey:@"score"];
+[gameScoreChange updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+NSLog(@"更新成功，以下为对象值，可以看到score值已经改变");
+NSLog(@"%@",gameScore);
+} else {
+NSLog(@"%@",error);
+}
+}];
+
+} else if (error){
+//发生错误后的动作
+NSLog(@"%@",error);
+} else {
+NSLog(@"Unknow error");
+}
+}];
 }
 
 ```
@@ -248,74 +250,74 @@ BmobObject提供以下几种方法对BmobOjbect进行初始化：
 
 ```
 - (void)updateObjectJSONField{
-    //创建一条数据，并上传至服务器
-    BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
-    NSDictionary *json = @{@"name":@"John", @"gender":@"man"};
-    [gameScore setObject:json forKey:@"userAttibute"];
+//创建一条数据，并上传至服务器
+BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
+NSDictionary *json = @{@"name":@"John", @"gender":@"man"};
+[gameScore setObject:json forKey:@"userAttibute"];
 
-    //异步保存到服务器
-    [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            //创建成功后会返回objectId，updatedAt，createdAt等信息
-            NSLog(@"创建成功,以下为对象值");
-            NSLog(@"%@",gameScore);
-            
-            //此处是更新操作
-            BmobObject *gameScoreChanged = [BmobObject objectWithoutDataWithClassName:@"GameScore" objectId:gameScore.objectId];
-            [gameScoreChanged setObject:@"Mike" forKey:@"userAttibute.name"];
-            [gameScoreChanged updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                if (isSuccessful) {
-                    NSLog(@"更新成功，以下为对象值，可以看到json里面的name已经改变");
-                    NSLog(@"%@",gameScoreChanged);
-                } else {
-                    NSLog(@"%@",error);
-                }
-            }];
-            
-        } else if (error){
-            //发生错误后的动作
-            NSLog(@"%@",error);
-        } else {
-            NSLog(@"Unknow error");
-        }
-    }];
+//异步保存到服务器
+[gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+//创建成功后会返回objectId，updatedAt，createdAt等信息
+NSLog(@"创建成功,以下为对象值");
+NSLog(@"%@",gameScore);
+
+//此处是更新操作
+BmobObject *gameScoreChanged = [BmobObject objectWithoutDataWithClassName:@"GameScore" objectId:gameScore.objectId];
+[gameScoreChanged setObject:@"Mike" forKey:@"userAttibute.name"];
+[gameScoreChanged updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+NSLog(@"更新成功，以下为对象值，可以看到json里面的name已经改变");
+NSLog(@"%@",gameScoreChanged);
+} else {
+NSLog(@"%@",error);
+}
+}];
+
+} else if (error){
+//发生错误后的动作
+NSLog(@"%@",error);
+} else {
+NSLog(@"Unknow error");
+}
+}];
 }
 ```
 
 此处要注意一点，就是在上传 `gameScore` 之后，如果要再次进行更新，请重新构造对象，因为此时的 `gameScore` 对象还含有`userAttibute` 的值，下面是错误的代码：
 
-```    
-    //创建一条数据，并上传至服务器
-    BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
-    NSDictionary *json = @{@"name":@"John", @"gender":@"man"};
-    [gameScore setObject:json forKey:@"userAttibute"];
-    
-    //异步保存到服务器
-    [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            //创建成功后会返回objectId，updatedAt，createdAt等信息
-            NSLog(@"创建成功,以下为对象值");
-            NSLog(@"%@",gameScore);
-            
-            //错误的做法，直接使用gameScore来设置，请观察gameScore值上传时的值
-            [gameScore setObject:@"women" forKey:@"userAttibute.gender"];
-            NSLog(@"上传前的gameScore对象值\n%@",gameScore);
-            [gameScore updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                if (isSuccessful) {
-                    NSLog(@"更新成功，以下为对象值，可以看到json里面的gender已经改变");
-                    NSLog(@"%@",gameScore);
-                } else {
-                    NSLog(@"%@",error);
-                }
-            }];
-            
-        } else if (error){
-            //发生错误后的动作
-            NSLog(@"%@",error);
-        } else {
-            NSLog(@"Unknow error");
-        }
-    }];
+```
+//创建一条数据，并上传至服务器
+BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
+NSDictionary *json = @{@"name":@"John", @"gender":@"man"};
+[gameScore setObject:json forKey:@"userAttibute"];
+
+//异步保存到服务器
+[gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+//创建成功后会返回objectId，updatedAt，createdAt等信息
+NSLog(@"创建成功,以下为对象值");
+NSLog(@"%@",gameScore);
+
+//错误的做法，直接使用gameScore来设置，请观察gameScore值上传时的值
+[gameScore setObject:@"women" forKey:@"userAttibute.gender"];
+NSLog(@"上传前的gameScore对象值\n%@",gameScore);
+[gameScore updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+NSLog(@"更新成功，以下为对象值，可以看到json里面的gender已经改变");
+NSLog(@"%@",gameScore);
+} else {
+NSLog(@"%@",error);
+}
+}];
+
+} else if (error){
+//发生错误后的动作
+NSLog(@"%@",error);
+} else {
+NSLog(@"Unknow error");
+}
+}];
 }
 ```
 
@@ -323,16 +325,16 @@ BmobObject提供以下几种方法对BmobOjbect进行初始化：
 
 ```
 2015-12-14 20:45:55.417 BmobSDKDemo[16867:1430005] 创建成功,以下为对象值
-2015-12-14 20:45:55.418 BmobSDKDemo[16867:1430005] 
+2015-12-14 20:45:55.418 BmobSDKDemo[16867:1430005]
 className = GameScore;
 objectId = 0f3d45dbc5;
 createdAt = 2015-12-14 12:45:55 +0000;
 updatedAt = 2015-12-14 12:45:55 +0000;
 date = {
-    userAttibute =     {
-        gender = man;
-        name = John;
-    };
+userAttibute =     {
+gender = man;
+name = John;
+};
 };
 2015-12-14 20:45:55.419 BmobSDKDemo[16867:1430005] 上传前的gameScore对象值
 
@@ -341,11 +343,11 @@ objectId = 0f3d45dbc5;
 createdAt = 2015-12-14 12:45:55 +0000;
 updatedAt = 2015-12-14 12:45:55 +0000;
 date = {
-    userAttibute =     {
-        gender = man;
-        name = John;
-    };
-    "userAttibute.gender" = women;
+userAttibute =     {
+gender = man;
+name = John;
+};
+"userAttibute.gender" = women;
 };
 ```
 
@@ -354,24 +356,24 @@ date = {
 为了存储一个计数器类型的数据，Bmob提供对任何数字字段进行原子增加(或者减少)的功能，所以我们可以让score像下面一样增加一个固定的值:
 
 ```
-    //创建一条数据，并上传至服务器
-    BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
-    [gameScore setObject:@0 forKey:@"atomicCounter"];
-    [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            BmobObject *gameScoreToBeChanged = [BmobObject objectWithoutDataWithClassName:@"GameScore" objectId:gameScore.objectId];
-            [gameScoreToBeChanged incrementKey:@"atomicCounter"];
-            [gameScoreToBeChanged updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                if (isSuccessful) {
-                    NSLog(@"添加成功，可在后台查看objectID为%@的atomicCounter的值是否为1",gameScoreToBeChanged.objectId);
-                } else {
-                    NSLog(@"%@",error);
-                }
-            }];
-        } else {
-            NSLog(@"%@",error);
-        }
-    }];
+//创建一条数据，并上传至服务器
+BmobObject  *gameScore = [BmobObject objectWithClassName:@"GameScore"];
+[gameScore setObject:@0 forKey:@"atomicCounter"];
+[gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+BmobObject *gameScoreToBeChanged = [BmobObject objectWithoutDataWithClassName:@"GameScore" objectId:gameScore.objectId];
+[gameScoreToBeChanged incrementKey:@"atomicCounter"];
+[gameScoreToBeChanged updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+NSLog(@"添加成功，可在后台查看objectID为%@的atomicCounter的值是否为1",gameScoreToBeChanged.objectId);
+} else {
+NSLog(@"%@",error);
+}
+}];
+} else {
+NSLog(@"%@",error);
+}
+}];
 ```
 也提供了
 
@@ -390,20 +392,21 @@ date = {
 从服务器删除对象：
 
 ```
-    BmobObject *bmobObject = [BmobObject objectWithoutDataWithClassName:@"GameScore"  objectId:@"baaf9cfa1b"];
-    [bmobObject deleteInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            //删除成功后的动作
-            NSLog(@"successful");
-        } else if (error){
-            NSLog(@"%@",error);
-        } else {
-            NSLog(@"UnKnow error");
-        }
-    }];
+BmobObject *bmobObject = [BmobObject objectWithoutDataWithClassName:@"GameScore"  objectId:@"baaf9cfa1b"];
+[bmobObject deleteInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+//删除成功后的动作
+NSLog(@"successful");
+} else if (error){
+NSLog(@"%@",error);
+} else {
+NSLog(@"UnKnow error");
+}
+}];
 ```
 
 ### 批量数据操作
+自2017年04月起，为了提供更稳定的服务，后端启用了QPS限制，所以推荐采用批量数据操作来解决如果需要在循环里多次提交请求但是后端返回QPS达到限制的报错。
 Bmob提供了批量操作的类BmobObjectsBatch,使用该类，可以批量增加，修改，删除数据，但一次请求不能超过50条数据。下面是例子程序：
 
 ```
@@ -415,7 +418,7 @@ BmobObjectsBatch    *batch = [[BmobObjectsBatch alloc] init] ;
 //在GameScore表中删除objectId为30752bb92f的数据
 [batch deleteBmobObjectWithClassName:@"GameScore" objectId:@"30752bb92f"];
 [batch batchObjectsInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-    NSLog(@"batch error %@",[error description]);
+NSLog(@"batch error %@",[error description]);
 }];
 ```
 
@@ -430,46 +433,46 @@ BmobObjectsBatch    *batch = [[BmobObjectsBatch alloc] init] ;
 BmobQuery   *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 //查找GameScore表里面id为0c6db13c的数据
 [bquery getObjectInBackgroundWithId:@"0c6db13c" block:^(BmobObject *object,NSError *error){
-  if (error){
-  		//进行错误处理
-  }else{
-  	  //表里有id为0c6db13c的数据
-      if (object) {
-      	  //得到playerName和cheatMode
-          NSString *playerName = [object objectForKey:@"playerName"];
-          BOOL cheatMode = [[object objectForKey:@"cheatMode"] boolValue];
-          NSLog(@"%@----%i",playerName,cheatMode);
-          //打印objectId,createdAt,updatedAt
-          NSLog(@"object.objectId = %@", [object objectId]);
-          NSLog(@"object.createdAt = %@", [object createdAt]);
-          NSLog(@"object.updatedAt = %@", [object updatedAt]);
-      }
-  }
+if (error){
+//进行错误处理
+}else{
+//表里有id为0c6db13c的数据
+if (object) {
+//得到playerName和cheatMode
+NSString *playerName = [object objectForKey:@"playerName"];
+BOOL cheatMode = [[object objectForKey:@"cheatMode"] boolValue];
+NSLog(@"%@----%i",playerName,cheatMode);
+//打印objectId,createdAt,updatedAt
+NSLog(@"object.objectId = %@", [object objectId]);
+NSLog(@"object.createdAt = %@", [object createdAt]);
+NSLog(@"object.updatedAt = %@", [object updatedAt]);
+}
+}
 }];
 ```
 
 ### 查询多条数据
 
-在某些情况下，当需要查询表中多条元素的时候，可以直接使用findObjectsInBackgroundWithBlock函数获取查询结果，默认100条。
+在某些情况下，当需要查询表中多条元素的时候，可以直接使用findObjectsInBackgroundWithBlock函数获取查询结果，默认100条，最多500条。
 
 ```
 BmobQuery   *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 //查找GameScore表的数据
 [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        for (BmobObject *obj in array) {
-        	//打印playerName
-            NSLog(@"obj.playerName = %@", [obj objectForKey:@"playerName"]);
-            //打印objectId,createdAt,updatedAt
-            NSLog(@"obj.objectId = %@", [obj objectId]);
-            NSLog(@"obj.createdAt = %@", [obj createdAt]);
-            NSLog(@"obj.updatedAt = %@", [obj updatedAt]);
-    }
+for (BmobObject *obj in array) {
+//打印playerName
+NSLog(@"obj.playerName = %@", [obj objectForKey:@"playerName"]);
+//打印objectId,createdAt,updatedAt
+NSLog(@"obj.objectId = %@", [obj objectId]);
+NSLog(@"obj.createdAt = %@", [obj createdAt]);
+NSLog(@"obj.updatedAt = %@", [obj updatedAt]);
+}
 }];
-``` 
+```
 
 **这里需要注意的是：**
 
-1.默认情况下，系统实际上并不会返回所有的数据，而是默认返回10条数据记录，你可以通过setLimit方法设置返回的记录数量。更多细节可[点击查看查询](http://docs.bmob.cn/data/iOS/b_developdoc/doc/index.html#查询)一节中的分页查询。
+1.默认情况下，系统实际上并不会返回所有的数据，而是默认返回100条数据记录，你可以通过setLimit方法设置返回的记录数量。更多细节可[点击查看查询](https://docs.bmob.cn/data/iOS/b_developdoc/doc/index.html#查询)一节中的分页查询。
 
 2.当查询的是用户表这种系统表的时候，返回的是BmobUser的数组，设备表，角色表也是这样的。
 
@@ -511,7 +514,7 @@ BmobQuery   *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 #### 子查询
 
 如果你想查询匹配几个不同值的数据，如要查询“小明”，“小红”，“小白”三个人的信息是，可以使用
-	
+
 ```
 - (void)whereKey:(NSString *)key containedIn:(NSArray *)array;
 ```
@@ -524,7 +527,7 @@ BmobQuery   *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 如果是关联关系，直接在数组里面填写objectId即可，如下
 
 ```
- [bquery whereKey:@"author" containedIn:@[@"063a2d739e",@"b97ca382c3"]];
+[bquery whereKey:@"author" containedIn:@[@"063a2d739e",@"b97ca382c3"]];
 ```
 
 相反，要排除这几个人的信息可以用
@@ -576,7 +579,7 @@ BmobQuery   *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 **注:模糊查询只对付费用户开放，付费后可直接使用。**
 
 #### 分页查询
-有时，在数据比较多的情况下，你希望查询出的符合要求的所有数据能按照多少条为一页来显示，这时可以使用limit方法来限制查询结果的数据条数来进行分页。默认情况下，Limit的值为100，最大有效设置值1000（设置的数值超过1000还是视为1000）。
+有时，在数据比较多的情况下，你希望查询出的符合要求的所有数据能按照多少条为一页来显示，这时可以使用limit方法来限制查询结果的数据条数来进行分页。默认情况下，Limit的值为100，最大有效设置值500（设置的数值超过500还是视为500）。
 
 ```
 bquery.limit = 3;//限制得到的结果条数为3条
@@ -637,18 +640,18 @@ NSArray *array =  @[@{@"score":@5},@{@"name":@"Mike"}];
 
 支持的条件符号有
 
-|   Key       |  	Operation        
-| ----------  |  --------------      
-|$lt	      |        小于           
-|$lte	      |      小于等于         
-|$gt	      |       大于
-|$gte	      |     大于等于
-|$ne	      |       不等于
-|$in	      |      在数组中
-|$nin	      |    不在数组中
-|$exists	  |     值不为空
-|$or	      |  合成查询中的或查询
-|$and	      | 合成查询中的与查询
+|   Key       |      Operation
+| ----------  |  --------------
+|$lt          |        小于
+|$lte          |      小于等于
+|$gt          |       大于
+|$gte          |     大于等于
+|$ne          |       不等于
+|$in          |      在数组中
+|$nin          |    不在数组中
+|$exists      |     值不为空
+|$or          |  合成查询中的或查询
+|$and          | 合成查询中的与查询
 |$regex     | 匹配PCRE表达式
 
 
@@ -683,7 +686,7 @@ NSArray *array =  @[@{@"name":@"张三"},@{@"name":"李四"}];
 
 ```
 //createdAt大于或等于 2014-07-15 00:00:00
- NSDictionary *condiction1 = @{@"createdAt":@{@"$gte":@{@"__type": @"Date", @"iso": @"2014-07-15 00:00:00"}}}; 
+NSDictionary *condiction1 = @{@"createdAt":@{@"$gte":@{@"__type": @"Date", @"iso": @"2014-07-15 00:00:00"}}};
 //createdAt小于 2014-10-15 00:00:00
 NSDictionary *condiction2 = @{@"createdAt":@{@"$lt":@{@"__type": @"Date", @"iso": @"2014-10-15 00:00:00"}}};
 NSArray *condictonArray = @[condiction1,condiction2];
@@ -710,22 +713,22 @@ NSArray *condictionArray = @[condiction1,condiction2];
 另外我们还封装了以下方法，方便开发者使用，以下是与查询，注意add之前的查询只能添加一个条件，如果是或查询，将` [main andOperation];`换成` [main orOperation];`
 
 ```objc
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"GameScore_LT"];
-    [bquery whereKey:@"score" equalTo:[NSNumber numberWithDouble:10.3]];
-    BmobQuery   *bquery1 = [BmobQuery queryWithClassName:@"GameScore_LT"];
-    [bquery1 whereKey:@"playerName" equalTo:@"test"];
-    
-    BmobQuery   *main = [BmobQuery queryWithClassName:@"GameScore_LT"];
-    [main add:bquery];
-    [main add:bquery1];
-    [main andOperation];
-    [main findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        for (BmobObject *obj in array) {
-            //打印playerName
-            NSLog(@"%@",obj);
-            NSLog(@"obj.playerName = %@", [obj objectForKey:@"playerName"]);
-        }
-    }];
+BmobQuery   *bquery = [BmobQuery queryWithClassName:@"GameScore_LT"];
+[bquery whereKey:@"score" equalTo:[NSNumber numberWithDouble:10.3]];
+BmobQuery   *bquery1 = [BmobQuery queryWithClassName:@"GameScore_LT"];
+[bquery1 whereKey:@"playerName" equalTo:@"test"];
+
+BmobQuery   *main = [BmobQuery queryWithClassName:@"GameScore_LT"];
+[main add:bquery];
+[main add:bquery1];
+[main andOperation];
+[main findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+for (BmobObject *obj in array) {
+//打印playerName
+NSLog(@"%@",obj);
+NSLog(@"obj.playerName = %@", [obj objectForKey:@"playerName"]);
+}
+}];
 ```
 
 ### 返回指定列
@@ -733,7 +736,7 @@ NSArray *condictionArray = @[condiction1,condiction2];
 有的时候，一张表的数据列比较多，而我们只想查询返回某些列的数据时，我们可以使用以下方法来只返回需要的列的值
 
 ```
-//设置查询后返回的字段数组	
+//设置查询后返回的字段数组
 -(void)selectKeys:(NSArray*)keys;
 ```
 
@@ -750,7 +753,7 @@ NSArray *condictionArray = @[condiction1,condiction2];
 BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 [bquery whereKey:@"playerName" equalTo:@"Barbie"];
 [bquery countObjectsInBackgroundWithBlock:^(int number,NSError  *error){
-	     NSLog(@"%d",num);
+NSLog(@"%d",num);
 }];
 ```
 
@@ -776,21 +779,21 @@ BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 例如，如果我们要计算GameScore表所有玩家的得分总和，可以使用以下代码：
 
 ```
-    BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
-    NSArray *sumArray = [NSArray arrayWithObject:@"score"];
-    [bquery sumKeys:sumArray];
-    [bquery calcInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"error is:%@",error);
-        } else{
-            if (array) {
-                NSLog(@"%@",array);
-                NSDictionary *dic = [[NSDictionary alloc] init];
-                dic = [array objectAtIndex:0];
-                NSLog(@"sum of score:%d",[[dic objectForKey:@"_sumScore"] intValue] );
-            }
-        }
-    }];
+BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
+NSArray *sumArray = [NSArray arrayWithObject:@"score"];
+[bquery sumKeys:sumArray];
+[bquery calcInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"error is:%@",error);
+} else{
+if (array) {
+NSLog(@"%@",array);
+NSDictionary *dic = [[NSDictionary alloc] init];
+dic = [array objectAtIndex:0];
+NSLog(@"sum of score:%d",[[dic objectForKey:@"_sumScore"] intValue] );
+}
+}
+}];
 ```
 
 计算总和只对Number类型的列有效，列名使用数组存放。返回的字典key值为_sum+首字母大写的列名，其它计算方法与sum类似，其返回的字典key值见下表
@@ -806,53 +809,53 @@ BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 分组可用于获取并不复杂的列值，如我想知道playerName列中有多少个不同的玩家名字，可使用以下代码：
 
 ```
-    BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore_LT"];
-    NSArray *groupbyArray = [NSArray arrayWithObject:@"playerName"];
-    [bquery groupbyKeys:groupbyArray];
-    [bquery calcInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"error is:%@",error);
-        } else{
-            if (array) {
-                NSLog(@"%@",array);
-                for (NSDictionary *dic in array) {
-                    NSString *playerName = [dic objectForKey:@"playerName"];
-                    NSLog(@"player:%@",playerName);
-                }
-            }
-        }
-    }];
+BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore_LT"];
+NSArray *groupbyArray = [NSArray arrayWithObject:@"playerName"];
+[bquery groupbyKeys:groupbyArray];
+[bquery calcInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"error is:%@",error);
+} else{
+if (array) {
+NSLog(@"%@",array);
+for (NSDictionary *dic in array) {
+NSString *playerName = [dic objectForKey:@"playerName"];
+NSLog(@"player:%@",playerName);
+}
+}
+}
+}];
 ```
 
 另外，groupby可以结合计算函数来使用，比如我想统计每个玩家的总分，可以使用以下代码：
 
 ```
-    BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
-    NSArray *groupbyArray = [NSArray arrayWithObject:@"playerName"];
-    NSArray *sumArray = [NSArray arrayWithObject:@"score"];
-    [bquery groupbyKeys:groupbyArray];
-    [bquery sumKeys:sumArray];
-    [bquery calcInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"error is:%@",error);
-        } else{
-            if (array) {
-                NSLog(@"%@",array);
-                for (NSDictionary *dic in array) {
-                    NSString *playerName = [dic objectForKey:@"playerName"];
-                    NSString *sum = [dic objectForKey:@"_sumScore"];
-                    NSLog(@"player:%@\tsum:%@",playerName,sum);
-                }
-            }
-        }
-    }];
+BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
+NSArray *groupbyArray = [NSArray arrayWithObject:@"playerName"];
+NSArray *sumArray = [NSArray arrayWithObject:@"score"];
+[bquery groupbyKeys:groupbyArray];
+[bquery sumKeys:sumArray];
+[bquery calcInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"error is:%@",error);
+} else{
+if (array) {
+NSLog(@"%@",array);
+for (NSDictionary *dic in array) {
+NSString *playerName = [dic objectForKey:@"playerName"];
+NSString *sum = [dic objectForKey:@"_sumScore"];
+NSLog(@"player:%@\tsum:%@",playerName,sum);
+}
+}
+}
+}];
 ```
 
 ##### 分组记录数
 有时候，我们还想知道分组统计时每个分组有多少条记录，设置isGroupcount为YES即可,如下：
 
 ```
-    bquery.isGroupcount = YES;
+bquery.isGroupcount = YES;
 ```
 
 这样在返回的结果中就会包含类似于以下的键值对：
@@ -865,34 +868,34 @@ _count = 10
 利用计算方法返回来的值可以通过限制条件来获取我们想关注的结果。添加条件使用以下方法。
 
 ```
- -(void)constructHavingDic:(NSDictionary *)havingDic
+-(void)constructHavingDic:(NSDictionary *)havingDic
 ```
 该方法通过构造havingDic来添加限制条件，其使用方法与复杂查询类似。
 
 例如，我们统计每个玩家的总分，但我们只需要得到总分大于50的玩家，可以使用以下代码得到：
 
 ```
-    BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
-    NSArray *groupbyArray = [NSArray arrayWithObject:@"playerName"];
-    [bquery groupbyKeys:groupbyArray];
-    NSArray *sumArray = [NSArray arrayWithObject:@"score"];
-    [bquery sumKeys:sumArray];
-    NSDictionary *condication = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:50],@"$gt", nil];
-    [bquery constructHavingDic:[[NSDictionary alloc] initWithObjectsAndKeys:condication,@"_sumScore", nil]];
-    [bquery calcInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"error is:%@",error);
-        } else{
-            if (array) {
-                NSLog(@"%@",array);
-                for (NSDictionary *dic in array) {
-                    NSString *playerName = [dic objectForKey:@"playerName"];
-                    NSString *sum = [dic objectForKey:@"_sumScore"];
-                    NSLog(@"player:%@\tsum:%@",playerName,sum);
-                }
-            }
-        }
-    }];
+BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
+NSArray *groupbyArray = [NSArray arrayWithObject:@"playerName"];
+[bquery groupbyKeys:groupbyArray];
+NSArray *sumArray = [NSArray arrayWithObject:@"score"];
+[bquery sumKeys:sumArray];
+NSDictionary *condication = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:50],@"$gt", nil];
+[bquery constructHavingDic:[[NSDictionary alloc] initWithObjectsAndKeys:condication,@"_sumScore", nil]];
+[bquery calcInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"error is:%@",error);
+} else{
+if (array) {
+NSLog(@"%@",array);
+for (NSDictionary *dic in array) {
+NSString *playerName = [dic objectForKey:@"playerName"];
+NSString *sum = [dic objectForKey:@"_sumScore"];
+NSLog(@"player:%@\tsum:%@",playerName,sum);
+}
+}
+}
+}];
 ```
 
 ### 缓存查询
@@ -932,13 +935,13 @@ BmobSDK提供几种不同的缓存策略，以使用不同应用场景的需求�
 
 ```
 [bquery hasCachedResult];
-```	
+```
 存在返回YES，否则返回NO
 |清除当前查询的缓存数据
 
 ```
 [bquery clearCachedResult];
-```	
+```
 |清除所有查询结果的缓存数据
 
 ```
@@ -954,7 +957,7 @@ bquery.maxCacheAge = 10000;
 
 `Bmob Query Language`（简称 BQL）是 Bmob 自 `BmobSDK V1.5.7` 版本开始，为查询 API 定制的一套类似 SQL 查询语法的子集和变种，主要目的是降低大家学习 Bmob 查询 API 的成本，可以使用传统的 SQL 语法来查询 Bmob 应用内的数据。
 
-具体的 BQL 语法，请参考 [Bmob Query Language 详细指南](http://docs.bmob.cn/other/Other/m_bql/doc/index.html)。
+具体的 BQL 语法，请参考 [Bmob Query Language 详细指南](https://docs.bmob.cn/other/Other/m_bql/doc/index.html)。
 
 #### 基本BQL查询
 可以通过以下方法来进行SQL查询：
@@ -962,17 +965,17 @@ bquery.maxCacheAge = 10000;
 例如：需要查询所有的游戏得分记录
 
 ```
-    BmobQuery *bmobQuery = [[BmobQuery alloc] init];
-    NSString *bql = @"select * from GameScore_BQL";
-    [bmobQuery queryInBackgroundWithBQL:bql block:^(BQLQueryResult *result, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            if (result) {
-                NSLog(@"%@",result.resultsAry);
-            }
-        }
-    }];
+BmobQuery *bmobQuery = [[BmobQuery alloc] init];
+NSString *bql = @"select * from GameScore_BQL";
+[bmobQuery queryInBackgroundWithBQL:bql block:^(BQLQueryResult *result, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+if (result) {
+NSLog(@"%@",result.resultsAry);
+}
+}
+}];
 ```
 
 其中result.resultsAry为BmobObject数组。
@@ -980,17 +983,17 @@ bquery.maxCacheAge = 10000;
 如果需要查询个数，则可以这样：
 
 ```
-    NSString *bql = @"select count(*) from GameScore_BQL";
-    BmobQuery *bmobQuery = [[BmobQuery alloc] init];
-    [bmobQuery queryInBackgroundWithBQL:bql block:^(BQLQueryResult *result, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            if (result) {
-                NSLog(@"%d",result.count);
-            }
-        }
-    }];
+NSString *bql = @"select count(*) from GameScore_BQL";
+BmobQuery *bmobQuery = [[BmobQuery alloc] init];
+[bmobQuery queryInBackgroundWithBQL:bql block:^(BQLQueryResult *result, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+if (result) {
+NSLog(@"%d",result.count);
+}
+}
+}];
 ```
 
 `其中result.count为记录条数，需要注意的是如果没有使用count关键字进行查询的话，对象result的count属性是没有意义的。`
@@ -1000,16 +1003,16 @@ bquery.maxCacheAge = 10000;
 由于统计查询的结果是不定的，故BQL提供了另外一种查询方法来进行统计查询，可以使用  `- (void)statisticsInBackgroundWithBQL:(NSString *)bql block:(BmobBQLArrayResultBlock)block;` 方法来进行。
 
 ```
-     NSString *bql = @"select sum(score) from GameScore_BQL group by playerName";
-    [bmobQuery statisticsInBackgroundWithBQL:bql block:^(NSArray *result, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            if (result) {
-                NSLog(@"%@",result);
-            }
-        }
-    }];
+NSString *bql = @"select sum(score) from GameScore_BQL group by playerName";
+[bmobQuery statisticsInBackgroundWithBQL:bql block:^(NSArray *result, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+if (result) {
+NSLog(@"%@",result);
+}
+}
+}];
 ```
 
 目前统计查询支持的关键字如下表所示，即如果在sql语句中包含以下关键字时，则需要使用统计查询方法才能返回正确结果：
@@ -1033,41 +1036,41 @@ bquery.maxCacheAge = 10000;
 #### 普通查询
 
 ```
-    BmobQuery *bmobQuery = [[BmobQuery alloc] init];
-    NSString *bql = @"select * from GameScore_BQL where playerName = ? and score = ?";
-    NSArray *placeholderArray = @[@"name2",@9];
-    [bmobQuery queryInBackgroundWithBQL:bql pvalues:placeholderArray block:^(BQLQueryResult *result, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            if (result) {
-                NSLog(@"%@",result.resultsAry);
-            }
-        }
-    }];
+BmobQuery *bmobQuery = [[BmobQuery alloc] init];
+NSString *bql = @"select * from GameScore_BQL where playerName = ? and score = ?";
+NSArray *placeholderArray = @[@"name2",@9];
+[bmobQuery queryInBackgroundWithBQL:bql pvalues:placeholderArray block:^(BQLQueryResult *result, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+if (result) {
+NSLog(@"%@",result.resultsAry);
+}
+}
+}];
 ```
 
 数组中的数据会依次替换bql中的问号。
 
 #### 内置函数
 
-对于包含`内置函数`的占位符查询，比较特殊，请使用`Bmob Query Language 详细指南`中的`内置函数`中[占位符查询用到的内置函数](http://docs.bmob.cn/other/Other/m_bql/doc/index.html#内置函数介绍)用到的内置函数列出的形式进行查询操作：
+对于包含`内置函数`的占位符查询，比较特殊，请使用`Bmob Query Language 详细指南`中的`内置函数`中[占位符查询用到的内置函数](https://docs.bmob.cn/other/Other/m_bql/doc/index.html#内置函数介绍)用到的内置函数列出的形式进行查询操作：
 
 举例：我想查询在 '2015-05-14 14:56:30' 后的创建的记录，可以这样：
 
 ```
-    BmobQuery *bmobQuery = [[BmobQuery alloc] init];
-    NSString *bql = @"select * from GameScore_BQL where createdAt > date(?)";
-    NSArray *placeholderArray = @[@"2015-05-14 14:56:30"];
-    [bmobQuery queryInBackgroundWithBQL:bql pvalues:placeholderArray block:^(BQLQueryResult *result, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            if (result) {
-                NSLog(@"%@",result.resultsAry);
-            }
-        }
-    }];
+BmobQuery *bmobQuery = [[BmobQuery alloc] init];
+NSString *bql = @"select * from GameScore_BQL where createdAt > date(?)";
+NSArray *placeholderArray = @[@"2015-05-14 14:56:30"];
+[bmobQuery queryInBackgroundWithBQL:bql pvalues:placeholderArray block:^(BQLQueryResult *result, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+if (result) {
+NSLog(@"%@",result.resultsAry);
+}
+}
+}];
 ```
 
 注
@@ -1080,33 +1083,33 @@ bquery.maxCacheAge = 10000;
 如果要使用缓存策略，可用 `- (void)queryBQLCanCacheInBackgroundWithblock:(BmobBQLObjectResultBlock)block;` 方法，样例代码如下：
 
 ```
-    NSString *bql = [NSString stringWithFormat:@"select * from %@ where %@ = ?",TABLENAME,COLPLAYERNAME];
-    NSArray *placeholder = @[@"name1"];
+NSString *bql = [NSString stringWithFormat:@"select * from %@ where %@ = ?",TABLENAME,COLPLAYERNAME];
+NSArray *placeholder = @[@"name1"];
 
-    BmobQuery *bmobQueryWriteCache = [[BmobQuery alloc] init];
-    bmobQueryWriteCache.cachePolicy = kBmobCachePolicyNetworkOnly;
-    [bmobQueryWriteCache setBQL:bql];
-    [bmobQueryWriteCache setPlaceholder:placeholder];
-    [bmobQueryWriteCache queryBQLCanCacheInBackgroundWithblock:^(BQLQueryResult *result, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else if (result){
-            NSLog(@"actual:%@",result);
-        }
-    }];
+BmobQuery *bmobQueryWriteCache = [[BmobQuery alloc] init];
+bmobQueryWriteCache.cachePolicy = kBmobCachePolicyNetworkOnly;
+[bmobQueryWriteCache setBQL:bql];
+[bmobQueryWriteCache setPlaceholder:placeholder];
+[bmobQueryWriteCache queryBQLCanCacheInBackgroundWithblock:^(BQLQueryResult *result, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else if (result){
+NSLog(@"actual:%@",result);
+}
+}];
 ```
 
 注意：
 
- - BQL查询方法中，只有 `- (void)queryBQLCanCacheInBackgroundWithblock:(BmobBQLObjectResultBlock)block;` 才能使用缓存策略，其它方法即使设置了缓存策略也无缓存效果；
- - 使用`- (void)queryBQLCanCacheInBackgroundWithblock:(BmobBQLObjectResultBlock)block;`进行查询时，通过 `-(void)setBQL:(NSString*)bql;` 和 `-(void)setPlaceholder:(NSArray*)ary;` 来设置BQL语句和占位符。
+- BQL查询方法中，只有 `- (void)queryBQLCanCacheInBackgroundWithblock:(BmobBQLObjectResultBlock)block;` 才能使用缓存策略，其它方法即使设置了缓存策略也无缓存效果；
+- 使用`- (void)queryBQLCanCacheInBackgroundWithblock:(BmobBQLObjectResultBlock)block;`进行查询时，通过 `-(void)setBQL:(NSString*)bql;` 和 `-(void)setPlaceholder:(NSArray*)ary;` 来设置BQL语句和占位符。
 
 
-缓存策略只对普通查询有效，统计查询只支持从网络进行查询。具体使用可参考iOS开发文档中的[查询](http://docs.bmob.cn/data/iOS/b_developdoc/doc/index.html#查询)缓存查询小节。
+缓存策略只对普通查询有效，统计查询只支持从网络进行查询。具体使用可参考iOS开发文档中的[查询](https://docs.bmob.cn/data/iOS/b_developdoc/doc/index.html#查询)缓存查询小节。
 
 ## 数组
 
-为了存储数组型数据，[Bmob](http://www.bmob.cn/ "Bmob移动后端云服务平台")提供了3种操作来原子性地更改一个数组字段:
+为了存储数组型数据，[Bmob](https://www.bmob.cn/ "Bmob移动后端云服务平台")提供了3种操作来原子性地更改一个数组字段:
 
 **Add** 在一个数组字段的后面添加一些指定的对象(包装在一个数组内)
 
@@ -1152,74 +1155,74 @@ BmobObject *gameScore = [BmobObject objectWithoutDataWithClassName:@"GameScore" 
 对于Key的类型是数组的情况，可以查找Key的数组值中包含有P1的对象。代码如下：
 
 ```
-    //查询数组中包含某个元素的记录
-    BmobQuery *query = [BmobQuery queryWithClassName:@"GameScore"];
-    [query whereKey:@"skill" equalTo:@"P1"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            for (BmobObject *obj in array) {
-                NSLog(@"%@",obj);
-            }
-        }
-    }];
+//查询数组中包含某个元素的记录
+BmobQuery *query = [BmobQuery queryWithClassName:@"GameScore"];
+[query whereKey:@"skill" equalTo:@"P1"];
+[query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+for (BmobObject *obj in array) {
+NSLog(@"%@",obj);
+}
+}
+}];
 ```
 
 你同样可以使用"$all"操作符来找到类型为数组的Key的值中同时包含有P1和P2的对象:
 
 ```
-    //查询数组中包含某些元素的记录
-    BmobQuery *query1 = [BmobQuery queryWithClassName:@"GameScore
-    "];
-    NSArray *array = @[@"P1",@"P2"];
-    [query1 whereKey:@"skill" equalTo:@{@"$all":array}];
-    [query1 findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            for (BmobObject *obj in array) {
-                NSLog(@"%@",obj);
-            }
-        }
-    }];
+//查询数组中包含某些元素的记录
+BmobQuery *query1 = [BmobQuery queryWithClassName:@"GameScore
+"];
+NSArray *array = @[@"P1",@"P2"];
+[query1 whereKey:@"skill" equalTo:@{@"$all":array}];
+[query1 findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+for (BmobObject *obj in array) {
+NSLog(@"%@",obj);
+}
+}
+}];
 ```
 
 当然，你也可以使用我们封装好的方法来查找
 
 ```
-    //查询数组中包含某些元素的记录
-    BmobQuery *query1 = [BmobQuery queryWithClassName:@"GameScore"];
-    NSArray *array = @[@"P1",@"P2"];
-	[query1 whereKey:@"skill" containsAll:array];
-    [query1 findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            for (BmobObject *obj in array) {
-                NSLog(@"%@",obj);
-            }
-        }
-    }];
+//查询数组中包含某些元素的记录
+BmobQuery *query1 = [BmobQuery queryWithClassName:@"GameScore"];
+NSArray *array = @[@"P1",@"P2"];
+[query1 whereKey:@"skill" containsAll:array];
+[query1 findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+for (BmobObject *obj in array) {
+NSLog(@"%@",obj);
+}
+}
+}];
 ```
 
 如果要查找包含P1或P2的对象，可以使用复杂查询中的或查
 
 ```
-    BmobQuery *query = [BmobQuery queryWithClassName:@"Post"];
-    NSArray *array =  @[@{@"skill":@{@"$all": @[@"P1"]}},@{@"skill":@{@"$all":@[@"P2"]}}];
-    [query addTheConstraintByOrOperationWithArray:array];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            NSLog(@"%d",array.count);
-            for (BmobObject *obj in array) {
-                 NSLog(@"%@",obj);
-            }
-           
-        }
-    }];
+BmobQuery *query = [BmobQuery queryWithClassName:@"Post"];
+NSArray *array =  @[@{@"skill":@{@"$all": @[@"P1"]}},@{@"skill":@{@"$all":@[@"P2"]}}];
+[query addTheConstraintByOrOperationWithArray:array];
+[query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+NSLog(@"%d",array.count);
+for (BmobObject *obj in array) {
+NSLog(@"%@",obj);
+}
+
+}
+}];
 ```
 
 #### 使用索引和对象key修改数组中的对象
@@ -1281,27 +1284,27 @@ Post表
 例如，user1写了一篇帖子，需要在Post表中添加一条记录，并且该记录包含一个关联author1记录的字段数据，可采用以下代码：
 
 ```
-	BmobObject  *post = [BmobObject objectWithClassName:@"Post"];
-    //设置帖子的标题和内容
-    [post setObject:@"title4" forKey:@"title"];
-    [post setObject:@"content4" forKey:@"content"];
-    
-    //设置帖子关联的作者记录
-    BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:@"vbhGAAAY"];
-    [post setObject:author forKey:@"author"];
-    
-    //异步保存
-    [post saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            //创建成功，返回objectId，updatedAt，createdAt等信息
-            //打印objectId
-            NSLog(@"objectid :%@",post.objectId);
-        }else{
-            if (error) {
-                NSLog(@"%@",error);
-            }
-        }
-    }];
+BmobObject  *post = [BmobObject objectWithClassName:@"Post"];
+//设置帖子的标题和内容
+[post setObject:@"title4" forKey:@"title"];
+[post setObject:@"content4" forKey:@"content"];
+
+//设置帖子关联的作者记录
+BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:@"vbhGAAAY"];
+[post setObject:author forKey:@"author"];
+
+//异步保存
+[post saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+//创建成功，返回objectId，updatedAt，createdAt等信息
+//打印objectId
+NSLog(@"objectid :%@",post.objectId);
+}else{
+if (error) {
+NSLog(@"%@",error);
+}
+}
+}];
 ```
 
 添加成功后在后台的结果如下图所示，我们可以看到，author列的值是用圆框框起来的，表示这是一个Pointer，显示的值，为对应记录的objectId,点击它可以进入_User表中：
@@ -1319,20 +1322,20 @@ Post表
 具体代码如下：
 
 ```
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Post"];
-    [bquery getObjectInBackgroundWithId:@"ZqQ7KKKx" block:^(BmobObject *object,NSError *error){
-        if (error){
-            NSLog(@"%@",error);
-        }else{
-            if (object) {
-                BmobObject *post = object;
-                //将author列的值置为空
-                [post deleteForKey:@"author"];
-                //进行更新
-                [post updateInBackground];
-            }
-        }
-    }];
+BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Post"];
+[bquery getObjectInBackgroundWithId:@"ZqQ7KKKx" block:^(BmobObject *object,NSError *error){
+if (error){
+NSLog(@"%@",error);
+}else{
+if (object) {
+BmobObject *post = object;
+//将author列的值置为空
+[post deleteForKey:@"author"];
+//进行更新
+[post updateInBackground];
+}
+}
+}];
 ```
 
 结果如下，可以看到，author列已经被置空
@@ -1343,22 +1346,22 @@ Post表
 如果需要修改某篇帖子关联的作者，可以使用以下代码:
 
 ```
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Post"];
-    //获得objectId查找出先前添加的文章
-    [bquery getObjectInBackgroundWithId:@"ZqQ7KKKx" block:^(BmobObject *object,NSError *error){
-        if (error){
-            NSLog(@"%@",error);
-        }else if (object) {
-            BmobObject *post = object;
-            //获得BmobUser对象
-            BmobUser *user = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:@"qXZeCCCX"];
-            //设置post的author值为新获得的BmobUser对象
-            [post setObject:user forKey:@"author"];
+BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Post"];
+//获得objectId查找出先前添加的文章
+[bquery getObjectInBackgroundWithId:@"ZqQ7KKKx" block:^(BmobObject *object,NSError *error){
+if (error){
+NSLog(@"%@",error);
+}else if (object) {
+BmobObject *post = object;
+//获得BmobUser对象
+BmobUser *user = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:@"qXZeCCCX"];
+//设置post的author值为新获得的BmobUser对象
+[post setObject:user forKey:@"author"];
 
-            //进行更新
-            [post updateInBackground];
-        }
-    }];
+//进行更新
+[post updateInBackground];
+}
+}];
 ```
 
 可以看到关联记录已经被修改：
@@ -1370,44 +1373,44 @@ Post表
 查询某个特定作者的帖子，可以用 `-(void)whereKey:(NSString *)key equalTo:(id)object`,具体代码如下
 
 ```
- //查询帖子表
- BmobQuery *query = [BmobQuery queryWithClassName:@"Post"];
- //构建objectId为vbhGAAAY 的作者
- BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:@"vbhGAAAY"];
- //添加作者是objectId为vbhGAAAY条件
- [query whereKey:@"author" equalTo:author];
- [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else if (array){
-            for (BmobObject *post in array) {
-                NSLog(@"%@",[post objectForKey:@"title"]);
-            }
-        }
-    }];
+//查询帖子表
+BmobQuery *query = [BmobQuery queryWithClassName:@"Post"];
+//构建objectId为vbhGAAAY 的作者
+BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:@"vbhGAAAY"];
+//添加作者是objectId为vbhGAAAY条件
+[query whereKey:@"author" equalTo:author];
+[query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else if (array){
+for (BmobObject *post in array) {
+NSLog(@"%@",[post objectForKey:@"title"]);
+}
+}
+}];
 ```
 
 如我们需要查询帖子，并且需要将该帖子关联的作者的信息（objectId,username）打印出来，我们可以使用以下代码：
 
 ```
-    BmobQuery *bquery = [BmobQuery queryWithClassName:@"Post"];
-    
-    //声明该次查询需要将author关联对象信息一并查询出来
-    [bquery includeKey:@"author"];
-    
-    [bquery getObjectInBackgroundWithId:@"ZqQ7KKKx" block:^(BmobObject *object, NSError *error) {
-        
-        //打印文章标题，内容
-        BmobObject *post = object;
-        NSLog(@"title:%@",[post objectForKey:@"title"]);
-        NSLog(@"content:%@",[post objectForKey:@"content"]);
-        
-        //取得文章的关联作者对象
-        BmobUser *author = [post objectForKey:@"author"];
-        //打印文章的关联作者对象的相关信息
-        NSLog(@"objectId:%@",author.objectId);
-        NSLog(@"name:%@",[author objectForKey:@"username"]);
-    }];
+BmobQuery *bquery = [BmobQuery queryWithClassName:@"Post"];
+
+//声明该次查询需要将author关联对象信息一并查询出来
+[bquery includeKey:@"author"];
+
+[bquery getObjectInBackgroundWithId:@"ZqQ7KKKx" block:^(BmobObject *object, NSError *error) {
+
+//打印文章标题，内容
+BmobObject *post = object;
+NSLog(@"title:%@",[post objectForKey:@"title"]);
+NSLog(@"content:%@",[post objectForKey:@"content"]);
+
+//取得文章的关联作者对象
+BmobUser *author = [post objectForKey:@"author"];
+//打印文章的关联作者对象的相关信息
+NSLog(@"objectId:%@",author.objectId);
+NSLog(@"name:%@",[author objectForKey:@"username"]);
+}];
 ```
 
 查询关系的核心在于查询前需要将关联的列名include进来，使用下列方法即可
@@ -1419,7 +1422,7 @@ Post表
 如果查询多个关联关系，可以使用以下方法，使用逗号(,)操作来使查询中包含多个属性
 
 ```
-[bquery includeKey:@"column1,column2,..."];
+[bquery includeKey:@"column1,column2,column3"];
 ```
 
 如果关联关系存在嵌套，可以使用以下英文字符点号(.)来操作，如下：
@@ -1443,23 +1446,23 @@ Post表
 我们可以对关联对象的值进行约束，来进行匹配查询。例如，如果我们想找查询出所有关联了user2的文章，可以使用以下代码
 
 ```
-    BmobQuery *bquery = [BmobQuery queryWithClassName:@"Post"];
-    
-    //构造约束条件
-    BmobQuery *inQuery = [BmobQuery queryWithClassName:@"_User"];
-    [inQuery whereKey:@"username" equalTo:@"user2"];
-    
-    //匹配查询
-    [bquery whereKey:@"author" matchesQuery:inQuery];
-    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else if (array){
-            for (BmobObject *post in array) {
-                NSLog(@"%@",[post objectForKey:@"title"]);
-            }
-        }
-    }];
+BmobQuery *bquery = [BmobQuery queryWithClassName:@"Post"];
+
+//构造约束条件
+BmobQuery *inQuery = [BmobQuery queryWithClassName:@"_User"];
+[inQuery whereKey:@"username" equalTo:@"user2"];
+
+//匹配查询
+[bquery whereKey:@"author" matchesQuery:inQuery];
+[bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else if (array){
+for (BmobObject *post in array) {
+NSLog(@"%@",[post objectForKey:@"title"]);
+}
+}
+}];
 ```
 
 如果想要查询找所有没有关联user1的文章，则将
@@ -1484,24 +1487,24 @@ Pointer可以用来表示一对一或者一对多的关系，其实可以看成�
 如果我们需要在Post表中添加一个字段以记录喜欢该贴子的读者，我们可以使用以下代码：
 
 ```
-    //获取要添加关联关系的post
-    BmobObject *post = [BmobObject objectWithoutDataWithClassName:@"Post" objectId:@"ZqQ7KKKx"];
-    
-    //新建relation对象
-    BmobRelation *relation = [[BmobRelation alloc] init];
-    [relation addObject:[BmobObject objectWithoutDataWithClassName:@"_User" objectId:@"vbhGAAAY"]];
-    [relation addObject:[BmobObject objectWithoutDataWithClassName:@"_User" objectId:@"qXZeCCCX"]];
-    
-    //添加关联关系到likes列中
-    [post addRelation:relation forKey:@"likes"];
-    //异步更新obj的数据
-    [post updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            NSLog(@"successful");
-        }else{
-            NSLog(@"error %@",[error description]);
-        }
-    }];
+//获取要添加关联关系的post
+BmobObject *post = [BmobObject objectWithoutDataWithClassName:@"Post" objectId:@"ZqQ7KKKx"];
+
+//新建relation对象
+BmobRelation *relation = [[BmobRelation alloc] init];
+[relation addObject:[BmobObject objectWithoutDataWithClassName:@"_User" objectId:@"vbhGAAAY"]];
+[relation addObject:[BmobObject objectWithoutDataWithClassName:@"_User" objectId:@"qXZeCCCX"]];
+
+//添加关联关系到likes列中
+[post addRelation:relation forKey:@"likes"];
+//异步更新obj的数据
+[post updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+NSLog(@"successful");
+}else{
+NSLog(@"error %@",[error description]);
+}
+}];
 ```
 可以看到添加了一个 `likes` 列，点击进去可以查看到该列里面存在哪些数据。
 
@@ -1518,23 +1521,23 @@ Post表：
 如果要从刚刚的添加的likes列中删去其中一个读者，可采用以下代码。
 
 ```
-    BmobObject *post = [BmobObject objectWithoutDataWithClassName:@"Post" objectId:@"ZqQ7KKKx"];
-    
-    //新建relation对象
-    BmobRelation *relation = [[BmobRelation alloc] init];
-    [relation removeObject:[BmobObject objectWithoutDataWithClassName:@"_User" objectId:@"vbhGAAAY"]];
-    
-    //添加关联关系到likes列中
-    [post addRelation:relation forKey:@"likes"];
-    
-    //异步更新obj的数据
-    [post updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            NSLog(@"successful");
-        }else{
-            NSLog(@"error %@",[error description]);
-        }
-    }];
+BmobObject *post = [BmobObject objectWithoutDataWithClassName:@"Post" objectId:@"ZqQ7KKKx"];
+
+//新建relation对象
+BmobRelation *relation = [[BmobRelation alloc] init];
+[relation removeObject:[BmobObject objectWithoutDataWithClassName:@"_User" objectId:@"vbhGAAAY"]];
+
+//添加关联关系到likes列中
+[post addRelation:relation forKey:@"likes"];
+
+//异步更新obj的数据
+[post updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+NSLog(@"successful");
+}else{
+NSLog(@"error %@",[error description]);
+}
+}];
 ```
 
 从Author表中的author1记录点击关联关系框进去后查看的结果：
@@ -1546,22 +1549,22 @@ Post表：
 如果需要给objectId为ZqQ7KKKx的帖子添加多一个喜欢该帖子的读者可以使用以下代码
 
 ```
-    BmobObject *author = [BmobObject objectWithoutDataWithClassName:@"Post" objectId:@"ZqQ7KKKx"];
-    
-    //新建relation对象
-    BmobRelation *relation = [[BmobRelation alloc] init];
-    [relation addObject:[BmobObject objectWithoutDataWithClassName:@"_User" objectId:@"J6RU888L"]];
-    //添加关联关系到postlist列中
-    [author addRelation:relation forKey:@"likes"];
-    
-    //异步更新obj的数据
-    [author updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            NSLog(@"successful");
-        }else{
-            NSLog(@"error %@",[error description]);
-        }
-    }];
+BmobObject *author = [BmobObject objectWithoutDataWithClassName:@"Post" objectId:@"ZqQ7KKKx"];
+
+//新建relation对象
+BmobRelation *relation = [[BmobRelation alloc] init];
+[relation addObject:[BmobObject objectWithoutDataWithClassName:@"_User" objectId:@"J6RU888L"]];
+//添加关联关系到postlist列中
+[author addRelation:relation forKey:@"likes"];
+
+//异步更新obj的数据
+[author updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+NSLog(@"successful");
+}else{
+NSLog(@"error %@",[error description]);
+}
+}];
 ```
 
 运行代码后，从Author表中的author1记录点击关联关系框进去后查看的结果：
@@ -1573,23 +1576,23 @@ Post表：
 如果我们需要查询喜欢objectId为ZqQ7KKKx的帖子的所有读者，可以采用下列代码：
 
 ```
-    //关联对象表
-    BmobQuery *bquery = [BmobQuery queryWithClassName:@"_User"];
-    
-    //需要查询的列
-    BmobObject *post = [BmobObject objectWithoutDataWithClassName:@"Post" objectId:@"ZqQ7KKKx"];
-    [bquery whereObjectKey:@"likes" relatedTo:post];
-    
-    
-    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            for (BmobObject *user in array) {
-                NSLog(@"%@",[user objectForKey:@"username"]);
-            }
-        }
-    }];
+//关联对象表
+BmobQuery *bquery = [BmobQuery queryWithClassName:@"_User"];
+
+//需要查询的列
+BmobObject *post = [BmobObject objectWithoutDataWithClassName:@"Post" objectId:@"ZqQ7KKKx"];
+[bquery whereObjectKey:@"likes" relatedTo:post];
+
+
+[bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+for (BmobObject *user in array) {
+NSLog(@"%@",[user objectForKey:@"username"]);
+}
+}
+}];
 ```
 
 `注意：跟Pointer不同的是，这里本质上查询的是_User表。`
@@ -1599,23 +1602,23 @@ Post表：
 上面的查询是查找喜欢某篇帖子的所有读者，如果反过来，需要查找某个读者喜欢的所有帖子又要怎么做呢？可以参考以下代码：
 
 ```
-    BmobQuery *bquery = [BmobQuery queryWithClassName:@"Post"];
-    
-    //构造约束条件
-    BmobQuery *inQuery = [BmobQuery queryWithClassName:@"_User"];
-    [inQuery whereKey:@"username" equalTo:@"user3"];
-    
-    //匹配查询
-    [bquery whereKey:@"likes" matchesQuery:inQuery];
-    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else if (array){
-            for (BmobObject *post in array) {
-                NSLog(@"%@",[post objectForKey:@"title"]);
-            }
-        }
-    }];
+BmobQuery *bquery = [BmobQuery queryWithClassName:@"Post"];
+
+//构造约束条件
+BmobQuery *inQuery = [BmobQuery queryWithClassName:@"_User"];
+[inQuery whereKey:@"username" equalTo:@"user3"];
+
+//匹配查询
+[bquery whereKey:@"likes" matchesQuery:inQuery];
+[bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else if (array){
+for (BmobObject *post in array) {
+NSLog(@"%@",[post objectForKey:@"title"]);
+}
+}
+}];
 ```
 
 #### Relation的本质
@@ -1627,7 +1630,7 @@ Relation可以理解为其存储的是一个对象，而这个对象中存储的
 
 ### 属性
 BmobUser除了从BmobObject继承的属性外，还有几个特定的属性：
-	
+
 1. username: 用户的用户名（必需）。
 2. password: 用户的密码（必需）。
 3. email: 用户的电子邮件地址（可选）。
@@ -1652,11 +1655,11 @@ BmobUser *bUser = [[BmobUser alloc] init];
 [bUser setPassword:@"123456"];
 [bUser setObject:@18 forKey:@"age"];
 [bUser signUpInBackgroundWithBlock:^ (BOOL isSuccessful, NSError *error){
-	if (isSuccessful){
-		NSLog(@"Sign up successfully");
-	} else {
-	    NSLog(@"%@",error);
-	}
+if (isSuccessful){
+NSLog(@"Sign up successfully");
+} else {
+NSLog(@"%@",error);
+}
 }];
 ```
 
@@ -1673,27 +1676,27 @@ BmobUser *bUser = [[BmobUser alloc] init];
 当用户注册成功后，需要让他们以后能够登录到他们的账户使用应用。要做到这点可以使用
 ```
 [BmobUser loginWithUsernameInBackground:@"小明"
-	password:@"123456"];
+password:@"123456"];
 ```
-	
+
 也可以使用
 ```
 + (void)loginWithUsernameInBackground:(NSString *)username
-							  password:(NSString *)password
-								 block:(BmobUserResultBlock)block;
-```								 
+password:(NSString *)password
+block:(BmobUserResultBlock)block;
+```
 
 
 Bmob还提供了用户、email、手机号码均可作为账号进行登录的功能。使用以下方法即可
 
 ```
-    [BmobUser loginInbackgroundWithAccount:account andPassword:password block:^(BmobUser *user, NSError *error) {
-        if (user) {
-            NSLog(@"%@",user);
-        } else {
-            NSLog(@"%@",error);
-        }
-    }];
+[BmobUser loginInbackgroundWithAccount:account andPassword:password block:^(BmobUser *user, NSError *error) {
+if (user) {
+NSLog(@"%@",user);
+} else {
+NSLog(@"%@",error);
+}
+}];
 ```
 
 ### 获取当前用户
@@ -1703,9 +1706,9 @@ Bmob还提供了用户、email、手机号码均可作为账号进行登录的�
 ```
 BmobUser *bUser = [BmobUser getCurrentObject];
 if (bUser) {
-	//进行操作
+//进行操作
 }else{
-	//对象为空时，可打开用户注册界面
+//对象为空时，可打开用户注册界面
 }
 ```
 
@@ -1732,7 +1735,7 @@ BmobUser *bUser = [BmobUser getCurrentUser];
 //更新number为30
 [bUser setObject:@30 forKey:@"number"];
 [bUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-    NSLog(@"error %@",[error description]);
+NSLog(@"error %@",[error description]);
 }];
 ```
 
@@ -1744,13 +1747,13 @@ BmobUser *bUser = [BmobUser getCurrentUser];
 查询用户和查询普通对象一样，只需指定BmobUser类即可，如下：
 
 ```
-    BmobQuery *query = [BmobUser query];
-    [query whereKey:@"username" equalTo:@"xiaolv"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        for (BmobUser *user in array) {
-            NSLog(@"objectid %@",user.objectId);
-        }
-    }];
+BmobQuery *query = [BmobUser query];
+[query whereKey:@"username" equalTo:@"xiaolv"];
+[query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+for (BmobUser *user in array) {
+NSLog(@"objectid %@",user.objectId);
+}
+}];
 ```
 
 浏览器中查看用户表
@@ -1763,21 +1766,21 @@ User表是一个特殊的表，专门存储BmobUser对象。在浏览器端，�
 从 `v1.6.3` 开始，我们提供使用旧密码来重置新密码的接口，示例如下：
 
 ```
-    BmobUser *user = [BmobUser getCurrentUser];
-    [user updateCurrentUserPasswordWithOldPassword:@"old password" newPassword:@"new password" block:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            //用新密码登录
-            [BmobUser loginInbackgroundWithAccount:@"name" andPassword:@"new password" block:^(BmobUser *user, NSError *error) {
-                if (error) {
-                    NSLog(@"login error:%@",error);
-                } else {
-                    NSLog(@"user:%@",user);
-                }
-            }];
-        } else {
-            NSLog(@"change password error:%@",error);
-        }
-    }];
+BmobUser *user = [BmobUser getCurrentUser];
+[user updateCurrentUserPasswordWithOldPassword:@"old password" newPassword:@"new password" block:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+//用新密码登录
+[BmobUser loginInbackgroundWithAccount:@"name" andPassword:@"new password" block:^(BmobUser *user, NSError *error) {
+if (error) {
+NSLog(@"login error:%@",error);
+} else {
+NSLog(@"user:%@",user);
+}
+}];
+} else {
+NSLog(@"change password error:%@",error);
+}
+}];
 ```
 
 ### 找回密码
@@ -1796,10 +1799,10 @@ User表是一个特殊的表，专门存储BmobUser对象。在浏览器端，�
 BmobUser *user = [BmobUser getCurrentUser];
 //应用开启了邮箱验证功能
 if ([user objectForKey:@"emailVerified"]) {
-	//用户没验证过邮箱
-    if (![[user objectForKey:@"emailVerified"] boolValue]) {
-        [user verifyEmailInBackgroundWithEmailAddress:@"xxxxxxxxxx"];
-    }
+//用户没验证过邮箱
+if (![[user objectForKey:@"emailVerified"] boolValue]) {
+[user verifyEmailInBackgroundWithEmailAddress:@"xxxxxxxxxx"];
+}
 }
 ```
 
@@ -1812,7 +1815,7 @@ if ([user objectForKey:@"emailVerified"]) {
 ```
 [BmobUser requestPasswordResetInBackgroundWithEmail:@"xxxx@qq.com"];
 ```
-	
+
 密码重置流程如下：
 
 1. 用户输入他们的电子邮件，请求重置自己的密码。
@@ -1831,10 +1834,10 @@ Bmob提供了非常简单的方法来实现使用第三方账号登陆的功能�
 NSDictionary *dic = @{@"access_token":token,@"uid":uid,@"expirationDate":date};
 //通过授权信息注册登录
 [BmobUser loginInBackgroundWithAuthorDictionary:dic
-                                      platform:BmobSNSPlatformSinaWeibo
-                                         block:^(BmobUser *user, NSError *error) {
-                                             NSLog(@"user objectid is :%@",user.objectId);
-                                         }];
+platform:BmobSNSPlatformSinaWeibo
+block:^(BmobUser *user, NSError *error) {
+NSLog(@"user objectid is :%@",user.objectId);
+}];
 ```
 
 #### 手机QQ账号登录
@@ -1843,13 +1846,13 @@ NSDictionary *dic = @{@"access_token":token,@"uid":uid,@"expirationDate":date};
 
 ```objc
 //得到的qq授权信息，请按照例子来生成NSDictionary
- NSDictionary *responseDictionary = @{@"access_token": _tencentOauth.accessToken,@"uid":_tencentOauth.openId,@"expirationDate":_tencentOauth.expirationDate};
- //通过授权信息注册登录
+NSDictionary *responseDictionary = @{@"access_token": _tencentOauth.accessToken,@"uid":_tencentOauth.openId,@"expirationDate":_tencentOauth.expirationDate};
+//通过授权信息注册登录
 [BmobUser loginInBackgroundWithAuthorDictionary:responseDictionary
-                                       platform:BmobSNSPlatformQQ
-                                          block:^(BmobUser *user, NSError *error) {
-                                           	NSLog(@"error%@",[error description]);
-                                            }];
+platform:BmobSNSPlatformQQ
+block:^(BmobUser *user, NSError *error) {
+NSLog(@"error%@",[error description]);
+}];
 ```
 
 #### 微信账号登录
@@ -1857,10 +1860,10 @@ NSDictionary *dic = @{@"access_token":token,@"uid":uid,@"expirationDate":date};
 ```objc
 NSDictionary *responseDictionary = @{@"access_token": accessToken,@"uid":openId,@"expirationDate":expirationDate};
 [BmobUser loginInBackgroundWithAuthorDictionary:responseDictionary
-                                       platform:BmobSNSPlatformWeiXin
-                                          block:^(BmobUser *user, NSError *error) {
-                                           	NSLog(@"error%@",[error description]);
-                                            }];
+platform:BmobSNSPlatformWeiXin
+block:^(BmobUser *user, NSError *error) {
+NSLog(@"error%@",[error description]);
+}];
 ```
 
 #### 第三方账号与BmobUser绑定
@@ -1871,10 +1874,10 @@ NSDictionary *responseDictionary = @{@"access_token": accessToken,@"uid":openId,
 NSDictionary *dic = @{@"access_token":token,@"uid":uid,@"expirationDate":date};
 BmobUser *currentUser = [BmobUser getCurrentUser];
 [currentUser linkedInBackgroundWithAuthorDictionary:dic
-                                           platform:BmobSNSPlatformSinaWeibo
-                                              block:^(BOOL isSuccessful, NSError *error) {
-                                                     NSLog(@"ERROR :%@",[error description]);
-                                                 }];
+platform:BmobSNSPlatformSinaWeibo
+block:^(BOOL isSuccessful, NSError *error) {
+NSLog(@"ERROR :%@",[error description]);
+}];
 ```
 
 ```objc
@@ -1882,10 +1885,10 @@ BmobUser *currentUser = [BmobUser getCurrentUser];
 NSDictionary *responseDictionary = @{@"access_token": _tencentOauth.accessToken,@"uid":_tencentOauth.openId,@"expirationDate":_tencentOauth.expirationDate};
 BmobUser *user = [BmobUser getCurrentUser];
 [user linkedInBackgroundWithAuthorDictionary:responseDictionary
-                                platform:BmobSNSPlatformQQ
-                                   block:^(BOOL isSuccessful, NSError *error) {
-                                       NSLog(@"error%@",[error description]);
-                                   }];
+platform:BmobSNSPlatformQQ
+block:^(BOOL isSuccessful, NSError *error) {
+NSLog(@"error%@",[error description]);
+}];
 ```
 
 ```objc
@@ -1893,10 +1896,10 @@ BmobUser *user = [BmobUser getCurrentUser];
 NSDictionary *responseDictionary = @{@"access_token": accessToken,@"uid":openId,@"expirationDate":expirationDate};
 BmobUser *user = [BmobUser getCurrentUser];
 [user linkedInBackgroundWithAuthorDictionary:responseDictionary
-                                platform:BmobSNSPlatformWeiXin
-                                   block:^(BOOL isSuccessful, NSError *error) {
-                                       NSLog(@"error%@",[error description]);
-                                   }];
+platform:BmobSNSPlatformWeiXin
+block:^(BOOL isSuccessful, NSError *error) {
+NSLog(@"error%@",[error description]);
+}];
 ```
 
 #### 解除绑定
@@ -1906,18 +1909,18 @@ BmobUser *user = [BmobUser getCurrentUser];
 //当前用户解除关联的微博账号
 BmobUser *user = [BmobUser getCurrentUser];
 [user cancelLinkedInBackgroundWithPlatform:BmobSNSPlatformSinaWeibo
-                                    block:^(BOOL isSuccessful, NSError *error) {
-                                        NSLog(@"error is :%@",[error description]);
-                                    }];
+block:^(BOOL isSuccessful, NSError *error) {
+NSLog(@"error is :%@",[error description]);
+}];
 ```
 
 ```
 //当前用户解除关联的手机QQ账号
 BmobUser *user = [BmobUser getCurrentUser];
 [user cancelLinkedInBackgroundWithPlatform:BmobSNSPlatformQQ
-                                     block:^(BOOL isSuccessful, NSError *error) {
-                                         NSLog(@"error is :%@",[error description]);
-                                     }];                                                                          
+block:^(BOOL isSuccessful, NSError *error) {
+NSLog(@"error is :%@",[error description]);
+}];
 ```
 
 ```objc
@@ -1925,10 +1928,10 @@ BmobUser *user = [BmobUser getCurrentUser];
 NSDictionary *responseDictionary = @{@"access_token": accessToken,@"uid":openId,@"expirationDate":expirationDate};
 BmobUser *user = [BmobUser getCurrentUser];
 [user cancelLinkedInBackgroundWithAuthorDictionary:responseDictionary
-                                platform:BmobSNSPlatformWeiXin
-                                   block:^(BOOL isSuccessful, NSError *error) {
-                                       NSLog(@"error%@",[error description]);
-                                   }];
+platform:BmobSNSPlatformWeiXin
+block:^(BOOL isSuccessful, NSError *error) {
+NSLog(@"error%@",[error description]);
+}];
 ```
 
 ### 手机号相关功能
@@ -1943,29 +1946,29 @@ BmobUser *user = [BmobUser getCurrentUser];
 
 ```
 [BmobUser signOrLoginInbackgroundWithMobilePhoneNumber:mobilePhoneNumber andSMSCode:smsCode block:^(BmobUser *user, NSError *error) {
-        if (user) {
-            NSLog(@"%@",user);
-        } else {
-            NSLog(@"%@",error);
-        }
+if (user) {
+NSLog(@"%@",user);
+} else {
+NSLog(@"%@",error);
+}
 }];
 ```
 
 如果希望在用手机注册时为用户添加密码或者其它信息，可以使用以下代码实现：
 
 ```
-    BmobUser *buser = [[BmobUser alloc] init];
-    buser.mobilePhoneNumber = @"15123456789";
-    buser.password = @"123";
-    buser.email = @"xxx@gmail.com";
-    [buser signUpOrLoginInbackgroundWithSMSCode:@"6位验证码" block:^(BOOL isSuccessful, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            BmobUser *user = [BmobUser getCurrentUser];
-            NSLog(@"%@",[BmobUser getCurrentUser]);
-        }
-    }];
+BmobUser *buser = [[BmobUser alloc] init];
+buser.mobilePhoneNumber = @"15123456789";
+buser.password = @"123";
+buser.email = @"xxx@gmail.com";
+[buser signUpOrLoginInbackgroundWithSMSCode:@"6位验证码" block:^(BOOL isSuccessful, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+BmobUser *user = [BmobUser getCurrentUser];
+NSLog(@"%@",[BmobUser getCurrentUser]);
+}
+}];
 ```
 
 #### 手机号登录
@@ -1973,14 +1976,14 @@ BmobUser *user = [BmobUser getCurrentUser];
 Bmob除了提供手机号验证码一键注册登录功能外，还另外提供了希望只给已存在用户用手机号进行登录的功能。代码如下：
 
 ```
-    
-    [BmobUser loginInbackgroundWithMobilePhoneNumber:mobilePhoneNumber andSMSCode:smsCode block:^(BmobUser *user, NSError *error) {
-        if (user) {
-            NSLog(@"%@",user);
-        } else {
-            NSLog(@"%@",error);
-        }
-    }];
+
+[BmobUser loginInbackgroundWithMobilePhoneNumber:mobilePhoneNumber andSMSCode:smsCode block:^(BmobUser *user, NSError *error) {
+if (user) {
+NSLog(@"%@",user);
+} else {
+NSLog(@"%@",error);
+}
+}];
 ```
 
 #### 绑定手机号
@@ -1989,25 +1992,25 @@ Bmob除了提供手机号验证码一键注册登录功能外，还另外提供�
 绑定手机号的基本思路为，先获取验证码，验证取得的验证码后再更新 `mobilePhoneNumber` 和 `mobilePhoneNumberVerified` 即可，这是我们推荐的做法。当然，你也可以不通过验证码，直接使用用户输入的手机号来更新 `mobilePhoneNumber` 来进行绑定，不过这种方法并不推荐。
 
 ```
-    //验证
-    [BmobSMS verifySMSCodeInBackgroundWithPhoneNumber:mobilePhoneNumber andSMSCode:smsCode resultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            //修改绑定手机
-            BmobUser *buser = [BmobUser getCurrentUser];
-            buser.mobilePhoneNumber = mobilePhoneNumber;
-            [buser setObject:[NSNumber numberWithBool:YES] forKey:@"mobilePhoneNumberVerified"];
-            [buser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                if (isSuccessful) {
-                    NSLog(@"%@",buser);
-                } else {
-                    NSLog(@"%@",error);
-                }
-            }];
+//验证
+[BmobSMS verifySMSCodeInBackgroundWithPhoneNumber:mobilePhoneNumber andSMSCode:smsCode resultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+//修改绑定手机
+BmobUser *buser = [BmobUser getCurrentUser];
+buser.mobilePhoneNumber = mobilePhoneNumber;
+[buser setObject:[NSNumber numberWithBool:YES] forKey:@"mobilePhoneNumberVerified"];
+[buser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+NSLog(@"%@",buser);
+} else {
+NSLog(@"%@",error);
+}
+}];
 
-        } else {
-            NSLog(@"%@",error);
-        }
-    }];
+} else {
+NSLog(@"%@",error);
+}
+}];
 ```
 
 #### 手机号修改密码
@@ -2015,13 +2018,13 @@ Bmob除了提供手机号验证码一键注册登录功能外，还另外提供�
 通过请求验证码和输入验证码从而进行账号密码重置，代码如下：
 
 ```
-    [BmobUser resetPasswordInbackgroundWithSMSCode:smsCode andNewPassword:newPassword block:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            NSLog(@"%@",@"重置密码成功");
-        } else {
-            NSLog(@"%@",error);
-        }
-    }];
+[BmobUser resetPasswordInbackgroundWithSMSCode:smsCode andNewPassword:newPassword block:^(BOOL isSuccessful, NSError *error) {
+if (isSuccessful) {
+NSLog(@"%@",@"重置密码成功");
+} else {
+NSLog(@"%@",error);
+}
+}];
 ```
 
 ## 子类化
@@ -2061,15 +2064,15 @@ Test.m
 后面你就可以像以下形式那样使用Test类了
 
 ```
-    Test *test = [[Test alloc] init];
-    test.title = @"title2";
-    test.name = @"name2";
-    test.isStudent = [NSNumber numberWithBool:NO];
-    test.age = @22;
-    [test sub_saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        NSLog(@"error %@",error);
-        NSLog(@"objectId %@",test.objectId);
-    }];
+Test *test = [[Test alloc] init];
+test.title = @"title2";
+test.name = @"name2";
+test.isStudent = [NSNumber numberWithBool:NO];
+test.age = @22;
+[test sub_saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+NSLog(@"error %@",error);
+NSLog(@"objectId %@",test.objectId);
+}];
 ```
 
 注意：
@@ -2081,11 +2084,11 @@ Test.m
 如果要使用继承BmobUser的子类来进行登录，在构造其子类时，应用类似于以下的形式。
 
 ```
- TestUser *user = [[TestUser alloc] initFromBmobObject:[BmobUser getCurrentUser]];
-    user.email = @"xxxaa@qq.com";
-    [user sub_updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        NSLog(@"error %@",error.description);
-    }];
+TestUser *user = [[TestUser alloc] initFromBmobObject:[BmobUser getCurrentUser]];
+user.email = @"xxxaa@qq.com";
+[user sub_updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+NSLog(@"error %@",error.description);
+}];
 
 ```
 
@@ -2096,13 +2099,13 @@ Test.m
 查询后需要使用以下方法以得到子类的对象。
 
 ```
-    BmobQuery *testQuery = [Test query];
-    [testQuery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        for (BmobObject *obj in array) {
-            Test *t = [[Test alloc] initFromBmobObject:obj];
-            
-        }
-    }];
+BmobQuery *testQuery = [Test query];
+[testQuery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+for (BmobObject *obj in array) {
+Test *t = [[Test alloc] initFromBmobObject:obj];
+
+}
+}];
 ```
 
 ## 文件管理
@@ -2117,30 +2120,30 @@ BmobFile可以让你的应用程序将文件存储到服务器中，比如常见
 
 #### 上传文件方法
 
-如下图的例子，是将cs.txt的文本文件保存到服务器端：
+可以通过文件路径和NSData上传。如下图的例子，是将58f0222bd82ac.png的文本文件保存到服务器端：
 
 ```
 -(void)saveInBackground:(BmobBooleanResultBlock)block;
-```			
+```
 
 可以在block里面把文件添加到gameScore里面，建议使用异步上传的方法，再在block进行操作。如下面的例子：
 
 ```
-NSBundle    *bundle = [NSBundle mainBundle];
-NSString *fileString = [NSString stringWithFormat:@"%@/cs.txt" ,[bundle bundlePath] ];
+NSData *data = UIImagePNGRepresentation([UIImage imageNamed:@"58f0222bd82ac"]);
+BmobFile *file1 = [[BmobFile alloc]initWithFileName:@"58f0222bd82ac.png" withFileData:data];
 BmobObject *obj = [[BmobObject alloc] initWithClassName:@"GameScore"];
-BmobFile *file1 = [[BmobFile alloc] initWithFilePath:fileString];
 [file1 saveInBackground:^(BOOL isSuccessful, NSError *error) {
-	 //如果文件保存成功，则把文件添加到filetype列
-	 if (isSuccessful) {
-	     [obj setObject:file1  forKey:@"filetype"];
-	     //此处相当于新建一条记录,	     //关联至已有的记录请使用 [obj updateInBackground];
-	     [obj saveInBackground];
-	     //打印file文件的url地址
-	     NSLog(@"file1 url %@",file1.url);
-	 }else{
-	 	//进行处理
-	 }
+//如果文件保存成功，则把文件添加到filetype列
+if (isSuccessful) {
+[obj setObject:file1  forKey:@"filetype"];
+[obj setObject:file1.url  forKey:@"filetypeurl"];
+//此处相当于新建一条记录,         //关联至已有的记录请使用 [obj updateInBackground];
+[obj saveInBackground];
+//打印file文件的url地址
+NSLog(@"file1 url %@",file1.url);
+}else{
+//进行处理
+}
 }];
 ```
 
@@ -2156,23 +2159,23 @@ BmobFile *file1 = [[BmobFile alloc] initWithFilePath:fileString];
 如在下面的例子中，打印上传的进度
 
 ```
-NSBundle    *bundle = [NSBundle mainBundle];
-NSString *fileString = [NSString stringWithFormat:@"%@/cs.txt" ,[bundle bundlePath] ];
+NSString *fileString = [[NSBundle mainBundle] pathForResource:@"Android_SDK" ofType:@"mp4"];
 BmobObject *obj = [[BmobObject alloc] initWithClassName:@"gameScoreFile"];
 BmobFile *file1 = [[BmobFile alloc] initWithClassName:@"Asc" withFilePath:fileString];
 [file1 saveInBackground:^(BOOL isSuccessful, NSError *error) {
-    if (isSuccessful) {
-        [obj setObject:file1  forKey:@"userFile"];
-        [obj saveInBackground];
-        NSLog(@"file1 url %@",file1.url);
-    }
+if (isSuccessful) {
+[obj setObject:file1  forKey:@"userFile"];
+[obj setObject:file1.url  forKey:@"userFileUrl"];
+[obj saveInBackground];
+NSLog(@"file1 url %@",file1.url);
+}
 } withProgressBlock:^(CGFloat progress) {
-    NSLog(@"上传进度%.2f",progress);
+NSLog(@"上传进度%.2f",progress);
 }];
 ```
 
 ### 以分片的方式上传文件
-分片上传文件和上传整个文件的机制有所不同，是先把整个文件进行分片（256KB一片），然后再进行一片一片的上传（具体实现可查看[RestAPI文档](http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#文件管理)）。当文件以分片的方式上传到Bmob服务器时，具有几种优势：
+分片上传文件和上传整个文件的机制有所不同，是先把整个文件进行分片（256KB一片），然后再进行一片一片的上传（具体实现可查看[RestAPI文档](https://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#文件管理)）。当文件以分片的方式上传到Bmob服务器时，具有几种优势：
 
 1. 适合于尺寸较大的文件传输，通过切片来避免单个HTTP数据量过大而导致连接超时；
 
@@ -2187,21 +2190,20 @@ BmobFile *file1 = [[BmobFile alloc] initWithClassName:@"Asc" withFilePath:fileSt
 示例如下：
 
 ```
-NSBundle    *bundle = [NSBundle mainBundle];
-//上传cs.txt文件
-NSString *fileString = [NSString stringWithFormat:@"%@/cs.txt" ,[bundle bundlePath] ];
+//上传game.mp4文件
+NSString *fileString = [[NSBundle mainBundle] pathForResource:@"game" ofType:@"mp4"];
 BmobObject *obj = [[BmobObject alloc] initWithClassName:@"gameScoreFile"];
 //创建BmobFile对象
 BmobFile *file1 = [[BmobFile alloc] initWithFilePath:fileString];
 [file1 saveInBackgroundByDataSharding:^(BOOL isSuccessful, NSError *error) {
-   if (isSuccessful) {
-   		//如果成功，保存文件到userFile
-       [obj setObject:file1  forKey:@"userFile"];
-       [obj saveInBackground];
-   }else{
-       //失败，打印错误信息
-   		NSLog(@"error: %@",[error description]);
-   }
+if (isSuccessful) {
+//如果成功，保存文件到userFile
+[obj setObject:file1  forKey:@"userFile"];
+[obj saveInBackground];
+}else{
+//失败，打印错误信息
+NSLog(@"error: %@",[error description]);
+}
 } ];
 ```
 
@@ -2209,34 +2211,43 @@ BmobFile *file1 = [[BmobFile alloc] initWithFilePath:fileString];
 有时，开发者需要一次性上传多个文件，这是可以使用SDK提供的多个上传文件的方法来使用
 
 ```
-NSBundle    *bundle = [NSBundle mainBundle];
-//文件cncc.jpg的路径
-NSString *fileString = [NSString stringWithFormat:@"%@/cncc.jpg" ,[bundle bundlePath] ];
-//文件cs.txt的路径
-NSString *fileString2 = [NSString stringWithFormat:@"%@/cs.txt" ,[bundle bundlePath] ];
+//文件IMG_1471.jpg的路径
+NSString *fileString = [[NSBundle mainBundle] pathForResource:@"IMG_1471" ofType:@"JPG"];
+//文件text.txt的路径
+NSString *fileString2 = [[NSBundle mainBundle] pathForResource:@"text" ofType:@"txt"];
 [BmobFile filesUploadBatchWithPaths:@[fileString,fileString2]
-                      progressBlock:^(int index, float progress) {
-                      	   //index 上传数组的下标，progress当前文件的进度
-                          NSLog(@"index %d progress %f",index,progress);
-                      } resultBlock:^(NSArray *array, BOOL isSuccessful, NSError *error) {
-                      //array 文件数组，isSuccessful 成功或者失败,error 错误信息
-                      BmobObject *obj = [[BmobObject alloc] initWithClassName:@"gameScoreFile"];
-                          for (int i = 0 ; i < array.count ;i ++) {
-                              BmobFile *file = array [i];
-                              NSString *key = [NSString stringWithFormat:@"userFile%d",i];
-                              [obj setObject:file  forKey:key];
-                          }                          
-                          [obj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) { 
-                              }];
-                      }];
+progressBlock:^(int index, float progress) {
+//index 上传数组的下标，progress当前文件的进度
+NSLog(@"index %d progress %f",index,progress);
+} resultBlock:^(NSArray *array, BOOL isSuccessful, NSError *error) {
+//array 文件数组，isSuccessful 成功或者失败,error 错误信息
+BmobObject *obj = [[BmobObject alloc] initWithClassName:@"gameScoreFile"];
+for (int i = 0 ; i < array.count ;i ++) {
+BmobFile *file = array [i];
+NSString *key = [NSString stringWithFormat:@"userFile%d",i];
+[obj setObject:file  forKey:key];
+}
+[obj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+}];
+}];
 ```
 
 ### 下载文件
 
-获取文件对象只需通过-(id)objectForKey:(id)key;来得到，例如，
+获取文件对象需先根据objectid查询得到Bmobobject,然后通过-(id)objectForKey:(id)key;来得到，例如，
 
 ```
-BmobFile *file = (BmobFile*)[gameScore objectForKey:@"filetype"];
+BmobQuery *query = [BmobQuery queryWithClassName:@"test"];
+[query getObjectInBackgroundWithId:@"1783521c59" block:^(BmobObject *object, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+NSLog(@"%@",object);
+BmobFile *file = (BmobFile *)[object objectForKey:@"filetype"];
+NSLog(@"%@",file.url);
+}
+}];
+
 ```
 可用通过file的url属性(file.url)，来得到文件的地址进行下载。
 
@@ -2248,23 +2259,23 @@ BmobFile *file = (BmobFile*)[gameScore objectForKey:@"filetype"];
 
 ```objc
 /**
- *  异步请求删除文件
- *
- *  @param block 返回删除结果与信息，如果删除成功，则无返回信息
- */
+*  异步请求删除文件
+*
+*  @param block 返回删除结果与信息，如果删除成功，则无返回信息
+*/
 -(void)deleteInBackground:(BmobBooleanResultBlock)block;
 ```
 
 当开发者需要一次性删除多个文件的时候，可以调用批量删除文件的接口
 
 ```
-    NSArray *array = @[@"http://bmob-cdn-1.b0.upaiyun.com/jpg/579c8dc6676e460b82d83c8eb5c8aaa5.jpg",@"http://bmob-cdn-1.b0.upaiyun.com/jpg/59e3817d6cec416ba99a126c9d42768f.jpg "]
-    
-    [BmobFile filesDeleteBatchWithArray:array resultBlock:^(NSArray *array, BOOL isSuccessful, NSError *error) {
-        NSLog(@"fail delete array %@",array);
-        NSLog(@"error %@",error.localizedDescription);
-        NSLog(@"issuccessful %i",isSuccessful);
-    }];
+NSArray *array = @[@"http://bmob-cdn-1.b0.upaiyun.com/jpg/579c8dc6676e460b82d83c8eb5c8aaa5.jpg",@"http://bmob-cdn-1.b0.upaiyun.com/jpg/59e3817d6cec416ba99a126c9d42768f.jpg "]
+
+[BmobFile filesDeleteBatchWithArray:array resultBlock:^(NSArray *array, BOOL isSuccessful, NSError *error) {
+NSLog(@"fail delete array %@",array);
+NSLog(@"error %@",error.localizedDescription);
+NSLog(@"issuccessful %i",isSuccessful);
+}];
 ```
 ### 缩略图
 只需要在图片上传成功返回的url后面拼接特定参数即可实现缩放，加水印等效果，[如图](http://bmob-cdn-9200.b0.upaiyun.com/2017/04/25/f24b9ef540f1aeb680ebe01ba8543d9f.png!/scale/80/watermark/text/5rC05Y2wCg==)，[具体可参考这里 。](http://docs.upyun.com/cloud/image/)
@@ -2282,12 +2293,12 @@ SDK提供了两个方法来监听数据变化，其中一个方法是针对表�
 
 ```
 -(void)listen{
-	//创建BmobEvent对象
-    _bmobEvent          = [BmobEvent defaultBmobEvent];
-    //设置代理
-    _bmobEvent.delegate = self;
-    //启动连接
-    [_bmobEvent start];
+//创建BmobEvent对象
+_bmobEvent          = [BmobEvent defaultBmobEvent];
+//设置代理
+_bmobEvent.delegate = self;
+//启动连接
+[_bmobEvent start];
 }
 ```
 在代理的函数，进行操作
@@ -2295,13 +2306,13 @@ SDK提供了两个方法来监听数据变化，其中一个方法是针对表�
 ```
 //可以进行监听或者取消监听事件
 -(void)bmobEventCanStartListen:(BmobEvent *)event{
-    //监听Post表更新
-    [_bmobEvent listenTableChange:BmobActionTypeUpdateTable tableName:@"Post"];
+//监听Post表更新
+[_bmobEvent listenTableChange:BmobActionTypeUpdateTable tableName:@"Post"];
 }
 //接收到得数据
 -(void)bmobEvent:(BmobEvent *)event didReceiveMessage:(NSString *)message{
-	//打印数据
-    NSLog(@"didReceiveMessage:%@",message);
+//打印数据
+NSLog(@"didReceiveMessage:%@",message);
 }
 ```
 
@@ -2315,12 +2326,12 @@ SDK提供了两个方法来监听数据变化，其中一个方法是针对表�
 
 ```
 -(void)bmobEventCanStartListen:(BmobEvent *)event
-    //监听Test表删除事件，
-	[_bmobEvent listenTableChange:BmobActionTypeDeleteTable tableName:@"Test"];
-    //监听Post表中objectId为a1419df47a 的行更新事件
-	[_bmobEvent listenRowChange:BmobActionTypeUpdateRow tableName:@"Post" objectId:@"a1419df47a"];
-    //监听Post表中objectId为wb1o000F 的行删除事件
-	[_bmobEvent listenRowChange:BmobActionTypeDeleteRow tableName:@"Post" objectId:@"wb1o000F"];
+//监听Test表删除事件，
+[_bmobEvent listenTableChange:BmobActionTypeDeleteTable tableName:@"Test"];
+//监听Post表中objectId为a1419df47a 的行更新事件
+[_bmobEvent listenRowChange:BmobActionTypeUpdateRow tableName:@"Post" objectId:@"a1419df47a"];
+//监听Post表中objectId为wb1o000F 的行删除事件
+[_bmobEvent listenRowChange:BmobActionTypeDeleteRow tableName:@"Post" objectId:@"wb1o000F"];
 }
 ```
 
@@ -2380,11 +2391,11 @@ BmobACL *acl = [BmobACL ACL];
 [acl setWriteAccessForUser:[BmobUser getCurrentUser]];//设置只有当前用户可写
 blog.ACL= acl;
 [blog saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-    if (isSuccessful) {
-        //进行操作
-    }else{
-        //进行操作
-    }
+if (isSuccessful) {
+//进行操作
+}else{
+//进行操作
+}
 }];
 ```
 
@@ -2399,11 +2410,11 @@ BmobACL *acl = [BmobACL ACL];
 [acl setWriteAccessForUser:[BmobUser getCurrentUser]];//设置只有当前用户可写
 blog.ACL= acl;
 [blog saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-    if (isSuccessful) {
-        //进行操作
-    }else{
-        //进行操作
-    }
+if (isSuccessful) {
+//进行操作
+}else{
+//进行操作
+}
 }];
 ```
 
@@ -2431,11 +2442,11 @@ BmobACL *acl = [BmobACL ACL];
 [acl setWriteAccessForUser:hr_zhang];
 wageinfo.ACL= acl;
 [wageinfo saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-    if (isSuccessful) {
-        //进行操作
-    }else{
-        //进行操作
-    }
+if (isSuccessful) {
+//进行操作
+}else{
+//进行操作
+}
 }];
 ```
 
@@ -2478,11 +2489,11 @@ BmobACL *acl = [BmobACL ACL];
 [acl setWriteAccessForRole:hr];// 设置ht角色拥有写权限
 wageinfo.ACL= acl;
 [wageinfo saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-    if (isSuccessful) {
-        //进行操作
-    }else{
-        //进行操作
-    }
+if (isSuccessful) {
+//进行操作
+}else{
+//进行操作
+}
 }];
 ```
 需要说明一点的是，Web端的Role表也具有ACL的列，你可以将角色管理的权限赋予某些用户。
@@ -2536,26 +2547,26 @@ BmobGeoPoint *point = [[BmobGeoPoint alloc] initWithLongitude:116.39727786183357
 ### 地理查询
 
 现在，你的数据表中有了一定的地理坐标对象的数据，这样可以测试找出最接近某个点的信息了。你可以使用BmobQuery对象的whereNear方法来这样做：
-	
+
 ```
 BmobGeoPoint  *point = [[BmobGeoPoint alloc] initWithLongitude:116.39727786183357 WithLatitude:39.913768382429105];
 BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 [bquery whereKey:@"location" nearGeoPoint:point];
 [bquery setLimit:10];
 [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-	//进行操作
+//进行操作
 }];
 ```
 要限制查询指定距离范围的数据可以使用whereWithinKilometers(公里)、whereWithinMiles(英里)或whereWithinRadians(弧度)方法。 要查询一个矩形范围内的信息可以使用whereWithinGeoBox来实现：
-``` 
+```
 BmobGeoPoint *southwestOfSF = [[BmobGeoPoint alloc] initWithLongitude:116.39727786183357 WithLatitude:39.913768382429105];
 BmobGeoPoint* northeastOfSF =[[BmobGeoPoint alloc] initWithLongitude:116.39727786183357 WithLatitude:40.913768382429105];
 BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 [bquery whereKey:@"location" withinGeoBoxFromSouthwest:southwestOfSF
-                                           toNortheast:northeastOfSF];
+toNortheast:northeastOfSF];
 [bquery setLimit:10];
 [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-	//进行操作
+//进行操作
 }];
 ```
 
@@ -2567,7 +2578,7 @@ BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 2. 地理位置的点不能超过规定的范围。`纬度的范围`应该是在`-90.0到90.0`之间。`经度的范围`应该是在`-180.0到180.0`之间。如果您添加的经纬度超出了以上范围，将导致程序错误。
 
 3. 地理位置查询最大的距离根据表数据的不同有不同的限制，使用-(void)whereKey:(NSString *)key nearGeoPoint:(BmobGeoPoint *)geopoint;默认`100KM`。当需要指定距离时，最好指定一下最大距离。
- 
+
 ## 其它功能
 
 ### 获取服务器时间
@@ -2575,24 +2586,24 @@ BmobQuery *bquery = [BmobQuery queryWithClassName:@"GameScore"];
 获取服务器时间戳可以直接调用[Bmob getServerTimestamp]，例如：
 
 ```
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-	    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	    //设置时区
-	    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
-	    //时间格式
-	    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-	    //调用获取服务器时间接口，返回的是时间戳
-	    NSString  *timeString = [Bmob getServerTimestamp];
-	    //时间戳转化成时间
-	    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[timeString intValue]];
-	    NSString *dateStr = [dateFormatter stringFromDate:date];
-	    NSLog(@"北京时间:%@",dateStr);
-    });
-    
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//设置时区
+[dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
+//时间格式
+[dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+//调用获取服务器时间接口，返回的是时间戳
+NSString  *timeString = [Bmob getServerTimestamp];
+//时间戳转化成时间
+NSDate *date = [NSDate dateWithTimeIntervalSince1970:[timeString intValue]];
+NSString *dateStr = [dateFormatter stringFromDate:date];
+NSLog(@"北京时间:%@",dateStr);
+});
+
 ```
 
 ### 设置API网络请求超时时间
- 
+
 使用 `+(void)setBmobRequestTimeOut:(CGFloat)seconds;` 方法可以设置API中网络请求的超时时间，例如，想要设置访问Bmob后台时超过15s就返回超时错误，可以这样写.
 
 ```
@@ -2611,31 +2622,31 @@ BmobSDK默认是20s后得不到回复就提示超时，如果没有特别的需�
 可通过表名来获取特定表的结构，样例代码如下：
 
 ```
-    [Bmob getTableSchemasWithClassName:@"_User" callBack:^(BmobTableSchema *bmobTableSchema, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            //直接用description来查看表结构
-            NSLog(@"%@",bmobTableSchema.description);
-            
-            /*
-             分别打印表结构
-            */
-            //打印表名
-            NSLog(@"表名:%@",bmobTableSchema.className);
-            //打印表结构
-            NSDictionary *fields = bmobTableSchema.fields;
-            NSArray *allKey = [fields allKeys];
-            for (NSString *key in allKey) {
-                NSLog(@"列名:%@",key);
-                NSDictionary *fieldStrcut = [fields objectForKey:key];
-                NSLog(@"列类型:%@",[fieldStrcut objectForKey:@"type"] );
-                if ([[fieldStrcut objectForKey:@"type"] isEqualToString:@"Pointer"]) {
-                    NSLog(@"关联关系指向的表名:%@",[fieldStrcut objectForKey:@"targetClass"]);
-                }
-            }
-        }
-    }];
+[Bmob getTableSchemasWithClassName:@"_User" callBack:^(BmobTableSchema *bmobTableSchema, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+//直接用description来查看表结构
+NSLog(@"%@",bmobTableSchema.description);
+
+/*
+分别打印表结构
+*/
+//打印表名
+NSLog(@"表名:%@",bmobTableSchema.className);
+//打印表结构
+NSDictionary *fields = bmobTableSchema.fields;
+NSArray *allKey = [fields allKeys];
+for (NSString *key in allKey) {
+NSLog(@"列名:%@",key);
+NSDictionary *fieldStrcut = [fields objectForKey:key];
+NSLog(@"列类型:%@",[fieldStrcut objectForKey:@"type"] );
+if ([[fieldStrcut objectForKey:@"type"] isEqualToString:@"Pointer"]) {
+NSLog(@"关联关系指向的表名:%@",[fieldStrcut objectForKey:@"targetClass"]);
+}
+}
+}
+}];
 ```
 
 #### 获取所有表的结构
@@ -2643,33 +2654,33 @@ BmobSDK默认是20s后得不到回复就提示超时，如果没有特别的需�
 可通过以下代码得到所有表的结构
 
 ```
-    [Bmob getAllTableSchemasWithCallBack:^(NSArray *tableSchemasArray, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            for (BmobTableSchema* bmobTableSchema in tableSchemasArray) {
-                //直接用description来查看表结构
-                NSLog(@"%@",bmobTableSchema.description);
-                
-                /*
-                 分别打印表结构
-                 */
-                //打印表名
-                NSLog(@"表名:%@",bmobTableSchema.className);
-                //打印表结构
-                NSDictionary *fields = bmobTableSchema.fields;
-                NSArray *allKey = [fields allKeys];
-                for (NSString *key in allKey) {
-                    NSLog(@"列名:%@",key);
-                    NSDictionary *fieldStrcut = [fields objectForKey:key];
-                    NSLog(@"列类型:%@",[fieldStrcut objectForKey:@"type"] );
-                    if ([[fieldStrcut objectForKey:@"type"] isEqualToString:@"Pointer"]) {
-                        NSLog(@"关联关系指向的表名:%@",[fieldStrcut objectForKey:@"targetClass"]);
-                    }
-                }
-            }
-        }
-    }];
+[Bmob getAllTableSchemasWithCallBack:^(NSArray *tableSchemasArray, NSError *error) {
+if (error) {
+NSLog(@"%@",error);
+} else {
+for (BmobTableSchema* bmobTableSchema in tableSchemasArray) {
+//直接用description来查看表结构
+NSLog(@"%@",bmobTableSchema.description);
+
+/*
+分别打印表结构
+*/
+//打印表名
+NSLog(@"表名:%@",bmobTableSchema.className);
+//打印表结构
+NSDictionary *fields = bmobTableSchema.fields;
+NSArray *allKey = [fields allKeys];
+for (NSString *key in allKey) {
+NSLog(@"列名:%@",key);
+NSDictionary *fieldStrcut = [fields objectForKey:key];
+NSLog(@"列类型:%@",[fieldStrcut objectForKey:@"type"] );
+if ([[fieldStrcut objectForKey:@"type"] isEqualToString:@"Pointer"]) {
+NSLog(@"关联关系指向的表名:%@",[fieldStrcut objectForKey:@"targetClass"]);
+}
+}
+}
+}
+}];
 
 ```
 
@@ -2692,35 +2703,35 @@ BmobSDK默认是20s后得不到回复就提示超时，如果没有特别的需�
 
 ```
 {
-    ACL =     {
-        type = Object;
-    };
-    author =     {
-        targetClass = "_User";
-        type = Pointer;
-    };
-    content =     {
-        type = String;
-    };
-    createdAt =     {
-        type = Date;
-    };
-    likes =     {
-        targetClass = "_User";
-        type = Relation;
-    };
-    objectId =     {
-        type = String;
-    };
-    skill =     {
-        type = Array;
-    };
-    title =     {
-        type = String;
-    };
-    updatedAt =     {
-        type = Date;
-    };
+ACL =     {
+type = Object;
+};
+author =     {
+targetClass = "_User";
+type = Pointer;
+};
+content =     {
+type = String;
+};
+createdAt =     {
+type = Date;
+};
+likes =     {
+targetClass = "_User";
+type = Relation;
+};
+objectId =     {
+type = String;
+};
+skill =     {
+type = Array;
+};
+title =     {
+type = String;
+};
+updatedAt =     {
+type = Date;
+};
 };
 ```
 

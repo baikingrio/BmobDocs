@@ -428,9 +428,17 @@
 												
 											<li class=""><a href="#_7">订单查询</a>
 												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#_8">获取订单号</a></li>
+												</ul>
+												
+												<ul class="nav nav-l2">
+													<li><a class="itm-l2" href="#_9">根据订单号订单查询</a></li>
+												</ul>
+												
 											</li>
 												
-											<li class=""><a href="#_8">应用外支付回调</a>
+											<li class=""><a href="#_10">应用外支付回调</a>
 												
 											</li>
 												
@@ -475,7 +483,7 @@
 <p>iOS支付SDK接口是Bmob为广大开发人员提供的统一、正规的收费手段，让没有企业认证的个人开发者，也能通过支付宝和微信向用户收费。该文档可以让您快速为自己的应用接入Bmob的支付功能。下图为使用支付的流程。</p>
 <p><img alt="" src="http://i.imgur.com/pP4Cki6.png" /></p>
 <h2 id="_2">使用需知<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>使用Bmob支付组件前，请认真阅读<a href="http://www.bmob.cn/service">Bmob服务协议</a>。</p>
+<p>使用Bmob支付组件前，请认真阅读<a href="https://www.bmob.cn/service">Bmob服务协议</a>。</p>
 <p>对于以下两种情况，开发者需要特别注意：</p>
 <p>1.违反服务协议，特别是含有以下内容的应用：</p>
 <p><strong>1）封建迷信和/或淫秽、色情、下流的信息或教唆犯罪的信息；</strong>
@@ -483,17 +491,18 @@
 <p>Bmob平台有权进行独立判断并采取技术手段予以删除、屏蔽或断开链接。同时，本平台有权视用户的行为性质，采取包括但不限于暂停或终止服务，限制、冻结或终止本平台网站账号的使用，追究法律责任等措施。</p>
 <p>2.应用遇到过多的用户投诉，如应用的使用者支付了相关款项，但是该应用却没有提供相应的服务。本平台有权限制或冻结该应用支付收入的所有款项，并保留追究法律责任的权利。</p>
 <p>3.<strong>Bmob将在每笔交易中收取10%服务费。</strong></p>
+<p>4.<strong>微信支付暂不支持</strong></p>
 <h2 id="_3">打款需知<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>1.打款前请先在控制台填写以下信息</p>
 <p><img alt="" src="./image/14579272227324.jpg" /></p>
 <p>2.每月的1、2、16、17号为申请打款时间，15号、月尾日为打款时间，确保用户有半个月的追诉期。</p>
 <h2 id="_4">支持平台<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>目前 iOS 端仅提供支付宝和微信支付支持。</p>
+<p>目前 iOS 端仅提供支付宝支持。</p>
 <h2 id="_5">启用须知<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<ul>
-<li>在Bmob账号管理平台进行身份认证，以保证资金安全，否则无法使用支付等功能。</li>
-<li>提交申请时，开发者的联系方式至少要有两种(邮箱，电话，QQ)，方便后续支付弹出的订单页面展示，如下：</li>
-</ul>
+<p><strong>支付限制流程：</strong>
+<strong>用户创建应用即可使用支付功能，无任何限制</strong>
+<strong>应用收入大于50元，需要身份证审核和应用审核都通过才可继续使用</strong>
+<strong>提交应用审核申请时，开发者的联系方式至少要有两种(邮箱，电话，QQ)，方便后续支付弹出的订单页面展示，如下：</strong></p>
 <p><img alt="" src="https://ww4.sinaimg.cn/large/006y8lVagw1fbpzckrljvj30b40jr0tz.jpg" /></p>
 <h2 id="sdk">SDK 接入<a class="headerlink" href="#sdk" title="Permanent link">&para;</a></h2>
 <ul>
@@ -507,8 +516,8 @@
 <ul>
 <li>
 <ol>
-<li>在 info.plist 添加以下两个字端：<br />
-A. <code>View controller-based status bar appearance</code>，类型为 <code>BOOL</code>，值为 <code>NO</code><br />
+<li>在 info.plist 添加以下两个字端：
+A. <code>View controller-based status bar appearance</code>，类型为 <code>BOOL</code>，值为 <code>NO</code>
 B. <code>LSApplicationQueriesSchemes</code>，类型为 <code>Array</code>，字符串元素 <code>alipays</code> 和 <code>weixin</code></li>
 </ol>
 </li>
@@ -518,32 +527,28 @@ B. <code>LSApplicationQueriesSchemes</code>，类型为 <code>Array</code>，字
 &lt;false/&gt;
 &lt;key&gt;LSApplicationQueriesSchemes&lt;/key&gt;
 &lt;array&gt;
-    &lt;string&gt;alipays&lt;/string&gt;
-    &lt;string&gt;weixin&lt;/string&gt;
+&lt;string&gt;alipays&lt;/string&gt;
+&lt;string&gt;weixin&lt;/string&gt;
 &lt;/array&gt;
 </code></pre>
 
 <ul>
 <li>
 <ol>
-<li>添加使用的framework: <br />
-A. CoreTelephony.framework<br />
-B. libz.1.2.5.tbd<br />
-C. libsqlite3.tbd<br />
-D. libc++.tbd<br />
-E. <a href="https://raw.githubusercontent.com/bmob/Bmob-iOS-SDK/master/libWeChatSDK.a">libWeChatSDK.a</a> -&gt; 可以直接点击下载，使用微信支付需要导入此模块</li>
+<li>添加使用的framework:
+A. CoreTelephony.framework
+B. libz.1.2.5.tbd
+C. libsqlite3.tbd
+D. libc++.tbd</li>
 </ol>
 </li>
 </ul>
-<blockquote>
-<p>注意，如果使用微信支付的话，导入 <code>libWeChatSDK.a</code> 文件可能会产生模块重复。发生重复模块时，删除其中一个 <code>libWeChatSDK.a</code> 文件即可。</p>
-</blockquote>
 <h2 id="_6">支付调用<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <pre><code>#import &lt;BmobPaySDK/Bmob.h&gt;
 </code></pre>
 
 <p>在 AppDelegaet 注册应用：</p>
-<pre><code>[Bmob registerWithAppKey:@&quot;xxxxxxxx&quot;]; 
+<pre><code>[Bmob registerWithAppKey:@&quot;xxxxxxxx&quot;];
 
 </code></pre>
 
@@ -552,47 +557,53 @@ E. <a href="https://raw.githubusercontent.com/bmob/Bmob-iOS-SDK/master/libWeChat
 </blockquote>
 <p>然后进行关键函数调用：</p>
 <pre><code>[BmobPay payWithPayType:BmobAlipay //支付类型选择
-                  price:@888 //订单价格，0 - 5000
-              orderName:@&quot;订单名称&quot; //不为空
-               describe:@&quot;订单描述&quot; //不为空
-                 result:nil]; //应用内支付回调
+price:@888 //订单价格，0 - 5000
+orderName:@&quot;订单名称&quot; //不为空
+describe:@&quot;订单描述&quot; //不为空
+result:nil]; //应用内支付回调
 </code></pre>
 
 <h2 id="_7">订单查询<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>注意事项：查询操作自动从内存中获取订单号，应该等待支付操作回调执行时或执行后才进行查询接口调用。</p>
 </blockquote>
-<p>接口如下：</p>
-<pre><code>+ (void)queryWithResult:(BmobPayResultBlock)result;
+<h3 id="_8">获取订单号<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<pre><code>+ (void)orderInfoCallback:(void(^)(NSDictionary *orderInfo))orderInfoCallback;
+</code></pre>
+
+<h3 id="_9">根据订单号订单查询<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<pre><code>+ (void)queryWithOrderNumber:(NSString *)orderNumber
+result:(void(^)(NSDictionary *resultDic, NSError *error))result;
+
 </code></pre>
 
 <p>成功查询会返回以下类似数据：</p>
 <pre><code>{
-&quot;name&quot;: &quot;商品&quot;,    //商品名称 
-&quot;body&quot;: &quot;商品详情&quot;,
-&quot;create_time&quot;: &quot;2015-03-24 11:14:58&quot;,   //调起支付的时间
-&quot;out_trade_no&quot;: &quot;9f392618f449a71c6fcfdee38d2b29e4&quot;,  //Bmob系统的订单号
-&quot;transaction_id&quot;: &quot;2015061100001000330057820379&quot;  //微信或支付宝的系统订单号
-&quot;pay_type&quot;: &quot;WECHATPAY&quot;,  //WECHATPAY（微信支付）或ALIPAY（支付宝支付）
-&quot;total_fee&quot;: 0.01,  //订单总金额
-&quot;trade_state&quot;: &quot;NOTPAY&quot;  //NOTPAY（未支付）或 SUCCESS（支付成功） 
+&quot;transaction_id&quot; : &quot;C20170727115355672433&quot;,
+&quot;pay_type&quot; : &quot;ALIPAY&quot;, WECHATPAY（微信支付）或ALIPAY（支付宝支付）
+&quot;total_fee&quot; : 0.01,      //订单总金额
+&quot;create_time&quot; : &quot;2017-07-27 11:53:56&quot;,   //调起支付的时间
+&quot;trade_state&quot; : &quot;SUCCESS&quot;,     //NOTPAY（未支付）或 SUCCESS（支付成功）
+&quot;body&quot; : &quot;商品详情&quot;,
+&quot;name&quot; : &quot;小吃&quot;,      //商品名称
+&quot;out_trade_no&quot; : &quot;e3aa75aaf1e1a92a6f466c102ff1dae1&quot;     //Bmob系统的订单号
 }
 </code></pre>
 
-<h2 id="_8">应用外支付回调<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_10">应用外支付回调<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>如图，可以在支付-配置信息处填入通知url。</p>
 <p><img alt="" src="http://i.imgur.com/40aAkKh.png" /></p>
 <p>这样在支付成功后会向该url（SDK使用异步通知URL，PHP等调用网页支付的使用同步返回URL）发送post请求，结构如下：</p>
 <pre><code>{
-    &quot;trade_status&quot;:&quot;1&quot;,
-    &quot;out_trade_no&quot;:&quot;809488d695ed42ec56b57546d2df94cc&quot;,
-    &quot;trade_no&quot;:&quot;2016033021001004810225607152&quot;
+&quot;trade_status&quot;:&quot;1&quot;,
+&quot;out_trade_no&quot;:&quot;809488d695ed42ec56b57546d2df94cc&quot;,
+&quot;trade_no&quot;:&quot;2016033021001004810225607152&quot;
 }
 </code></pre>
 
-<p>trade_status：表示支付状态，目前只有支付成功才产生回调，值恒为1.<br />
-out_trade_no：Bmob返回的订单号<br />
-trade_no：支付宝或微信返回的订单号  </p>
+<p>trade_status：表示支付状态，目前只有支付成功才产生回调，值恒为1.
+out_trade_no：Bmob返回的订单号
+trade_no：支付宝或微信返回的订单号</p>
                 </div>
             </div>
         </div>

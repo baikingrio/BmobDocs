@@ -461,18 +461,14 @@
 											
 										</li>
 									
-										<li class=""><a href="#_4">查询短信状态</a>
-											
-										</li>
-									
-										<li class=""><a href="#_5">购买事项</a>
+										<li class=""><a href="#_4">购买事项</a>
 											
 											<ul class="nav nav-l2">
-												<li><a class="itm-l2" href="#_6">购买方法</a></li>
+												<li><a class="itm-l2" href="#_5">购买方法</a></li>
 											</ul>
 											
 											<ul class="nav nav-l2">
-												<li><a class="itm-l2" href="#_7">发票事宜</a></li>
+												<li><a class="itm-l2" href="#_6">发票事宜</a></li>
 											</ul>
 											
 										</li>
@@ -585,31 +581,13 @@
 }
 </code></pre>
 
-<h2 id="_4">查询短信状态</h2>
-<p>通过以下接口，你可以查询某条短信是否发送成功，如果是使用了Bmob的模板的话还能查询到是否被验证过，其实:smsId是请求短信验证码API返回的smsId值：</p>
-<pre><code>Bmob.Sms.querySms(6817361).then(function(obj) {
-  alert(&quot;status:&quot;+obj.sms_state); //
-}, function(err){
-  alert(&quot;发送失败:&quot;+err);
-});
-</code></pre>
-
-<p>成功返回以下JSON：</p>
-<pre><code>{
-  &quot;sms_state&quot;: &quot;SENDING&quot;, 
-  &quot;verify_state&quot;: false
-}
-</code></pre>
-
-<p>其中sms_state是发送状态，有值: SENDING-发送中，FAIL-发送失败 SUCCESS-发送成功
-其中verify_state是验证码是否验证状态， 有值: true-已验证 false-未验证</p>
-<h2 id="_5">购买事项</h2>
-<h3 id="_6">购买方法</h3>
+<h2 id="_4">购买事项</h2>
+<h3 id="_5">购买方法</h3>
 <p>短信条数只能输入整数，且不能少于1000条</p>
 <p><img alt="短信计费模式" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/jfms.png" /></p>
 <p>进入账号控制台，财务/财务统计点击购买短信即可。</p>
 <p><img alt="购买短信" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/14703632600603.jpg" /></p>
-<h3 id="_7">发票事宜</h3>
+<h3 id="_6">发票事宜</h3>
 <p>购买金额满100可提供发票，1000元以内的到付，1000以上（含1000）包邮。</p>
 <p>登录后台提交工单，提供购买服务的订单号和开票信息。</p>
 <p><strong>个人</strong></p>

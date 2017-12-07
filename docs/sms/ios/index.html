@@ -457,18 +457,14 @@
 											
 										</li>
 									
-										<li class=""><a href="#_4">查询短信验证码状态</a>
-											
-										</li>
-									
-										<li class=""><a href="#_5">购买事项</a>
+										<li class=""><a href="#_4">购买事项</a>
 											
 											<ul class="nav nav-l2">
-												<li><a class="itm-l2" href="#_6">购买方法</a></li>
+												<li><a class="itm-l2" href="#_5">购买方法</a></li>
 											</ul>
 											
 											<ul class="nav nav-l2">
-												<li><a class="itm-l2" href="#_7">发票事宜</a></li>
+												<li><a class="itm-l2" href="#_6">发票事宜</a></li>
 											</ul>
 											
 										</li>
@@ -574,24 +570,6 @@
 
 </code></pre>
 
-<h2 id="_4">查询短信验证码状态</h2>
-<p>查询短信验证码状态示例代码：</p>
-<pre><code>    [BmobSMS querySMSCodeStateInBackgroundWithSMSId:smsId resultBlock:^(NSDictionary *dic, NSError *error) {
-        if (dic) {
-            NSLog(@&quot;%@&quot;,dic);
-        } else {
-            NSLog(@&quot;%@&quot;,error);
-        }
-    }];
-</code></pre>
-
-<pre><code>注：SmsState包含两种状态：
-
-1、smsState（短信状态） :SUCCESS（发送成功）、FAIL（发送失败）、SENDING(发送中)。
-
-2、verifyState（验证状态）:true(已验证)、false(未验证)。
-</code></pre>
-
 <p>注意事项：</p>
 <p>关于短信条数的计算规则如下，</p>
 <ol>
@@ -601,13 +579,13 @@
 <li>计算得到的短信条数在本条短信发送成功后将会从你的账户剩余的短信条数中扣除。</li>
 </ol>
 <p><strong>短信发送限制规则是1/分钟，5/小时，10/天。即对于一个应用来说，一天给同一手机号发送短信不能超过10条，一小时给同一手机号发送短信不能超过5条，一分钟给同一手机号发送短信不能超过1条。</strong></p>
-<h2 id="_5">购买事项</h2>
-<h3 id="_6">购买方法</h3>
+<h2 id="_4">购买事项</h2>
+<h3 id="_5">购买方法</h3>
 <p>短信条数只能输入整数，且不能少于1000条</p>
 <p><img alt="短信计费模式" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/jfms.png" /></p>
 <p>进入账号控制台，财务/财务统计点击购买短信即可。</p>
 <p><img alt="购买短信" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/14703632600603.jpg" /></p>
-<h3 id="_7">发票事宜</h3>
+<h3 id="_6">发票事宜</h3>
 <p>购买金额满100可提供发票，1000元以内的到付，1000以上（含1000）包邮。</p>
 <p>登录后台提交工单，提供购买服务的订单号和开票信息。</p>
 <p><strong>个人</strong></p>

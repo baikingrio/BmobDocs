@@ -467,18 +467,14 @@
 											
 										</li>
 									
-										<li class=""><a href="#_5">查询短信状态</a>
-											
-										</li>
-									
-										<li class=""><a href="#_6">购买事项</a>
+										<li class=""><a href="#_5">购买事项</a>
 											
 											<ul class="nav nav-l2">
-												<li><a class="itm-l2" href="#_7">购买方法</a></li>
+												<li><a class="itm-l2" href="#_6">购买方法</a></li>
 											</ul>
 											
 											<ul class="nav nav-l2">
-												<li><a class="itm-l2" href="#_8">发票事宜</a></li>
+												<li><a class="itm-l2" href="#_7">发票事宜</a></li>
 											</ul>
 											
 										</li>
@@ -713,58 +709,6 @@ Content-Type: application/json
   https://api.bmob.cn/1/verifySmsCode/876845
 </code></pre>
 
-<h2 id="_5">查询短信状态</h2>
-<p><strong>请求描述</strong></p>
-<p>通过以下接口，你可以查询某条短信是否发送成功，如果是使用了验证码接口，还可以查询该验证码是否被验证过。</p>
-<p><strong>请求</strong></p>
-<ul>
-<li>
-<p>url ：https://api.bmob.cn/1/querySms/:smsId （注意smsId前有冒号(:)）</p>
-</li>
-<li>
-<p>method ：GET</p>
-</li>
-<li>
-<p>header:</p>
-</li>
-</ul>
-<pre><code>X-Bmob-Application-Id: Your Application ID
-X-Bmob-REST-API-Key: Your REST API Key
-Content-Type: application/json
-</code></pre>
-
-<p><strong>成功时响应</strong></p>
-<ul>
-<li>
-<p>status: 200 OK</p>
-</li>
-<li>
-<p>body:</p>
-</li>
-</ul>
-<pre><code>{
-  &quot;sms_state&quot;: state, 
-  &quot;verify_state&quot;: isVerify
-}
-</code></pre>
-
-<p>sms_state是发送状态，有值: SENDING-发送中，FAIL-发送失败 SUCCESS-发送成功
-verify_state是验证码是否验证状态， 有值: true-已验证 false-未验证</p>
-<p><strong>例子</strong></p>
-<p>例如，如果在上述发送短信接口或者请求验证码接口请求成功后返回的 <code>smsId</code> 为 <code>123678</code>，则可以使用以下请求查询这些短信的状态。</p>
-<pre><code>curl -X GET \
-  -H &quot;X-Bmob-Application-Id: Your Application ID&quot;          \
-  -H &quot;X-Bmob-REST-API-Key: Your REST API Key&quot;        \
-  https://api.bmob.cn/1/querySms/:123678
-</code></pre>
-
-<p>成功返回以下JSON：</p>
-<pre><code>{
-  &quot;sms_state&quot;: &quot;SENDING&quot;, 
-  &quot;verify_state&quot;: false
-}
-</code></pre>
-
 <p><strong>注意事项</strong></p>
 <p>关于短信条数的计算规则如下:</p>
 <ol>
@@ -774,13 +718,13 @@ verify_state是验证码是否验证状态， 有值: true-已验证 false-未�
 <li>计算得到的短信条数在本条短信发送成功后将会从你的账户剩余的短信条数中扣除。</li>
 </ol>
 <p><strong>短信发送限制规则是1/分钟，5/小时，10/天。即对于一个应用来说，一天给同一手机号发送短信不能超过10条，一小时给同一手机号发送短信不能超过5条，一分钟给同一手机号发送短信不能超过1条</strong></p>
-<h2 id="_6">购买事项</h2>
-<h3 id="_7">购买方法</h3>
+<h2 id="_5">购买事项</h2>
+<h3 id="_6">购买方法</h3>
 <p>短信条数只能输入整数，且不能少于1000条</p>
 <p><img alt="短信计费模式" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/jfms.png" /></p>
 <p>进入账号控制台，财务/财务统计点击购买短信即可。</p>
 <p><img alt="购买短信" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/14703632600603.jpg" /></p>
-<h3 id="_8">发票事宜</h3>
+<h3 id="_7">发票事宜</h3>
 <p>购买金额满100可提供发票，1000元以内的到付，1000以上（含1000）包邮。</p>
 <p>登录后台提交工单，提供购买服务的订单号和开票信息。</p>
 <p><strong>个人</strong></p>

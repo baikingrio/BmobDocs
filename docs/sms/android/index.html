@@ -458,11 +458,11 @@
 											</ul>
 											
 											<ul class="nav nav-l2">
-												<li><a class="itm-l2" href="#_9">购买事项</a></li>
+												<li><a class="itm-l2" href="#_8">购买事项</a></li>
 											</ul>
 											
 											<ul class="nav nav-l2">
-												<li><a class="itm-l2" href="#_10">发票事宜</a></li>
+												<li><a class="itm-l2" href="#_9">发票事宜</a></li>
 											</ul>
 											
 										</li>
@@ -617,25 +617,6 @@ BmobSMS.requestSMS(context, number, &quot;审核通过后的短信内容&quot;,s
 });
 </code></pre>
 
-<h3 id="_8">查询短信发送状态</h3>
-<p>通过<code>querySmsState</code>方式可查询指定<code>smsId</code>的发送状态：</p>
-<pre><code class="java">BmobSMS.querySmsState(context, smsId, new QuerySMSStateListener() {
-
-    @Override
-    public void done(SmsState state, BmobException ex) {
-        // TODO Auto-generated method stub
-        if(ex==null){
-            Log.i(&quot;bmob&quot;,&quot;短信状态：&quot;+state.getSmsState()+&quot;,验证状态：&quot;+state.getVerifyState());
-        }
-    }
-});
-</code></pre>
-
-<p><strong>注：<code>SmsState</code>包含两种状态：</strong></p>
-<ul>
-<li><code>smsState</code>（短信状态）   :SUCCESS（发送成功）、FAIL（发送失败）、SENDING(发送中)。</li>
-<li><code>verifyState</code>（验证状态）:true(已验证)、false(未验证)。</li>
-</ul>
 <p><strong>注意事项：</strong></p>
 <ul>
 <li>实际计算的短信字数 = 模板的内容或自定义短信的内容字数 + 6。加上6是因为默认的签名【比目科技】占了6个字。</li>
@@ -644,12 +625,12 @@ BmobSMS.requestSMS(context, number, &quot;审核通过后的短信内容&quot;,s
 <li>计算得到的短信条数在本条短信发送成功后将会从你的账户剩余的短信条数中扣除。</li>
 <li>短信发送限制规则是1/分钟，5/小时，10/天。即对于一个应用来说，一天给同一手机号发送短信不能超过10条，一小时给同一手机号发送短信不能超过5条，一分钟给同一手机号发送短信不能超过1条。</li>
 </ul>
-<h2 id="_9">购买事项</h2>
+<h2 id="_8">购买事项</h2>
 <p>短信条数只能输入整数，且不能少于1000条</p>
 <p><img alt="短信计费模式" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/jfms.png" /></p>
 <p>进入账号控制台，财务/财务统计点击购买短信即可。</p>
 <p><img alt="购买短信" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/14703632600603.jpg" /></p>
-<h2 id="_10">发票事宜</h2>
+<h2 id="_9">发票事宜</h2>
 <p>购买金额满100元可提供发票，1000元以内的到付，1000元以上（含1000元）包邮。</p>
 <p>登录后台，在 <code>财务</code> -&gt; <code>发票管理</code> 页面可点击申请开票。</p>
                     </div>

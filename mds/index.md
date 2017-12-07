@@ -36,7 +36,7 @@
                   <li><s class="languageType" style="background-position:left 216px;"></s><a href="./data/php/index.html" class="intro" >PHP</a></li>
                   <li><s class="languageType"  style="background-position:left -214px;"></s><a href="./data/cocos2d-x/index.html" class="intro" >Cocos2d-x</a></li>
                   <li><s class="languageType" style="background-position:left 243px;"></s><a href="./data/go/index.html" class="intro" >Go</a></li>
-                  <li><s class="languageType" style="background-position:left 29px;"></s><a href="./data/wechat-app/index.html" class="intro" >小程序</a></li>
+                  <li><s class="languageType" style="background-position:left 29px;"></s><a href="./data/wechat_app/index.html" class="intro" >小程序</a></li>
                   <li></li>
                 </ul>
             </div>

@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Java - Bmob文档中心</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
-        <link href="../../css/custom.css" rel="stylesheet" id="custom">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
-        <script src="../../js/jquery-1.10.2.min.js"></script>
-        <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
-        <script src="../../js/main.js"></script> 
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            
+            
+            <link rel="shortcut icon" href="../../img/favicon.ico">
+            <title>Bmob文档中心</title>
+            <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+            <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+            <link href="../../css/base.css" rel="stylesheet">
+            <link rel="stylesheet" href="../../css/highlight.css">
+            <link href="../../css/agate.css" rel="stylesheet">
+            <link href="../../css/custom.css" rel="stylesheet" id="custom">
     </head>
 
-    <body>
+    <body >
 
         <div class="navbar navbar-fixed-top" role="navigation">
     <div class="main-nav">
         <!-- Collapsed navigation -->
         <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="../..">
                 <!--Bmob文档中心-->
                 <img src="../../img/logo.png" alt="">
@@ -320,47 +304,14 @@
                   <a href="https://www.bmob.cn/downloads" target="_blank">下载</a>
               </li>
             </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                        <i class="fa fa-search"></i> 搜索
-                    </a>
-                </li>
-
-              <!---->
-                <!---->
-                    <!--<li >-->
-                        <!--<a rel="next" href="../ios/">-->
-                            <!--<i class="fa fa-arrow-left"></i> Previous-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li >-->
-                        <!--<a rel="prev" href="../csharp/">-->
-                            <!--Next <i class="fa fa-arrow-right"></i>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!---->
-              <!---->
-
-              <!---->
-                <!---->
-                    <!--<li>-->
-                        <!--<a href="https://github.com/bmob/bmobdocs/edit/master/docs/cloud_function/java/index.md">-->
-                            <!---->
-                                <!--<i class="fa fa-github"></i> Edit on GitHub-->
-                            <!---->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!---->
-              <!---->
-            </ul>
+            
         </div>
     </div>
 </div>
-        <div class="pagebody">
-                <div class="sidebar">
-                    <div class="bs-sidebar hidden-print affix well" role="complementary">
+
+        <div class="pagebody" id="main-wrapper">
+            <div class="sidebar">
+                <div class="bs-sidebar hidden-print affix well" role="complementary">
 
 	
 		
@@ -446,7 +397,19 @@
 										<li class="active "><a href="#_1">调用方法</a>
 											
 											<ul class="nav nav-l2">
+												<li><a class="itm-l2" href="#restful-api">Restful API</a></li>
+											</ul>
+											
+											<ul class="nav nav-l2">
+												<li><a class="itm-l2" href="#http">Http请求</a></li>
+											</ul>
+											
+											<ul class="nav nav-l2">
 												<li><a class="itm-l2" href="#android-sdk">Android SDK</a></li>
+											</ul>
+											
+											<ul class="nav nav-l2">
+												<li><a class="itm-l2" href="#_2">微信小程序</a></li>
 											</ul>
 											
 											<ul class="nav nav-l2">
@@ -458,20 +421,20 @@
 											</ul>
 											
 											<ul class="nav nav-l2">
-												<li><a class="itm-l2" href="#restful-api">Restful api</a></li>
+												<li><a class="itm-l2" href="#php-sdk">PHP SDK</a></li>
 											</ul>
 											
 											<ul class="nav nav-l2">
-												<li><a class="itm-l2" href="#http">Http请求</a></li>
+												<li><a class="itm-l2" href="#javascript">JavaScript</a></li>
 											</ul>
 											
 										</li>
 									
-										<li class=""><a href="#_2">日志</a>
+										<li class=""><a href="#_3">日志</a>
 											
 										</li>
 									
-										<li class=""><a href="#_3">代码规范</a>
+										<li class=""><a href="#_4">代码规范</a>
 											
 										</li>
 									
@@ -487,7 +450,7 @@
 											
 										</li>
 									
-										<li class=""><a href="#_4">日志输出</a>
+										<li class=""><a href="#_5">日志输出</a>
 											
 										</li>
 									
@@ -495,7 +458,7 @@
 											
 										</li>
 									
-										<li class=""><a href="#_5">内置类</a>
+										<li class=""><a href="#_6">内置类</a>
 											
 											<ul class="nav nav-l2">
 												<li><a class="itm-l2" href="#httpresponse">HttpResponse</a></li>
@@ -571,15 +534,15 @@
 											
 										</li>
 									
-										<li class=""><a href="#_6">内置方法：</a>
+										<li class=""><a href="#_7">内置方法：</a>
 											
 										</li>
 									
-										<li class=""><a href="#_7">示例：</a>
+										<li class=""><a href="#_8">示例：</a>
 											
 										</li>
 									
-										<li class=""><a href="#_8">注意事项</a>
+										<li class=""><a href="#_9">注意事项</a>
 											
 										</li>
 									
@@ -612,10 +575,10 @@
 		
 	</ul>
 </div>
-                </div>
-                <div class="content" role="main">
-                    <div class="wrap">
-                        
+            </div>
+            <div class="content" role="main">
+                <div class="wrap">
+                    
 
 <ul>
 <li>云函数是一段部署在服务端的代码片段，采用 java 或 node.js 进行编写，然后部署运行在Bmob服务器</li>
@@ -623,7 +586,7 @@
 <li>只需将这些计算都交由服务端运算处理，最后移动客户端仅仅需要接收云函数运算处理返回的数据结果就可以了</li>
 <li>通过更新云函数代码片段，客户端无需更新，便满足业务改动的需求。这样云函数便有更多的灵活性和自主性</li>
 </ul>
-<h2 id="_1">调用方法</h2>
+<h2 id="_1">调用方法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>云函数提供了以下几种方式提供调用：</p>
 <table>
 <thead>
@@ -651,24 +614,121 @@
 </tr>
 </tbody>
 </table>
-<h3 id="android-sdk">Android SDK</h3>
-<h3 id="ios-sdk">iOS SDK</h3>
-<h3 id="c-sdk">C# SDK</h3>
-<h3 id="restful-api">Restful api</h3>
-<h3 id="http">Http请求</h3>
-<h2 id="_2">日志</h2>
+<h3 id="restful-api">Restful API<a class="headerlink" href="#restful-api" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>调用 <code>api.bmob.cn</code> ，与调用NodeJS版云函数的方式 <strong>完全相同</strong>。这种方式下，服务器会 <strong>自动判断语言</strong>，但 <strong>限制 <code>Method</code> 为 <code>Post</code> 且 <code>Content-Type</code> 为 <code>application/json</code></strong></p>
+</li>
+<li>
+<p>调用 <code>javacloud.bmob.cn</code> ，调用方式基本相同，这种方式 <strong>仅可调用Java云函数</strong>，但 <strong>不限制 <code>Method</code> 和 <code>Content-Type</code></strong></p>
+<pre><code>// 使用Appid + RestKey请求api.bmob.cn域名(自动判断语言)
+curl -X POST \
+    -H "X-Bmob-Application-Id: Your Application ID" \
+    -H "X-Bmob-REST-API-Key: Your REST API Key" \
+    -H "Content-Type: application/json" \
+    -d '{"name": "zwr"}' \
+    https://api.bmob.cn/1/functions/[function name]
+
+// 使用Appid + RestKey请求javacloud.bmob.cn域名(仅支持Java云函数)
+curl -X [method] \
+    -H "X-Bmob-Application-Id: Your Application ID" \
+    -H "X-Bmob-REST-API-Key: Your REST API Key" \
+    -d '[body]' \
+    https://javacloud.bmob.cn/1/functions/[function name]
+
+// 使用Master Key请求
+curl -X [method] \
+    -H "X-Bmob-Master-Key: Your Master Key" \
+    -d '[body]' \
+    https://javacloud.bmob.cn/1/functions/[function name]
+</code></pre>
+</li>
+</ol>
+<h3 id="http">Http请求<a class="headerlink" href="#http" title="Permanent link">&para;</a></h3>
+<pre><code>    // 使用Secret Key请求
+    curl -X [method] \
+        -H "header key: header value" \
+        -d '[body]' \
+        https://javacloud.bmob.cn/[sectet key]/[function name]
+
+    // 或者直接用浏览器打开，即GET请求
+    https://javacloud.bmob.cn/[sectet key]/[function name]?k1=v1&amp;k2=v2
+</code></pre>
+<hr />
+<p>以下是Bmob各种SDK调用Java云函数的方法，与调用NodeJS版云函数的方式 <strong>完全相同</strong></p>
+<h3 id="android-sdk">Android SDK<a class="headerlink" href="#android-sdk" title="Permanent link">&para;</a></h3>
+<pre><code>    AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+    ace.callEndpoint(Context, String funcName, JSONObject params, new CloudCodeListener() {
+        @Override
+        public void done(Object object, BmobException e) {
+            if (e == null) 
+                Log.e(TAG, "Succeed: " + object);
+            else
+                Log.e(TAG, "Failed: " + e);
+        }
+    });
+</code></pre>
+<h3 id="_2">微信小程序<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<pre><code>    Bmob.Cloud.run('test', {'name': 'zwr'}).then(function (result) {
+        console.log("Succeed: ");
+        console.log(result);
+    }, function (error) {
+        console.log("Failed: ");
+        console.log(error);
+    });
+</code></pre>
+<h3 id="ios-sdk">iOS SDK<a class="headerlink" href="#ios-sdk" title="Permanent link">&para;</a></h3>
+<pre><code>    [BmobCloud callFunctionInBackground:@"funcName" withParameters:nil block:^(id object, NSError *error) {
+        if (error) {
+          NSLog(@"Failed: %@",[error description]);
+        }else{
+            NSLog(@"Succeed: %@",object);
+        }
+    }] ;
+</code></pre>
+<h3 id="c-sdk">C# SDK<a class="headerlink" href="#c-sdk" title="Permanent link">&para;</a></h3>
+<pre><code>    IDictionary&lt;String, Object&gt; parameters ＝  new IDictionary&lt;String, Object&gt;{{"name","zwr"}};
+    Bmob.Endpoint&lt;Hashtable&gt;("test", parameters, (resp, exception) =&gt; 
+    {
+        if (exception == null)
+        {
+            print("Succeed: " + resp);
+        }
+        else
+        {
+            print("Failed: " + exception.Message);
+        }
+    });
+</code></pre>
+<h3 id="php-sdk">PHP SDK<a class="headerlink" href="#php-sdk" title="Permanent link">&para;</a></h3>
+<pre><code>    $cloudCode = new BmobCloudCode('test'); //调用名字为test的云函数
+    $res = $cloudCode-&gt;get(array("name"=&gt;"zwr")); //传入参数name，其值为zwr
+</code></pre>
+<h3 id="javascript">JavaScript<a class="headerlink" href="#javascript" title="Permanent link">&para;</a></h3>
+<pre><code>    Bmob.Cloud.run('test', {"name":"tom"}, {
+        success: function(result) {
+            console.log("Succeed: ");
+            console.log(result);
+        },
+        error: function(error) {
+            console.log("Failed: ");
+            console.log(error);
+        }
+    });
+</code></pre>
+<h2 id="_3">日志<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li>可在Bmob后台根据时间、日志级别、内容关键字、方法名搜索想要的日志</li>
 <li>每个应用拥有最大10m的日志空间，循环写入</li>
 <li>高级用户有实时日志功能</li>
 </ul>
-<h2 id="_3">代码规范</h2>
+<h2 id="_4">代码规范<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>java云函数必须遵循以下格式：</p>
 <pre><code>public static void onRequest(final Request request, final Response response, final Modules modules) throws Throwable {
 // 上面这个方法体，不允许任何修改
-// 这里使用Java编写云函数
+// 这里使用Java编写云代码
 // 最后一个字符必须是 }
 }
 </code></pre>
@@ -687,9 +747,9 @@ System
 <li>如果确实需要用到被禁止使用的关键字，例如查询"File"表，可用"F"+"ile"的形式拼接</li>
 <li>不可包含<code>/**/</code>注释，如需注释，请用 <code>//</code></li>
 <li>仅可写一个Java的方法，不能写多个方法、类变量、静态变量等</li>
-<li>云函数执行完毕后，必须用response.send方法返回响应数据，否则会被当做超时，多次超时可能会被暂停使用</li>
+<li>云代码执行完毕后，必须用response.send方法返回响应数据，否则会被当做超时，多次超时可能会被暂停使用</li>
 </ul>
-<h2 id="request">Request对象</h2>
+<h2 id="request">Request对象<a class="headerlink" href="#request" title="Permanent link">&para;</a></h2>
 <p>onRequest方法参数中 <code>Request request</code> 包含了本次请求的全部信息：</p>
 <table>
 <thead>
@@ -751,7 +811,7 @@ System
 </tr>
 </tbody>
 </table>
-<h2 id="response">Response对象</h2>
+<h2 id="response">Response对象<a class="headerlink" href="#response" title="Permanent link">&para;</a></h2>
 <ul>
 <li>onRequest方法参数中 <code>Response response</code> 用于响应请求，返回数据</li>
 <li>
@@ -811,7 +871,7 @@ response.send(
 </code></pre>
 </li>
 </ul>
-<h2 id="modules">Modules对象</h2>
+<h2 id="modules">Modules对象<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h2>
 <ul>
 <li>onRequest方法参数中 <code>Modules modules</code> 提供了几个模块供开发者调用：</li>
 </ul>
@@ -836,7 +896,7 @@ response.send(
 </tr>
 </tbody>
 </table>
-<h2 id="_4">日志输出</h2>
+<h2 id="_5">日志输出<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <pre><code>    // 设置需要输出的日志级别
     // Level_All = 0
     // Level_Debug = 1
@@ -853,7 +913,7 @@ response.send(
     modules.oLog.warn(String,Object...) // 格式化输出Warn级别日志
     modules.oLog.error(String,Object...) // 格式化输出Error级别日志
 </code></pre>
-<h2 id="bmob">Bmob数据操作</h2>
+<h2 id="bmob">Bmob数据操作<a class="headerlink" href="#bmob" title="Permanent link">&para;</a></h2>
 <p>以下均为 <code>modules.oData</code> 的方法：</p>
 <table>
 <thead>
@@ -872,7 +932,7 @@ response.send(
 <tr>
 <td align="center">setTimeout(int)</td>
 <td align="center">this</td>
-<td align="center">设置超时时间(单位:毫秒)，与云函数超时无关</td>
+<td align="center">设置超时时间(单位:毫秒)，与云代码超时无关</td>
 </tr>
 <tr>
 <td align="center">setHeader(String...)</td>
@@ -1036,8 +1096,8 @@ response.send(
 </tr>
 </tbody>
 </table>
-<h2 id="_5">内置类</h2>
-<h3 id="httpresponse">HttpResponse</h3>
+<h2 id="_6">内置类<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="httpresponse">HttpResponse<a class="headerlink" href="#httpresponse" title="Permanent link">&para;</a></h3>
 <p><strong>类变量</strong>:</p>
 <table>
 <thead>
@@ -1075,7 +1135,7 @@ response.send(
 </tr>
 </tbody>
 </table>
-<h3 id="responsestatus">ResponseStatus</h3>
+<h3 id="responsestatus">ResponseStatus<a class="headerlink" href="#responsestatus" title="Permanent link">&para;</a></h3>
 <p><strong>类变量</strong>:</p>
 <table>
 <thead>
@@ -1103,7 +1163,7 @@ response.send(
 </tr>
 </tbody>
 </table>
-<h3 id="querier">Querier</h3>
+<h3 id="querier">Querier<a class="headerlink" href="#querier" title="Permanent link">&para;</a></h3>
 <p><strong>类方法</strong>:</p>
 <table>
 <thead>
@@ -1143,7 +1203,7 @@ response.send(
 </tr>
 </tbody>
 </table>
-<h3 id="bmobupdater">BmobUpdater</h3>
+<h3 id="bmobupdater">BmobUpdater<a class="headerlink" href="#bmobupdater" title="Permanent link">&para;</a></h3>
 <p>该类的全部静态方法都用于设置insert、update方法的请求内容</p>
 <p><strong>静态方法</strong>：</p>
 <table>
@@ -1192,7 +1252,7 @@ response.send(
 </tr>
 </tbody>
 </table>
-<h3 id="json">JSON</h3>
+<h3 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h3>
 <p>静态方法：</p>
 <pre><code>    String stringify(JSONObject m)
     String stringify(JSONArray m)
@@ -1204,7 +1264,7 @@ response.send(
     JSONObject strsToJson(String... kNvs)
     JSONObject toJson(Object... kNvs)
 </code></pre>
-<h3 id="jsonobject">JSONObject</h3>
+<h3 id="jsonobject">JSONObject<a class="headerlink" href="#jsonobject" title="Permanent link">&para;</a></h3>
 <p>类方法：</p>
 <pre><code>    int size()
     boolean isEmpty()
@@ -1236,7 +1296,7 @@ response.send(
     short getShortValue(String key)
     String getString(String key)
 </code></pre>
-<h3 id="jsonarray">JSONArray</h3>
+<h3 id="jsonarray">JSONArray<a class="headerlink" href="#jsonarray" title="Permanent link">&para;</a></h3>
 <p>类方法：</p>
 <pre><code>    int size() 
     boolean isEmpty() 
@@ -1274,35 +1334,35 @@ response.send(
     short getShortValue(int index) 
     String getString(int index)
 </code></pre>
-<h3 id="bmobpointer">BmobPointer</h3>
+<h3 id="bmobpointer">BmobPointer<a class="headerlink" href="#bmobpointer" title="Permanent link">&para;</a></h3>
 <p>构造方法：</p>
 <pre><code>    BmobPointer(String className, String objectId)
 </code></pre>
-<h3 id="bmobfile">Bmobfile</h3>
+<h3 id="bmobfile">Bmobfile<a class="headerlink" href="#bmobfile" title="Permanent link">&para;</a></h3>
 <p>构造方法：</p>
 <pre><code>    Bmobfile(String filename, String url)
 </code></pre>
-<h3 id="bmobdate">BmobDate</h3>
+<h3 id="bmobdate">BmobDate<a class="headerlink" href="#bmobdate" title="Permanent link">&para;</a></h3>
 <p>构造方法：</p>
 <pre><code>    BmobDate(String timeStamp)
     BmobDate(long millSec)
 </code></pre>
-<h3 id="bmobgeopoint">BmobGeoPoint</h3>
+<h3 id="bmobgeopoint">BmobGeoPoint<a class="headerlink" href="#bmobgeopoint" title="Permanent link">&para;</a></h3>
 <p>构造方法：</p>
 <pre><code>    BmobGeoPoint(double longitude, double latitude)
 </code></pre>
-<h3 id="aes">AES</h3>
+<h3 id="aes">AES<a class="headerlink" href="#aes" title="Permanent link">&para;</a></h3>
 <p>静态方法：</p>
 <pre><code>    byte[] aes(byte[] str, byte[] key, byte[] iv, boolean eOd, String keyAlgorithm, String cipherAlgorithm)
     byte[] Encode(byte[] content, byte[] key, byte[] iv)
     byte[] Decode(byte[] content, byte[] key, byte[] iv)
 </code></pre>
-<h3 id="base64">Base64</h3>
+<h3 id="base64">Base64<a class="headerlink" href="#base64" title="Permanent link">&para;</a></h3>
 <p>静态方法：</p>
 <pre><code>    String Encode(byte[] data)
     byte[] Decode(String str)
 </code></pre>
-<h3 id="crypto">Crypto</h3>
+<h3 id="crypto">Crypto<a class="headerlink" href="#crypto" title="Permanent link">&para;</a></h3>
 <p>静态方法：</p>
 <pre><code>    String Encode(String algorithm, String content)
     String Encode(String algorithm, byte[] bytes)
@@ -1310,18 +1370,18 @@ response.send(
     String Bytes2Hex(byte bytes[])
     String Bytes2Hex(byte bytes[], int offset, int length)
 </code></pre>
-<h3 id="gzip">GZip</h3>
+<h3 id="gzip">GZip<a class="headerlink" href="#gzip" title="Permanent link">&para;</a></h3>
 <p>静态方法：</p>
 <pre><code>    byte[] Decode(byte[] bytes)
     byte[] Encode(byte[] bytes)
 </code></pre>
-<h3 id="md5">MD5</h3>
+<h3 id="md5">MD5<a class="headerlink" href="#md5" title="Permanent link">&para;</a></h3>
 <p>静态方法：</p>
 <pre><code>    String Encode(String content)
     String Encode(byte[] bytes)
     byte[] EncodeToBytes(byte[] bytes)
 </code></pre>
-<h3 id="rsa">RSA</h3>
+<h3 id="rsa">RSA<a class="headerlink" href="#rsa" title="Permanent link">&para;</a></h3>
 <p>静态方法：</p>
 <pre><code>    KeyPair GenerateKeys()
     KeyPair RestoreKeys(byte[] keyBytes)
@@ -1331,13 +1391,13 @@ response.send(
     byte[] Sign(PrivateKey priKey, byte[] content)
     boolean Verify(PublicKey pubKey, byte[] content, byte[] sign)
 </code></pre>
-<h3 id="sha1">SHA1</h3>
+<h3 id="sha1">SHA1<a class="headerlink" href="#sha1" title="Permanent link">&para;</a></h3>
 <p>静态方法：</p>
 <pre><code>    String Encode(String content)
     String Encode(byte[] bytes)
     byte[] EncodeToBytes(byte[] bytes)
 </code></pre>
-<h2 id="_6">内置方法：</h2>
+<h2 id="_7">内置方法：<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <pre><code>    long getTime() // 获取当前毫秒
     String fmt(String, Object...) // 格式化
     JSON.toJson(Object...) // Json化
@@ -1346,7 +1406,7 @@ response.send(
     boolean isStrEmpty(String) // 判断字符串是否为空
     arraycopy(Object from, int fromOffset, Object to, int toOffset, int length) // 复制数组内容
 </code></pre>
-<h2 id="_7">示例：</h2>
+<h2 id="_8">示例：<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><strong>场景1</strong>:</p>
@@ -1411,10 +1471,10 @@ else {
 </code></pre>
 </li>
 </ul>
-<h2 id="_8">注意事项</h2>
+<h2 id="_9">注意事项<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p>如果你编写的Java云函数经常发生运行超时、上下行超流量、滥用内存等现象，官方将会自动封停你的云函数功能，修改后向客服申请方可继续使用</p>
+<p>如果你编写的Java云代码经常发生运行超时、上下行超流量、滥用内存等现象，官方将会自动封停你的云函数功能，修改后向客服申请方可继续使用</p>
 </li>
 <li>
 <p>如果某接口调用频率较高，超过默认并发量，则会直接返回错误，解决方法：</p>
@@ -1427,86 +1487,20 @@ else {
 <p>如果需要接受更大的请求体，或返回更大的结果，请购买更高的配置</p>
 </li>
 </ul>
-                    </div>
                 </div>
-        </div>
-
-        <footer class="col-md-12">
-                <p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>
-            <!--<p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>-->
-        </footer>
-        <script>var base_url = '../..';</script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/require.js"></script>
-        <script src="../../search/search.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    请输入您要搜索的内容
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
             </div>
         </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>&larr;</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>&rarr;</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
 
+        
+            <script>var base_url = '../..';</script>
+            <script src="../../js/jquery-1.10.2.min.js"></script>
+            <script src="../../js/bootstrap-3.0.3.min.js"></script>
+            <script src="../../js/highlight.pack.js"></script>
+            <script src="../../js/main.js"></script>
+            <script src="../../js/base.js"></script>
 
-    <div id="go-top"><i class="fa fa-chevron-up"></i></div>
-    <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
-
-
+        <div id="go-top"><i class="fa fa-chevron-up"></i></div>
+        <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
     </body>
+
 </html>

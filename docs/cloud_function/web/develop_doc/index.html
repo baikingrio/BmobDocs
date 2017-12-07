@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../../../img/favicon.ico">
-        <title>开发文档 - Bmob文档中心</title>
-        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../../css/font-awesome-4.5.0.css" rel="stylesheet">
-        <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../../css/highlight.css">
-        <link href="../../../css/custom.css" rel="stylesheet" id="custom">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
-        <script src="../../../js/jquery-1.10.2.min.js"></script>
-        <script src="../../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../../js/highlight.pack.js"></script>
-        <script src="../../../js/main.js"></script> 
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            
+            
+            <link rel="shortcut icon" href="../../../img/favicon.ico">
+            <title>Bmob文档中心</title>
+            <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+            <link href="../../../css/font-awesome-4.5.0.css" rel="stylesheet">
+            <link href="../../../css/base.css" rel="stylesheet">
+            <link rel="stylesheet" href="../../../css/highlight.css">
+            <link href="../../../css/agate.css" rel="stylesheet">
+            <link href="../../../css/custom.css" rel="stylesheet" id="custom">
     </head>
 
-    <body>
+    <body >
 
         <div class="navbar navbar-fixed-top" role="navigation">
     <div class="main-nav">
         <!-- Collapsed navigation -->
         <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="../../..">
                 <!--Bmob文档中心-->
                 <img src="../../../img/logo.png" alt="">
@@ -320,47 +304,14 @@
                   <a href="https://www.bmob.cn/downloads" target="_blank">下载</a>
               </li>
             </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                        <i class="fa fa-search"></i> 搜索
-                    </a>
-                </li>
-
-              <!---->
-                <!---->
-                    <!--<li >-->
-                        <!--<a rel="next" href="../">-->
-                            <!--<i class="fa fa-arrow-left"></i> Previous-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li >-->
-                        <!--<a rel="prev" href="../timing_tasks/">-->
-                            <!--Next <i class="fa fa-arrow-right"></i>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!---->
-              <!---->
-
-              <!---->
-                <!---->
-                    <!--<li>-->
-                        <!--<a href="https://github.com/bmob/bmobdocs/edit/master/docs/cloud_function/web/develop_doc.md">-->
-                            <!---->
-                                <!--<i class="fa fa-github"></i> Edit on GitHub-->
-                            <!---->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!---->
-              <!---->
-            </ul>
+            
         </div>
     </div>
 </div>
-        <div class="pagebody">
-                <div class="sidebar">
-                    <div class="bs-sidebar hidden-print affix well" role="complementary">
+
+        <div class="pagebody" id="main-wrapper">
+            <div class="sidebar">
+                <div class="bs-sidebar hidden-print affix well" role="complementary">
 
 	
 		
@@ -751,14 +702,14 @@
 		
 	</ul>
 </div>
-                </div>
-                <div class="content" role="main">
-                    <div class="wrap">
-                        
+            </div>
+            <div class="content" role="main">
+                <div class="wrap">
+                    
 
-<h2 id="_1">简介</h2>
+<h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>Bmob旨在让移动开发变得更简单。对于一些复杂的应用，您可能希望增加一些特有的业务逻辑，并能灵活掌控，Bmob云函数提供了这种灵活性，可以让您的代码直接在Bmob云上运行。一旦你在云端更新了代码，所有的移动应用都会立即自动更新，新功能的发布将会变得更加简单可控。</p>
-<h2 id="_2">开源案例</h2>
+<h2 id="_2">开源案例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>为方便大家更好的使用云函数，Bmob为大家提供了一些常用模块，方便大家直接拿来使用的。</p>
 <ul>
 <li>
@@ -772,14 +723,14 @@
 </li>
 </ul>
 <p>在开发云函数时，希望大家能够先看看我们提供的编码规范文档：<a href="http://docs.bmob.cn/cloudcode/WEB/f_codehelp/doc/index.html">http://docs.bmob.cn/cloudcode/WEB/f_codehelp/doc/index.html</a></p>
-<h2 id="_3">调用云函数的方式</h2>
+<h2 id="_3">调用云函数的方式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>bmob允许以http的方式直接调用云函数。</p>
-<h3 id="secret-key">获取Secret Key</h3>
+<h3 id="secret-key">获取Secret Key<a class="headerlink" href="#secret-key" title="Permanent link">&para;</a></h3>
 <p>用户需要以http的方式运行云函数，需要先确定应用的Secret Key。 调用云函数时，通过Secret Key标识一个应用，获取Secret Key的路径：
 管理后台-&gt;应用密钥-&gt;Secret Key, 如下图所示：
 <img alt="" src="../image/secretKey.png" /></p>
 <p>注意：请妥善保管Secret Key，避免Secret Key的泄露！！！</p>
-<h3 id="get">以Get的方式调用云函数</h3>
+<h3 id="get">以Get的方式调用云函数<a class="headerlink" href="#get" title="Permanent link">&para;</a></h3>
 <p>下面展示了以Get的方式调用云函数：</p>
 <pre><code>curl -X GET http://cloud.bmob.cn/0348d0c262bc91d9/test?name=jeff
 </code></pre>
@@ -789,7 +740,7 @@
 test：云函数的名称
 name=jeff: 传入一个参数，名称是name，值是jeff
 与restful不同，无需再传其它诸如app id等请求头。</p>
-<h3 id="post">以Post的方式调用云函数</h3>
+<h3 id="post">以Post的方式调用云函数<a class="headerlink" href="#post" title="Permanent link">&para;</a></h3>
 <p>下面展示了以Post的方式调用云函数：</p>
 <pre><code>curl -X POST \
     -H &quot;Content-Type: application/x-www-form-urlencoded&quot; \
@@ -802,13 +753,13 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 test：云函数的名称
 name=jeff: 传入一个参数，名称是name，值是jeff
 与restful不同，无需再传其它诸如app id等请求头。</p>
-<h2 id="_4">转为套餐后调用云函数的方式</h2>
+<h2 id="_4">转为套餐后调用云函数的方式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p><strong>注意：升级云函数套餐后就没法在微信公众号中调用云函数</strong></p>
 <p>bmob允许以http的方式直接调用云函数。</p>
-<h3 id="id">获取应用的id值</h3>
+<h3 id="id">获取应用的id值<a class="headerlink" href="#id" title="Permanent link">&para;</a></h3>
 <p>进入应用后台-&gt;云函数，下图中的箭头所指的数字就是该应用的id值：
 <img alt="" src="../image/appid.png" /></p>
-<h3 id="get_1">Get的方式调用云函数</h3>
+<h3 id="get_1">Get的方式调用云函数<a class="headerlink" href="#get_1" title="Permanent link">&para;</a></h3>
 <p>下面展示了以Get的方式调用云函数：</p>
 <pre><code>curl -X GET http://cloud-xxxxx.bmobapp.com/test?name=jeff
 </code></pre>
@@ -818,7 +769,7 @@ cloud-xxxxx.bmobapp.com：该应用的云函数专属域名，其中xxxxx为上�
 test：云函数的名称。
 name=jeff: 传入一个参数，名称是name，值是jeff。
 与restful不同，无需再传其它诸如app id等请求头。</p>
-<h3 id="post_1">Post的方式调用云函数</h3>
+<h3 id="post_1">Post的方式调用云函数<a class="headerlink" href="#post_1" title="Permanent link">&para;</a></h3>
 <p>下面展示了以Post的方式调用云函数：</p>
 <pre><code>curl -X POST \
     -H &quot;Content-Type: application/x-www-form-urlencoded&quot; \
@@ -831,12 +782,12 @@ cloud-xxxxx.bmobapp.com：该应用的云函数专属域名，其中xxxxx为上�
 test：云函数的名称
 name=jeff: 传入一个参数，名称是name，值是jeff
 与restful不同，无需再传其它诸如app id等请求头。</p>
-<h2 id="_5">云函数模块解释</h2>
+<h2 id="_5">云函数模块解释<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>从云函数的入口方法function onRequest(request, response, modules)可知，云函数包含三个模块，分别是request模块、response模块和modules模块。</p>
-<h3 id="request">request模块</h3>
+<h3 id="request">request模块<a class="headerlink" href="#request" title="Permanent link">&para;</a></h3>
 <p>request模块用于获取传入的参数。由于现在调用云函数有两种方式（get和post），所以获取传入的参数的方式需要使用不同的方法。</p>
 <p><strong>注意，当通过android，ios等客户端sdk调用云函数，或者通过restful api的方式调用云函数，都是采用post的方式。</strong></p>
-<h4 id="get_2">get方式</h4>
+<h4 id="get_2">get方式<a class="headerlink" href="#get_2" title="Permanent link">&para;</a></h4>
 <p>用get方式调用云函数，例如：</p>
 <pre><code>curl -X GET http://cloud.bmob.cn/0348d0c262bc91d9/test?name=jeff
 </code></pre>
@@ -845,7 +796,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 <pre><code>request.query.name
 </code></pre>
 
-<h4 id="post_2">post方式</h4>
+<h4 id="post_2">post方式<a class="headerlink" href="#post_2" title="Permanent link">&para;</a></h4>
 <p>用post方式调用云函数，例如：</p>
 <pre><code>curl -X POST \
     -H &quot;Content-Type: application/x-www-form-urlencoded&quot; \
@@ -857,7 +808,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 <pre><code>request.body.name
 </code></pre>
 
-<h4 id="http">获取调用云函数的http方式</h4>
+<h4 id="http">获取调用云函数的http方式<a class="headerlink" href="#http" title="Permanent link">&para;</a></h4>
 <p>当云函数是用于某些平台的回调时，同一段云函数可能有时是采用get的方式调用，有时是采用post的方式调用, 可用下面的方法获取当前云函数是采用get还是post方式调用。</p>
 <p>例子如下：</p>
 <pre><code>    var httptype = request.method;　//获取调用云函数的是post或者get方式
@@ -869,12 +820,12 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h3 id="response">response模块</h3>
+<h3 id="response">response模块<a class="headerlink" href="#response" title="Permanent link">&para;</a></h3>
 <p>response为云函数的信息回传模块，该模块包含了一个send方法，实现将云端的执行结果（如查询的数据）返回给SDK或者RestApi等调用端：</p>
 <pre><code class="java">response.send(string result)
 </code></pre>
 
-<h3 id="modules">modules模块</h3>
+<h3 id="modules">modules模块<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
 <p>modules是Bmob云函数提供给大家的各种对象处理的模块，包括数据库对象（oData）、文件对象（oFile）、地理位置对象（oLocation）、关联关系对象（oRelation）、原子操作对象（oAtom）、数据批量操作对象（oBatch）、数组对象（oArray）、消息推送对象（oPush）、云函数对象（oFunctions）、邮件发送对象（oMail）、HTTP对象（oHttp）、字符编码转换对象（oEncodeing）、事件对象（oEvent）、bql对象（oBql）、html元素解析对象（oHtmlparser）、加密对象（oCrypto）。云函数想要调用这些对象时，只需要用如下的方法即可获取：</p>
 <pre><code class="java">  //获取数据库对象
   var db = modules.oData;
@@ -882,7 +833,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 </code></pre>
 
 <p><strong> 这里需要说明一点的是：云函数对数据格式的封装遵循RestApi的规则，如果在查看过程中有什么疑问，请移步到<a href="http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#简介">RestApi开发文档</a>。 </strong></p>
-<h2 id="_6">数据库对象</h2>
+<h2 id="_6">数据库对象<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>数据库操作的简单实例如下：</p>
 <pre><code>function onRequest(request, response, modules) {
   //获取数据库对象
@@ -903,7 +854,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 </code></pre>
 
 <p>oData对象的其他操作方法如下：</p>
-<h3 id="_7">查询多条数据</h3>
+<h3 id="_7">查询多条数据<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <pre><code>find({
   &quot;table&quot;:&quot;XXX&quot;,          //表名
   &quot;keys&quot;:&quot;a,b,c&quot;,         //返回字段列表，多个字段用,分隔
@@ -939,7 +890,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 }
 </code></pre>
 
-<h3 id="_8">查询单条数据</h3>
+<h3 id="_8">查询单条数据<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <pre><code class="java">findOne({
   &quot;table&quot;:&quot;XXX&quot;,             //表名
   &quot;objectId&quot;:&quot;XXXX&quot;         //记录的objectId
@@ -962,7 +913,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 }
 </code></pre>
 
-<h3 id="_9">获取表的记录数</h3>
+<h3 id="_9">获取表的记录数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <pre><code>function onRequest(request, response, modules) {
     var db = modules.oData;
     //获取表&quot;GameScore&quot;的总记录数
@@ -981,7 +932,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 </code></pre>
 
 <p>其中，<code>count</code>为标识位，具体原因大家可以参考Restapi说明文档：<a href="http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#查询结果计数">http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#查询结果计数</a>。</p>
-<h3 id="_10">修改数据</h3>
+<h3 id="_10">修改数据<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <pre><code>update({
   &quot;table&quot;:&quot;XXX&quot;,             //表名
   &quot;objectId&quot;:&quot;XXXX&quot;,        //记录的objectId
@@ -1003,7 +954,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 }
 </code></pre>
 
-<h3 id="_11">添加数据</h3>
+<h3 id="_11">添加数据<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <pre><code>insert({
   &quot;table&quot;:&quot;XXX&quot;,             //表名
   &quot;data&quot;:{&quot;a&quot;:&quot;XXXX&quot;,&quot;b&quot;:&quot;XXXX&quot;}            //需要更新的数据，格式为JSON
@@ -1011,7 +962,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 });
 </code></pre>
 
-<h3 id="_12">删除数据</h3>
+<h3 id="_12">删除数据<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <pre><code>remove({
   &quot;table&quot;:&quot;XXX&quot;,             //表名
   &quot;objectId&quot;:&quot;XXXX&quot;        //记录的objectId
@@ -1019,14 +970,14 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 });
 </code></pre>
 
-<h3 id="_13">用户注册</h3>
+<h3 id="_13">用户注册<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
 <pre><code>userSignUp({
   &quot;data&quot;:{&quot;a&quot;:&quot;XXXX&quot;,&quot;b&quot;:&quot;XXXX&quot;}             //用户注册的信息，格式为JSON
 },function(err,data){         //回调函数
 });
 </code></pre>
 
-<h3 id="_14">用户登录</h3>
+<h3 id="_14">用户登录<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
 <pre><code>userLogin({
   &quot;username&quot;:&quot;aa&quot;,            //登录用户名
   &quot;password&quot;:&quot;&quot;              //用户密码
@@ -1034,21 +985,21 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 });
 </code></pre>
 
-<h3 id="_15">用户密码重置</h3>
+<h3 id="_15">用户密码重置<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
 <pre><code>userRestPassword({
   &quot;data&quot;:{&quot;email&quot;:&quot;XX@XX.com&quot;}      //需要重置密码的用户邮件账号
 },function(err,data){         //回调函数
 });
 </code></pre>
 
-<h3 id="_16">获取某一用户记录</h3>
+<h3 id="_16">获取某一用户记录<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
 <pre><code>getUserByObjectId({
   &quot;objectId&quot;:&quot;XXXX&quot;          //记录的objectId
 },function(err,data){         //回调函数
 });
 </code></pre>
 
-<h3 id="_17">更新某一用户记录</h3>
+<h3 id="_17">更新某一用户记录<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
 <p><strong>说明：必须先登录才能更新，切记！！！否则会报sessionToken error</strong></p>
 <pre><code>updateUserByObjectId({
       &quot;objectId&quot;:&quot;XXXX&quot;,        //记录的objectId
@@ -1080,12 +1031,12 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 } 
 </code></pre>
 
-<h3 id="_18">获得所有用户信息</h3>
+<h3 id="_18">获得所有用户信息<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
 <pre><code>getAllUser(function(err,data){         //回调函数
 });
 </code></pre>
 
-<h3 id="_19">删除某一个指定用户</h3>
+<h3 id="_19">删除某一个指定用户<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
 <p><strong>说明：必须登录才行，切记！！！否则会报sessionToken error</strong></p>
 <pre><code>removeUserByObjectId({
       &quot;objectId&quot;:&quot;XXXX&quot;        //记录的objectId
@@ -1093,7 +1044,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 });
 </code></pre>
 
-<h3 id="_20">邮箱验证</h3>
+<h3 id="_20">邮箱验证<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
 <p>发送给用户的邮箱验证的邮件会在一周内失效，可以通过下面的方法来强制重新发送</p>
 <pre><code>requestEmailVerify({
       &quot;data&quot;:{&quot;email&quot;:&quot;coolguy@iloveapps.com&quot;}
@@ -1112,7 +1063,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 } 
 </code></pre>
 
-<h2 id="_21">文件对象</h2>
+<h2 id="_21">文件对象<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h2>
 <p>云函数只支持文件的删除操作。删除文件，必须要知道文件的组名和url，示例代码如下：</p>
 <pre><code>function onRequest(request, response, modules) {
 
@@ -1134,7 +1085,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 }
 </code></pre>
 
-<h2 id="_22">云函数对象</h2>
+<h2 id="_22">云函数对象<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
 <p>在云函数中可以调用本app的其它云函数，示例代码如下：</p>
 <pre><code>function onRequest(request, response, modules) {
 
@@ -1163,9 +1114,9 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 }
 </code></pre>
 
-<h2 id="_23">地理位置对象</h2>
+<h2 id="_23">地理位置对象<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
 <p>Bmob允许用户根据地球的经度和纬度坐标进行基于地理位置的信息查询。你可以在查询中添加一个GeoPoint的对象查询。您可以实现轻松查找出离当前用户最接近的信息或地点的功能。</p>
-<h3 id="_24">创建地理位置</h3>
+<h3 id="_24">创建地理位置<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
 <p>创建地理位置的示例代码如下：</p>
 <pre><code>function onRequest(request, response, modules) {
 
@@ -1185,7 +1136,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 }
 </code></pre>
 
-<h3 id="_25">查询地理位置</h3>
+<h3 id="_25">查询地理位置<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
 <p>现在您有一系列的对象对应的地理坐标，如果能发现那些对象离指定的点近就好了，这可以通过GeoPoint数据类型加上在查询中使用$nearSphere做到。获取离用户最近的10个地点的实现代码如下：</p>
 <pre><code>  location.query({
     &quot;table&quot;:&quot;GameScore&quot;,
@@ -1279,9 +1230,9 @@ name=jeff: 传入一个参数，名称是name，值是jeff
   });
 </code></pre>
 
-<h2 id="_26">关联关系对象</h2>
+<h2 id="_26">关联关系对象<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h2>
 <p>一个对象可以与其他对象相联系。就像数据库中的主外键关系一样，数据表 A 的某一个字段是数据表 B 的外键，只有表 B 中存在的数据才可插入进表 A 中的字段。 </p>
-<h3 id="_27">添加关联关系</h3>
+<h3 id="_27">添加关联关系<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
 <p>为了更新 <code>Pointer</code> 的Key类型，Bmob提供特殊的操作来原子化地添加和删除一个指针，我们可以像这样添加一行记录时并添加一个指针：</p>
 <pre><code>function onRequest(request, response, modules) {
 
@@ -1305,7 +1256,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h3 id="_28">修改关联对象</h3>
+<h3 id="_28">修改关联对象<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
 <p>为了更新 <code>Pointer</code> 的Key类型，Bmob提供特殊的操作来原子化地添加和删除一个指针，我们可以像这样添加一个指针:</p>
 <pre><code>  rel.update({
     &quot;table&quot;:&quot;GameScore&quot;,
@@ -1326,7 +1277,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
   });
 </code></pre>
 
-<h3 id="_29">查询关联对象</h3>
+<h3 id="_29">查询关联对象<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
 <p>有几种方式来对关系 <code>Relation</code> 或 指针 <code>Pointer</code> 类型数据进行查询, 如果您将要获取对象中有个Key类型是关系 <code>Relation</code> 或 指针 <code>Pointer</code>，这都说明你要获取的对象是匹配到另一个特殊（关联或指向）的对象的, 您可以用一个 <code>where</code> 参数查询, 自己使用 <code>__type</code> 构造一个 <code>Pointer</code>, 就像你构造其他数据类型一样。举例说, 如果每一条评论(Comment对象)有一个Key叫post，类型是Pointer，并且指向了一个具体的帖子(Post对象，用objectId表示一个帖子)，那么您可以使用下面的请求获取一个帖子的所有评论:</p>
 <pre><code>rel.query({
   &quot;table&quot;:&quot;Comment&quot;,   
@@ -1425,7 +1376,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
  });
 </code></pre>
 
-<h3 id="_30">删除关联关系</h3>
+<h3 id="_30">删除关联关系<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
 <p>可以在一个对象中删除一个关系:</p>
 <pre><code>  rel.delete({
     &quot;table&quot;:&quot;GameScore&quot;,
@@ -1436,7 +1387,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
   });
 </code></pre>
 
-<h2 id="_31">原子操作对象</h2>
+<h2 id="_31">原子操作对象<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h2>
 <p>很多应用可能会有需要计数器的功能，比如某条信息被点赞多少次等。Bmob提供了非常便捷的方式来保证原子性的修改某一数值字段的值，示例代码如下：</p>
 <pre><code>function onRequest(request, response, modules) {
   //获取原子操作对象
@@ -1468,7 +1419,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 }
 </code></pre>
 
-<h2 id="_32">批量操作对象</h2>
+<h2 id="_32">批量操作对象<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h2>
 <p>为了减少因为网络通讯次数太多而带来的时间浪费, 您使用使用下面的批量(batch)操作，在一个请求中对多个普通对象(不支持系统内置的用户对象)进行添加(create)、更新(update)、删除(delete) 操作，上限为50个。</p>
 <pre><code>function onRequest(request, response, modules) {
   //获取数组对象
@@ -1548,13 +1499,13 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 }
 </code></pre>
 
-<h2 id="_33">数组操作对象</h2>
+<h2 id="_33">数组操作对象<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h2>
 <p>用下面的方法来获取数组对象：</p>
 <pre><code>  var arr = modules.oArray;
 
 </code></pre>
 
-<h3 id="_34">添加数组对象</h3>
+<h3 id="_34">添加数组对象<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
 <p>添加数组对象,不管元素是否存在都添加的实现代码如下：</p>
 <pre><code>  arr.add({
     &quot;table&quot;:&quot;GameScore&quot;,
@@ -1577,7 +1528,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h3 id="_35">删除数组对象</h3>
+<h3 id="_35">删除数组对象<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h3>
 <pre><code>  //往GameScore表中字段skills删除数组
   arr.remove({
     &quot;table&quot;:&quot;GameScore&quot;,
@@ -1589,7 +1540,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h3 id="_36">查询数组对象</h3>
+<h3 id="_36">查询数组对象<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
 <p>查询数组对象,可以查找skills的数组值中包含有"flying"的对象的实现方法如下:</p>
 <pre><code>  //往GameScore表中字段skills添加的数组
   arr.query({
@@ -1611,13 +1562,13 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h2 id="_37">消息推送对象</h2>
+<h2 id="_37">消息推送对象<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h2>
 <p>推送通知是让用户及时被通知、和你的应用保持联系的一种非常棒的方式，你可以快速而有效地通知到所有的用户，下面这个教程将会教会你使用Bmob来推送消息。用下面的方法来获取消息推送对象：</p>
 <pre><code>  var push = modules.oPush;
 
 </code></pre>
 
-<h3 id="_38">安装消息推送服务</h3>
+<h3 id="_38">安装消息推送服务<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h3>
 <p>每一个Bmob的App安装在用户设备后，如果要使用消息推送功能，Bmob SDK会自动生成一个Installation对象。Installation对象包含了推送所需要的所有信息。举例：一个棒球的App，你可以让用户订阅感兴趣的棒球队，然后及时将这个球队的消息推送给用户 。</p>
 <p>Installation对象有几个系统默认的特殊字段来帮助你的管理和定位到设备：
 - <code>badge</code> : iOS应用中右上角的图标标识
@@ -1626,8 +1577,8 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 - <code>deviceType</code> : 设备的的类型, 值为："ios" 或 "android" (只读)
 - <code>installationId</code> : Bmob使用的设备唯一号，Android设备是必须的，iOS可选 (只读)
 - <code>deviceToken</code> : iOS设备由Apple APNS生成的唯一性token标识 (只读)</p>
-<h3 id="installation">保存installation</h3>
-<h4 id="iosdevicetoken">保存iOS设备的deviceToken</h4>
+<h3 id="installation">保存installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<h4 id="iosdevicetoken">保存iOS设备的deviceToken<a class="headerlink" href="#iosdevicetoken" title="Permanent link">&para;</a></h4>
 <p>iOS设备通常使用deviceToken来惟一标识一台设备。</p>
 <pre><code>  push.add({
     &quot;data&quot;:{
@@ -1643,7 +1594,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h4 id="androidinstallationid">保存Android设备的installationId</h4>
+<h4 id="androidinstallationid">保存Android设备的installationId<a class="headerlink" href="#androidinstallationid" title="Permanent link">&para;</a></h4>
 <p>对于Android设备，SDK会自动生成uuid作为installationId保存到Bmob。 您可以使用以下云函数保存Android设备的installation ID：</p>
 <pre><code>  push.add({
     &quot;data&quot;:{
@@ -1673,7 +1624,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h4 id="windows-phone-notificationuri">保存Windows Phone设备的 notificationUri</h4>
+<h4 id="windows-phone-notificationuri">保存Windows Phone设备的 notificationUri<a class="headerlink" href="#windows-phone-notificationuri" title="Permanent link">&para;</a></h4>
 <p>对于Windows Phone设备，BmobSDK会自动从Windows Push Center获取到notificationUri并保存到 Bmob。 你可以使用以下REST API保存Windows Phone设备的notificationUri：</p>
 <pre><code>  push.add({
     &quot;data&quot;:{
@@ -1689,8 +1640,8 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h3 id="_39">订阅频道和退订</h3>
-<h4 id="_40">订阅频道</h4>
+<h3 id="_39">订阅频道和退订<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h3>
+<h4 id="_40">订阅频道<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h4>
 <p>覆盖已订阅的频道：</p>
 <pre><code>  push.update({
     &quot;objectId&quot;:&quot;400a12ed3a&quot;,
@@ -1718,7 +1669,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h4 id="_41">退订频道</h4>
+<h4 id="_41">退订频道<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h4>
 <pre><code>  push.update({
     &quot;objectId&quot;:&quot;400a12ed3a&quot;,
     &quot;data&quot;:{
@@ -1730,7 +1681,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h3 id="_42">广播推送消息</h3>
+<h3 id="_42">广播推送消息<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h3>
 <pre><code>  push.send({
     &quot;data&quot;:{
         &quot;data&quot;: {
@@ -1743,7 +1694,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h3 id="_43">组播推送消息</h3>
+<h3 id="_43">组播推送消息<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h3>
 <p>发送给订阅了Giants频道的用户</p>
 <pre><code>  push.send({
     &quot;data&quot;:{
@@ -1774,8 +1725,8 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h3 id="_44">多播推送消息</h3>
-<h4 id="_45">推送给不活跃的用户</h4>
+<h3 id="_44">多播推送消息<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h3>
+<h4 id="_45">推送给不活跃的用户<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h4>
 <pre><code>  push.send({
     &quot;data&quot;:{
         &quot;where&quot;:{
@@ -1793,7 +1744,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h4 id="_46">根据查询条件做推送</h4>
+<h4 id="_46">根据查询条件做推送<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h4>
 <pre><code>  push.send({
     &quot;data&quot;:{
         &quot;where&quot;: {
@@ -1810,7 +1761,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 </code></pre>
 
 <p>请注意，where 条件查询的都是 installations 表。这里是假设 installations 表存储了 scores 的布尔属性，你可以像查询普通对象一样构造where查询</p>
-<h4 id="_47">根据平台做推送</h4>
+<h4 id="_47">根据平台做推送<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h4>
 <pre><code>  push.send({
     &quot;data&quot;:{
         &quot;where&quot;: {
@@ -1841,7 +1792,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h4 id="_48">根据地理信息位置做推送</h4>
+<h4 id="_48">根据地理信息位置做推送<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h4>
 <pre><code>  push.send({
     &quot;data&quot;:{
         &quot;where&quot;: {
@@ -1869,7 +1820,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 </code></pre>
 
 <p>上面的例子假设 installation 有个 user 属性指向_User 表的记录，并且用户有个 location 属性是 GeoPoint 类型，我们就可以根据地理信息位置做推送。</p>
-<h3 id="_49">点播推送消息</h3>
+<h3 id="_49">点播推送消息<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h3>
 <p>发送给Android单个客户端</p>
 <pre><code>  push.send({
     &quot;data&quot;:{
@@ -1902,9 +1853,9 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 </code></pre>
 
-<h3 id="_50">发送选项设置</h3>
+<h3 id="_50">发送选项设置<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h3>
 <p>推送通知不仅仅可以用来发送消息，iOS中，推送内容还可以包含要播放的声音和要显示的badge数字值,还可以定制任何你想发送的内容，对于Android，你甚至可以指定Intent应用于接收消息，对于时间性有要求的消息您还可以设置一个消息过期时间。</p>
-<h4 id="_51">定制您的通知</h4>
+<h4 id="_51">定制您的通知<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h4>
 <p>如果你想发送更多的消息，你可以在data的字典对象中设置其他字段，下面这些保留的字段有其特殊的意义：
 - <code>alert</code> : 通知的消息内容
 - <code>badge</code> : (仅iOS)一个数字值将会高亮显示在应用图标的右上角
@@ -1948,7 +1899,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
   });
 </code></pre>
 
-<h4 id="_52">设置消息过期时间</h4>
+<h4 id="_52">设置消息过期时间<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h4>
 <p>过期时间，可以是绝对时间：</p>
 <pre><code>  push.send({
     &quot;data&quot;:{
@@ -1976,7 +1927,7 @@ name=jeff: 传入一个参数，名称是name，值是jeff
   });
 </code></pre>
 
-<h2 id="_53">邮件发送对象</h2>
+<h2 id="_53">邮件发送对象<a class="headerlink" href="#_53" title="Permanent link">&para;</a></h2>
 <p>Bmob的邮件发送对象采用Nodejs提供的nodemailer模块，这里提供简单的一个发送邮件的操作实例。更多的功能详细参考：<a href="https://npmjs.org/package/nodemailer" title="参考">https://npmjs.org/package/nodemailer</a></p>
 <pre><code>function onRequest(request, response, modules) {
 //获得发送邮件的对象 
@@ -2014,7 +1965,7 @@ transport.sendMail({
 }                                                                                                                                                                                                                                   
 </code></pre>
 
-<h2 id="http_1">HTTP请求对象</h2>
+<h2 id="http_1">HTTP请求对象<a class="headerlink" href="#http_1" title="Permanent link">&para;</a></h2>
 <p>oHttp对象可以模拟实现get、post、put、delete等各种HTTP请求信息，让你在云端实现诸如数据采集、OAuth授权登录等功能。Bmob的HTTP请求模块采用Nodejs提供的request模块，这里提供简单的Get和Post的操作实例。更多的功能详细参考：<a href="https://npmjs.org/package/request">https://npmjs.org/package/request</a></p>
 <pre><code>/**
 *发起Get请求
@@ -2039,7 +1990,7 @@ var http = modules.oHttp;
 http.post('http://bmob.cn/save', {form:{key:'value'}})
 </code></pre>
 
-<h2 id="_54">事件对象</h2>
+<h2 id="_54">事件对象<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h2>
 <p>oEvent，也就是eventproxy模块，解决异步回调的问题。</p>
 <p>更多的功能详细参考：<a href="https://github.com/JacksonTian/eventproxy">https://github.com/JacksonTian/eventproxy</a></p>
 <pre><code>function onRequest(request, response, modules) {
@@ -2060,7 +2011,7 @@ http.post('http://bmob.cn/save', {form:{key:'value'}})
 }                        
 </code></pre>
 
-<h2 id="encode">Encode编码转换对象</h2>
+<h2 id="encode">Encode编码转换对象<a class="headerlink" href="#encode" title="Permanent link">&para;</a></h2>
 <p>Encode对象可以实现字符编码的转换。更多的功能详细参考：<a href="https://www.npmjs.org/package/encoding">https://www.npmjs.org/package/encoding</a></p>
 <p>Encode对象就一个方法convert()，使用方法为：encoding.convert(text, toCharset, fromCharset)。</p>
 <p>text: 需要转换的对象，可以为Buffer或者String对象。</p>
@@ -2073,7 +2024,7 @@ response.send(result.toString());
 
 </code></pre>
 
-<h2 id="htmlohtmlparser">html元素解析对象（oHtmlparser）</h2>
+<h2 id="htmlohtmlparser">html元素解析对象（oHtmlparser）<a class="headerlink" href="#htmlohtmlparser" title="Permanent link">&para;</a></h2>
 <p>html元素解析对象可以实现html的解释。更多的功能详细参考：<a href="https://www.npmjs.org/package/htmlparser">https://www.npmjs.org/package/htmlparser</a></p>
 <p>代码例子</p>
 <pre><code>function onRequest(request, response, modules) {
@@ -2110,7 +2061,7 @@ response.send(result.toString());
 
 </code></pre>
 
-<h2 id="bqlobql">bql对象（oBql）</h2>
+<h2 id="bqlobql">bql对象（oBql）<a class="headerlink" href="#bqlobql" title="Permanent link">&para;</a></h2>
 <p>我们提供类 SQL 语法的 BQL 查询语言来查询数据</p>
 <p>下面的代码例子就是查询GameScore表的所有数据</p>
 <pre><code>function onRequest(request, response, modules) {
@@ -2146,7 +2097,7 @@ response.send(result.toString());
 </code></pre>
 
 <p>更多请参考 <a href="../../../bql/index.html?menukey=otherdoc&amp;key=bql" title="BQL 详细指南">BQL 详细指南</a> 。</p>
-<h2 id="ocrypto">加密对象（oCrypto）</h2>
+<h2 id="ocrypto">加密对象（oCrypto）<a class="headerlink" href="#ocrypto" title="Permanent link">&para;</a></h2>
 <p>提供md5和sha1两种加密算法。更多的功能详细参考：<a href="https://www.npmjs.org/package/crypto">https://www.npmjs.org/package/crypto</a></p>
 <p>代码例子</p>
 <pre><code>  function onRequest(request, response, modules) {
@@ -2158,7 +2109,7 @@ response.send(result.toString());
 
 </code></pre>
 
-<h2 id="_55">云函数调试工具</h2>
+<h2 id="_55">云函数调试工具<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h2>
 <p>为方便开发者调试云函数，Bmob为开发者提供了便捷的云端调试工具，你可以直接在云函数的编辑页面下对编写的代码进行调试，如实现从Bar表中查找指定objectId号（SDK中上传参数）的数据，你可以在云函数中实现如下：</p>
 <pre><code>function onRequest(request, response, modules) {
   var db = modules.oData;
@@ -2173,7 +2124,7 @@ response.send(result.toString());
 
 <p>调试时，你在云端调试工具中输入参数名为objectId，参数值为你想要查询的信息，如下图，即可查看到调试结果。</p>
 <p><img alt="" src="../image/ydts.png" /></p>
-<h2 id="_56">错误对象</h2>
+<h2 id="_56">错误对象<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h2>
 <p>Bmob提供的官方模块（非第三方）的错误回调中都会有一个<code>err</code>对象，这个<code>err</code>对象包含两个属性：<code>error</code>和<code>code</code>，分别代表错误异常信息和错误代码。调用时可以简单如下使用：</p>
 <pre><code>function onRequest(request, response, modules) {
     var db = modules.oData;
@@ -2187,86 +2138,20 @@ response.send(result.toString());
     });
 }                                                                                                 
 </code></pre>
-                    </div>
                 </div>
-        </div>
-
-        <footer class="col-md-12">
-                <p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>
-            <!--<p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>-->
-        </footer>
-        <script>var base_url = '../../..';</script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/require.js"></script>
-        <script src="../../../search/search.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    请输入您要搜索的内容
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
             </div>
         </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>&larr;</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>&rarr;</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
 
+        
+            <script>var base_url = '../../..';</script>
+            <script src="../../../js/jquery-1.10.2.min.js"></script>
+            <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+            <script src="../../../js/highlight.pack.js"></script>
+            <script src="../../../js/main.js"></script>
+            <script src="../../../js/base.js"></script>
 
-    <div id="go-top"><i class="fa fa-chevron-up"></i></div>
-    <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
-
-
+        <div id="go-top"><i class="fa fa-chevron-up"></i></div>
+        <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
     </body>
+
 </html>

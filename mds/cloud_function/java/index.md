@@ -14,21 +14,116 @@ SDK|AppId|交互自带加密,接入快速
 RestApi|AppId、RestKey|所有平台适用，通用性强
 Http请求|Secret Key|所有平台适用，可用浏览器打开
 
+
+### Restful API
+	
+1. 调用 `api.bmob.cn` ，与调用NodeJS版云函数的方式 **完全相同**。这种方式下，服务器会 **自动判断语言**，但 **限制 `Method` 为 `Post` 且 `Content-Type` 为 `application/json`**
+
+2. 调用 `javacloud.bmob.cn` ，调用方式基本相同，这种方式 **仅可调用Java云函数**，但 **不限制 `Method` 和 `Content-Type`**
+
+		// 使用Appid + RestKey请求api.bmob.cn域名(自动判断语言)
+		curl -X POST \
+			-H "X-Bmob-Application-Id: Your Application ID" \
+			-H "X-Bmob-REST-API-Key: Your REST API Key" \
+			-H "Content-Type: application/json" \
+			-d '{"name": "zwr"}' \
+			https://api.bmob.cn/1/functions/[function name]
+
+		// 使用Appid + RestKey请求javacloud.bmob.cn域名(仅支持Java云函数)
+		curl -X [method] \
+		    -H "X-Bmob-Application-Id: Your Application ID" \
+		    -H "X-Bmob-REST-API-Key: Your REST API Key" \
+		    -d '[body]' \
+		    https://javacloud.bmob.cn/1/functions/[function name]
+
+		// 使用Master Key请求
+		curl -X [method] \
+		    -H "X-Bmob-Master-Key: Your Master Key" \
+		    -d '[body]' \
+		    https://javacloud.bmob.cn/1/functions/[function name]
+
+### Http请求
+
+		// 使用Secret Key请求
+		curl -X [method] \
+		    -H "header key: header value" \
+		    -d '[body]' \
+		    https://javacloud.bmob.cn/[sectet key]/[function name]
+		
+		// 或者直接用浏览器打开，即GET请求
+	    https://javacloud.bmob.cn/[sectet key]/[function name]?k1=v1&k2=v2
+
+
+---
+
+以下是Bmob各种SDK调用Java云函数的方法，与调用NodeJS版云函数的方式 **完全相同**
+
 ### Android SDK
 
+		AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+		ace.callEndpoint(Context, String funcName, JSONObject params, new CloudCodeListener() {
+		    @Override
+		    public void done(Object object, BmobException e) {
+		        if (e == null) 
+		            Log.e(TAG, "Succeed: " + object);
+		        else
+		            Log.e(TAG, "Failed: " + e);
+			}
+		});
+
+### 微信小程序
+			
+		Bmob.Cloud.run('test', {'name': 'zwr'}).then(function (result) {
+			console.log("Succeed: ");
+			console.log(result);
+		}, function (error) {
+			console.log("Failed: ");
+			console.log(error);
+		});
 
 ### iOS SDK
+
+		[BmobCloud callFunctionInBackground:@"funcName" withParameters:nil block:^(id object, NSError *error) {
+			if (error) {
+			  NSLog(@"Failed: %@",[error description]);
+			}else{
+				NSLog(@"Succeed: %@",object);
+			}
+		}] ;
 
 
 ### C# SDK
 
+		IDictionary<String, Object> parameters ＝  new IDictionary<String, Object>{{"name","zwr"}};
+		Bmob.Endpoint<Hashtable>("test", parameters, (resp, exception) => 
+		{
+		    if (exception == null)
+		    {
+			    print("Succeed: " + resp);
+		    }
+		    else
+		    {
+		        print("Failed: " + exception.Message);
+		    }
+		});
 
-### Restful api
+### PHP SDK
 
-
-### Http请求
-
-
+		$cloudCode = new BmobCloudCode('test'); //调用名字为test的云函数
+		$res = $cloudCode->get(array("name"=>"zwr")); //传入参数name，其值为zwr
+		
+### JavaScript
+		
+		Bmob.Cloud.run('test', {"name":"tom"}, {
+			success: function(result) {
+				console.log("Succeed: ");
+				console.log(result);
+			},
+			error: function(error) {
+				console.log("Failed: ");
+				console.log(error);
+			}
+		});
 
 ## 日志
 
@@ -43,7 +138,7 @@ Http请求|Secret Key|所有平台适用，可用浏览器打开
 
 		public static void onRequest(final Request request, final Response response, final Modules modules) throws Throwable {
 		// 上面这个方法体，不允许任何修改
-		// 这里使用Java编写云函数
+		// 这里使用Java编写云代码
 		// 最后一个字符必须是 }
 		}
 		
@@ -59,7 +154,7 @@ Http请求|Secret Key|所有平台适用，可用浏览器打开
 - 如果确实需要用到被禁止使用的关键字，例如查询"File"表，可用"F"+"ile"的形式拼接
 - 不可包含`/**/`注释，如需注释，请用 `//`
 - 仅可写一个Java的方法，不能写多个方法、类变量、静态变量等
-- 云函数执行完毕后，必须用response.send方法返回响应数据，否则会被当做超时，多次超时可能会被暂停使用
+- 云代码执行完毕后，必须用response.send方法返回响应数据，否则会被当做超时，多次超时可能会被暂停使用
 		
 ## Request对象
 
@@ -145,7 +240,7 @@ Bmob数据库操作对象|modules.oData|封装了Bmob的大多数api，以供开
 方法体|返回值|描述
 :----:|:----:|:----:
 setDomain(String)|this|设置请求的域名，仅迁移用户需要使用
-setTimeout(int)|this|设置超时时间(单位:毫秒)，与云函数超时无关
+setTimeout(int)|this|设置超时时间(单位:毫秒)，与云代码超时无关
 setHeader(String...)|this|设置请求头
 setHeader(JSONObject)|this|设置请求头
 setUserSession(String)|this|设置用户的Session Token
@@ -500,7 +595,7 @@ JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|�
 ##注意事项
 
 
-- 如果你编写的Java云函数经常发生运行超时、上下行超流量、滥用内存等现象，官方将会自动封停你的云函数功能，修改后向客服申请方可继续使用
+- 如果你编写的Java云代码经常发生运行超时、上下行超流量、滥用内存等现象，官方将会自动封停你的云函数功能，修改后向客服申请方可继续使用
 
 - 如果某接口调用频率较高，超过默认并发量，则会直接返回错误，解决方法：
 

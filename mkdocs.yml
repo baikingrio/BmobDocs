@@ -93,3 +93,9 @@ pages:
     - '错误码': 'other/error_code/index.md'
     - '数据安全': 'other/data_safety/index.md'
     - 'BQL': 'other/bql/index.md'
+
+plugins: []
+# Add permalink for sharing
+markdown_extensions:
+    - toc:
+        permalink: True

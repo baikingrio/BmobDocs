@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>开发文档 - Bmob文档中心</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
-        <link href="../../css/custom.css" rel="stylesheet" id="custom">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
-        <script src="../../js/jquery-1.10.2.min.js"></script>
-        <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
-        <script src="../../js/main.js"></script> 
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            
+            
+            <link rel="shortcut icon" href="../../img/favicon.ico">
+            <title>Bmob文档中心</title>
+            <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+            <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+            <link href="../../css/base.css" rel="stylesheet">
+            <link rel="stylesheet" href="../../css/highlight.css">
+            <link href="../../css/agate.css" rel="stylesheet">
+            <link href="../../css/custom.css" rel="stylesheet" id="custom">
     </head>
 
-    <body>
+    <body >
 
         <div class="navbar navbar-fixed-top" role="navigation">
     <div class="main-nav">
         <!-- Collapsed navigation -->
         <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="../..">
                 <!--Bmob文档中心-->
                 <img src="../../img/logo.png" alt="">
@@ -320,47 +304,14 @@
                   <a href="https://www.bmob.cn/downloads" target="_blank">下载</a>
               </li>
             </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                        <i class="fa fa-search"></i> 搜索
-                    </a>
-                </li>
-
-              <!---->
-                <!---->
-                    <!--<li >-->
-                        <!--<a rel="next" href="../../cloud_function/web/norm/">-->
-                            <!--<i class="fa fa-arrow-left"></i> Previous-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li >-->
-                        <!--<a rel="prev" href="example/">-->
-                            <!--Next <i class="fa fa-arrow-right"></i>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!---->
-              <!---->
-
-              <!---->
-                <!---->
-                    <!--<li>-->
-                        <!--<a href="https://github.com/bmob/bmobdocs/edit/master/docs/pay/android/index.md">-->
-                            <!---->
-                                <!--<i class="fa fa-github"></i> Edit on GitHub-->
-                            <!---->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!---->
-              <!---->
-            </ul>
+            
         </div>
     </div>
 </div>
-        <div class="pagebody">
-                <div class="sidebar">
-                    <div class="bs-sidebar hidden-print affix well" role="complementary">
+
+        <div class="pagebody" id="main-wrapper">
+            <div class="sidebar">
+                <div class="bs-sidebar hidden-print affix well" role="complementary">
 
 	
 		
@@ -532,15 +483,15 @@
 		
 	</ul>
 </div>
-                </div>
-                <div class="content" role="main">
-                    <div class="wrap">
-                        
+            </div>
+            <div class="content" role="main">
+                <div class="wrap">
+                    
 
-<h2 id="_1">简介</h2>
+<h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>Android支付SDK接口是Bmob为广大开发人员提供的统一、正规的收费手段，让没有企业认证的个人开发者，也能通过支付宝和微信向用户收费。该文档可以让您快速为自己的应用接入Bmob的支付功能。下图为使用支付的流程。</p>
 <p><img alt="" src="http://i.imgur.com/pP4Cki6.png" /></p>
-<h2 id="_2">使用需知</h2>
+<h2 id="_2">使用需知<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>使用Bmob支付组件前，请认真阅读<a href="http://www.bmob.cn/service">Bmob服务协议</a>。</p>
 <p>对于以下两种情况，开发者需要特别注意：</p>
 <p>1.违反服务协议，特别是含有以下内容的应用：</p>
@@ -549,13 +500,13 @@
 <p>Bmob平台有权进行独立判断并采取技术手段予以删除、屏蔽或断开链接。同时，本平台有权视用户的行为性质，采取包括但不限于暂停或终止服务，限制、冻结或终止本平台网站账号的使用，追究法律责任等措施。</p>
 <p>2.应用遇到过多的用户投诉，如应用的使用者支付了相关款项，但是该应用却没有提供相应的服务。本平台有权限制或冻结该应用支付收入的所有款项，并保留追究法律责任的权利。</p>
 <p>3.<strong>Bmob将在每笔交易中收取10%服务费。</strong></p>
-<h2 id="_3">打款需知</h2>
+<h2 id="_3">打款需知<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>1.打款前请先在控制台填写以下信息</p>
 <p><img alt="" src="./image/14579272227324.jpg" /></p>
 <p>2.每月的1、2、16、17号为申请打款时间，15号、月尾日为打款时间，确保用户有半个月的追诉期。</p>
-<h2 id="_4">支持平台</h2>
+<h2 id="_4">支持平台<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>目前安卓的支付支持支付宝和微信支付。</p>
-<h2 id="_5">启用须知</h2>
+<h2 id="_5">启用须知<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
 <li>在Bmob账号管理平台进行身份认证，以保证资金安全，否则无法使用支付等功能。</li>
 <li>
@@ -566,7 +517,7 @@
 <p>如有任何疑问或者建议，欢迎加入Bmob支付的技术支持QQ群：273080081(1群)，521591577(2群)</p>
 </li>
 </ul>
-<h2 id="_6">支付接口快速入门</h2>
+<h2 id="_6">支付接口快速入门<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>添加相关文件</p>
@@ -614,7 +565,7 @@
 <pre><code>    BP.query(&quot;订单id&quot;, new QListener(){...});
 </code></pre>
 
-<h2 id="_7">类库说明</h2>
+<h2 id="_7">类库说明<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p><strong>c.b.BP</strong></p>
 <ul>
 <li>BP.pay(String title, String descript, double money, int payType, Plistener listener)</li>
@@ -722,9 +673,9 @@
 <p>查询失败,有可能是网络问题,也有可能是订单号错误</p>
 </li>
 </ul>
-<h2 id="_8">支付服务</h2>
+<h2 id="_8">支付服务<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>关于如何使用支付功能，请查看 <a href="../../androidpay/index.html?menukey=fast_start&amp;key=start_android_pay" title="Android支付SDK">Android支付SDK</a> 或 <a href="../../iospay/index.html?menukey=fast_start&amp;key=start_ios_pay" title="iOS支付SDK">iOS支付SDK</a>。RestAPI目前只提供了查询订单的功能。</p>
-<h2 id="_9">查询订单</h2>
+<h2 id="_9">查询订单<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <pre><code>curl -X GET \
 -H "X-Bmob-Application-Id: Your Application ID" \
 -H "X-Bmob-REST-API-Key: Your REST API Key" \
@@ -753,7 +704,7 @@ https://api.bmob.cn/1/pay/Bmob系统生成的订单号
 <li>total_fee      : 订单总金额</li>
 <li>trade_state    : NOTPAY（未支付）或 SUCCESS（支付成功）</li>
 </ul>
-<h2 id="_10">支付回调</h2>
+<h2 id="_10">支付回调<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>如图，可以在支付-配置信息处填入通知url。</p>
 <p><img alt="" src="http://i.imgur.com/40aAkKh.png" /></p>
 <p>这样在支付成功后会向该url（SDK使用异步通知URL，PHP等调用网页支付的使用同步返回URL）发送post请求，结构如下：</p>
@@ -767,7 +718,7 @@ https://api.bmob.cn/1/pay/Bmob系统生成的订单号
 <p>trade_status：表示支付状态，目前只有支付成功才产生回调，值恒为1.
 out_trade_no：Bmob返回的订单号
 trade_no：支付宝或微信返回的订单号</p>
-<h2 id="v31120170111">新版支付v3.1.1(20170111)的更新提示</h2>
+<h2 id="v31120170111">新版支付v3.1.1(20170111)的更新提示<a class="headerlink" href="#v31120170111" title="Permanent link">&para;</a></h2>
 <ul>
 <li>ForceFree方法已经弃用，开发者需自己控制用户多次点击支付产生多个订单的问题</li>
 <li>这一版本的SDK将会在支付的过程中呈现一个中间页面，这个页面负责引导用户的支付流程，带来的影响是：
@@ -782,7 +733,7 @@ trade_no：支付宝或微信返回的订单号</p>
 </ul>
 </li>
 </ul>
-<h2 id="_11">其他</h2>
+<h2 id="_11">其他<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>混淆规则如下: </p>
@@ -800,86 +751,20 @@ trade_no：支付宝或微信返回的订单号</p>
 <li>如果支付宝已经选定了支付用的账户（或银行卡），但是支付失败，用户的支付宝账号会保留该订单，有可能从支付宝官网、支付宝钱包APP再次发起支付，在开发过程中请注意这种事情的处理情况</li>
 <li>如果请求支付的页面为横屏，微信支付页面可能出现抽风现象（卡顿甚至重启），是因为微信出现莫名Bug不停开启新支付页面导致内存爆满，解决方法：在AndroidManifest.xml中将com.bmob.pay.tool.PayActivity设为强制竖屏（上方有示例），并尽可能将自己调用的Activity也设置为竖屏</li>
 </ul>
-                    </div>
                 </div>
-        </div>
-
-        <footer class="col-md-12">
-                <p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>
-            <!--<p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>-->
-        </footer>
-        <script>var base_url = '../..';</script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/require.js"></script>
-        <script src="../../search/search.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    请输入您要搜索的内容
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
             </div>
         </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>&larr;</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>&rarr;</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
 
+        
+            <script>var base_url = '../..';</script>
+            <script src="../../js/jquery-1.10.2.min.js"></script>
+            <script src="../../js/bootstrap-3.0.3.min.js"></script>
+            <script src="../../js/highlight.pack.js"></script>
+            <script src="../../js/main.js"></script>
+            <script src="../../js/base.js"></script>
 
-    <div id="go-top"><i class="fa fa-chevron-up"></i></div>
-    <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
-
-
+        <div id="go-top"><i class="fa fa-chevron-up"></i></div>
+        <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
     </body>
+
 </html>

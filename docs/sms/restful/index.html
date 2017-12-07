@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>RESTful - Bmob文档中心</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
-        <link href="../../css/custom.css" rel="stylesheet" id="custom">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
-        <script src="../../js/jquery-1.10.2.min.js"></script>
-        <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
-        <script src="../../js/main.js"></script> 
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            
+            
+            <link rel="shortcut icon" href="../../img/favicon.ico">
+            <title>Bmob文档中心</title>
+            <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+            <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+            <link href="../../css/base.css" rel="stylesheet">
+            <link rel="stylesheet" href="../../css/highlight.css">
+            <link href="../../css/agate.css" rel="stylesheet">
+            <link href="../../css/custom.css" rel="stylesheet" id="custom">
     </head>
 
-    <body>
+    <body >
 
         <div class="navbar navbar-fixed-top" role="navigation">
     <div class="main-nav">
         <!-- Collapsed navigation -->
         <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="../..">
                 <!--Bmob文档中心-->
                 <img src="../../img/logo.png" alt="">
@@ -320,47 +304,14 @@
                   <a href="https://www.bmob.cn/downloads" target="_blank">下载</a>
               </li>
             </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                        <i class="fa fa-search"></i> 搜索
-                    </a>
-                </li>
-
-              <!---->
-                <!---->
-                    <!--<li >-->
-                        <!--<a rel="next" href="../javascript/">-->
-                            <!--<i class="fa fa-arrow-left"></i> Previous-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li >-->
-                        <!--<a rel="prev" href="../../im/android/">-->
-                            <!--Next <i class="fa fa-arrow-right"></i>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!---->
-              <!---->
-
-              <!---->
-                <!---->
-                    <!--<li>-->
-                        <!--<a href="https://github.com/bmob/bmobdocs/edit/master/docs/sms/restful/index.md">-->
-                            <!---->
-                                <!--<i class="fa fa-github"></i> Edit on GitHub-->
-                            <!---->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!---->
-              <!---->
-            </ul>
+            
         </div>
     </div>
 </div>
-        <div class="pagebody">
-                <div class="sidebar">
-                    <div class="bs-sidebar hidden-print affix well" role="complementary">
+
+        <div class="pagebody" id="main-wrapper">
+            <div class="sidebar">
+                <div class="bs-sidebar hidden-print affix well" role="complementary">
 
 	
 		
@@ -494,16 +445,16 @@
 		
 	</ul>
 </div>
-                </div>
-                <div class="content" role="main">
-                    <div class="wrap">
-                        
+            </div>
+            <div class="content" role="main">
+                <div class="wrap">
+                    
 
 <p>在一些应用场景下，你可能希望用户验证手机号码后才能进行一些操作，例如充值等。这些操作跟用户系统没有关系，可以通过我们提供的的短信验证API来实现。</p>
 <p>每个 Bmob 帐户有 10 条免费额度的短信数量用于测试，超过需要购买短信条数才能继续使用。</p>
 <p>默认使用 【比目科技】 作为签名，可以在控制台进行修改。</p>
-<h2 id="_1">请求发送短信内容</h2>
-<h2 id="_2">请求发送自定义的短信内容</h2>
+<h2 id="_1">请求发送短信内容<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_2">请求发送自定义的短信内容<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><strong>使用场景</strong></p>
 <p>此方法允许开发者使用 Bmob 的短信功能灵活发送自定义的短信内容到用户的手机上，可运用于多种场景下，比如 <code>发送祝福短信、推送消息、通知</code>等</p>
 <p><strong>使用前准备</strong></p>
@@ -583,7 +534,7 @@ Content-Type: application/json
 }
 </code></pre>
 
-<h2 id="_3">请求短信验证码</h2>
+<h2 id="_3">请求短信验证码<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p><strong>请求描述</strong></p>
 <p>使用特定的模板请求验证码，如果没有在管理后台创建好模板，可使用默认的模板，<a href="http://www.bmob.cn/" title="Bmob移动后端云服务平台">Bmob</a> 默认的模板是: <strong>您的验证码是%smscode%，有效期为%ttl%分钟。您正在使用%appname%的验证码</strong></p>
 <p><strong>请求</strong></p>
@@ -657,7 +608,7 @@ Content-Type: application/json
 }
 </code></pre>
 
-<h2 id="_4">验证短信验证码</h2>
+<h2 id="_4">验证短信验证码<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p><strong>请求描述</strong></p>
 <p>通过以下接口，你可以验证用户输入的验证码是否是有效。</p>
 <p><strong>请求</strong></p>
@@ -718,99 +669,33 @@ Content-Type: application/json
 <li>计算得到的短信条数在本条短信发送成功后将会从你的账户剩余的短信条数中扣除。</li>
 </ol>
 <p><strong>短信发送限制规则是1/分钟，5/小时，10/天。即对于一个应用来说，一天给同一手机号发送短信不能超过10条，一小时给同一手机号发送短信不能超过5条，一分钟给同一手机号发送短信不能超过1条</strong></p>
-<h2 id="_5">购买事项</h2>
-<h3 id="_6">购买方法</h3>
+<h2 id="_5">购买事项<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">购买方法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>短信条数只能输入整数，且不能少于1000条</p>
 <p><img alt="短信计费模式" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/jfms.png" /></p>
 <p>进入账号控制台，财务/财务统计点击购买短信即可。</p>
 <p><img alt="购买短信" src="http://bmob-file-service-t.b0.upaiyun.com/Doc_File/14703632600603.jpg" /></p>
-<h3 id="_7">发票事宜</h3>
+<h3 id="_7">发票事宜<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>购买金额满100可提供发票，1000元以内的到付，1000以上（含1000）包邮。</p>
 <p>登录后台提交工单，提供购买服务的订单号和开票信息。</p>
 <p><strong>个人</strong></p>
 <p>发票抬头、邮寄地址、联系人及电话</p>
 <p><strong>企业</strong></p>
 <p>公司名称、统一社会信用代码、开户行及账号、邮寄地址、联系人及电话</p>
-                    </div>
                 </div>
-        </div>
-
-        <footer class="col-md-12">
-                <p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>
-            <!--<p>Copyright © 2017 Bmob, Maintained by the Bmob Support.</p>-->
-        </footer>
-        <script>var base_url = '../..';</script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/require.js"></script>
-        <script src="../../search/search.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    请输入您要搜索的内容
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
             </div>
         </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>&larr;</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>&rarr;</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
 
+        
+            <script>var base_url = '../..';</script>
+            <script src="../../js/jquery-1.10.2.min.js"></script>
+            <script src="../../js/bootstrap-3.0.3.min.js"></script>
+            <script src="../../js/highlight.pack.js"></script>
+            <script src="../../js/main.js"></script>
+            <script src="../../js/base.js"></script>
 
-    <div id="go-top"><i class="fa fa-chevron-up"></i></div>
-    <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
-
-
+        <div id="go-top"><i class="fa fa-chevron-up"></i></div>
+        <a href="https://docs.bmob.cn/data/Android/a_faststart/doc/index.html" id="back" target="_blank">返回 <br> 旧版</a>
     </body>
+
 </html>

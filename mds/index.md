@@ -73,8 +73,8 @@
                   <li><s class="languageType"></s><a href="./sms/android/index.html" class="intro" >Android</a></li>
                   <li><s class="languageType" style="background-position:left -26px;"></s><a href="./sms/ios/index.html" class="intro" >iOS</a></li>
                   <li><s class="languageType"  style="background-position:left -52px;"></s><a href="./sms/restful/index.html" class="intro" >Restful</a></li>
-                  <li><s class="languageType" style="background-position:left -106px;"></s><a href="./sms/javascript/index.html" class="intro" >JavaScript</a></li>
                   <li><s class="languageType" style="background-position:left 216px;"></s><a href="./sms/php/index.html" class="intro" >PHP</a></li>
+                  <li><s class="languageType" style="background-position:left -106px;"></s><a href="./sms/javascript/index.html" class="intro" >JavaScript</a></li>
                   <li></li>
                 </ul>
             </div>
@@ -106,8 +106,8 @@
                   <li><s class="languageType"></s><a href="./push/android/index.html" class="intro" >Android</a></li>
                   <li><s class="languageType" style="background-position:left -26px;"></s><a href="./push/ios/index.html" class="intro" >iOS</a></li>
                   <li><s class="languageType"  style="background-position:left -52px;"></s><a href="./push/restful/index.html" class="intro" >Restful</a></li>
-                  <li><s class="languageType" style="background-position:left -106px;"></s><a href="./push/javascript/index.html" class="intro" >JavaScript</a></li>
                   <li><s class="languageType" style="background-position:left 216px;"></s><a href="./push/php/index.html" class="intro" >PHP</a></li>
+                  <li><s class="languageType" style="background-position:left -106px;"></s><a href="./push/javascript/index.html" class="intro" >JavaScript</a></li>
                   <li></li>
                 </ul>
             </div>
@@ -150,7 +150,7 @@
             </div><!--//icon-holder-->
             <h3 class="title">其他</h3>
             <div class="text-left">
-                <ul class="links">
+                <ul class="links else">
                   <li><a href="./other/error_code/index.html" class="intro" >错误码</a></li>
                   <li><a href="./other/common_problem/index.html" class="intro" >常见问题</a></li>
                   <li><a href="./other/bql/index.html" class="intro" >BQL详细指南</a></li>

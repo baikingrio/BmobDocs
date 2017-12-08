@@ -175,7 +175,11 @@ code {
 }
 
 /* useful links */
-ul.links{}
+ul.links.else{ padding:0;}
+ul.links.else li{width:100%;text-align: center;}
+ul.links{
+    padding-left: 65px;    
+}
 ul.links li, ul.social_icon li, .widget .tags > li, .commment li{
     display: inline-block;
 }

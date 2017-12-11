@@ -2664,23 +2664,21 @@ Test *t = [[Test alloc] initFromBmobObject:obj];
 <h3 id="_82">上传文件<a class="headerlink" href="#_82" title="Permanent link">&para;</a></h3>
 <p><code>1.6.9版本之后，上传服务使用CDN服务</code></p>
 <h4 id="_83">上传文件方法<a class="headerlink" href="#_83" title="Permanent link">&para;</a></h4>
-<p>可以通过文件路径和NSData上传。如下图的例子，是将58f0222bd82ac.png的文本文件保存到服务器端：</p>
+<p>可以通过文件路径和NSData上传。如下图的例子，是将test.png的文本文件保存到服务器端：</p>
 <pre><code>-(void)saveInBackground:(BmobBooleanResultBlock)block;
 </code></pre>
 
 <p>可以在block里面把文件添加到gameScore里面，建议使用异步上传的方法，再在block进行操作。如下面的例子：</p>
 <pre><code>NSData *data = UIImagePNGRepresentation([UIImage imageNamed:@&quot;58f0222bd82ac&quot;]);
-BmobFile *file1 = [[BmobFile alloc]initWithFileName:@&quot;58f0222bd82ac.png&quot; withFileData:data];
+BmobFile *file = [[BmobFile alloc]initWithFileName:@&quot;test.png&quot; withFileData:data];
 BmobObject *obj = [[BmobObject alloc] initWithClassName:@&quot;GameScore&quot;];
-[file1 saveInBackground:^(BOOL isSuccessful, NSError *error) {
+[file saveInBackground:^(BOOL isSuccessful, NSError *error) {
 //如果文件保存成功，则把文件添加到filetype列
 if (isSuccessful) {
-[obj setObject:file1  forKey:@&quot;filetype&quot;];
-[obj setObject:file1.url  forKey:@&quot;filetypeurl&quot;];
+//上传文件的URL地址
+[obj setObject:file.url  forKey:@&quot;filetypeurl&quot;];
 //此处相当于新建一条记录,         //关联至已有的记录请使用 [obj updateInBackground];
 [obj saveInBackground];
-//打印file文件的url地址
-NSLog(@&quot;file1 url %@&quot;,file1.url);
 }else{
 //进行处理
 }
@@ -2753,11 +2751,13 @@ NSLog(@&quot;index %d progress %f&quot;,index,progress);
 } resultBlock:^(NSArray *array, BOOL isSuccessful, NSError *error) {
 //array 文件数组，isSuccessful 成功或者失败,error 错误信息
 BmobObject *obj = [[BmobObject alloc] initWithClassName:@&quot;gameScoreFile&quot;];
+//存放文件URL的数组
+NSMutableArray *fileArray = [NSMutableArray array];
 for (int i = 0 ; i &lt; array.count ;i ++) {
 BmobFile *file = array [i];
-NSString *key = [NSString stringWithFormat:@&quot;userFile%d&quot;,i];
-[obj setObject:file  forKey:key];
+[fileArray addObject:file.url];
 }
+[obj setObject:fileArray  forKey:fileUrlArray];
 [obj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
 }];
 }];

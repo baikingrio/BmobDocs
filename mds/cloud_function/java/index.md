@@ -138,7 +138,7 @@ Http请求|Secret Key|所有平台适用，可用浏览器打开
 
 		public static void onRequest(final Request request, final Response response, final Modules modules) throws Throwable {
 		// 上面这个方法体，不允许任何修改
-		// 这里使用Java编写云代码
+		// 这里使用Java编写云函数
 		// 最后一个字符必须是 }
 		}
 		
@@ -154,9 +154,22 @@ Http请求|Secret Key|所有平台适用，可用浏览器打开
 - 如果确实需要用到被禁止使用的关键字，例如查询"File"表，可用"F"+"ile"的形式拼接
 - 不可包含`/**/`注释，如需注释，请用 `//`
 - 仅可写一个Java的方法，不能写多个方法、类变量、静态变量等
-- 云代码执行完毕后，必须用response.send方法返回响应数据，否则会被当做超时，多次超时可能会被暂停使用
+- 云函数执行完毕后，必须用response.send方法返回响应数据，否则会被当做超时，多次超时可能会被暂停使用
+
+## 工具
+
+Github页面如下：
+
+[https://github.com/bmob/BmobJavaCloud](https://github.com/bmob/BmobJavaCloud) 
+
+- `libs目录` 下提供了 `Bmob-JavaCloud-Apis_xxx.jar` 以供开发者使用IDE(ecplise、as)开发时参考
+- `exec目录` 下提供了 `macos`、`linux`、`windows 64位`等平台的`可执行文件`，以供开发者快速进行代码的上传、修改、同步到本地和删除
+- `samples目录` 提供了案例
+- `doc目录` 下提供了文档
+
+## 方法参数
 		
-## Request对象
+### Request对象
 
 onRequest方法参数中 `Request request` 包含了本次请求的全部信息：
 
@@ -171,7 +184,7 @@ Body内参数|JSONObject|request.getParams()|{"username": "zwr"}
 单个请求头|String|request.getHeader(String key)|request.getHeader("User-Agent") = "Chrome"
 单个Get参数|String|request.getQueryParam(String key)|request.getQueryParam("page") = "1"
 
-## Response对象
+### Response对象
 
 - onRequest方法参数中 `Response response` 用于响应请求，返回数据
 - Response对象仅有名为 `send` 的方法，参数不同共有4种重载形式(Overloading):
@@ -205,7 +218,7 @@ headers|JSONObject|返回的头部信息，采用String-String的格式，例如
 		);
 
 
-## Modules对象
+### Modules对象
 
 - onRequest方法参数中 `Modules modules` 提供了几个模块供开发者调用：
 
@@ -214,25 +227,7 @@ headers|JSONObject|返回的头部信息，采用String-String的格式，例如
 Bmob数据库操作对象|modules.oData|封装了Bmob的大多数api，以供开发者进行快速的业务逻辑开发，详见下文 `<Bmob数据操作>`
 日志输出对象|modules.oLog|提供了几个级别的日志输出，以便调试，详见下文 `<日志输出>`
 
-## 日志输出
-		// 设置需要输出的日志级别
-		// Level_All = 0
-		// Level_Debug = 1
-		// Level_Warn = 2
-		// Level_Error = 3
-		modules.oLog.level = modules.oLog.Level_All // 全部都会输出
-		modules.oLog.level = modules.oLog.Level_Warn // 仅输出Warn和Error
-		modules.oLog.level = modules.oLog.Level_Error // 仅Error级别日志
-		
-		modules.oLog.d(Object) // 输出Debug级别日志
-		modules.oLog.w(Object) // 输出Warn级别日志
-		modules.oLog.e(Object) // 输出Error级别日志
-		modules.oLog.debug(String,Object...) // 格式化输出Debug级别日志
-		modules.oLog.warn(String,Object...) // 格式化输出Warn级别日志
-		modules.oLog.error(String,Object...) // 格式化输出Error级别日志
-
-
-## Bmob数据操作
+#### Bmob数据操作
 
 以下均为 `modules.oData` 的方法：
 
@@ -240,7 +235,7 @@ Bmob数据库操作对象|modules.oData|封装了Bmob的大多数api，以供开
 方法体|返回值|描述
 :----:|:----:|:----:
 setDomain(String)|this|设置请求的域名，仅迁移用户需要使用
-setTimeout(int)|this|设置超时时间(单位:毫秒)，与云代码超时无关
+setTimeout(int)|this|设置超时时间(单位:毫秒)，与云函数超时无关
 setHeader(String...)|this|设置请求头
 setHeader(JSONObject)|this|设置请求头
 setUserSession(String)|this|设置用户的Session Token
@@ -275,6 +270,82 @@ getDBTime()|HttpResponse|获取Restful服务器的时间
 batch(JSONArray requests)|HttpResponse|批量请求
 
 
+#### 内存操作
+
+- `modules.oMemory` 提供了内存操作，可以进行快速的缓存读写，
+- **内存随时可能被重置(暂无持久化功能)**，所以在使用的时候，最好结合Base64、Bmob数据库来使用
+- 若使用得当，可以提高效率、减少Bmob api请求压力。
+- 内存块是以 **应用为单位** 分配的，也就是允许一个应用下 **跨Java云函数** 同时进行读写
+- 目前内存大小统一为 **64kb/App**(有可能变动)，可以通过 `modules.oMemory.MemorySize` 获取
+- 下面的方法除 `clean` 之外，分为 `当作byte数组` 和 `当作Map` 使用两种方式，这两种方式 **不能混用** ，如果你的应用选择将内存转为Map类型使用，就不能再用byte数组类型的接口操作内存，否则会出现异常
+- 以下均为 `modules.oMemory` 的方法
+
+		// 把内存当作byte数组使用，往内存写byte数组
+		// buff: 写入内容
+		// buffOffset: 写入内容内偏移值
+		// memoryOffset: 内存偏移值
+		// length: 写入长度
+		// return 是否写入成功(超出授予的内存大小，即返回失败)
+		public native boolean write(byte[] buff, int buffOffset, int memoryOffset,
+				int length);
+				
+		// 把内存当作byte数组使用，读取内存
+		public native boolean read(byte[] buff, int memoryOffset, int buffOffset,
+				int length);
+				
+		// 把内存当作byte数组使用，读取内存
+		// return 越界时返回null，没有写入过返回 new byte[length]
+		public native byte[] read(int memoryOffset, int length);
+		
+		// 清理内存
+		public native void clean();
+		
+		// 把内存当作Map类型操作，写入键值对
+		public native boolean putMap(String key, Serializable value);
+		
+		// 把内存当作Map类型操作，写入追加Map
+		public native boolean putMap(Map<String, Serializable> kvs);
+		
+		// 把内存当作Map类型操作，获取一个值
+		public native <T extends Serializable> T getMap(String key);
+		
+		// 把内存当作Map类型操作，覆盖写入Map
+		public native boolean writeMap(Map<String, Serializable> kvs);
+		
+		// 把内存当作Map类型操作，读取整个Map
+		public native Map<String, Serializable> readMap();
+		
+		// 把内存当作Map类型操作, 写入一个byte
+		public native boolean writeByte(int index, byte b);
+		
+		// 把内存当作Map类型操作, 读取一个byte
+		public native byte readByte(int index);
+		
+					
+
+
+#### 日志输出
+
+
+以下均为 `modules.oLog` 的方法：
+
+		// 设置需要输出的日志级别
+		// Level_All = 0
+		// Level_Debug = 1
+		// Level_Warn = 2
+		// Level_Error = 3
+		modules.oLog.level = modules.oLog.Level_All // 全部都会输出
+		modules.oLog.level = modules.oLog.Level_Warn // 仅输出Warn和Error
+		modules.oLog.level = modules.oLog.Level_Error // 仅Error级别日志
+		
+		modules.oLog.d(Object) // 输出Debug级别日志
+		modules.oLog.w(Object) // 输出Warn级别日志
+		modules.oLog.e(Object) // 输出Error级别日志
+		modules.oLog.debug(String,Object...) // 格式化输出Debug级别日志
+		modules.oLog.warn(String,Object...) // 格式化输出Warn级别日志
+		modules.oLog.error(String,Object...) // 格式化输出Error级别日志
+
+
 ## 内置类
 		
 ### HttpResponse
@@ -302,36 +373,50 @@ headers|JSONObject|返回的Http头部
 
 ### Querier
 
-**类方法**:
-	
+**类方法**: **返回类型均为 `Querier`** (以链式调用)
 
 方法体|描述
 :----:|:----:
 \<init\>(String table)|构造方法，传入表名
-Querier limit(int)|设置最大返回行数
-Querier skip(int)|设置跳过的个数
-Querier order(String)|排序规则
-Querier keys(String)|需要返回的属性
-Querier include(String)|需要返回详细信息的Pointer属性
-Querier where(JSONObject)|设置查询条件
+limit(int)|设置最大返回行数
+skip(int)|设置跳过的个数
+order(String)|排序规则
+keys(String)|需要返回的属性
+include(String)|需要返回详细信息的Pointer属性
+where(JSONObject)|设置查询条件
+addWhere(JSONObject)|添加条件
+and(Querier)|and复合查询
+or(Querier)|or复合查询
+addWhereExists(String)|某字段有值
+addWhereNotExists(String)|某字段无值
+addWhereExists(String,boolean)|某字段有/无值
+addWhereEqualTo(String,Object)|某字段等于
+addWhereNotEqualTo(String,Object)|某字段不等于
+addWhereGreaterThan(String,Object)|某字段大于
+addWhereGreaterThanOrEqualTo(String,Object)|某字段大于等于
+addWhereLessThan(String,Object)|某字段小于
+addWhereLessThanOrEqualTo(String,Object)|某字段小于等于
+addWhereRelatedTo(String table,toObjId,toKey)|在某表作为Relation关联起来的数据
+addWhereNear(String,BmobGeoPoint,double maxMiles, double maxKM, double maxRadians)|地理位置在一定范围内
+addWhereWithinGeoBox(String,BmobGeoPoint,BmobGeoPoint)|地理位置在矩形范围内
 
 ### BmobUpdater
 
-该类的全部静态方法都用于设置insert、update方法的请求内容
+该类的全部静态方法都用于设置insert、update方法的请求内容，**返回类型均为 `JSONObject`**
 
 **静态方法**：
 
 方法体|描述
 :----:|:----:
-JSONObject add(JSONObject data,String key,Object value)|往data添加一个键值
-JSONObject increment(JSONObject data,String key,Number number)|原子计数
-JSONObject arrayAdd(JSONObject data,String key,Object obj)|往Array类型添加一项
-JSONObject arrayAddAll(JSONObject data,String key,JSONArray objects)|往Array类型添加多项
-JSONObject arrayAddUnique(JSONObject data,String key,Object obj)|往Array类型不重复地添加一项
-JSONObject arrayAddAllUnique(JSONObject data,String key,JSONArray objects)|往Array类型不重复地添加多项
-JSONObject arrayRemoveAll(JSONObject data,String key,JSONArray objects)|删除Array类型的多项
-JSONObject addRelations(JSONObject data, String key,BmobPointer...pointers)|添加多个Relation关系
-JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|移除多个Relation关系
+add(JSONObject data,String key,Object value)|往data添加一个键值
+increment(JSONObject data,String key,Number number)|原子计数
+arrayAdd(JSONObject data,String key,Object obj)|往Array类型添加一项
+arrayAddAll(JSONObject data,String key,JSONArray objects)|往Array类型添加多项
+arrayAddUnique(JSONObject data,String key,Object obj)|往Array类型不重复地添加一项
+arrayAddAllUnique(JSONObject data,String key,JSONArray objects)|往Array类型不重复地添加多项
+arrayRemoveAll(JSONObject data,String key,JSONArray objects)|删除Array类型的多项
+addRelations(JSONObject data, String key,BmobPointer...pointers)|添加多个Relation关系
+removeRelations(JSONObject data, String key,BmobPointer...pointers)|移除多个Relation关系
 
 ### JSON
 
@@ -464,6 +549,13 @@ JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|�
 		String Encode(byte[] data)
 		byte[] Decode(String str)
 
+### Hex
+
+静态方法：
+
+		String Encode(byte[] data)
+		byte[] Decode(String str)
+
 ### Crypto
 
 静态方法：
@@ -515,7 +607,7 @@ JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|�
 
 	
 
-## 内置方法：
+## 内置方法
 
 		long getTime() // 获取当前毫秒
 		String fmt(String, Object...) // 格式化
@@ -526,7 +618,7 @@ JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|�
 		arraycopy(Object from, int fromOffset, Object to, int toOffset, int length) // 复制数组内容
 	
 				
-## 示例：
+## 示例
 
 - **场景1**:
 	
@@ -595,7 +687,7 @@ JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|�
 ##注意事项
 
 
-- 如果你编写的Java云代码经常发生运行超时、上下行超流量、滥用内存等现象，官方将会自动封停你的云函数功能，修改后向客服申请方可继续使用
+- 如果你编写的Java云函数经常发生运行超时、上下行超流量、滥用内存等现象，官方将会自动封停你的云函数功能，修改后向客服申请方可继续使用
 
 - 如果某接口调用频率较高，超过默认并发量，则会直接返回错误，解决方法：
 

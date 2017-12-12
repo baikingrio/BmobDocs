@@ -438,27 +438,27 @@
 											
 										</li>
 									
-										<li class=""><a href="#request">Request对象</a>
+										<li class=""><a href="#_5">工具</a>
 											
 										</li>
 									
-										<li class=""><a href="#response">Response对象</a>
+										<li class=""><a href="#_6">方法参数</a>
+											
+											<ul class="nav nav-l2">
+												<li><a class="itm-l2" href="#request">Request对象</a></li>
+											</ul>
+											
+											<ul class="nav nav-l2">
+												<li><a class="itm-l2" href="#response">Response对象</a></li>
+											</ul>
+											
+											<ul class="nav nav-l2">
+												<li><a class="itm-l2" href="#modules">Modules对象</a></li>
+											</ul>
 											
 										</li>
 									
-										<li class=""><a href="#modules">Modules对象</a>
-											
-										</li>
-									
-										<li class=""><a href="#_5">日志输出</a>
-											
-										</li>
-									
-										<li class=""><a href="#bmob">Bmob数据操作</a>
-											
-										</li>
-									
-										<li class=""><a href="#_6">内置类</a>
+										<li class=""><a href="#_9">内置类</a>
 											
 											<ul class="nav nav-l2">
 												<li><a class="itm-l2" href="#httpresponse">HttpResponse</a></li>
@@ -513,6 +513,10 @@
 											</ul>
 											
 											<ul class="nav nav-l2">
+												<li><a class="itm-l2" href="#hex">Hex</a></li>
+											</ul>
+											
+											<ul class="nav nav-l2">
 												<li><a class="itm-l2" href="#crypto">Crypto</a></li>
 											</ul>
 											
@@ -534,15 +538,15 @@
 											
 										</li>
 									
-										<li class=""><a href="#_7">内置方法：</a>
+										<li class=""><a href="#_10">内置方法</a>
 											
 										</li>
 									
-										<li class=""><a href="#_8">示例：</a>
+										<li class=""><a href="#_11">示例</a>
 											
 										</li>
 									
-										<li class=""><a href="#_9">注意事项</a>
+										<li class=""><a href="#_12">注意事项</a>
 											
 										</li>
 									
@@ -728,7 +732,7 @@ curl -X [method] \
 <p>java云函数必须遵循以下格式：</p>
 <pre><code>public static void onRequest(final Request request, final Response response, final Modules modules) throws Throwable {
 // 上面这个方法体，不允许任何修改
-// 这里使用Java编写云代码
+// 这里使用Java编写云函数
 // 最后一个字符必须是 }
 }
 </code></pre>
@@ -747,9 +751,19 @@ System
 <li>如果确实需要用到被禁止使用的关键字，例如查询"File"表，可用"F"+"ile"的形式拼接</li>
 <li>不可包含<code>/**/</code>注释，如需注释，请用 <code>//</code></li>
 <li>仅可写一个Java的方法，不能写多个方法、类变量、静态变量等</li>
-<li>云代码执行完毕后，必须用response.send方法返回响应数据，否则会被当做超时，多次超时可能会被暂停使用</li>
+<li>云函数执行完毕后，必须用response.send方法返回响应数据，否则会被当做超时，多次超时可能会被暂停使用</li>
 </ul>
-<h2 id="request">Request对象<a class="headerlink" href="#request" title="Permanent link">&para;</a></h2>
+<h2 id="_5">工具<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>Github页面如下：</p>
+<p><a href="https://github.com/bmob/BmobJavaCloud">https://github.com/bmob/BmobJavaCloud</a> </p>
+<ul>
+<li><code>libs目录</code> 下提供了 <code>Bmob-JavaCloud-Apis_xxx.jar</code> 以供开发者使用IDE(ecplise、as)开发时参考</li>
+<li><code>exec目录</code> 下提供了 <code>macos</code>、<code>linux</code>、<code>windows 64位</code>等平台的<code>可执行文件</code>，以供开发者快速进行代码的上传、修改、同步到本地和删除</li>
+<li><code>samples目录</code> 提供了案例</li>
+<li><code>doc目录</code> 下提供了文档</li>
+</ul>
+<h2 id="_6">方法参数<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="request">Request对象<a class="headerlink" href="#request" title="Permanent link">&para;</a></h3>
 <p>onRequest方法参数中 <code>Request request</code> 包含了本次请求的全部信息：</p>
 <table>
 <thead>
@@ -811,7 +825,7 @@ System
 </tr>
 </tbody>
 </table>
-<h2 id="response">Response对象<a class="headerlink" href="#response" title="Permanent link">&para;</a></h2>
+<h3 id="response">Response对象<a class="headerlink" href="#response" title="Permanent link">&para;</a></h3>
 <ul>
 <li>onRequest方法参数中 <code>Response response</code> 用于响应请求，返回数据</li>
 <li>
@@ -871,7 +885,7 @@ response.send(
 </code></pre>
 </li>
 </ul>
-<h2 id="modules">Modules对象<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h2>
+<h3 id="modules">Modules对象<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
 <ul>
 <li>onRequest方法参数中 <code>Modules modules</code> 提供了几个模块供开发者调用：</li>
 </ul>
@@ -896,24 +910,7 @@ response.send(
 </tr>
 </tbody>
 </table>
-<h2 id="_5">日志输出<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<pre><code>    // 设置需要输出的日志级别
-    // Level_All = 0
-    // Level_Debug = 1
-    // Level_Warn = 2
-    // Level_Error = 3
-    modules.oLog.level = modules.oLog.Level_All // 全部都会输出
-    modules.oLog.level = modules.oLog.Level_Warn // 仅输出Warn和Error
-    modules.oLog.level = modules.oLog.Level_Error // 仅Error级别日志
-
-    modules.oLog.d(Object) // 输出Debug级别日志
-    modules.oLog.w(Object) // 输出Warn级别日志
-    modules.oLog.e(Object) // 输出Error级别日志
-    modules.oLog.debug(String,Object...) // 格式化输出Debug级别日志
-    modules.oLog.warn(String,Object...) // 格式化输出Warn级别日志
-    modules.oLog.error(String,Object...) // 格式化输出Error级别日志
-</code></pre>
-<h2 id="bmob">Bmob数据操作<a class="headerlink" href="#bmob" title="Permanent link">&para;</a></h2>
+<h4 id="bmob">Bmob数据操作<a class="headerlink" href="#bmob" title="Permanent link">&para;</a></h4>
 <p>以下均为 <code>modules.oData</code> 的方法：</p>
 <table>
 <thead>
@@ -932,7 +929,7 @@ response.send(
 <tr>
 <td align="center">setTimeout(int)</td>
 <td align="center">this</td>
-<td align="center">设置超时时间(单位:毫秒)，与云代码超时无关</td>
+<td align="center">设置超时时间(单位:毫秒)，与云函数超时无关</td>
 </tr>
 <tr>
 <td align="center">setHeader(String...)</td>
@@ -1096,7 +1093,76 @@ response.send(
 </tr>
 </tbody>
 </table>
-<h2 id="_6">内置类<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h4 id="_7">内存操作<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>modules.oMemory</code> 提供了内存操作，可以进行快速的缓存读写，</li>
+<li><strong>内存随时可能被重置(暂无持久化功能)</strong>，所以在使用的时候，最好结合Base64、Bmob数据库来使用</li>
+<li>若使用得当，可以提高效率、减少Bmob api请求压力。</li>
+<li>内存块是以 <strong>应用为单位</strong> 分配的，也就是允许一个应用下 <strong>跨Java云函数</strong> 同时进行读写</li>
+<li>目前内存大小统一为 <strong>64kb/App</strong>(有可能变动)，可以通过 <code>modules.oMemory.MemorySize</code> 获取</li>
+<li>下面的方法除 <code>clean</code> 之外，分为 <code>当作byte数组</code> 和 <code>当作Map</code> 使用两种方式，这两种方式 <strong>不能混用</strong> ，如果你的应用选择将内存转为Map类型使用，就不能再用byte数组类型的接口操作内存，否则会出现异常</li>
+<li>以下均为 <code>modules.oMemory</code> 的方法<pre><code>// 把内存当作byte数组使用，往内存写byte数组
+// buff: 写入内容
+// buffOffset: 写入内容内偏移值
+// memoryOffset: 内存偏移值
+// length: 写入长度
+// return 是否写入成功(超出授予的内存大小，即返回失败)
+public native boolean write(byte[] buff, int buffOffset, int memoryOffset,
+        int length);
+
+// 把内存当作byte数组使用，读取内存
+public native boolean read(byte[] buff, int memoryOffset, int buffOffset,
+        int length);
+
+// 把内存当作byte数组使用，读取内存
+// return 越界时返回null，没有写入过返回 new byte[length]
+public native byte[] read(int memoryOffset, int length);
+
+// 清理内存
+public native void clean();
+
+// 把内存当作Map类型操作，写入键值对
+public native boolean putMap(String key, Serializable value);
+
+// 把内存当作Map类型操作，写入追加Map
+public native boolean putMap(Map&lt;String, Serializable&gt; kvs);
+
+// 把内存当作Map类型操作，获取一个值
+public native &lt;T extends Serializable&gt; T getMap(String key);
+
+// 把内存当作Map类型操作，覆盖写入Map
+public native boolean writeMap(Map&lt;String, Serializable&gt; kvs);
+
+// 把内存当作Map类型操作，读取整个Map
+public native Map&lt;String, Serializable&gt; readMap();
+
+// 把内存当作Map类型操作, 写入一个byte
+public native boolean writeByte(int index, byte b);
+
+// 把内存当作Map类型操作, 读取一个byte
+public native byte readByte(int index);
+</code></pre>
+</li>
+</ul>
+<h4 id="_8">日志输出<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>以下均为 <code>modules.oLog</code> 的方法：</p>
+<pre><code>    // 设置需要输出的日志级别
+    // Level_All = 0
+    // Level_Debug = 1
+    // Level_Warn = 2
+    // Level_Error = 3
+    modules.oLog.level = modules.oLog.Level_All // 全部都会输出
+    modules.oLog.level = modules.oLog.Level_Warn // 仅输出Warn和Error
+    modules.oLog.level = modules.oLog.Level_Error // 仅Error级别日志
+
+    modules.oLog.d(Object) // 输出Debug级别日志
+    modules.oLog.w(Object) // 输出Warn级别日志
+    modules.oLog.e(Object) // 输出Error级别日志
+    modules.oLog.debug(String,Object...) // 格式化输出Debug级别日志
+    modules.oLog.warn(String,Object...) // 格式化输出Warn级别日志
+    modules.oLog.error(String,Object...) // 格式化输出Error级别日志
+</code></pre>
+<h2 id="_9">内置类<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <h3 id="httpresponse">HttpResponse<a class="headerlink" href="#httpresponse" title="Permanent link">&para;</a></h3>
 <p><strong>类变量</strong>:</p>
 <table>
@@ -1164,7 +1230,7 @@ response.send(
 </tbody>
 </table>
 <h3 id="querier">Querier<a class="headerlink" href="#querier" title="Permanent link">&para;</a></h3>
-<p><strong>类方法</strong>:</p>
+<p><strong>类方法</strong>: <strong>返回类型均为 <code>Querier</code></strong> (以链式调用)</p>
 <table>
 <thead>
 <tr>
@@ -1178,33 +1244,93 @@ response.send(
 <td align="center">构造方法，传入表名</td>
 </tr>
 <tr>
-<td align="center">Querier limit(int)</td>
+<td align="center">limit(int)</td>
 <td align="center">设置最大返回行数</td>
 </tr>
 <tr>
-<td align="center">Querier skip(int)</td>
+<td align="center">skip(int)</td>
 <td align="center">设置跳过的个数</td>
 </tr>
 <tr>
-<td align="center">Querier order(String)</td>
+<td align="center">order(String)</td>
 <td align="center">排序规则</td>
 </tr>
 <tr>
-<td align="center">Querier keys(String)</td>
+<td align="center">keys(String)</td>
 <td align="center">需要返回的属性</td>
 </tr>
 <tr>
-<td align="center">Querier include(String)</td>
+<td align="center">include(String)</td>
 <td align="center">需要返回详细信息的Pointer属性</td>
 </tr>
 <tr>
-<td align="center">Querier where(JSONObject)</td>
+<td align="center">where(JSONObject)</td>
 <td align="center">设置查询条件</td>
+</tr>
+<tr>
+<td align="center">addWhere(JSONObject)</td>
+<td align="center">添加条件</td>
+</tr>
+<tr>
+<td align="center">and(Querier)</td>
+<td align="center">and复合查询</td>
+</tr>
+<tr>
+<td align="center">or(Querier)</td>
+<td align="center">or复合查询</td>
+</tr>
+<tr>
+<td align="center">addWhereExists(String)</td>
+<td align="center">某字段有值</td>
+</tr>
+<tr>
+<td align="center">addWhereNotExists(String)</td>
+<td align="center">某字段无值</td>
+</tr>
+<tr>
+<td align="center">addWhereExists(String,boolean)</td>
+<td align="center">某字段有/无值</td>
+</tr>
+<tr>
+<td align="center">addWhereEqualTo(String,Object)</td>
+<td align="center">某字段等于</td>
+</tr>
+<tr>
+<td align="center">addWhereNotEqualTo(String,Object)</td>
+<td align="center">某字段不等于</td>
+</tr>
+<tr>
+<td align="center">addWhereGreaterThan(String,Object)</td>
+<td align="center">某字段大于</td>
+</tr>
+<tr>
+<td align="center">addWhereGreaterThanOrEqualTo(String,Object)</td>
+<td align="center">某字段大于等于</td>
+</tr>
+<tr>
+<td align="center">addWhereLessThan(String,Object)</td>
+<td align="center">某字段小于</td>
+</tr>
+<tr>
+<td align="center">addWhereLessThanOrEqualTo(String,Object)</td>
+<td align="center">某字段小于等于</td>
+</tr>
+<tr>
+<td align="center">addWhereRelatedTo(String table,toObjId,toKey)</td>
+<td align="center">在某表作为Relation关联起来的数据</td>
+</tr>
+<tr>
+<td align="center">addWhereNear(String,BmobGeoPoint,double maxMiles, double maxKM, double maxRadians)</td>
+<td align="center">地理位置在一定范围内</td>
+</tr>
+<tr>
+<td align="center">addWhereWithinGeoBox(String,BmobGeoPoint,BmobGeoPoint)</td>
+<td align="center">地理位置在矩形范围内</td>
 </tr>
 </tbody>
 </table>
 <h3 id="bmobupdater">BmobUpdater<a class="headerlink" href="#bmobupdater" title="Permanent link">&para;</a></h3>
-<p>该类的全部静态方法都用于设置insert、update方法的请求内容</p>
+<p>该类的全部静态方法都用于设置insert、update方法的请求内容，<strong>返回类型均为 <code>JSONObject</code></strong></p>
 <p><strong>静态方法</strong>：</p>
 <table>
 <thead>
@@ -1215,39 +1341,39 @@ response.send(
 </thead>
 <tbody>
 <tr>
-<td align="center">JSONObject add(JSONObject data,String key,Object value)</td>
+<td align="center">add(JSONObject data,String key,Object value)</td>
 <td align="center">往data添加一个键值</td>
 </tr>
 <tr>
-<td align="center">JSONObject increment(JSONObject data,String key,Number number)</td>
+<td align="center">increment(JSONObject data,String key,Number number)</td>
 <td align="center">原子计数</td>
 </tr>
 <tr>
-<td align="center">JSONObject arrayAdd(JSONObject data,String key,Object obj)</td>
+<td align="center">arrayAdd(JSONObject data,String key,Object obj)</td>
 <td align="center">往Array类型添加一项</td>
 </tr>
 <tr>
-<td align="center">JSONObject arrayAddAll(JSONObject data,String key,JSONArray objects)</td>
+<td align="center">arrayAddAll(JSONObject data,String key,JSONArray objects)</td>
 <td align="center">往Array类型添加多项</td>
 </tr>
 <tr>
-<td align="center">JSONObject arrayAddUnique(JSONObject data,String key,Object obj)</td>
+<td align="center">arrayAddUnique(JSONObject data,String key,Object obj)</td>
 <td align="center">往Array类型不重复地添加一项</td>
 </tr>
 <tr>
-<td align="center">JSONObject arrayAddAllUnique(JSONObject data,String key,JSONArray objects)</td>
+<td align="center">arrayAddAllUnique(JSONObject data,String key,JSONArray objects)</td>
 <td align="center">往Array类型不重复地添加多项</td>
 </tr>
 <tr>
-<td align="center">JSONObject arrayRemoveAll(JSONObject data,String key,JSONArray objects)</td>
+<td align="center">arrayRemoveAll(JSONObject data,String key,JSONArray objects)</td>
 <td align="center">删除Array类型的多项</td>
 </tr>
 <tr>
-<td align="center">JSONObject addRelations(JSONObject data, String key,BmobPointer...pointers)</td>
+<td align="center">addRelations(JSONObject data, String key,BmobPointer...pointers)</td>
 <td align="center">添加多个Relation关系</td>
 </tr>
 <tr>
-<td align="center">JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)</td>
+<td align="center">removeRelations(JSONObject data, String key,BmobPointer...pointers)</td>
 <td align="center">移除多个Relation关系</td>
 </tr>
 </tbody>
@@ -1362,6 +1488,11 @@ response.send(
 <pre><code>    String Encode(byte[] data)
     byte[] Decode(String str)
 </code></pre>
+<h3 id="hex">Hex<a class="headerlink" href="#hex" title="Permanent link">&para;</a></h3>
+<p>静态方法：</p>
+<pre><code>    String Encode(byte[] data)
+    byte[] Decode(String str)
+</code></pre>
 <h3 id="crypto">Crypto<a class="headerlink" href="#crypto" title="Permanent link">&para;</a></h3>
 <p>静态方法：</p>
 <pre><code>    String Encode(String algorithm, String content)
@@ -1397,7 +1528,7 @@ response.send(
     String Encode(byte[] bytes)
     byte[] EncodeToBytes(byte[] bytes)
 </code></pre>
-<h2 id="_7">内置方法：<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_10">内置方法<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <pre><code>    long getTime() // 获取当前毫秒
     String fmt(String, Object...) // 格式化
     JSON.toJson(Object...) // Json化
@@ -1406,7 +1537,7 @@ response.send(
     boolean isStrEmpty(String) // 判断字符串是否为空
     arraycopy(Object from, int fromOffset, Object to, int toOffset, int length) // 复制数组内容
 </code></pre>
-<h2 id="_8">示例：<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_11">示例<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><strong>场景1</strong>:</p>
@@ -1471,10 +1602,10 @@ else {
 </code></pre>
 </li>
 </ul>
-<h2 id="_9">注意事项<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h2 id="_12">注意事项<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p>如果你编写的Java云代码经常发生运行超时、上下行超流量、滥用内存等现象，官方将会自动封停你的云函数功能，修改后向客服申请方可继续使用</p>
+<p>如果你编写的Java云函数经常发生运行超时、上下行超流量、滥用内存等现象，官方将会自动封停你的云函数功能，修改后向客服申请方可继续使用</p>
 </li>
 <li>
 <p>如果某接口调用频率较高，超过默认并发量，则会直接返回错误，解决方法：</p>

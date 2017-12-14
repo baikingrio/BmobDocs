@@ -1,10 +1,10 @@
-### 快速入门
+## 快速入门
 
-### 添加资源文件
+### 1、添加资源文件
 
 下载SDK提供的res文件夹拷入工程目录下，和工程本身res目录合并。
 
-res文件夹下载地址：[http://www.bmob.cn/static/res.zip](http://www.bmob.cn/static/res.zip)
+res文件夹下载地址：[https://www.bmob.cn/static/res.zip](https://www.bmob.cn/static/res.zip)
 
 这里需要注意的是：
 
@@ -12,7 +12,7 @@ res文件夹下载地址：[http://www.bmob.cn/static/res.zip](http://www.bmob.c
 2. BmobSDK提供的资源文件都以bmob_开头。
 3. 如果是在AndroidStudio中用远程依赖的方式就可以跳过这个步骤，因为这些资源都在下载到本地的aar包中。
 
-### 配置AndroidManifest.xml
+### 2、配置AndroidManifest.xml
 
 1.打开AndroidManifest.xml，添加SDK需要的权限到<manifest>标签下：
 
@@ -43,7 +43,7 @@ res文件夹下载地址：[http://www.bmob.cn/static/res.zip](http://www.bmob.c
         </activity>
 ```
 
-### 初始化AppVersion表
+### 3、初始化AppVersion表
 
 一行代码轻松搞定`AppVersion`表（**注意：请务必将该表在WEB端设置为只读模式**）：
 
@@ -61,7 +61,7 @@ SDK提供了初始化自动创建`AppVersion`表的方法，不再需要开发�
 
 **3、如果`2`方法尝试多次之后仍然无效，请`手动创建AppVersion表`，表的各个字段名称请查看下表。**
 
-### 调用自动更新接口
+### 4、调用自动更新接口
 
 最常见的自动更新模式是：当用户进入应用首页后，如果处于wifi环境则检测更新，如果有更新，弹出对话框提示有新版本，用户点选更新开始下载更新。实现的方法是，在应用程序入口Activity里的`OnCreate()`方法中调用如下代码：
 
@@ -102,7 +102,7 @@ SDK中为自动更新方式提供了`忽略版本更新`功能，当用户勾选
 
 **注：强制更新和忽略版本更新只支持自动更新方式。**
 
-### 上传APK文件或填写apk文件的url地址
+### 5、上传APK文件或填写apk文件的url地址
 
 初始化AppVersion表成功后，开发者在管理后台的`数据浏览`页中就可以看见AppVersion表了,该表的结构如下：
 
@@ -149,9 +149,9 @@ SDK中为自动更新方式提供了`忽略版本更新`功能，当用户勾选
 
 **请不要上传apk文件到`path`字段，改为`填写apk文件的url地址`到`android_url`字段。**
 
-具体原因请查看 [常见问题](http://docs.bmob.cn/data/Android/h_helps/doc/index.html)。
+具体原因请查看 [常见问题](https://docs.bmob.cn/data/Android/h_helps/doc/index.html)。
 
-### 集成检测
+### 6、集成检测
 
 SDK中默认开启了集成检测功能，在调用任意的更新接口后，我们将替您自动检查上述集成过程中2、3两个步骤是否被正确完成。 如果正确完成不会出现任何提示，否则会以如下的toast提示您。
 
@@ -165,13 +165,38 @@ toast的含义如下：
 	
 	"Please add Activity in AndroidManifest!"：请检查上述步骤中的Activity是否正确添加。
 
+## 兼容Android7.0
 
-### 其他更新方式
+兼容了Android7.0中的FileProvider，具体用法如下：
+
+### 1 在AndroidManifest.xml中的Application标签下添加如下内容：
+
+```xml
+<provider
+    android:authorities="cn.bmob.update.fileprovider"           android:name="android.support.v4.content.FileProvider"
+    android:grantUriPermissions="true"
+    android:exported="false">
+    <meta-data 	
+     	android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths" />
+</provider>
+```
+### 2 在res的xml目录下创建file_paths.xml文件，用来指定Apk文件下载的位置，参考如下：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path path="." name="external_storage_root" />
+</paths>
+```
+
+
+## 其他更新方式
 
 除了在快速入门中提到的自动更新之外，Bmob自动更新SDK还支持另外两种场景：手动更新、静默更新。
 下面将详细介绍这两种场景的接口及默认行为。
 
-#### 手动更新
+### 手动更新
 
 许多应用的设置界面中都会有检查更新等类似功能，需要用户主动触发而检测更新。它的默认行为基本和自动更新基本一致。它和自动更新的主要区别是：在这种手动更新的情况下，无论网络状况是否Wifi，无论用户是否忽略过该版本的更新，都可以像下面的示例一样在按钮的回调中发起更新检查，代替update(Context context)：
 
@@ -179,7 +204,7 @@ toast的含义如下：
 	    BmobUpdateAgent.forceUpdate(mContext);
 	}
 
-#### 静默下载更新
+### 静默下载更新
 
 当用户进入应用首页后如果处于wifi环境检测更新，如果有更新，后台下载新版本，如果下载成功，则进行通知栏展示，用户点击通知栏开始安装。静默下载过程中如果wifi断开，则会停止下载。实现的方法是：在应用程序入口Activity里的`OnCreate()`方法中调用如下代码：
 	
@@ -188,19 +213,19 @@ toast的含义如下：
 	    BmobUpdateAgent.silentUpdate(this);
 	}
 
-### 自定义功能
+## 自定义功能
 
-#### 恢复默认设置
+### 恢复默认设置
 
 BmobUpdateAgent.setDefault();
 
-#### 设置更新的网络条件
+### 设置更新的网络条件
 
 BmobUpdateAgent.setUpdateOnlyWifi（boolean updateOnlyWifi）
 
 注：updateOnlyWifi:true表示只在wifi环境下检测更新，false表示所有环境下均可检测更新
 
-#### 监听检测更新的结果
+### 监听检测更新的结果
 
 如果开发者想自己处理检测更新的结果，可以按如下步骤，实现更新监听接口，自主处理更新事件：
 
@@ -229,7 +254,7 @@ BmobUpdateAgent.setUpdateOnlyWifi（boolean updateOnlyWifi）
 	BmobUpdateAgent.update(this);
 ```
 
-#### 监听对话框按键操作
+### 监听对话框按键操作
 
 有时候开发者需要知道用户点击了哪个按钮，开发者可设置监听对话框的按钮点击事件。
 
@@ -269,7 +294,7 @@ BmobUpdateAgent.setUpdateOnlyWifi（boolean updateOnlyWifi）
 	UpdateStatus.NotNow     =7： 代表点击的是“以后再说”
 	UpdateStatus.Close      =8： 代表关闭对话框-->只有在强制更新状态下才会在更新对话框的右上方出现close按钮,如果用户不点击”立即更新“按钮，这时候开发者可做些操作，比如直接退出应用等
 
-### 常见问题
+## 常见问题
  
 一、**上传新的APK文件之后，为什么使用 `v3.4.6以前版本的SDK开发的旧应用` 的自动更新功能出现`解析包出错`问题？**
  
@@ -311,7 +336,7 @@ BmobUpdateAgent.setUpdateOnlyWifi（boolean updateOnlyWifi）
 	 <!-- 设置应用渠道，如果应用不需要区分渠道，则建议删除此行 -->
 	<meta-data android:name="BMOB_CHANNEL" android:value="bmob"/>
 
-### 案例源码
+## 案例源码
 
 这里我们提供了一个使用BmobSDK自动更新功能的实例程序供大家参考。下载地址如下：[https://github.com/bmob/bmob-android-demo-autoupdate](https://github.com/bmob/bmob-android-demo-autoupdate)
 

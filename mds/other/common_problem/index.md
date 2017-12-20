@@ -56,6 +56,41 @@ Bmob采用南北双线，多路分流的方式，将服务器部署在国内外�
 你可以用js sdk来开发对应的html5页面，开发好之后联系我们客服，我们帮你把h5页面放到你的bmob子域名中去，给用户访问。
 
 ---
+** 如何在bmob后端构建代码来获取融云的token **  
+参考代码如下：
+
+```
+function onRequest(request, response, modules) {
+    var userId = request.body.userId;
+    var name = request.body.name;
+    var portraitUri = request.body.portraitUri;
+    var appKey = &quot;&quot;;
+    var appSecret = &quot;&quot;;
+    var random = Math.ceil(Math.random()*10000);
+    var timestamp = Date.now();
+    var before = appSecret + random + timestamp;
+    var signature = modules.oCrypto.createHash('sha1').update(before).digest('hex'); 
+    var http = modules.oHttp;
+    var bodyStr = &quot;userId=&quot; + userId + &quot;&amp;name=&quot; + name + &quot;&amp;portraitUri=&quot; + portraitUri;
+    var options = {
+        &quot;url&quot;: &quot;http://api.cn.ronghub.com/user/getToken.json&quot;,
+        &quot;headers&quot;: {
+            'app-key': appKey,
+            'content-type': 'application/x-www-form-urlencoded',
+            'nonce': random,
+            'signature': signature,
+            'timestamp': timestamp
+        },
+         &quot;body&quot;:bodyStr
+
+    };
+    http.post(options,function(err,res,body){
+        response.send(body);
+    })
+}                                                                           	
+```
+
+---
 ** 如何联系Bmob技术和商务 **  
 技术客服QQ：[2093289624](http://wpa.qq.com/msgrdv=3&uin=2093289624&site=qq&menu=yes)  
 商务QQ：[2499654572](http://wpa.qq.com/msgrdv=3&uin=2499654572&site=qq&menu=yes)  

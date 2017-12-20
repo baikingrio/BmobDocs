@@ -64,30 +64,29 @@ function onRequest(request, response, modules) {
     var userId = request.body.userId;
     var name = request.body.name;
     var portraitUri = request.body.portraitUri;
-    var appKey = &quot;&quot;;
-    var appSecret = &quot;&quot;;
+    var appKey = "";
+    var appSecret = "";
     var random = Math.ceil(Math.random()*10000);
     var timestamp = Date.now();
-    var before = appSecret + random + timestamp;
+    var before = appSecret + random + timestamp;    
     var signature = modules.oCrypto.createHash('sha1').update(before).digest('hex'); 
     var http = modules.oHttp;
-    var bodyStr = &quot;userId=&quot; + userId + &quot;&amp;name=&quot; + name + &quot;&amp;portraitUri=&quot; + portraitUri;
+    var bodyStr = "userId=" + userId + "&name=" + name + "&portraitUri=" + portraitUri;
     var options = {
-        &quot;url&quot;: &quot;http://api.cn.ronghub.com/user/getToken.json&quot;,
-        &quot;headers&quot;: {
+        "url": "http://api.cn.ronghub.com/user/getToken.json",
+        "headers": {
             'app-key': appKey,
             'content-type': 'application/x-www-form-urlencoded',
             'nonce': random,
             'signature': signature,
             'timestamp': timestamp
         },
-         &quot;body&quot;:bodyStr
-
+         "body":bodyStr
     };
     http.post(options,function(err,res,body){
         response.send(body);
     })
-}                                                                           	
+}                                                                                                                                             	
 ```
 
 ---

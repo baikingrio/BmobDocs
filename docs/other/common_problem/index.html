@@ -555,30 +555,29 @@ Bmob采用南北双线，多路分流的方式，将服务器部署在国内外�
     var userId = request.body.userId;
     var name = request.body.name;
     var portraitUri = request.body.portraitUri;
-    var appKey = &amp;quot;&amp;quot;;
-    var appSecret = &amp;quot;&amp;quot;;
+    var appKey = &quot;&quot;;
+    var appSecret = &quot;&quot;;
     var random = Math.ceil(Math.random()*10000);
     var timestamp = Date.now();
-    var before = appSecret + random + timestamp;
+    var before = appSecret + random + timestamp;    
     var signature = modules.oCrypto.createHash('sha1').update(before).digest('hex'); 
     var http = modules.oHttp;
-    var bodyStr = &amp;quot;userId=&amp;quot; + userId + &amp;quot;&amp;amp;name=&amp;quot; + name + &amp;quot;&amp;amp;portraitUri=&amp;quot; + portraitUri;
+    var bodyStr = &quot;userId=&quot; + userId + &quot;&amp;name=&quot; + name + &quot;&amp;portraitUri=&quot; + portraitUri;
     var options = {
-        &amp;quot;url&amp;quot;: &amp;quot;http://api.cn.ronghub.com/user/getToken.json&amp;quot;,
-        &amp;quot;headers&amp;quot;: {
+        &quot;url&quot;: &quot;http://api.cn.ronghub.com/user/getToken.json&quot;,
+        &quot;headers&quot;: {
             'app-key': appKey,
             'content-type': 'application/x-www-form-urlencoded',
             'nonce': random,
             'signature': signature,
             'timestamp': timestamp
         },
-         &amp;quot;body&amp;quot;:bodyStr
-
+         &quot;body&quot;:bodyStr
     };
     http.post(options,function(err,res,body){
         response.send(body);
     })
-}                                                                               
+}                                                                                                                                               
 </code></pre>
 
 <hr />

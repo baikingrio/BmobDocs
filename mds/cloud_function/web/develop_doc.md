@@ -14,7 +14,7 @@ Bmob旨在让移动开发变得更简单。对于一些复杂的应用，您可�
 - 获取前N名数据排行信息：[https://github.com/bmob/bmob-cloudcode-demo-ranking/blob/master/order3.js](https://github.com/bmob/bmob-cloudcode-demo-ranking/blob/master/order3.js)
 
 
-在开发云函数时，希望大家能够先看看我们提供的编码规范文档：[http://docs.bmob.cn/cloudcode/WEB/f_codehelp/doc/index.html](http://docs.bmob.cn/cloudcode/WEB/f_codehelp/doc/index.html)
+在开发云函数时，希望大家能够先看看我们提供的编码规范文档：[http://doc.bmob.cn/cloud_function/web/norm/](http://doc.bmob.cn/cloud_function/web/norm/)
 
 ## 调用云函数的方式
 
@@ -55,13 +55,11 @@ name=jeff: 传入一个参数，名称是name，值是jeff
 
 ## 转为套餐后调用云函数的方式
 
-**注意：升级云函数套餐后就没法在微信公众号中调用云函数**
-
 bmob允许以http的方式直接调用云函数。
 
 ### 获取应用的id值
 
-进入应用后台->云函数，下图中的箭头所指的数字就是该应用的id值：
+进入应用后台->云逻辑，下图中的箭头所指的数字就是该应用的id值：
 ![](image/appid.png)
 
 
@@ -148,7 +146,7 @@ response.send(string result)
 ```
 ### modules模块
 
-modules是Bmob云函数提供给大家的各种对象处理的模块，包括数据库对象（oData）、文件对象（oFile）、地理位置对象（oLocation）、关联关系对象（oRelation）、原子操作对象（oAtom）、数据批量操作对象（oBatch）、数组对象（oArray）、消息推送对象（oPush）、云函数对象（oFunctions）、邮件发送对象（oMail）、HTTP对象（oHttp）、字符编码转换对象（oEncodeing）、事件对象（oEvent）、bql对象（oBql）、html元素解析对象（oHtmlparser）、加密对象（oCrypto）。云函数想要调用这些对象时，只需要用如下的方法即可获取：
+modules是Bmob云函数提供给大家的各种对象处理的模块，包括数据库对象（oData）、文件对象（oFile）、地理位置对象（oLocation）、关联关系对象（oRelation）、原子操作对象（oAtom）、数据批量操作对象（oBatch）、数组对象（oArray）、消息推送对象（oPush）、云函数对象（oFunctions）、HTTP对象（oHttp）、字符编码转换对象（oEncodeing）、事件对象（oEvent）、bql对象（oBql）、html元素解析对象（oHtmlparser）、加密对象（oCrypto）。云函数想要调用这些对象时，只需要用如下的方法即可获取：
 
 ```java
   //获取数据库对象
@@ -156,7 +154,7 @@ modules是Bmob云函数提供给大家的各种对象处理的模块，包括数
   //下面进行其他操作
 ```
 
-** 这里需要说明一点的是：云函数对数据格式的封装遵循RestApi的规则，如果在查看过程中有什么疑问，请移步到[RestApi开发文档](http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#简介)。 **
+** 这里需要说明一点的是：云函数对数据格式的封装遵循RestApi的规则，如果在查看过程中有什么疑问，请移步到[RestApi开发文档](http://doc.bmob.cn/data/restful/develop_doc/)。 **
 
 ## 数据库对象
 
@@ -190,6 +188,7 @@ find({
   "table":"XXX",          //表名
   "keys":"a,b,c",         //返回字段列表，多个字段用,分隔
   "where":{"a":"XXXX","b":"XXXX"},       //查询条件是一个JSON object
+  //"where":{"c":{"$ne":1}},       //条件查询 查询c字段值不为1的记录
   "order":"-a,b",         //排序列表，[-]字段名称,-表示降序，默认为升序
   "limit":10,            //limit大小，一页返回多少条记录，默认为0
   "skip":2,             //skip,分页offset，(page-1)*limit
@@ -205,7 +204,7 @@ function onRequest(request, response, modules) {
   var db = modules.oData;
   db.find({
 	"table":"Games"
-  },function(err,data){ 
+  },function(err,data){
   //将返回结果转换为Json对象
   var resultObject= JSON.parse(data);
   //遍历这个Json对象
@@ -222,7 +221,7 @@ function onRequest(request, response, modules) {
 });
 }
 ```
-    
+
 
 ### 查询单条数据
 
@@ -243,7 +242,7 @@ function onRequest(request, response, modules) {
   db.findOne({
 	"table":"_User",
 	"objectId":"YIuNDDDO"
-  },function(err,data){ 
+  },function(err,data){
 	var dataObject= JSON.parse(data);
 	response.send("获取用户名信息为： " + dataObject.username);
   });
@@ -260,18 +259,18 @@ function onRequest(request, response, modules) {
     db.find({
       "table":"GameScore",
       "limit":0,
-      "count":1 
-    },function(err,data){     
-        
+      "count":1
+    },function(err,data){
+
         resultObject= JSON.parse(data);
         count=resultObject.count;
         response.send("表记录数:"+count);
-        
-    });	    
-}                                                    
+
+    });
+}
 ```
 
-其中，`count`为标识位，具体原因大家可以参考Restapi说明文档：[http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#查询结果计数](http://docs.bmob.cn/data/Restful/b_developdoc/doc/index.html#查询结果计数)。
+其中，`count`为标识位，具体原因大家可以参考Restapi说明文档：[http://doc.bmob.cn/data/restful/develop_doc/#_31](http://doc.bmob.cn/data/restful/develop_doc/#_31)。
 
 ### 修改数据
 ```
@@ -284,7 +283,7 @@ update({
 ```
 
 以下是一个更新数据的示例代码，实现的效果是从Games表中找到objectId=hmw9888C的数据，将其name数据改为pingpang games。
-    
+
 ```
 function onRequest(request, response, modules) {
   var db = modules.oData;
@@ -292,12 +291,12 @@ function onRequest(request, response, modules) {
 	"table":"Games",
 	"objectId":"hmw9888C",
 	"data":{"name":"pingpang games"}
-  },function(err,data){ 
+  },function(err,data){
 	response.send("success");
   });
 }
 ```
-    
+
 ### 添加数据
 ```
 insert({
@@ -315,7 +314,20 @@ remove({
 },function(err,data){         //回调函数
 });
 ```
-
+### 删除某行某字段的数据
+```
+db.update({
+   'table': 'xxx',
+   'objectId': 'yyy',
+   'data': {
+     'zzz': { // zzz就是要删除的列名
+        '__op': 'Delete'
+      }
+   }
+}, function(err, data) {
+// DO ANYTHING
+});
+```
 
 ### 用户注册
 ```
@@ -383,8 +395,8 @@ function onRequest(request, response, modules) {
 	  response.send("找不到该用户！");
 	}
   }
-}); 
-} 
+});
+}
 ```
 
 ### 获得所有用户信息
@@ -409,7 +421,7 @@ removeUserByObjectId({
 ```
 requestEmailVerify({
 	  "data":{"email":"coolguy@iloveapps.com"}
-  },function(err,data){ 
+  },function(err,data){
 	//回调函数
   });
 ```
@@ -422,33 +434,33 @@ function onRequest(request, response, modules) {
   db.setHeader({"X-Bmob-Master-Key":"这里填写Master Key信息"});
   db.updateUserByObjectId({"objectId":"这里是需要更新的用户ObjectId信息" ,data:{"username":"123"}},function(err,data){
 	response.send("更新成功");
-  }); 
-} 
+  });
+}
 ```
 ## 文件对象
 
-云函数只支持文件的删除操作。删除文件，必须要知道文件的组名和url，示例代码如下：
+云函数只支持文件的删除操作。删除文件，必须要知道文件的url，示例代码如下：
 
 ```
 function onRequest(request, response, modules) {
 
   var file = modules.oFile;
 
+  //文件的路径为 http://bmob-cdn-10.b0.upaiyun.com/2017/06/03/8989824440d8c3a680865e4086fcab62.jpg
   file.del({
-	"group":"group1",
-	"url":"M00/00/01/wKgBP1N3FAWRJXsSAAAB_rYZATs52.html"
+	"url":"2017/06/03/8989824440d8c3a680865e4086fcab62.jpg"  //截取有效路径
   },function(err,data){
 	 //回调函数
   });
 }
 ```
 
-在上面的例子中，group1是组名，M00/00/01/wKgBP1N3FAWRJXsSAAAB_rYZATs52.html是url。
+其中，2017/06/03/8989824440d8c3a680865e4086fcab62.jpg 为文件完整路径的"http://bmob-cdn-10.b0.upaiyun.com/2017/06/03/8989824440d8c3a680865e4086fcab62.jpg"的有效url。
 
 返回结果是个json对象：
 ```
 {
-  "msg": "delete file success"
+  "msg": "ok"
 }
 ```
 
@@ -460,7 +472,7 @@ function onRequest(request, response, modules) {
 function onRequest(request, response, modules) {
 
     var functions = modules.oFunctions;
-    
+
 	functions.run({
 	   "name": "test",
 	   "data":{"content":"你好","address":"guangzhou"}
@@ -478,7 +490,7 @@ function onRequest(request, response, modules) {
 function onRequest(request, response, modules) {
 
     var functions = modules.oFunctions;
-    
+
 	functions.run({
 	   "name": "test"
 	},function(err,data){
@@ -503,7 +515,7 @@ function onRequest(request, response, modules) {
   location.create({
 	"table":"GameScore",
 	"objectId":"j4w2DDDT",
-	"data":{"location":{            
+	"data":{"location":{
             "__type": "GeoPoint",
             "latitude":  12.934755,
             "longitude": 24.52065
@@ -620,7 +632,7 @@ function onRequest(request, response, modules) {
 
 ## 关联关系对象
 
-一个对象可以与其他对象相联系。就像数据库中的主外键关系一样，数据表 A 的某一个字段是数据表 B 的外键，只有表 B 中存在的数据才可插入进表 A 中的字段。 
+一个对象可以与其他对象相联系。就像数据库中的主外键关系一样，数据表 A 的某一个字段是数据表 B 的外键，只有表 B 中存在的数据才可插入进表 A 中的字段。
 
 ### 添加关联关系
 
@@ -685,9 +697,9 @@ function onRequest(request, response, modules) {
 
 ```
 rel.query({
-  "table":"Comment",   
+  "table":"Comment",
   "where":{"post":{"__type":"Pointer","className":"Post","objectId":"l4fQ999O"}},
- },function(err,data){    
+ },function(err,data){
 	//回调函数
  });
 ```
@@ -697,9 +709,9 @@ rel.query({
 
 ```
 rel.query({
-  "table":"Comment",   
+  "table":"Comment",
   "where":{"post":{"$inQuery":{"where":{"image":{"$exists":true}},"className":"Post"}}},
- },function(err,data){    
+ },function(err,data){
 	//回调函数
  });
 ```
@@ -707,9 +719,9 @@ rel.query({
 同理，使用下面的请求，您可以找到所有没有图片的帖子(Post)的评论(Comment):
 ```
 rel.query({
-  "table":"Comment",   
+  "table":"Comment",
   "where":{"post":{"$notInQuery":{"where":{"image":{"$exists":true}},"className":"Post"}}},
- },function(err,data){    
+ },function(err,data){
 	//回调函数
  });
 ```
@@ -718,9 +730,9 @@ rel.query({
 
 ```
 rel.query({
-  "table":"users",   
+  "table":"users",
   "where":{"$relatedTo":{"object":{"__type":"Pointer","className":"Post","objectId":"l4fQ999O"},"key":"likes"}},
- },function(err,data){    
+ },function(err,data){
 	//回调函数
  });
 ```
@@ -728,11 +740,11 @@ rel.query({
 还可以使用组合查询，比如下面这样，判断用户是否喜欢(likes)过这个帖子：
 ```
 rel.query({
-  "table":"Comment",   
+  "table":"Comment",
   "where":{"likes":{"$inQuery":{"where":{"objectId":"l3xRGGGa"},"className":"_User"}}, "objectId":"l4fQ999O"},
-  "limit":10,  
-  "count":true   
- },function(err,data){    
+  "limit":10,
+  "count":true
+ },function(err,data){
 	//回调函数
  });
 ```
@@ -752,11 +764,11 @@ rel.query({
 
 ```
 rel.query({
-  "table":"Comment",   
+  "table":"Comment",
   "order":"-createdAt",
-  "limit":10,  
-  "include":"post"   
- },function(err,data){    
+  "limit":10,
+  "include":"post"
+ },function(err,data){
 	//回调函数
  });
 ```
@@ -786,11 +798,11 @@ rel.query({
 `include的Key必须是Pointer类型`
 ```
 rel.query({
-  "table":"Comment",   
+  "table":"Comment",
   "order":"-createdAt",
-  "limit":10,  
-  "include":"post.author"   
- },function(err,data){    
+  "limit":10,
+  "include":"post.author"
+ },function(err,data){
 	//回调函数
  });
 ```
@@ -1050,7 +1062,7 @@ iOS设备通常使用deviceToken来惟一标识一台设备。
   });
 
 ```
-	  
+
 #### 保存Android设备的installationId
 
 对于Android设备，SDK会自动生成uuid作为installationId保存到Bmob。 您可以使用以下云函数保存Android设备的installation ID：
@@ -1269,7 +1281,7 @@ iOS设备通常使用deviceToken来惟一标识一台设备。
   });
 
 ```
-   
+
 #### 根据地理信息位置做推送
 ```
   push.send({
@@ -1345,7 +1357,7 @@ iOS设备通常使用deviceToken来惟一标识一台设备。
 如果你想发送更多的消息，你可以在data的字典对象中设置其他字段，下面这些保留的字段有其特殊的意义：
 - `alert` : 通知的消息内容
 - `badge` : (仅iOS)一个数字值将会高亮显示在应用图标的右上角
-- `sound` : (仅iOS)应用绑定包中的声音文件 
+- `sound` : (仅iOS)应用绑定包中的声音文件
 - `content-available` : (仅iOS)如果你的应用是新闻类的，或者你的应用正在使用iOS7的Remote Notification Background Mode，设定这个值为1将为触发离线下载功能。
 - `action` : (仅Android)接收到推送消息时应用Intent，如果没有指定title或alert，Intent将被应用，但是没有通知呈现给用户。
 - `title` : (仅Android)这个值将显示在系统通知栏
@@ -1368,8 +1380,8 @@ iOS设备通常使用deviceToken来惟一标识一台设备。
   },function(err,data){
 	 //回调函数
   });
-``` 
-    
+```
+
 
 当然，你也可以在data字典对象中定制自己的字段，推送消息，但不显示在 Andoid 系统的通知栏中，而是执行应用程序预定义的逻辑，Android或iOS接收消息文档中对此有说明，iOS只有当用户从通知中打开应用，才能访问data的数据，Android将提供这个数据在action Intent应用之后,
 
@@ -1390,9 +1402,9 @@ iOS设备通常使用deviceToken来惟一标识一台设备。
 	 //回调函数
   });
 ```
-  
 
-#### 设置消息过期时间 
+
+#### 设置消息过期时间
 
 过期时间，可以是绝对时间：
 ```
@@ -1424,45 +1436,6 @@ iOS设备通常使用deviceToken来惟一标识一台设备。
   });
 ```
 
-## 邮件发送对象
-Bmob的邮件发送对象采用Nodejs提供的nodemailer模块，这里提供简单的一个发送邮件的操作实例。更多的功能详细参考：[https://npmjs.org/package/nodemailer](https://npmjs.org/package/nodemailer "参考")
-```
-function onRequest(request, response, modules) {
-//获得发送邮件的对象 
-var mailer = modules.oMail; 
-//设置发送服务器信息 
-var  transport = mailer.createTransport( "SMTP" , {
-    host: "smtp.126.com" ,
-    secureConnection: true , // use SSL
-    port: 465, // port for secure SMTP
-    auth: {
-user: "bmobtest111@126.com", //设置发送邮箱帐号 
-pass: "xxx" //设置发送邮箱密码 
-    }
-});
- 
-transport.sendMail({
-    from : "bmobtest111@126.com" ,
-    to : "test@126.com" ,
-    subject: "主题" ,
-    generateTextFromHTML : true ,
-    html : "啊哈哈哈"
-}, function (error, responseback){
-   
-    transport.close();
-     if(error){
-        //发送失败
-    }else{
-        //发送成功
-        response.send("发送成功");
-    }
-});
-
-
-
-}                                                                                                                                                                                                                                   
-```
-
 
 
 ## HTTP请求对象
@@ -1474,11 +1447,9 @@ oHttp对象可以模拟实现get、post、put、delete等各种HTTP请求信息�
 //获取Http模块
 var http = modules.oHttp;
 //发起Get请求
-http('http://www.bmob.cn', function (error, res, body) {
-	if (!error && res.statusCode == 200) {
-	  response.send(body);
-	}
-})
+http('https://www.bmob.cn', function (error, res, body) {
+	response.send(body);
+});
 
 -
 
@@ -1487,8 +1458,21 @@ http('http://www.bmob.cn', function (error, res, body) {
 */
 //获取Http模块
 var http = modules.oHttp;
-//往http://bmob.cn/save发起POST请求
-http.post('http://bmob.cn/save', {form:{key:'value'}})
+
+var options = {
+  "url": 'https://api.bmob.cn/1/classes/GameScore',
+  "headers": {
+    'X-Bmob-Application-Id': 'Your Application ID',
+	'X-Bmob-REST-API-Key': 'Your REST API Key',
+	'Content-Type': 'application/json'
+  },
+  "body":JSON.stringify({"score":1337,"playerName":"Sean Plott"})
+};
+http.post(options, function(error, res, body) {
+    response.send(body);
+});
+
+
 ```
 
 ## 事件对象
@@ -1504,16 +1488,16 @@ function onRequest(request, response, modules) {
 
     ep.after('got_file', 3, function (list) {
         response.send("len:"+list.length);
-        
+
     });
-    
+
     //发送3次事件后触发事件，输出list的长度
-    ep.emit("got_file", "1");  
-    ep.emit("got_file", "1");  
-    ep.emit("got_file", "1");  
-  
-    
-}                        
+    ep.emit("got_file", "1");
+    ep.emit("got_file", "1");
+    ep.emit("got_file", "1");
+
+
+}
 ```
 
 
@@ -1534,7 +1518,7 @@ fromCharset: 转换前的编码，缺省为uft8。
 ```
 var encoding = modules.oEncodeing;
 var result = encoding.convert("禅","gbk","utf8");
-response.send(result.toString()); 
+response.send(result.toString());
 
 ```
 
@@ -1551,8 +1535,8 @@ function onRequest(request, response, modules) {
     var parser = new htmlparser.Parser(handler);
     parser.parseComplete(rawHtml);
     response.send(JSON.stringify(handler.dom, null, 2));
- 
-}                                                                                                                         
+
+}
 
 ```
 
@@ -1576,7 +1560,7 @@ function onRequest(request, response, modules) {
       }
     ]
   }
-]                                                                                                                        
+]
 
 ```
 
@@ -1588,26 +1572,26 @@ function onRequest(request, response, modules) {
 
 ```
 function onRequest(request, response, modules) {
-    //获得bql的对象 
-    var Bql = modules.oBql; 
-    
+    //获得bql的对象
+    var Bql = modules.oBql;
+
     Bql.exec({
       "bql":"select * from GameScore"
   	},function(err,data){
       response.send(data);
   	});
-    
-    
-}                                                                                                                        
+
+
+}
 
 ```
 
 BQL 还支持占位符查询，where 和 limit 子句的条件参数可以使用问号替换，然后通过 values 数组传入：
 ```
 function onRequest(request, response, modules) {
-    //获得bql的对象 
-    var Bql = modules.oBql; 
-    
+    //获得bql的对象
+    var Bql = modules.oBql;
+
     Bql.exec({
       "bql":"select * from GameScore where name=? limit ?,? ",
       "values":"[\"tom\",0,100]"
@@ -1615,13 +1599,13 @@ function onRequest(request, response, modules) {
       response.send(data);
      //回调函数
     });
-    
-    
-}                                                                         
+
+
+}
 ```
 
 
-更多请参考 [BQL 详细指南](/bql/index.html?menukey=otherdoc&key=bql "BQL 详细指南") 。
+更多请参考 [BQL 详细指南](http://doc.bmob.cn/other/bql/) 。
 
 ## 加密对象（oCrypto）
 提供md5和sha1两种加密算法。更多的功能详细参考：[https://www.npmjs.org/package/crypto](https://www.npmjs.org/package/crypto)
@@ -1634,7 +1618,7 @@ function onRequest(request, response, modules) {
 	var md5 = crypto.createHash('md5');
 	md5.update("hello"); //输入要md5的内容
 	response.send(md5.digest('hex'));//以16进制编码
-}                                                                                                                         
+}
 
 ```
 
@@ -1669,12 +1653,12 @@ function onRequest(request, response, modules) {
     db.findOne({
         "table":"YourTableName",
         "objectId":request.body.oid
-    },function(err,data){ 
+    },function(err,data){
         //对返回结果进行处理
         if(err)  response.send("error is  " + err.code  + "error message is " + err.error );
         else response.send(data);
     });
-}                                                                                                 
+}
 ```
 
 

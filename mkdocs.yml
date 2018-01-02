@@ -61,17 +61,17 @@ pages:
         - '定时任务': 'cloud_function/web/timing_tasks.md'
         - '微信云函数': 'cloud_function/web/weixin.md'
         - '编码规范': 'cloud_function/web/norm.md'
-- '支付服务':
-    - 'Android':
-        - '开发文档': 'pay/android/index.md'
-        - '示例/功能': 'pay/android/example.md'
-        - '类库文档': 'pay/android/class_doc.md'
-        - '更新日志': 'pay/android/update_log.md'
-    - 'iOS':
-        - '开发文档': 'pay/ios/index.md'
-        - '示例/功能': 'pay/ios/example.md'
-        - '更新日志': 'pay/ios/update_log.md'
-    - 'RESTful': 'pay/restful/index.md'
+#- '支付服务':
+#    - 'Android':
+#        - '开发文档': 'pay/android/index.md'
+#        - '示例/功能': 'pay/android/example.md'
+#        - '类库文档': 'pay/android/class_doc.md'
+#        - '更新日志': 'pay/android/update_log.md'
+#    - 'iOS':
+#        - '开发文档': 'pay/ios/index.md'
+#        - '示例/功能': 'pay/ios/example.md'
+#        - '更新日志': 'pay/ios/update_log.md'
+#    - 'RESTful': 'pay/restful/index.md'
 - '短信服务':
     - 'Android': 'sms/android/index.md'
     - 'iOS': 'sms/ios/index.md'

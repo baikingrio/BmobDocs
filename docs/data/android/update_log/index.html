@@ -149,32 +149,6 @@
             
               <li class="pull-left">
                 
-					<!--<a href="">支付服务</a>-->
-					<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">支付服务 <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            
-								<li >
-									<a href="../../../pay/android/">Android</a>
-                                </li>
-                            
-                            
-								<li >
-									<a href="../../../pay/ios/">iOS</a>
-                                </li>
-                            
-                            
-                                <li >
-                                    <a href="../../../pay/restful/">RESTful</a>
-                                </li>
-							
-                        </ul>
-                    </li>
-                
-              </li>
-            
-              <li class="pull-left">
-                
 					<!--<a href="../../../sms/android/">短信服务</a>-->
 					<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">短信服务 <b class="caret"></b></a>
@@ -301,7 +275,7 @@
                   <a href="https://www.bmob.cn/repository/index" target="_blank">知识库</a>
               </li>
               <li>
-                  <a href="./video/index.html" target="_blank">视频教程</a>
+                  <a href="http://doc.bmob.cn/video/index.html" target="_blank">视频教程</a>
               </li>
             </ul>
             
@@ -336,12 +310,6 @@
 				
 				
 				
-				
-				
-				
-		
-	
-		
 				
 				
 				
@@ -417,7 +385,19 @@
 										
 										<ul class="nav">
 											
-											<li class="active "><a href="#v35520170420">v3.5.5(2017/04/20)</a>
+											<li class="active "><a href="#v35820171013">v3.5.8(2017/10/13)</a>
+												
+											</li>
+												
+											<li class=""><a href="#v35720170905">v3.5.7(2017/09/05)</a>
+												
+											</li>
+												
+											<li class=""><a href="#v35620170705">v3.5.6(2017/07/05)</a>
+												
+											</li>
+												
+											<li class=""><a href="#v35520170420">v3.5.5(2017/04/20)</a>
 												
 											</li>
 												
@@ -725,8 +705,6 @@
 		
 			
 		
-			
-		
 	</ul>
 </div>
             </div>
@@ -734,21 +712,41 @@
                 <div class="wrap">
                     
 
+<h2 id="v35820171013">v3.5.8(2017/10/13)<a class="headerlink" href="#v35820171013" title="Permanent link">&para;</a></h2>
+<ol>
+<li>修复部分Bug</li>
+</ol>
+<h2 id="v35720170905">v3.5.7(2017/09/05)<a class="headerlink" href="#v35720170905" title="Permanent link">&para;</a></h2>
+<ol>
+<li>进一步优化了推送相关类BmobInstallation的功能(升级sdk时需要修改少量代码);</li>
+<li>解决了BmobRole角色创建的bug;</li>
+<li>解决了BmobUser.fetchUserJsonInfo方法没回调的bug;</li>
+<li>自动更新中对Android7.0 FileProvider的适配(在此之前查表AppVersion并下载apk文件也是不难的);</li>
+<li>SDK的三方库依赖策略调整为除了okhttp3是源码依赖其他都依赖jar包，出现冲突或需要用自己本地的同名jar,则在aar中删除即可。</li>
+</ol>
+<h2 id="v35620170705">v3.5.6(2017/07/05)<a class="headerlink" href="#v35620170705" title="Permanent link">&para;</a></h2>
+<ol>
+<li>提供了客户端拉取后端用户信息的方法BmobUser.fetchUserInfo()，具体用法见文档；</li>
+<li>修复了在StrictMode下，分块上传文件相关IO流未妥善关闭的bug；</li>
+<li>源码层级集成了okhttp和gson,对okhttp的源码做了细节上的修改，解决了使用高版本okhttp上传文件的报错，亦即自v3.5.6开始，本地依赖数据sdk不需再导入okhttp和gson的jar，远程依赖数据sdk则保持不变(两行配置搞定),后续会慢慢解决依赖库的相关问题；</li>
+<li>升级okio包到1.12.0。<br />
+注:此次更新开发者不用修改之前的常用代码。</li>
+</ol>
 <h2 id="v35520170420">v3.5.5(2017/04/20)<a class="headerlink" href="#v35520170420" title="Permanent link">&para;</a></h2>
 <ol>
-<li>sdk新增重新设置主域名，类似之前的数据迁移。
+<li>sdk新增重新设置主域名，类似之前的数据迁移。<br />
 注:此次更新开发者不用修改之前的常用代码。</li>
 </ol>
 <h2 id="v35420170412">v3.5.4(2017/04/12)<a class="headerlink" href="#v35420170412" title="Permanent link">&para;</a></h2>
 <ol>
 <li>修复若干bug；</li>
-<li>SDK内部改进。
+<li>SDK内部改进。<br />
 注:此次更新开发者不用修改之前的常用代码。</li>
 </ol>
 <h2 id="v35320161109">v3.5.3(2016/11/09)<a class="headerlink" href="#v35320161109" title="Permanent link">&para;</a></h2>
 <ol>
 <li>增加了对新的短信服务的支持；</li>
-<li>修复了旧版本使用推送调用BmobInstallation的save()方法导致的内存吃紧问题。
+<li>修复了旧版本使用推送调用BmobInstallation的save()方法导致的内存吃紧问题。<br />
 注:此次更新开发者不用修改之前的常用代码。</li>
 </ol>
 <h2 id="v35220161027">v3.5.2(2016/10/27)<a class="headerlink" href="#v35220161027" title="Permanent link">&para;</a></h2>
@@ -756,7 +754,7 @@
 <li>集成了统计SDK功能,开发者不用额外集成；</li>
 <li>修复了一键注册登录的用户扩展字段信息没有保存到本地的bug；</li>
 <li>对文件上传到又拍云回调成功但返回的path为"null"的低概率情况加了判断并提示重传；</li>
-<li>修改了BmobQuery等部分细节代码；
+<li>修改了BmobQuery等部分细节代码；<br />
 注:此次更新开发者不用修改之前的常用代码 </li>
 </ol>
 <h2 id="v35120160720">v3.5.1(2016/07/20)<a class="headerlink" href="#v35120160720" title="Permanent link">&para;</a></h2>

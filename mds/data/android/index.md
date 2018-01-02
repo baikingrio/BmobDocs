@@ -374,7 +374,7 @@ p2.delete(new UpdateListener() {
 
 [快速入门相关源码下载](http://www.bmob.cn/static/Bmob_android_quickstart.zip "快速入门相关源码下载")
 
-案例教程和源码是快速入门的最简单方法，Bmob也为大家准备了相关的[案例教程和源码](http://docs.bmob.cn/data/Android/c_example/doc/index.html)，欢迎大家下载和查看。
+案例教程和源码是快速入门的最简单方法，Bmob也为大家准备了相关的[案例教程和源码](http://doc.bmob.cn/data/android/example/)，欢迎大家下载和查看。
 
 为方便大家更好的理解Bmob SDK能够做的事情，我们还特意为大家提供了一些源码，大家可以下载之后，**嵌入Bmob的AppKey**，再打包运行。
 
@@ -392,7 +392,7 @@ p2.delete(new UpdateListener() {
 
 ## 阅读更多的文档
 
-1. 快速入门只是提供了最最基本的介绍，如果你想了解更多的功能，请查看我们的详细开发文档：[http://docs.bmob.cn/data/Android/b_developdoc/doc/index.html](http://docs.bmob.cn/data/Android/b_developdoc/doc/index.html)
-2. 如果想看下SDK的类库文档，可以移步[这里](http://docs.bmob.cn/data/Android/i_doc/doc/index.html)
+1. 快速入门只是提供了最最基本的介绍，如果你想了解更多的功能，请查看详细的[开发文档](http://doc.bmob.cn/data/android/develop_doc/)
+2. 如果想看下SDK的类库文档，可以移步[这里](http://doc.bmob.cn/data/android/class_doc/)
 
 

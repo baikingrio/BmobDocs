@@ -39,7 +39,7 @@
 ```
 注意，为了确保体验，建议使用异步调用的方法。
 
-关于云函数的编写，详细参考  [云函数开发文档](http://docs.bmob.cn/cloudcode/WEB/a_faststart/doc/index.html)
+关于云函数的编写，详细参考  [云函数开发文档](http://doc.bmob.cn/cloud_function/web/develop_doc/)
 
 
 

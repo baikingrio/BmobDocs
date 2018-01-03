@@ -397,27 +397,11 @@
 												
 											</li>
 												
-											<li class=""><a href="#v35820171013_1">v3.5.8(2017/10/13)</a>
-												
-											</li>
-												
-											<li class=""><a href="#v35720170905_1">v3.5.7(2017/09/05)</a>
-												
-											</li>
-												
 											<li class=""><a href="#v35620170705">v3.5.6(2017/07/05)</a>
 												
 											</li>
 												
 											<li class=""><a href="#v35520170420">v3.5.5(2017/04/20)</a>
-												
-											</li>
-												
-											<li class=""><a href="#v35620170705_1">v3.5.6(2017/07/05)</a>
-												
-											</li>
-												
-											<li class=""><a href="#v35520170420_1">v3.5.5(2017/04/20)</a>
 												
 											</li>
 												
@@ -732,7 +716,6 @@
                 <div class="wrap">
                     
 
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <h2 id="v35920180102">v3.5.9(2018/01/02)<a class="headerlink" href="#v35920180102" title="Permanent link">&para;</a></h2>
 <ol>
 <li>SDK内部修改 
@@ -744,68 +727,23 @@
 注:此次更新开发者不用修改之前的常用代码。</li>
 </ol>
 <h2 id="v35720170905">v3.5.7(2017/09/05)<a class="headerlink" href="#v35720170905" title="Permanent link">&para;</a></h2>
-<p>=======</p>
-<h2 id="v35820171013_1">v3.5.8(2017/10/13)<a class="headerlink" href="#v35820171013_1" title="Permanent link">&para;</a></h2>
 <ol>
-<li>修复部分Bug</li>
+<li>进一步优化了推送相关类BmobInstallation的功能(升级sdk时需要修改少量代码);</li>
+<li>解决了BmobRole角色创建的bug;</li>
+<li>解决了BmobUser.fetchUserJsonInfo方法没回调的bug;</li>
+<li>自动更新中对Android7.0 FileProvider的适配(在此之前查表AppVersion并下载apk文件也是不难的);</li>
+<li>SDK的三方库依赖策略调整为除了okhttp3是源码依赖其他都依赖jar包，出现冲突或需要用自己本地的同名jar,则在aar中删除即可。
+注:此次更新开发者不用修改之前的常用代码。</li>
 </ol>
-<h2 id="v35720170905_1">v3.5.7(2017/09/05)<a class="headerlink" href="#v35720170905_1" title="Permanent link">&para;</a></h2>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>f65838772cbbce1209eddb65037bb6e51c73b991
-1. 进一步优化了推送相关类BmobInstallation的功能(升级sdk时需要修改少量代码);
-2. 解决了BmobRole角色创建的bug;
-3. 解决了BmobUser.fetchUserJsonInfo方法没回调的bug;
-4. 自动更新中对Android7.0 FileProvider的适配(在此之前查表AppVersion并下载apk文件也是不难的);
-5. SDK的三方库依赖策略调整为除了okhttp3是源码依赖其他都依赖jar包，出现冲突或需要用自己本地的同名jar,则在aar中删除即可。
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-注:此次更新开发者不用修改之前的常用代码。</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h2 id="v35620170705">v3.5.6(2017/07/05)<a class="headerlink" href="#v35620170705" title="Permanent link">&para;</a></h2>
 <ol>
 <li>提供了客户端拉取后端用户信息的方法BmobUser.fetchUserInfo()，具体用法见文档；</li>
 <li>修复了在StrictMode下，分块上传文件相关IO流未妥善关闭的bug；</li>
 <li>源码层级集成了okhttp和gson,对okhttp的源码做了细节上的修改，解决了使用高版本okhttp上传文件的报错，亦即自v3.5.6开始，本地依赖数据sdk不需再导入okhttp和gson的jar，远程依赖数据sdk则保持不变(两行配置搞定),后续会慢慢解决依赖库的相关问题；</li>
-<li>升级okio包到1.12.0。
+<li>升级okio包到1.12.0。<br />
 注:此次更新开发者不用修改之前的常用代码。</li>
 </ol>
 <h2 id="v35520170420">v3.5.5(2017/04/20)<a class="headerlink" href="#v35520170420" title="Permanent link">&para;</a></h2>
-<p>=======</p>
-<h2 id="v35620170705_1">v3.5.6(2017/07/05)<a class="headerlink" href="#v35620170705_1" title="Permanent link">&para;</a></h2>
-<ol>
-<li>提供了客户端拉取后端用户信息的方法BmobUser.fetchUserInfo()，具体用法见文档；</li>
-<li>修复了在StrictMode下，分块上传文件相关IO流未妥善关闭的bug；</li>
-<li>源码层级集成了okhttp和gson,对okhttp的源码做了细节上的修改，解决了使用高版本okhttp上传文件的报错，亦即自v3.5.6开始，本地依赖数据sdk不需再导入okhttp和gson的jar，远程依赖数据sdk则保持不变(两行配置搞定),后续会慢慢解决依赖库的相关问题；</li>
-<li>升级okio包到1.12.0。<br />
-注:此次更新开发者不用修改之前的常用代码。<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>f65838772cbbce1209eddb65037bb6e51c73b991</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</li>
-</ol>
-<h2 id="v35520170420_1">v3.5.5(2017/04/20)<a class="headerlink" href="#v35520170420_1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>sdk新增重新设置主域名，类似之前的数据迁移。<br />
 注:此次更新开发者不用修改之前的常用代码。</li>

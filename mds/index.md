@@ -1,3 +1,17 @@
+<div id="loading">
+<div>
+<h1></h1>
+<div class="loading">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+</div>
+</div>
 <div class="page-wrapper">
 <header class="header text-center">
     <div class="container">

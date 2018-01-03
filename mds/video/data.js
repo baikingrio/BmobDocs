@@ -281,4 +281,30 @@ var IMSDK = [{
         title:'4、IM SDK 的混淆和旧版回顾',
         id:'XMzExMTY4MzI2NA=='
     }]
-}]
+}];
+
+var WXAPP = [{
+	title:'第一节',
+	chapter:[{
+		title:'小程序开发基础',
+		id:'XMzI4NzA0NjEwOA=='
+	}]
+},{
+	title:'第二节',
+	chapter:[{
+		title:'小程序后端介绍',
+		id:'XMzI4NzA2MDI0MA=='
+	}]
+},{
+	title:'第三节',
+	chapter:[{
+		title:'相关准备工作',
+		id:'XMzI4NzA3NDM1Mg=='
+	}]
+},{
+	title:'第四节',
+	chapter:[{
+		title:'实战一：景区首页',
+		id:'XMzI4NzEwMTA1Mg=='
+	}]
+}];

@@ -2363,14 +2363,14 @@ for(int i=0;i&lt;2;i++){
     cards.add(new BankCard(&quot;建行卡&quot;+i, &quot;建行卡账号&quot;+i));
 }
 //p.addAll(&quot;cards&quot;, cards);                         //添加多个Object值
-p.save(new SaveListener&lt;String&gt;() {
+p.update(new UpdateListener() {
 
     @Override
-    public void done(String objectId,BmobException e) {
+    public void done(BmobException e) {
         if(e==null){
-            Log.i(&quot;bmob&quot;,&quot;保存成功&quot;);
+            Log.i(&quot;bmob&quot;,&quot;更新成功&quot;);
         }else{
-            Log.i(&quot;bmob&quot;,&quot;保存失败：&quot;+e.getMessage());
+            Log.i(&quot;bmob&quot;,&quot;更新失败：&quot;+e.getMessage());
         }
     }
 
@@ -2380,6 +2380,7 @@ p.save(new SaveListener&lt;String&gt;() {
 <p><strong> 注：此类方法不管这些数据之前是否已添加过，都会再次添加。</strong></p>
 <h4 id="adduniqueaddallunique">使用addUnique、addAllUnique添加<a class="headerlink" href="#adduniqueaddallunique" title="Permanent link">&para;</a></h4>
 <pre><code class="java">Person p = new Person();
+p.setObjectId(&quot;d32143db92&quot;);
 //添加String类型的数组
 p.addUnique(&quot;hobbys&quot;, &quot;唱歌&quot;);                                // 添加单个String
 //p.addAllUnique(&quot;hobbys&quot;, Arrays.asList(&quot;游泳&quot;, &quot;看书&quot;));  // 添加多个String
@@ -2390,12 +2391,12 @@ for(int i=0;i&lt;2;i++){
     cards.add(new BankCard(&quot;建行卡&quot;+i, &quot;建行卡账号&quot;+i));
 }
 //p.addAllUnique(&quot;cards&quot;, cards);                           //添加多个Object
-p.save(new SaveListener&lt;String&gt;() {
+p.update(new UpdateListener() {
 
     @Override
-    public void done(String objectId,BmobException e) {
+    public void done(BmobException e) {
         if(e==null){
-            Log.i(&quot;bmob&quot;,&quot;成功:&quot;+objectId);
+            Log.i(&quot;bmob&quot;,&quot;成功&quot;);
         }else{
             Log.i(&quot;bmob&quot;,&quot;失败：&quot;+e.getMessage());
         }

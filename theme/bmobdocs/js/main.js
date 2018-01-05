@@ -7,7 +7,9 @@
             $('.sidebar').remove();
             $('.content .wrap').attr('class','');
             $('.content').css('padding','0');
-
+            setTimeout(function(){
+                $('#loading').fadeOut();
+            },500)
         }
 
         var path = document.location.pathname;

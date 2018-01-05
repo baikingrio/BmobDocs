@@ -314,5 +314,17 @@ var data = [
                 title: '实战一：景区首页',
                 id: 'XMzI4NzEwMTA1Mg=='
             }]
+        }, {
+            title: '第五节',
+            chapter: [{
+                title: '实战一：景区列表、详情',
+                id: 'XMzI5MDAwOTA3Mg=='
+            }]
+        }, {
+            title: '第六节',
+            chapter: [{
+                title: '实战一：评论功能',
+                id: 'XMzI5MzQ5NDc4NA=='
+            }]
         }]
     }];

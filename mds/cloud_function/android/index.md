@@ -15,7 +15,7 @@
 ```java
 AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
 //第一个参数是上下文对象，第二个参数是云函数的方法名称，第三个参数是上传到云函数的参数列表（JSONObject cloudCodeParams），第四个参数是回调类
-ace.callEndpoint(context, cloudCodeName, params, new CloudCodeListener() {
+ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
 	@Override
     public void done(Object object, BmobException e) {
         if (e == null) {

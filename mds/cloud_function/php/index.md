@@ -1,6 +1,6 @@
 ## 云函数
 
-相关云函数的编写方式，请参考[云函数开发文档](http://docs.bmob.cn/cloudcode/WEB/a_faststart/doc/index.html)
+相关云函数的编写方式，请参考[云函数开发文档](http://doc.bmob.cn/cloud_function/web/develop_doc/)
 
 ## 运行云函数
 

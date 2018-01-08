@@ -4,7 +4,7 @@
 
 下载SDK提供的res文件夹拷入工程目录下，和工程本身res目录合并。
 
-res文件夹下载地址：[http://www.bmob.cn/static/res.zip](http://www.bmob.cn/static/res.zip)
+res文件夹下载地址：[https://www.bmob.cn/static/res.zip](https://www.bmob.cn/static/res.zip)
 
 这里需要注意的是：
 
@@ -149,7 +149,7 @@ SDK中为自动更新方式提供了`忽略版本更新`功能，当用户勾选
 
 **请不要上传apk文件到`path`字段，改为`填写apk文件的url地址`到`android_url`字段。**
 
-具体原因请查看 [常见问题](http://docs.bmob.cn/data/Android/h_helps/doc/index.html)。
+具体原因请查看 [常见问题](http://doc.bmob.cn/other/common_problem/)。
 
 ### 6、集成检测
 
@@ -164,6 +164,31 @@ toast的含义如下：
 	"Please add Permission in AndroidManifest!"：请检查上述步骤中的相关权限是否正确添加。
 	
 	"Please add Activity in AndroidManifest!"：请检查上述步骤中的Activity是否正确添加。
+
+## 兼容Android7.0
+
+兼容了Android7.0中的FileProvider，具体用法如下：
+
+### 1 在AndroidManifest.xml中的Application标签下添加如下内容：
+
+```xml
+<provider
+    android:authorities="cn.bmob.update.fileprovider"           android:name="android.support.v4.content.FileProvider"
+    android:grantUriPermissions="true"
+    android:exported="false">
+    <meta-data 	
+     	android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths" />
+</provider>
+```
+### 2 在res的xml目录下创建file_paths.xml文件，用来指定Apk文件下载的位置，参考如下：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path path="." name="external_storage_root" />
+</paths>
+```
 
 
 ## 其他更新方式

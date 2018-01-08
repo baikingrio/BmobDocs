@@ -2,22 +2,10 @@
     <div class="main-nav">
         <!-- Collapsed navigation -->
         <div class="navbar-header">
-            {%- if nav|length>1 or (page and (page.next_page or page.previous_page)) or config.repo_url %}
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            {%- endif %}
-
-          {%- block site_name %}
             <a class="navbar-brand" href="{{ nav.homepage.url }}">
                 <!--{{ config.site_name }}-->
                 <img src="{{ base_url }}/img/logo.png" alt="">
             </a>
-          {%- endblock %}
         </div>
 
         <!-- Expanded navigation -->
@@ -53,64 +41,23 @@
                   <a href="https://www.bmob.cn/repository/index" target="_blank">知识库</a>
               </li>
               <li>
-                  <a href="https://www.bmob.cn/downloads" target="_blank">下载</a>
+                  <a href="http://doc.bmob.cn/video/index.html" target="_blank">视频教程</a>
               </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            
               {%- block search_button %}
                 {%- if 'search' in config['plugins'] %}
+                <ul class="nav navbar-nav navbar-right"></ul>
                 <li>
                     <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
                         <i class="fa fa-search"></i> 搜索
                     </a>
                 </li>
+                </ul>
                 {%- endif %}
               {%- endblock %}
-
-              <!--{%- block next_prev %}-->
-                <!--{%- if page and (page.next_page or page.previous_page) %}-->
-                    <!--<li {% if not page.previous_page %}class="disabled"{% endif %}>-->
-                        <!--<a rel="next" {% if page.previous_page %}href="{{ page.previous_page.url }}"{% endif %}>-->
-                            <!--<i class="fa fa-arrow-left"></i> Previous-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li {% if not page.next_page %}class="disabled"{% endif %}>-->
-                        <!--<a rel="prev" {% if page.next_page %}href="{{ page.next_page.url }}"{% endif %}>-->
-                            <!--Next <i class="fa fa-arrow-right"></i>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!--{%- endif %}-->
-              <!--{%- endblock %}-->
-
-              <!--{%- block repo %}-->
-                <!--{%- if page and page.edit_url %}-->
-                    <!--<li>-->
-                        <!--<a href="{{ page.edit_url }}">-->
-                            <!--{%- if config.repo_name == 'GitHub' -%}-->
-                                <!--<i class="fa fa-github"></i> Edit on {{ config.repo_name }}-->
-                            <!--{%- elif config.repo_name == 'Bitbucket' -%}-->
-                                <!--<i class="fa fa-bitbucket"></i> Edit on {{ config.repo_name }}-->
-                            <!--{%- else -%}-->
-                            <!--Edit on {{ config.repo_name }}-->
-                            <!--{%- endif -%}-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!--{%- elif config.repo_url %}-->
-                    <!--<li>-->
-                        <!--<a href="{{ config.repo_url }}">-->
-                            <!--{%- if config.repo_name == 'GitHub' -%}-->
-                                <!--<i class="fa fa-github"></i> {{ config.repo_name }}-->
-                            <!--{%- elif config.repo_name == 'Bitbucket' -%}-->
-                                <!--<i class="fa fa-bitbucket"></i> {{ config.repo_name }}-->
-                            <!--{%- else -%}-->
-                            <!--{{ config.repo_name }}-->
-                            <!--{%- endif -%}-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!--{%- endif %}-->
-              <!--{%- endblock %}-->
-            </ul>
+            
         </div>
     </div>
 </div>

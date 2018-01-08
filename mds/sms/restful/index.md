@@ -21,11 +21,11 @@
 
 **短信模板需要符以下要求，否则模板审核不予通过。**
 
-注意：请不要发送任何敏感内容，请不要定制广告、营销以诱导用户行为的信息。具体如下：
-1.不得包含敏感关键，[关键字列表文档下载](https://github.com/bmob/bmob-public-docs)，不得包含【】和 [] 
-2.带联系方式（电话、qq微信、邮箱地址）的短信。如：“目前我司推出xx产品最新优惠，联系陈生了解详情，电话123-1234-1234”;
-3.诱导用户行为，特别是带超链接。如“我司推出新作xxx游戏，下载链接http://xxx.com”等；
-当前有两种使用自定义模板
+注意：请不要发送任何敏感内容，请不要定制广告、营销以诱导用户行为的信息。具体如下：  
+1.不得包含敏感关键，[关键字列表文档下载](https://github.com/bmob/bmob-public-docs)，不得包含【】和 []  
+2.带联系方式（电话、qq微信、邮箱地址）的短信。如：“目前我司推出xx产品最新优惠，联系陈生了解详情，电话123-1234-1234”;  
+3.诱导用户行为，特别是带超链接。如“我司推出新作xxx游戏，下载链接http://xxx.com”等；  
+当前有两种使用自定义模板  
 
 发现上述情况，针对通过身份审核的开发者，第一次给予警告，第二次将直接关闭接口使用，针对通过模板审核请求使用的开发者，模板审核不给予通过。
 
@@ -234,61 +234,6 @@ curl -X POST \
 ```
 
 
-
-## 查询短信状态
-
-**请求描述**
-
-通过以下接口，你可以查询某条短信是否发送成功，如果是使用了验证码接口，还可以查询该验证码是否被验证过。
-
-**请求**
-
-- url ：https://api.bmob.cn/1/querySms/:smsId （注意smsId前有冒号(:)）
-
-- method ：GET
-
-- header:
-
-```
-X-Bmob-Application-Id: Your Application ID
-X-Bmob-REST-API-Key: Your REST API Key
-Content-Type: application/json
-```
-
-
-**成功时响应**
-
-- status: 200 OK
-
-- body:
-
-```
-{
-  "sms_state": state, 
-  "verify_state": isVerify
-}
-```
-sms_state是发送状态，有值: SENDING-发送中，FAIL-发送失败 SUCCESS-发送成功
-verify_state是验证码是否验证状态， 有值: true-已验证 false-未验证
-
-**例子**
-
-例如，如果在上述发送短信接口或者请求验证码接口请求成功后返回的 `smsId` 为 `123678`，则可以使用以下请求查询这些短信的状态。
-
-```
-curl -X GET \
-  -H "X-Bmob-Application-Id: Your Application ID"          \
-  -H "X-Bmob-REST-API-Key: Your REST API Key"        \
-  https://api.bmob.cn/1/querySms/:123678
-```
-
-成功返回以下JSON：
-```
-{
-  "sms_state": "SENDING", 
-  "verify_state": false
-}
-```
 
 **注意事项**
 

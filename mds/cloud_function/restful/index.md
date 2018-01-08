@@ -1,6 +1,6 @@
 ### 开发文档
 
-相关云函数的编写方式，请参考[云函数开发文档](http://docs.bmob.cn/cloudcode/WEB/a_faststart/doc/index.html)
+相关云函数的编写方式，请参考[云函数开发文档](http://doc.bmob.cn/cloud_function/web/develop_doc/)
 
 在REST API中可以调用云函数。例如，想调用云函数的方法hello:
 

@@ -1,30 +1,30 @@
 ## AndroidSDK错误码列表
 
-错误码 		| 内容 		| 含义
--------- 	| -------- 	| --------
-9001		| AppKey is Null, Please initialize BmobSDK. |Application Id为空，请初始化.
-9002		| Parse data error|解析返回数据出错
-9003		| upload file error|上传文件出错
-9004		| upload file failure|文件上传失败
-9005		| A batch operation can not be more than 50|批量操作只支持最多50条
-9006		| objectId is null|objectId为空
-9007		| BmobFile File size must be less than 10M.|文件大小超过10M
-9008		| BmobFile File does not exist.|上传文件不存在
-9009		| No cache data.|没有缓存数据
-9010		| The network is not normal.(Time out)|网络超时
-9011		| BmobUser does not support batch operations.|BmobUser类不支持批量操作
-9012		| context is null.|上下文为空
-9013		| BmobObject Object names(database table name) <br/>format is not correct.|BmobObject（数据表名称）格式不正确
-9014		| 第三方账号授权失败|第三方账号授权失败
-9015		| 其他错误均返回此code|其他错误均返回此code
-9016		| The network is not available,please check your network!|无网络连接，请检查您的手机网络.
-9017		| 与第三方登录有关的错误，具体请看对应的错误描述|与第三方登录有关的错误，具体请看对应的错误描述
-9018		| 参数不能为空|参数不能为空
-9019		| 格式不正确：手机号码、邮箱地址、验证码|格式不正确：手机号码、邮箱地址、验证码
-9020		|保存CDN信息失败|保存CDN信息失败
-9021		|permission not defined.You must write android<br/>.permission.WAKE_LOCK  in AndroidManifest.xml "<uses-permission<br/> android:name="android.permission.WAKE_LOCK". |文件上传缺少wakelock权限
-9022		|upload failure,please retry.|文件上传失败，请重新上传
-9023		|please call Bmob.initialize to init sdk.|请调用Bmob类的initialize方法去初始化SDK
+| 错误码 	| 内容 		| 含义		|
+|-----------|-----------|-----------|
+| 9001		| AppKey is Null, Please initialize BmobSDK. |Application Id为空，请初始化.
+| 9002		| Parse data error|解析返回数据出错
+| 9003		| upload file error|上传文件出错
+| 9004		| upload file failure|文件上传失败
+| 9005		| A batch operation can not be more than 50|批量操作只支持最多50条
+| 9006		| objectId is null|objectId为空
+| 9007		| BmobFile File size must be less than 10M.|文件大小超过10M
+| 9008		| BmobFile File does not exist.|上传文件不存在
+| 9009		| No cache data.|没有缓存数据
+| 9010		| The network is not normal.(Time out)|网络超时
+| 9011		| BmobUser does not support batch operations.|BmobUser类不支持批量操作
+| 9012		| context is null.|上下文为空
+| 9013		| BmobObject Object names(database table name) <br/>format is not correct.|BmobObject（数据表名称）格式不正确
+| 9014		| 第三方账号授权失败|第三方账号授权失败
+| 9015		| 其他错误均返回此code|其他错误均返回此code
+| 9016		| The network is not available,please check your network!|无网络连接，请检查您的手机网络.
+| 9017		| 与第三方登录有关的错误，具体请看对应的错误描述|与第三方登录有关的错误，具体请看对应的错误描述
+| 9018		| 参数不能为空|参数不能为空
+| 9019		| 格式不正确：手机号码、邮箱地址、验证码|格式不正确：手机号码、邮箱地址、验证码
+| 9020		|保存CDN信息失败|保存CDN信息失败
+| 9021		|permission not defined.You must write android<br/>.permission.WAKE_LOCK  in AndroidManifest.xml "<uses-permission<br/> android:name="android.permission.WAKE_LOCK". |文件上传缺少wakelock权限
+| 9022		|upload failure,please retry.|文件上传失败，请重新上传
+| 9023		|please call Bmob.initialize to init sdk.|请调用Bmob类的initialize方法去初始化SDK
 
 ## iOSSDK错误码列表
 |错误码	|内容	|含义|

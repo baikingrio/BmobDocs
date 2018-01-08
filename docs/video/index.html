@@ -65,7 +65,7 @@
         }
 
         .mod-chapters .chapter .video li:hover {
-            background-color: #333;
+            background-color: #58bbee;
         }
 
         .mod-chapters .chapter .video li a {
@@ -119,6 +119,7 @@
     </style>
 </head>
 <body>
+
 <div class="navbar navbar-inverse navbar-fixed-top" style="margin: 0">
     <div class="container">
         <div class="navbar-header">
@@ -131,60 +132,12 @@
             <span class="navbar-brand hidden-sm">Bmob视频教程</span>
         </div>
         <div class="navbar-collapse collapse" role="navigation">
-            <ul class="nav navbar-nav" role="tablist">
-				<li class="active"><a href="#SDK" aria-controls="SDK" role="tab" data-toggle="tab">数据服务</a></li>
-                <li><a href="#IM" aria-controls="IM" role="tab" data-toggle="tab">即时通讯</a></li>
-                <li><a href="#PUSH" aria-controls="PUSH" role="tab" data-toggle="tab">推送服务</a></li>
-            </ul>
+            <ul class="nav navbar-nav" role="tablist"></ul>
         </div>
     </div>
 </div>
 
-<div class="tab-content">
-
-	<!--数据[SDK]-->
-    <div role="tabpanel" class="tab-pane active" id="SDK">
-        <div class="bs-docs-header">
-            <div class="container text-left">
-                <h2>数据服务SDK视频教程</h2>
-                <p>Bmob平台为您的移动应用提供了一个完整的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用Bmob平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。</p>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="mod-chapters"></div>
-        </div>
-
-    </div>
-
-    <!--即时通讯[BmobNewIM SDK]-->
-    <div role="tabpanel" class="tab-pane" id="IM">
-        <div class="bs-docs-header">
-            <div class="container text-left">
-                <h2>即时通讯SDK视频教程</h2>
-                <p>Bmob平台为您的移动应用提供了一个完整的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用Bmob平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。</p>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="mod-chapters"></div>
-        </div>
-    </div>
-
-    <!--推送[BmobPush SDK]-->
-    <div role="tabpanel" class="tab-pane" id="PUSH">
-        <div class="bs-docs-header">
-            <div class="container text-left">
-                <h2>推送服务SDK视频教程</h2>
-                <p>Bmob平台为您的移动应用提供了一个完整的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用Bmob平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。</p>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="mod-chapters"></div>
-        </div>
-    </div>
-</div>
+<div class="tab-content"></div>
 
 
 <div class="mark" style="display: none">
@@ -198,15 +151,15 @@
                     fill="#999" p-id="3712"></path></svg>
             </span>
         </div>
-        <div class="title">123123</div>
+        <div class="title">Bmob视频教程</div>
         <iframe id="video" src="" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
     </div>
 </div>
 
 
 <!-- Main Javascript -->
-<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap-3.0.3.min.js"></script>
+<script type="text/javascript" src="http://doc.bmob.cn/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://doc.bmob.cn/js/bootstrap-3.0.3.min.js"></script>
 <script type="text/javascript" src="data.js"></script>
 <script>
     $(function () {
@@ -244,9 +197,33 @@
             return content
         }
 
-        $('#SDK .mod-chapters').html(details(dataSDK));
-        $('#IM .mod-chapters').html(details(IMSDK));
-        $('#PUSH .mod-chapters').html(details(PUSHSDK));
+        var content = "",li = "",hash;
+        var hashVal = parseInt(window.location.hash.substring(1));
+        if(isNaN(hashVal) || hashVal>data.length || hashVal<0){
+            hash = 0
+        }else{
+            hash = hashVal
+        }
+        for(var i = 0; i<data.length; i++){
+            var active = hash == i ? 'active' : '';
+            li += '<li class="'+ active +'"><a href="#'+ data[i].id +'" aria-controls="'+ data[i].id +'" role="tab" data-index="'+i+'" data-toggle="tab">'+ data[i].title +'</a></li>';
+            content += '<div role="tabpanel" class="tab-pane '+ active +'" id="'+ data[i].id +'">' +
+                '        <div class="bs-docs-header">' +
+                '            <div class="container text-left">' +
+                '                <h2>'+ data[i].title +'SDK视频教程</h2>' +
+                '                <p>Bmob平台为您的移动应用提供了一个完整的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用Bmob平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。</p>' +
+                '            </div>' +
+                '        </div>' +
+                '        <div class="container">' +
+                '            <div class="mod-chapters">'+
+                details(data[i].data) +
+                '</div>' +
+                '        </div>' +
+                '    </div>'
+        }
+
+        $('.tab-content').html(content);
+        $('.nav.navbar-nav').html(li);
 
         $('.video li').on('click',function () {
             body.addClass('hidden-scroll');
@@ -257,6 +234,9 @@
             setTimeout(function () {
                 mark.fadeIn();
             },300);
+        });
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            window.location.hash = $(this).data('index');
         });
 
         close.click(function () {

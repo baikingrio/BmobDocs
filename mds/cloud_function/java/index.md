@@ -1,3 +1,4 @@
+# Java云函数
 
 - 云函数是一段部署在服务端的代码片段，采用 java 或 node.js 进行编写，然后部署运行在Bmob服务器
 - 通过云函数可以解决很多复杂的业务逻辑，从此无需将要将大量的数据发送到移动设备上做计算处理
@@ -14,21 +15,116 @@ SDK|AppId|交互自带加密,接入快速
 RestApi|AppId、RestKey|所有平台适用，通用性强
 Http请求|Secret Key|所有平台适用，可用浏览器打开
 
+
+### Restful API
+	
+1. 调用 `api.bmob.cn` ，与调用NodeJS版云函数的方式 **完全相同**。这种方式下，服务器会 **自动判断语言**，但 **限制 `Method` 为 `Post` 且 `Content-Type` 为 `application/json`**
+
+2. 调用 `javacloud.bmob.cn` ，调用方式基本相同，这种方式 **仅可调用Java云函数**，但 **不限制 `Method` 和 `Content-Type`**
+
+		// 使用Appid + RestKey请求api.bmob.cn域名(自动判断语言)
+		curl -X POST \
+			-H "X-Bmob-Application-Id: Your Application ID" \
+			-H "X-Bmob-REST-API-Key: Your REST API Key" \
+			-H "Content-Type: application/json" \
+			-d '{"name": "zwr"}' \
+			https://api.bmob.cn/1/functions/[function name]
+
+		// 使用Appid + RestKey请求javacloud.bmob.cn域名(仅支持Java云函数)
+		curl -X [method] \
+		    -H "X-Bmob-Application-Id: Your Application ID" \
+		    -H "X-Bmob-REST-API-Key: Your REST API Key" \
+		    -d '[body]' \
+		    https://javacloud.bmob.cn/1/functions/[function name]
+
+		// 使用Master Key请求
+		curl -X [method] \
+		    -H "X-Bmob-Master-Key: Your Master Key" \
+		    -d '[body]' \
+		    https://javacloud.bmob.cn/1/functions/[function name]
+
+### Http请求
+
+		// 使用Secret Key请求
+		curl -X [method] \
+		    -H "header key: header value" \
+		    -d '[body]' \
+		    https://javacloud.bmob.cn/[sectet key]/[function name]
+		
+		// 或者直接用浏览器打开，即GET请求
+	    https://javacloud.bmob.cn/[sectet key]/[function name]?k1=v1&k2=v2
+
+
+---
+
+以下是Bmob各种SDK调用Java云函数的方法，与调用NodeJS版云函数的方式 **完全相同**
+
 ### Android SDK
 
+		AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+		ace.callEndpoint(Context, String funcName, JSONObject params, new CloudCodeListener() {
+		    @Override
+		    public void done(Object object, BmobException e) {
+		        if (e == null) 
+		            Log.e(TAG, "Succeed: " + object);
+		        else
+		            Log.e(TAG, "Failed: " + e);
+			}
+		});
+
+### 微信小程序
+			
+		Bmob.Cloud.run('test', {'name': 'zwr'}).then(function (result) {
+			console.log("Succeed: ");
+			console.log(result);
+		}, function (error) {
+			console.log("Failed: ");
+			console.log(error);
+		});
 
 ### iOS SDK
+
+		[BmobCloud callFunctionInBackground:@"funcName" withParameters:nil block:^(id object, NSError *error) {
+			if (error) {
+			  NSLog(@"Failed: %@",[error description]);
+			}else{
+				NSLog(@"Succeed: %@",object);
+			}
+		}] ;
 
 
 ### C# SDK
 
+		IDictionary<String, Object> parameters ＝  new IDictionary<String, Object>{{"name","zwr"}};
+		Bmob.Endpoint<Hashtable>("test", parameters, (resp, exception) => 
+		{
+		    if (exception == null)
+		    {
+			    print("Succeed: " + resp);
+		    }
+		    else
+		    {
+		        print("Failed: " + exception.Message);
+		    }
+		});
 
-### Restful api
+### PHP SDK
 
-
-### Http请求
-
-
+		$cloudCode = new BmobCloudCode('test'); //调用名字为test的云函数
+		$res = $cloudCode->get(array("name"=>"zwr")); //传入参数name，其值为zwr
+		
+### JavaScript
+		
+		Bmob.Cloud.run('test', {"name":"tom"}, {
+			success: function(result) {
+				console.log("Succeed: ");
+				console.log(result);
+			},
+			error: function(error) {
+				console.log("Failed: ");
+				console.log(error);
+			}
+		});
 
 ## 日志
 
@@ -60,8 +156,21 @@ Http请求|Secret Key|所有平台适用，可用浏览器打开
 - 不可包含`/**/`注释，如需注释，请用 `//`
 - 仅可写一个Java的方法，不能写多个方法、类变量、静态变量等
 - 云函数执行完毕后，必须用response.send方法返回响应数据，否则会被当做超时，多次超时可能会被暂停使用
+
+## 工具
+
+Github页面如下：
+
+[https://github.com/bmob/BmobJavaCloud](https://github.com/bmob/BmobJavaCloud) 
+
+- `libs目录` 下提供了 `Bmob-JavaCloud-Apis_xxx.jar` 以供开发者使用IDE(ecplise、as)开发时参考
+- `exec目录` 下提供了 `macos`、`linux`、`windows 64位`等平台的`可执行文件`，以供开发者快速进行代码的上传、修改、同步到本地和删除
+- `samples目录` 提供了案例
+- `doc目录` 下提供了文档
+
+## 方法参数
 		
-## Request对象
+### Request对象
 
 onRequest方法参数中 `Request request` 包含了本次请求的全部信息：
 
@@ -76,7 +185,7 @@ Body内参数|JSONObject|request.getParams()|{"username": "zwr"}
 单个请求头|String|request.getHeader(String key)|request.getHeader("User-Agent") = "Chrome"
 单个Get参数|String|request.getQueryParam(String key)|request.getQueryParam("page") = "1"
 
-## Response对象
+### Response对象
 
 - onRequest方法参数中 `Response response` 用于响应请求，返回数据
 - Response对象仅有名为 `send` 的方法，参数不同共有4种重载形式(Overloading):
@@ -110,41 +219,24 @@ headers|JSONObject|返回的头部信息，采用String-String的格式，例如
 		);
 
 
-## Modules对象
+### Modules对象
 
 - onRequest方法参数中 `Modules modules` 提供了几个模块供开发者调用：
 
 模块名|获取方式|作用
 :----:|:----:|:----:
-Bmob数据库操作对象|modules.oData|封装了Bmob的大多数api，以供开发者进行快速的业务逻辑开发，详见下文 `<Bmob数据操作>`
-日志输出对象|modules.oLog|提供了几个级别的日志输出，以便调试，详见下文 `<日志输出>`
+Bmob数据库操作|modules.oData|封装了Bmob的大多数api，以供开发者进行快速的业务逻辑开发，详见下文 `<Bmob数据操作>`
+内存操作|modules.oMemory|提供了一定内存空间给开发者快速读写，详见下文 `<内存操作>`
+日志输出|modules.oLog|提供了几个级别的日志输出，以便调试，详见下文 `<日志输出>`
+微信接口|modules.oWechat|目前提供了几个方法，用于小程序客服交互，详见下文 `<微信接口>`
 
-## 日志输出
-		// 设置需要输出的日志级别
-		// Level_All = 0
-		// Level_Debug = 1
-		// Level_Warn = 2
-		// Level_Error = 3
-		modules.oLog.level = modules.oLog.Level_All // 全部都会输出
-		modules.oLog.level = modules.oLog.Level_Warn // 仅输出Warn和Error
-		modules.oLog.level = modules.oLog.Level_Error // 仅Error级别日志
-		
-		modules.oLog.d(Object) // 输出Debug级别日志
-		modules.oLog.w(Object) // 输出Warn级别日志
-		modules.oLog.e(Object) // 输出Error级别日志
-		modules.oLog.debug(String,Object...) // 格式化输出Debug级别日志
-		modules.oLog.warn(String,Object...) // 格式化输出Warn级别日志
-		modules.oLog.error(String,Object...) // 格式化输出Error级别日志
-
-
-## Bmob数据操作
+#### Bmob数据操作
 
 以下均为 `modules.oData` 的方法：
 
 
 方法体|返回值|描述
 :----:|:----:|:----:
-setDomain(String)|this|设置请求的域名，仅迁移用户需要使用
 setTimeout(int)|this|设置超时时间(单位:毫秒)，与云函数超时无关
 setHeader(String...)|this|设置请求头
 setHeader(JSONObject)|this|设置请求头
@@ -180,6 +272,108 @@ getDBTime()|HttpResponse|获取Restful服务器的时间
 batch(JSONArray requests)|HttpResponse|批量请求
 
 
+#### 内存操作
+
+- `modules.oMemory` 提供了内存操作，可以进行快速的缓存读写，
+- **内存随时可能被重置(暂无持久化功能)**，所以在使用的时候，最好结合Base64、Bmob数据库来使用
+- 若使用得当，可以提高效率、减少Bmob api请求压力。
+- 内存块是以 **应用为单位** 分配的，也就是允许一个应用下 **跨Java云函数** 同时进行读写
+- 目前内存大小统一为 **64kb/App**(有可能变动)，可以通过 `modules.oMemory.MemorySize` 获取
+- 下面的方法除 `clean` 之外，分为 `当作byte数组` 和 `当作Map` 使用两种方式，这两种方式 **不能混用** ，如果你的应用选择将内存转为Map类型使用，就不能再用byte数组类型的接口操作内存，否则会出现异常
+- 以下均为 `modules.oMemory` 的方法
+
+		// 把内存当作byte数组使用，往内存写byte数组
+		// buff: 写入内容
+		// buffOffset: 写入内容内偏移值
+		// memoryOffset: 内存偏移值
+		// length: 写入长度
+		// return 是否写入成功(超出授予的内存大小，即返回失败)
+		public native boolean write(byte[] buff, int buffOffset, int memoryOffset,
+				int length);
+				
+		// 把内存当作byte数组使用，读取内存
+		public native boolean read(byte[] buff, int memoryOffset, int buffOffset,
+				int length);
+				
+		// 把内存当作byte数组使用，读取内存
+		// return 越界时返回null，没有写入过返回 new byte[length]
+		public native byte[] read(int memoryOffset, int length);
+		
+		// 清理内存
+		public native void clean();
+		
+		// 把内存当作Map类型操作，写入键值对
+		public native boolean putMap(String key, Serializable value);
+		
+		// 把内存当作Map类型操作，写入追加Map
+		public native boolean putMap(Map<String, Serializable> kvs);
+		
+		// 把内存当作Map类型操作，获取一个值
+		public native <T extends Serializable> T getMap(String key);
+		
+		// 把内存当作Map类型操作，覆盖写入Map
+		public native boolean writeMap(Map<String, Serializable> kvs);
+		
+		// 把内存当作Map类型操作，读取整个Map
+		public native Map<String, Serializable> readMap();
+		
+		// 把内存当作Map类型操作, 写入一个byte
+		public native boolean writeByte(int index, byte b);
+		
+		// 把内存当作Map类型操作, 读取一个byte
+		public native byte readByte(int index);
+		
+					
+
+#### 日志输出
+
+
+以下均为 `modules.oLog` 的方法：
+
+		// 设置需要输出的日志级别
+		// Level_All = 0
+		// Level_Debug = 1
+		// Level_Warn = 2
+		// Level_Error = 3
+		modules.oLog.level = modules.oLog.Level_All // 全部都会输出
+		modules.oLog.level = modules.oLog.Level_Warn // 仅输出Warn和Error
+		modules.oLog.level = modules.oLog.Level_Error // 仅Error级别日志
+		
+		modules.oLog.d(Object) // 输出Debug级别日志
+		modules.oLog.w(Object) // 输出Warn级别日志
+		modules.oLog.e(Object) // 输出Error级别日志
+		modules.oLog.debug(String,Object...) // 格式化输出Debug级别日志
+		modules.oLog.warn(String,Object...) // 格式化输出Warn级别日志
+		modules.oLog.error(String,Object...) // 格式化输出Error级别日志
+		
+
+#### 微信接口
+
+- 推荐将小程序的appid、app secret在Bmob后台设置，由Bmob进行AccessToken的生命周期管理
+- 以下均为 `modules.oWechat` 的方法
+
+		// 设置当前的AccessToken
+		setAccessToken(String)
+		
+		// 设置小程序的key，不推荐调用，推荐在Bmob后台设置
+		initWechatApp(String appId, String appSecret)
+		
+		// 获取当前的AccessToken
+		// 如果通过调用initWechatApp方法设置了小程序参数，则直接从微信接口获取，请注意自行保存并管理有效期，以避免频繁获取
+		// 如果未调用initWechatApp，则从Bmob平台获取
+		getAccessToken()
+		getAccessToken(boolean useCache) // 参数为false时不使用缓存
+		
+		// 发送消息给小程序的用户
+		// type可以为text、image、link
+		// msg为String或JSON，请参考Demo和微信官方文档
+		sendWechatAppMsg(String openId, String type, Object msg)
+
+		// 判断是否从微信发送的请求
+		// 实际上就是封装了判断signature是否等于SHA1(sort(timestamp,nonce,token))
+		isWechatRequest(String token, Request request)
+		
+
 ## 内置类
 		
 ### HttpResponse
@@ -207,36 +401,58 @@ headers|JSONObject|返回的Http头部
 
 ### Querier
 
-**类方法**:
-	
+**类方法**: **返回类型均为 `Querier`** (以链式调用)
 
 方法体|描述
 :----:|:----:
 \<init\>(String table)|构造方法，传入表名
-Querier limit(int)|设置最大返回行数
-Querier skip(int)|设置跳过的个数
-Querier order(String)|排序规则
-Querier keys(String)|需要返回的属性
-Querier include(String)|需要返回详细信息的Pointer属性
-Querier where(JSONObject)|设置查询条件
+limit(int)|设置最大返回行数
+skip(int)|设置跳过的个数
+order(String)|排序规则
+keys(String)|需要返回的属性
+include(String)|需要返回详细信息的Pointer属性
+where(JSONObject)|设置查询条件
+addWhere(JSONObject)|添加条件
+and(Querier)|and复合查询
+or(Querier)|or复合查询
+addWhereExists(String)|某字段有值
+addWhereNotExists(String)|某字段无值
+addWhereExists(String,boolean)|某字段有/无值
+addWhereEqualTo(String,Object)|某字段等于
+addWhereNotEqualTo(String,Object)|某字段不等于
+addWhereGreaterThan(String,Object)|某字段大于
+addWhereGreaterThanOrEqualTo(String,Object)|某字段大于等于
+addWhereLessThan(String,Object)|某字段小于
+addWhereLessThanOrEqualTo(String,Object)|某字段小于等于
+addWhereRelatedTo(String table,toObjId,toKey)|在某表作为Relation关联起来的数据
+addWhereNear(String,BmobGeoPoint,double maxMiles, double maxKM, double maxRadians)|地理位置在一定范围内
+addWhereWithinGeoBox(String,BmobGeoPoint,BmobGeoPoint)|地理位置在矩形范围内
+count(int)|统计接口: 返回数量
+groupby(String)|统计接口: 根据某列分组
+groupcount(boolean)|统计接口: 分组后组内统计数量
+sum(String)|统计接口: 计算总数
+average(String)|统计接口: 计算平均数
+max(String)|统计接口: 获取最大值
+min(String)|统计接口: 获取最小值
+having|统计接口: 分组中的过滤条件
 
 ### BmobUpdater
 
-该类的全部静态方法都用于设置insert、update方法的请求内容
+该类的全部静态方法都用于设置insert、update方法的请求内容，**返回类型均为 `JSONObject`**
 
 **静态方法**：
 
 方法体|描述
 :----:|:----:
-JSONObject add(JSONObject data,String key,Object value)|往data添加一个键值
-JSONObject increment(JSONObject data,String key,Number number)|原子计数
-JSONObject arrayAdd(JSONObject data,String key,Object obj)|往Array类型添加一项
-JSONObject arrayAddAll(JSONObject data,String key,JSONArray objects)|往Array类型添加多项
-JSONObject arrayAddUnique(JSONObject data,String key,Object obj)|往Array类型不重复地添加一项
-JSONObject arrayAddAllUnique(JSONObject data,String key,JSONArray objects)|往Array类型不重复地添加多项
-JSONObject arrayRemoveAll(JSONObject data,String key,JSONArray objects)|删除Array类型的多项
-JSONObject addRelations(JSONObject data, String key,BmobPointer...pointers)|添加多个Relation关系
-JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|移除多个Relation关系
+add(JSONObject data,String key,Object value)|往data添加一个键值
+increment(JSONObject data,String key,Number number)|原子计数
+arrayAdd(JSONObject data,String key,Object obj)|往Array类型添加一项
+arrayAddAll(JSONObject data,String key,JSONArray objects)|往Array类型添加多项
+arrayAddUnique(JSONObject data,String key,Object obj)|往Array类型不重复地添加一项
+arrayAddAllUnique(JSONObject data,String key,JSONArray objects)|往Array类型不重复地添加多项
+arrayRemoveAll(JSONObject data,String key,JSONArray objects)|删除Array类型的多项
+addRelations(JSONObject data, String key,BmobPointer...pointers)|添加多个Relation关系
+removeRelations(JSONObject data, String key,BmobPointer...pointers)|移除多个Relation关系
 
 ### JSON
 
@@ -369,6 +585,13 @@ JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|�
 		String Encode(byte[] data)
 		byte[] Decode(String str)
 
+### Hex
+
+静态方法：
+
+		String Encode(byte[] data)
+		byte[] Decode(String str)
+
 ### Crypto
 
 静态方法：
@@ -398,11 +621,16 @@ JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|�
 
 ### RSA
 
+请注意，别忘了要写类的全称，例如 `java.security.PrivateKey`，否则编译失败
+
 静态方法：
 
-		KeyPair GenerateKeys()
-		KeyPair RestoreKeys(byte[] keyBytes)
-		PublicKey ParsePublicKey(byte[] keyBytes)
+		java.security.KeyPair GenerateKeys()
+		java.security.PrivateKey ParsePrivateKey(byte[] keyBytes)
+		java.security.PublicKey ParsePublicKey(byte[] keyBytes)
+		
+		// 下面4个方法，都可以再添加一个String参数，传入算法
+		// 默认的算法为：加解密[RSA/ECB/PKCS1Padding], 签名[SHA1WithRSA]
 		byte[] Encode(PublicKey pubKey, byte[] content)
 		byte[] Decode(PrivateKey priKey, byte[] content)
 		byte[] Sign(PrivateKey priKey, byte[] content)
@@ -418,9 +646,7 @@ JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|�
 		byte[] EncodeToBytes(byte[] bytes)
 
 
-	
-
-## 内置方法：
+## 内置方法
 
 		long getTime() // 获取当前毫秒
 		String fmt(String, Object...) // 格式化
@@ -431,7 +657,11 @@ JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|�
 		arraycopy(Object from, int fromOffset, Object to, int toOffset, int length) // 复制数组内容
 	
 				
-## 示例：
+## 示例
+
+案例主要放在了Github: **[Bmob云函数案例](https://github.com/bmob/BmobJavaCloud/tree/master/samples)**
+
+
 
 - **场景1**:
 	
@@ -509,3 +739,4 @@ JSONObject removeRelations(JSONObject data, String key,BmobPointer...pointers)|�
 		3.购买更高的并发配置
 		
 - 如果需要接受更大的请求体，或返回更大的结果，请购买更高的配置
+- 如果你用 `eclipse` 等IDE开发，使用 [同步工具](https://github.com/bmob/BmobJavaCloud/tree/master/exec) 是一个不错的选择

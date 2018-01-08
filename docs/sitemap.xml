@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-12-06</lastmod>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -54,8 +54,8 @@
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/data/cocos2d_x/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -70,66 +70,44 @@
     
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/cloud_function/android/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/cloud_function/ios/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/cloud_function/java/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/cloud_function/csharp/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/cloud_function/php/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/cloud_function/javascript/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/cloud_function/restful/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -144,32 +122,32 @@
     
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/sms/android/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/sms/ios/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/sms/php/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/sms/javascript/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/sms/restful/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -194,32 +172,32 @@
     
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/push/android/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/push/ios/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/push/php/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/push/javascript/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/push/restful/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -228,26 +206,26 @@
     
         
     <url>
-     <loc></loc>
-     <lastmod></lastmod>
+     <loc>/other/common_problem/</loc>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/other/error_code/</loc>
-     <lastmod>2017-12-06</lastmod>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/other/data_safety/</loc>
-     <lastmod>2017-12-06</lastmod>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/other/bql/</loc>
-     <lastmod>2017-12-06</lastmod>
+     <lastmod>2018-01-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
